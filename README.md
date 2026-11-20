@@ -91,7 +91,7 @@ Build from source with Rust 1.87 or later:
 
 ```sh
 cargo install --path .        # or: cargo install --git <this repo's URL>
-ojas init                    # adds the hooks to ~/.claude/settings.json
+ojas init                     # adds the hooks to ~/.claude/settings.json
 ```
 
 Prebuilt binaries for Linux, macOS and Windows (x86_64 and arm64) are attached to each GitHub release. They are built by `.github/workflows/release.yml` when a `v*` tag is pushed.
@@ -116,8 +116,8 @@ some-command 2>&1 | ojas filter --kind test
 ## Measure it
 
 ```sh
-ojas gain [--days 7]     # per-filter savings recorded by ojas run (estimate: 1 token ≈ 4 bytes)
-ojas audit [--days 30]   # real usage from Claude Code transcripts, plus which commands
+ojas gain [--days 7]      # per-filter savings recorded by ojas run (estimate: 1 token ≈ 4 bytes)
+ojas audit [--days 30]    # real usage from Claude Code transcripts, plus which commands
                           # still send large output without going through ojas
 ```
 
