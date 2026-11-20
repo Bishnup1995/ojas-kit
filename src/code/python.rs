@@ -93,6 +93,12 @@ impl Ctx<'_> {
                 let last = self.body_end(j, end, ind);
                 let children = if kind == SymKind::Container {
                     self.region(j + 1, last + 1, true)
+                } else if last - j > super::LARGE_BODY {
+                    // Huge functions (app factories): list nested definitions.
+                    self.region(j + 1, last + 1, false)
+                        .into_iter()
+                        .filter(|it| matches!(it, Item::Block(_)))
+                        .collect()
                 } else {
                     Vec::new()
                 };

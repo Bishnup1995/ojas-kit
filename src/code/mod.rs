@@ -37,6 +37,9 @@ impl Lang {
     }
 }
 
+/// Function bodies longer than this (in lines) also list their nested definitions.
+pub(crate) const LARGE_BODY: usize = 200;
+
 pub fn lang_for(path: &Path) -> Option<Lang> {
     let ext = path.extension()?.to_str()?.to_ascii_lowercase();
     Some(match ext.as_str() {

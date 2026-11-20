@@ -222,6 +222,21 @@ fn parse_region(lines: &[LexLine], start: usize, end: usize, level: i32) -> Vec<
             }
             let children = if kind == SymKind::Container {
                 parse_region(lines, i + 1, e.max(i + 1), level + 1)
+            } else if kind == SymKind::Function && e - i > super::LARGE_BODY {
+                // Huge functions (factories, closures): list nested declared
+                // functions and types, not statements.
+                parse_region(lines, i + 1, e.max(i + 1), level + 1)
+                    .into_iter()
+                    .filter(|it| match it {
+                        Item::Block(b) => {
+                            matches!(
+                                b.kind,
+                                SymKind::Function | SymKind::Container | SymKind::Data
+                            ) && DECL.is_match(lines[b.start].code.trim())
+                        }
+                        _ => false,
+                    })
+                    .collect()
             } else {
                 Vec::new()
             };
