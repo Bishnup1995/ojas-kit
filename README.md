@@ -107,7 +107,7 @@ Restart Claude Code after installing. `ojas uninit` removes only ojas's hooks.
 
 ### Other agents (Cursor, Codex, Gemini CLI, …)
 
-Agents without Claude Code hooks can call ojas directly. Paste the output of `ojas rules` into `AGENTS.md`, `.cursor/rules`, `GEMINI.md` or similar. It tells the agent to run noisy commands as `ojas run -- <cmd>`. You can also pipe into a filter:
+Agents without Claude Code hooks can call ojas directly. The easiest way is the ready-made skill in [`skills/ojas/`](skills/ojas/): copy it into your agent's skills folder. Or paste the output of `ojas rules` into `AGENTS.md`, `.cursor/rules`, `GEMINI.md` or similar. It tells the agent to run noisy commands as `ojas run -- <cmd>`. You can also pipe into a filter:
 
 ```sh
 some-command 2>&1 | ojas filter --kind test
