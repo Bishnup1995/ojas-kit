@@ -1,0 +1,4 @@
+walkdir v2.5.0 (/home/bench/work/walkdir)
+└── same-file v1.0.6
+[dev-dependencies]
+└── doc-comment v0.3.4

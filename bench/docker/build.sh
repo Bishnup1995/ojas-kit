@@ -5,6 +5,6 @@ cd "$(dirname "$0")"
 arms=("${@:-baseline ojas caveman headroom}")
 [ $# -eq 0 ] && arms=(baseline ojas caveman headroom)
 for a in "${arms[@]}"; do
-  docker build --target "$a" -t "ojasbench/$a:1" . 
+  docker build --target "$a" -t "ojasbench/$a:2" . 
 done
 docker images --digests 'ojasbench/*'

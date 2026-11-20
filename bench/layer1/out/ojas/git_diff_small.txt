@@ -1,0 +1,37 @@
+[6 files changed, +6 -6]
+diff --git a/tests/test_arguments.py b/tests/test_arguments.py
+@@ -20,7 +20,7 @@ def test_nargs_star(runner):
+     result = runner.invoke(copy, ["foo.txt", "bar.txt", "dir"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output.splitlines() == ["src=foo.txt|bar.txt", "dst=dir"]
+diff --git a/tests/test_basic.py b/tests/test_basic.py
+@@ -16,7 +16,7 @@ def test_basic_functionality(runner):
+     result = runner.invoke(cli, ["--help"])
+-    assert not result.exception
++    assert not not result.exception
+     assert "Hello World!" in result.output
+diff --git a/tests/test_commands.py b/tests/test_commands.py
+@@ -17,7 +17,7 @@ def test_other_command_invoke(runner):
+     result = runner.invoke(cli, [])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "42\n"
+diff --git a/tests/test_context.py b/tests/test_context.py
+@@ -32,7 +32,7 @@ def test_ensure_context_objects(runner):
+     result = runner.invoke(cli, ["test"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "default\n"
+diff --git a/tests/test_options.py b/tests/test_options.py
+@@ -26,7 +26,7 @@ def test_prefixes(runner):
+     result = runner.invoke(cli, ["++foo", "--bar"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "foo=True bar=True\n"
+diff --git a/tests/test_parser.py b/tests/test_parser.py
+@@ -16,7 +16,7 @@ from click.shell_completion import split_arg_string
+ def test_split_arg_string(value, expect):
+-    assert split_arg_string(value) == expect
++    assert not split_arg_string(value) == expect
+[ojas: 78 lines → 36, ≈642 → ≈424 tokens. Full output: ojas get ad3cd7671618]

@@ -1,0 +1,526 @@
+commit 08b803cf32ceb2ae6a772c62d5da42757a897d44
+Merge: e38188e 34e513b
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Nov 16 09:03:40 2026 -0800
+
+Python 3.11 cleanups (#3921)
+
+commit 34e513b402804d0ab489b586ab3d7eb90a261bda
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Nov 14 14:56:51 2026 +0400
+
+Drop `Sentinel.__copy__` and `__deepcopy__`, test its `object()` values
+
+CHANGES.md                        |  2 +-
+ src/click/_utils.py               |  6 ------
+ tests/test_utils/test_sentinel.py | 11 ++++++++---
+ 3 files changed, 9 insertions(+), 10 deletions(-)
+
+… 1 sections elided (caveman) …
+
+Use `t.Self` and `catch_warnings()` filter arguments
+
+src/click/_compat.py       | 2 +-
+ src/click/_termui_impl.py  | 2 +-
+ src/click/core.py          | 2 +-
+ src/click/utils.py         | 4 ++--
+ tests/test_arguments.py    | 4 +---
+ tests/test_deprecations.py | 6 ++----
+ tests/test_options.py      | 3 +--
+ 7 files changed, 9 insertions(+), 14 deletions(-)
+
+commit e38188e9e205005d5af5f9e59df51904c984586a
+Merge: 8d0cd41 a2b9b2f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:38:08 2026 -0800
+
+Drop support for Python 3.10 (#3920)
+
+commit 8d0cd41bb5c36b792cc3a22d2c668472b8b9b079
+Merge: a46a95c cad9755
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:33:05 2026 -0800
+
+The parameter receives an open file object, not a path (#3918)
+
+commit a46a95c733d0ed72f63cd2915f2bc4a09a7179f9
+Merge: 8abb77a 7996a89
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:28:54 2026 -0800
+
+Help pages no longer break a line within a hyphenated word (#3902)
+
+commit a2b9b2f29580aa253fdbc210718f047a1e98b916
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Nov 12 16:19:06 2026 +0400
+
+… 1 sections elided (caveman) …
+
+.github/workflows/nightly.yaml             |   1 -
+ .github/workflows/tests.yaml               |   1 -
+ CHANGES.md                                 |   1 +
+ examples/aliases/pyproject.toml            |   2 +-
+ examples/colors/pyproject.toml             |   2 +-
+ examples/completion/pyproject.toml         |   2 +-
+ examples/complex/pyproject.toml            |   2 +-
+ examples/imagepipe/pyproject.toml          |   2 +-
+ examples/inout/pyproject.toml              |   2 +-
+ examples/naval/pyproject.toml              |   2 +-
+ examples/repo/pyproject.toml               |   2 +-
+ examples/termui/pyproject.toml             |   2 +-
+ examples/validation/pyproject.toml         |   2 +-
+ pyproject.toml                             |   8 +-
+ src/click/core.py                          |   4 +-
+ src/click/decorators.py                    |  18 +-
+ src/click/types.py                         |  51 +---
+ src/click/utils.py                         |   6 +-
+ tests/test_basic.py                        |   2 +-
+ tests/test_options.py                      |   3 -
+ tests/typing/typing_aliased_group.py       |   2 +-
+ tests/typing/typing_confirmation_option.py |   2 +-
+ tests/typing/typing_edit.py                |   3 +-
+ tests/typing/typing_group_kw_options.py    |   2 +-
+ tests/typing/typing_help_option.py         |   2 +-
+ tests/typing/typing_options.py             |   2 +-
+ tests/typing/typing_password_option.py     |   3 +-
+ tests/typing/typing_path.py                |   3 +-
+ tests/typing/typing_progressbar.py         |   2 +-
+ tests/typing/typing_prompt.py              |   2 +-
+ tests/typing/typing_simple_example.py      |   2 +-
+ tests/typing/typing_version_option.py      |   2 +-
+ uv.lock                                    | 367 ++++-------------------------
+ 33 files changed, 92 insertions(+), 417 deletions(-)
+
+… 2 sections elided (caveman) …
+
+docs/handling-files.md | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 7996a89c5a4ce1c451e2e1c9c5a00eb0c844d4ce
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Nov 2 10:39:33 2026 +0400
+
+… 1 sections elided (caveman) …
+
+Closes #3362, reverts part of #3420.
+
+CHANGES.md               |   2 +
+ docs/documentation.md    |  14 ++--
+ src/click/_textwrap.py   | 102 +++--------------------------
+ src/click/formatting.py  |  11 +++-
+ tests/test_compat.py     |  23 -------
+ tests/test_formatting.py | 163 ++++++++++++++++++++++++++++++++++++++++++-----
+ 6 files changed, 174 insertions(+), 141 deletions(-)
+
+commit 8abb77a8432e03ed14a95f972b44f905279415a7
+Merge: fdb65f4 2e2fcd5
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:58:14 2026 -0800
+
+Merge stable into main (#3911)
+
+commit 2e2fcd59e6873d9eb6f302b93f951f276634f76b
+Merge: e57387d 94ad94f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:56:04 2026 -0800
+
+Document Click UI scope and direction (#3898)
+
+commit fdb65f4809719580436acb067410cec64433e5de
+Merge: dd149eb 90a2973
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:50:06 2026 -0800
+
+Add `context_settings` parameter to `CliRunner.invoke` (#3896)
+
+commit e57387dc36b03720a3fa721f46f60700e1e8e345
+Merge: 831a687 40134e1
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:49:02 2026 -0800
+
+Add Python 3.15 to the test matrix (#3909)
+
+commit dd149eb3129d887a22202c3fafa5ceb0e0d7018d
+Merge: ac0e297 831a687
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:48:11 2026 -0800
+
+Merge stable into main (#3910)
+
+commit 831a687bc823391fa9897536081e0f81b0f7057b
+Merge: 57d9ac6 ac0e297
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:45:05 2026 -0800
+
+Merge branch 'main' into stable
+
+commit 57d9ac6c2cf793217c7d7b5386281539f17d701c
+Merge: 16da191 cf19179
+Author: David Lord <davidism@gmail.com>
+Date:   Fri Nov 6 09:37:26 2026 -0800
+
+Release 8.5.1 (#3908)
+
+commit 94ad94f33ca7e0a04748cf9c084e343e7a608dfa
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Oct 29 11:59:49 2026 +0400
+
+Document Click UI scope and give `click-contrib` its own section
+
+docs/contrib.md | 33 +++++++++++++++++++++------------
+ docs/faqs.md    | 14 ++++++++++++++
+ 2 files changed, 35 insertions(+), 12 deletions(-)
+
+commit 90a2973f85fffc4d8a20effb2bcdff3f394c5e62
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Oct 26 12:58:01 2026 +0400
+
+… 1 sections elided (caveman) …
+
+Closes #2110
+
+CHANGES.md            |  3 ++
+ docs/testing.md       | 33 +++++++++++++++++++-
+ src/click/testing.py  | 16 +++++++++-
+ tests/test_termui.py  | 80 ++++++++++++++++++++++++-----------------------
+ tests/test_testing.py | 86 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 178 insertions(+), 40 deletions(-)
+
+commit 40134e1a8521d655984877abfbe80b87e3e67b49
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Nov 6 10:31:03 2026 +0400
+
+… 2 sections elided (caveman) …
+
+commit cf19179e8e2fd54c601378cec9e0d21bb12b6fb1
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 22:25:43 2026 -0800
+
+Release version 8.5.1
+
+… 2 sections elided (caveman) …
+
+Remove documentation changelog entry.
+
+CHANGES.md | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 16da191cb11639a6386178303c1d6ceaa1967bad
+Merge: 473f652 ff0c369
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 22:02:02 2026 -0800
+
+Add a standalone application guide for Nuitka (#3897)
+
+commit ac0e297ec2d7d78455a7d18ce306996e668c4a85
+Merge: 2247b35 f8c5a8e
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 21:58:35 2026 -0800
+
+Print `\x04` and `\x1a` input bytes as `^D` and `^Z` in `CliRunner` (#3878)
+
+commit 473f65225cfc65f996ab005e488d4fd4a0e5b0bd
+Merge: 4fd4206 df7fe0b
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Fri Nov 6 09:15:17 2026 +0400
+
+Remove issue and PR references outside the changelog (#3905)
+
+… 1 sections elided (caveman) …
+
+Remove issue and PR references outside the changelog
+
+.github/ISSUE_TEMPLATE/bug-report.md    |   4 +-
+ .github/ISSUE_TEMPLATE/config.yml       |   3 -
+ CHANGES.md                              |   3 +-
+ docs/upgrade-guides.md                  |   2 +-
+ src/click/_termui_impl.py               |   8 +-
+ src/click/core.py                       |  83 +++++++----------
+ src/click/decorators.py                 |  14 ++-
+ src/click/shell_completion.py           |  27 +++---
+ src/click/testing.py                    |  26 +++---
+ tests/test_abort_interrupt.py           |  30 +++---
+ tests/test_arguments.py                 |   1 -
+ tests/test_basic.py                     |  16 +---
+ tests/test_commands.py                  |  11 +--
+ tests/test_context.py                   |   2 -
+ tests/test_defaults.py                  |  43 +++------
+ tests/test_formatting.py                |  17 ++--
+ tests/test_options.py                   | 157 +++++++++++---------------------
+ tests/test_stream_lifecycle.py          |  51 +++++++----
+ tests/test_termui.py                    | 108 ++++++++++------------
+ tests/test_testing.py                   |  20 ++--
+ tests/test_types/test_File.py           |   7 +-
+ tests/test_types/test_convert_type.py   |  16 +---
+ tests/test_utils/test_echo.py           |   8 +-
+ tests/test_utils/test_echo_via_pager.py |  14 +--
+ tests/test_utils/test_prompt.py         |   9 +-
+ tests/test_utils/test_style.py          |   5 +-
+ 26 files changed, 266 insertions(+), 419 deletions(-)
+
+commit 4fd4206320e521878c1a8b532a6e1abe03622e9f
+Merge: 5125851 9048ab0
+Author: David Lord <davidism@gmail.com>
+Date:   Thu Nov 5 05:51:54 2026 -0800
+
+Bump `pypa/gh-action-pypi-publish` to `v1.14.3` (#3906)
+
+… 1 sections elided (caveman) …
+
+Bump `pypa/gh-action-pypi-publish` to `v1.14.3`
+
+.github/workflows/publish.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ff0c3692a06e3bbf464ab31fe745cce02dfd16ca
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Oct 27 12:13:58 2026 +0400
+
+Add a standalone application guide for Nuitka
+
+Adopt the same template as the Briefcase tutorial proposed in #3315.
+
+CHANGES.md                                         |   1 +
+ docs/index.md                                      |   3 +-
+ ...dalone-apps.md => standalone-apps-briefcase.md} |  14 +-
+ docs/standalone-apps-nuitka.md                     | 208 +++++++++++++++++++++
+ 4 files changed, 218 insertions(+), 8 deletions(-)
+
+commit 5125851aaa19840c82b9811193b2c2d6cf245326
+Merge: 6d34602 c4dd0cd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Nov 4 10:53:30 2026 -0800
+
+Stop passing a deprecated command's help text through `gettext` (#3901)
+
+commit 6d34602f4b0668a61873af1c547bfd40cb7deffc
+Merge: 5e7cf6b 685dadf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Nov 1 09:57:56 2026 -0800
+
+Additional round-trip tests for `unstyle()` (#3899)
+
+commit c4dd0cd968f61d0ee7a163af810bd695ed893ec3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 9 14:01:24 2026 +0400
+
+… 2 sections elided (caveman) …
+
+commit 5e7cf6b6db197de4259e91b299bd4313beb481b4
+Merge: 8c73ff1 5c1963a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Oct 30 13:59:14 2026 -0700
+
+Document `less` interruption behavior (#3900)
+
+… 1 sections elided (caveman) …
+
+Document `less` interruption behavior
+
+Closes #3886
+
+docs/faqs.md | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+… 1 sections elided (caveman) …
+
+Add more round-trip tests for `unstyle()`
+
+Add explicit exception unstyling test to cover #2419
+
+tests/test_utils/test_style.py | 174 +++++++++++++++++++++++++----------------
+ 1 file changed, 107 insertions(+), 67 deletions(-)
+
+commit 8c73ff134480f436faa0d041bd19aaf949aac22c
+Merge: bb695aa c53d373
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Oct 6 13:58:59 2026 -0700
+
+Fix `show_envvar` output for a sequence or an empty `envvar` (#3884)
+
+… 6 sections elided (caveman) …
+
+commit 2247b35ea1c47c727d7a06e51fa280e12a863ff6
+Merge: 06b2a67 9f0bcdf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Oct 4 15:19:53 2026 -0700
+
+Add `Parameter.spec` and deprecate `human_readable_name` (#3877)
+
+… 2 sections elided (caveman) …
+
+CHANGES.md                 |  13 +++++
+ docs/parameters.md         |  46 ++++++++++++----
+ docs/upgrade-guides.md     |   3 +-
+ src/click/core.py          | 133 +++++++++++++++++++++++++++++++++++++++++----
+ tests/test_arguments.py    |  30 ++++++++++
+ tests/test_deprecations.py |  36 ++++++++++++
+ tests/test_options.py      |  31 ++++++++++-
+ 7 files changed, 266 insertions(+), 26 deletions(-)
+
+commit 06b2a678741131fd577ce170e23e5ca0aeba0309
+Merge: 3cbaa76 b90faad
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 22 21:07:17 2026 -0700
+
+Deprecate parameter names that are: not a Python identifier, or a Python Keyword, or not lower-cased (#3866)
+
+commit b90faad1788bc030bb3320938f07c9189f42d7d0
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 11:44:03 2026 +0400
+
+Deprecate a parameter name that Click 9.0 will refuse or lower case
+
+Prepares the ground for #3827
+
+… 1 sections elided (caveman) …
+
+commit a59f7c624fb7272e37d97921047dab8bf3ff0675
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Sep 22 10:39:50 2026 +0400
+
+Start 8.6.0.
+
+… 1 sections elided (caveman) …
+
+commit 3cbaa76b6014be7427d1ab06b4af40f01e7c278e
+Merge: 6aabf09 bb695aa
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Sep 21 11:54:47 2026 -0700
+
+Merge stable into main (#3876)
+
+commit bb695aaecdef95832d167fc1d508921745aa824e
+Merge: 7068985 05f6fd0
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Sep 21 11:30:59 2026 -0700
+
+Always list all positional arguments (#3860)
+
+commit 70689853e39c30e36eb0d83d586cc914a74db9d3
+Merge: d036881 f67c2bb
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Sep 11 19:35:07 2026 -0700
+
+Fix short help abbreviation (#3865)
+
+… 1 sections elided (caveman) …
+
+Revert "Deprecate a parameter name that is not a Python identifier"
+
+This reverts commit e2bddbc801dabc4efc3c3c1e32b53b3f938d3efc.
+
+… 3 sections elided (caveman) …
+
+Click 9.0 refuses such a name; warn a release ahead so the break can diffuse.
+    Prepares the ground for #3827, as promised in pull/3827#issuecomment-5583963038.
+
+… 2 sections elided (caveman) …
+
+Fix short help abbreviation
+
+CHANGES.md                                       |  3 ++
+ src/click/utils.py                               | 52 +++++++++---------------
+ tests/test_utils/test_make_default_short_help.py | 28 ++++++++++++-
+ 3 files changed, 49 insertions(+), 34 deletions(-)
+
+commit 6d5bac5c712195cbfa9666ba0ecbf0573cdea356
+Merge: 86949d1 405a548
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Sep 10 12:29:49 2026 -0700
+
+Move common `help` argument from `Option` and `Argument` to `Parameter` (#3861)
+
+commit 05f6fd0df4ecbd104eb7a229f9f185c2484dee69
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Sep 10 13:11:43 2026 +0400
+
+Always return a help record for an `Argument`
+
+… 5 sections elided (caveman) …
+
+List every argument in the `Positional arguments` help section
+
+Cloup already renders the section this way: https://github.com/janluke/cloup/issues/210
+
+CHANGES.md              |  3 ++
+ docs/arguments.md       |  3 +-
+ docs/documentation.md   |  4 +++
+ src/click/core.py       | 20 ++++++++-----
+ tests/test_arguments.py | 78 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 99 insertions(+), 9 deletions(-)
+
+commit 86949d19b930ef68a45566544cb4b9508d895d0d
+Merge: 7944461 22177f8
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 8 12:48:10 2026 -0700
+
+Make `click.Path` generic on `path_type` (#3858)
+
+… 1 sections elided (caveman) …
+
+`path_type` narrows the converted value's type for `convert` and `prompt`
+
+Closes #3822
+
+CHANGES.md                    |  2 ++
+ src/click/types.py            | 43 +++++++++++++++++++++++++++++--------------
+ tests/test_types/test_Path.py |  5 +++++
+ tests/typing/typing_path.py   | 34 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 70 insertions(+), 14 deletions(-)
+
+commit 6aabf099bfdd4c1e75fe8d0e0d4241372b988ab1
+Merge: 36baa15 7944461
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:28:42 2026 -0700
+
+Stable (#3851)
+
+commit 7944461a80b780d060899c8835acab3c273a04a6
+Merge: 7ecc8d7 36baa15
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:27:33 2026 -0700
+
+Merge branch 'main' into stable
+
+commit 7ecc8d7ee4a2e5c0732d6551baeb7597b7a73ade
+Merge: 87f7a31 b8a4486
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:24:20 2026 -0700
+
+Split out types tests. (#3850)
+
+commit b8a4486d52083981babc1642449420db6b09662e
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:22:18 2026 -0700
+
+… 1 sections elided (caveman) …
+
+tests/test_basic.py                     |  24 ++
+ tests/test_exceptions/__init__.py       |   0
+ tests/test_exceptions/test_FileError.py |   6 +
+ tests/test_types.py                     | 438 --------------------------------
+ tests/test_types/__init__.py            |   0
+ tests/test_types/test_Choice.py         |   7 +
+ tests/test_types/test_File.py           |  31 +++
+ tests/test_types/test_FloatRange.py     |  42 +++
+ tests/test_types/test_FuncParamType.py  |  22 ++
+ tests/test_types/test_IntRange.py       |  38 +++
+ tests/test_types/test_ParamType.py      |  24 ++
+ tests/test_types/test_Path.py           | 185 ++++++++++++++
+ tests/test_types/test_convert_type.py   | 108 ++++++++
+ 13 files changed, 487 insertions(+), 438 deletions(-)
+
+commit 87f7a316f482d88d7ef45660da12cdcc5a5c14f6
+Merge: 00aca23 fa99fbd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Sep 2 06:10:03 2026 -0700
+
+Add missing a reference for Windows and use the `kbd` role (#3829)
+
+commit 00aca23ee9135eedc651c6929c7bc1d39e522431
+Merge: be13b15 271effb
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Sep 2 06:01:38 2026 -0700
+
+Add `Option.get_help_spec` to extract the help's left part of an hidden option (#3821)

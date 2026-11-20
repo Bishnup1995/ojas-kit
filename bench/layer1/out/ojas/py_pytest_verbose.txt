@@ -1,0 +1,278 @@
+[ojas: 2067 passing-test lines and 0 progress lines hidden]
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0 -- /home/bench/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/bench/work/click
+configfile: pyproject.toml
+testpaths: tests
+collecting ... collected 33653 items / 31000 deselected / 2653 selected
+
+tests/test_arguments.py::test_nargs_envvar[2-a-Takes 2 values but 1 was given.] PASSED [  4%]
+tests/test_arguments.py::test_nargs_envvar[2-a b-expect2] PASSED         [  4%]
+tests/test_arguments.py::test_nargs_envvar[2-a b c-Takes 2 values but 3 were given.] PASSED [  4%]
+tests/test_arguments.py::test_nargs_envvar[-1-a b c-expect4] PASSED      [  4%]
+tests/test_arguments.py::test_required_argument[  -False-  ] PASSED      [  4%]
+tests/test_arguments.py::test_deprecated_usage_help_record[use g instead-(DEPRECATED: use g instead)] PASSED [  5%]
+tests/test_arguments.py::test_help_spec_matches_help_record[path to the file] PASSED [  5%]
+tests/test_arguments.py::test_deprecated_empty_help_no_leading_space[-USE B INSTEAD-(DEPRECATED: USE B INSTEAD)] PASSED [  5%]
+tests/test_arguments.py::test_deprecated_empty_help_no_leading_space[None-USE B INSTEAD-(DEPRECATED: USE B INSTEAD)] PASSED [  6%]
+tests/test_arguments.py::test_deprecated_warning[USE B INSTEAD] PASSED   [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[Yo-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[True-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[False-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[12-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[7.9-Error: Invalid value for '[A]...': Value must be an iterable.] PASSED [  6%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default6-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[Sentinel.UNSET-Error: Missing argument 'A...'.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default8-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default9-Error: Invalid value for '[A]...': Takes 2 values but 1 was given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default10-Error: Invalid value for '[A]...': Takes 2 values but 3 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default11-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default12-Error: Invalid value for '[A]...': Takes 2 values but 1 was given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default13-Error: Invalid value for '[A]...': Takes 2 values but 3 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default14-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default15-Error: Invalid value for '[A]...': Takes 2 values but 1 was given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default16-Error: Invalid value for '[A]...': Takes 2 values but 3 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default17-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default18-Error: Invalid value for '[A]...': Takes 2 values but 1 was given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default19-Error: Invalid value for '[A]...': Takes 2 values but 3 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default20-Error: Invalid value for '[A]...': Takes 2 values but 0 were given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default21-Error: Invalid value for '[A]...': Takes 2 values but 1 was given.] PASSED [  7%]
+tests/test_arguments.py::test_bad_defaults_for_nargs[default22-Error: Invalid value for '[A]...': Takes 2 values but 3 were given.] PASSED [  7%]
+tests/test_basic.py::test_string_option[args0-S:[no value]] PASSED       [  8%]
+tests/test_basic.py::test_string_option[args2-Error: Option '--s' requires an argument.] PASSED [  8%]
+tests/test_basic.py::test_int_option[args2-Error: Invalid value for '--i': 'x' is not a valid integer.] PASSED [  8%]
+tests/test_basic.py::test_uuid_option[args2-Error: Invalid value for '--u': 'x' is not a valid UUID.] PASSED [  8%]
+tests/test_basic.py::test_float_option[--f=x-Error: Invalid value for '--f': 'x' is not a valid float.] PASSED [  9%]
+tests/test_basic.py::test_flag_value_dual_options[ \u1555( \u141b )\u1557 -args14- \u1555( \u141b )\u1557 ] PASSED [ 10%]
+… 7 lines omitted …
+tests/test_chain.py::test_group_chaining XFAIL                           [ 12%]
+tests/test_commands.py::test_group_with_args[args0-2-Error: Missing command.] PASSED [ 13%]
+tests/test_commands.py::test_group_with_args[args1-0-Show this message and exit.] PASSED [ 13%]
+… 52 lines omitted …
+tests/test_options.py::test_deprecated_empty_help_no_leading_space[-USE B INSTEAD-(DEPRECATED: USE B INSTEAD)] PASSED [ 32%]
+tests/test_options.py::test_deprecated_empty_help_no_leading_space[None-USE B INSTEAD-(DEPRECATED: USE B INSTEAD)] PASSED [ 32%]
+… 11 lines omitted …
+tests/test_options.py::test_suggest_possible_options[--bount-(Did you mean one of: '--bound', '--count'?)] PASSED [ 33%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1-Yo-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1--None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1-True-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1-False-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1-12-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-1-7.9-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[False-2-42-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-2-default7-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-2-default8-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-2-default9-None-Error: Invalid value for '-a': Value must be an iterable.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[True-2-default13-None-Error: Invalid value for '-a': 2 values are required, but 0 were given.] PASSED [ 35%]
+tests/test_options.py::test_bad_defaults_for_multiple[False-2-default14-None-Error: Invalid value for '-a': Takes 2 values but 1 was given.] PASSED [ 35%]
+tests/test_options.py::test_boolean_flag_envvar[SHOUT-true    -True] PASSED [ 36%]
+… 51 lines omitted …
+tests/test_options.py::test_invalid_flag_combinations[kwargs1-'count' is not valid with 'is_flag'.] PASSED [ 50%]
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args1-Error:\\ Option\\ '\\-\\-config'\\ requires\\ an\\ argument\\.\\\n-sentinel0] PASSED [ 52%]
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args1-Error:\\ Option\\ '\\-\\-config'\\ requires\\ an\\ argument\\.\\\n-EnumSentinel.FALSY_SENTINEL] PASSED [ 52%]
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args2-Error:\\ Option\\ '\\-\\-config'\\ requires\\ an\\ argument\\.\\\n-sentinel0] PASSED [ 52%]
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args2-Error:\\ Option\\ '\\-\\-config'\\ requires\\ an\\ argument\\.\\\n-EnumSentinel.FALSY_SENTINEL] PASSED [ 52%]
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args3-No configuration file provided.-sentinel0] PASSED [ 52%]
+… 8 lines omitted …
+tests/test_options.py::test_dual_options_custom_type_sentinel_flag_value[args8-Usage: main \\[OPTIONS\\]\\nTry 'main --help' for help.\\n\\nError: Invalid value for '-c' / '--config': File '--no-config' does not exist.\\n-EnumSentinel.FALSY_SENTINEL] PASSED [ 53%]
+tests/test_options.py::test_custom_type_flag_value_standalone_option[opt_params10-args10-Error:\\ Option\\ '\\-\\-pro'\\ requires\\ an\\ argument\\.\\\n] PASSED [ 53%]
+tests/test_options.py::test_custom_type_flag_value_dual_options[opt1_params11-opt2_params11-args11-<test_options.Class1 object at 0x[0-9A-Fa-f]+>] PASSED [ 54%]
+… 111 lines omitted …
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0-less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less ] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1-cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1-less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less ] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2-cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2-less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less ] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3-cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3-less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less ] FAILED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4-cat ] PASSED [ 79%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- cat ] PASSED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4-less] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less ] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test5-cat ] PASSED [ 80%]
+… 8 lines omitted …
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- cat ] PASSED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7-less] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less ] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8-cat ] PASSED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- cat ] PASSED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8-less] FAILED [ 80%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less] FAILED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less ] FAILED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9-cat ] PASSED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- cat ] PASSED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9-less] FAILED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less] FAILED [ 81%]
+tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less ] FAILED [ 81%]
+tests/test_utils/test_make_default_short_help.py::test_make_default_short_help[-equal length, no dot] PASSED [ 81%]
+… 230 lines omitted …
+
+=================================== FAILURES ===================================
+_______________________ test_echo_via_pager[test0-less] ________________________
+… 57 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 1638 lines omitted (22 error-like, 0 warning-like) …
+                partial(subprocess.Popen, stdout=f),
+            )
+            with force_subprocess_stdout:
+                with check_raise:
+                    click.echo_via_pager(test_input)
+
+        out, err = capfd.readouterr()
+
+        pager = pager_out_tmp.read_text()
+
+>       assert pager == expected_pager, (
+            f"Unexpected pager output in test case '{test.description}'"
+        )
+E       AssertionError: Unexpected pager output in test case 'Writing to stderr during generator execution'
+E       assert '' == 'testtest\n'
+E
+E         - testtest
+
+tests/test_utils/test_echo_via_pager.py:182: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less ]
+=== 24 failed, 2604 passed, 24 skipped, 31000 deselected, 1 xfailed in 7.50s ===
+[ojas: 6145 lines → 277, ≈99.8k → ≈5.2k tokens. Full output: ojas get 57b9230d2b82]

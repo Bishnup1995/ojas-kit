@@ -1,0 +1,20 @@
+91 paths in 18 directories
+src/click/ (17): utils.py, exceptions.py, globals.py, decorators.py, core.py, shell_completion.py, _winconsole.py, termui.py, _textwrap.py, _utils.py, … +7 more
+tests/ (22): test_chain.py, test_imports.py, test_normalization.py, test_compat.py, test_testing.py, test_commands.py, test_arguments.py, test_deprecations.py, test_abort_interrupt.py, test_parser.py, … +12 more
+tests/typing/: typing_confirmation_option.py, typing_prompt.py, typing_simple_example.py, typing_edit.py, typing_help_option.py, typing_progressbar.py, typing_password_option.py, typing_path.py, typing_options.py, typing_group_kw_options.py, typing_version_option.py, typing_aliased_group.py
+tests/test_types/: test_IntRange.py, test_Path.py, test_File.py, test_FuncParamType.py, test_Choice.py, test_FloatRange.py, __init__.py, test_convert_type.py, test_ParamType.py
+tests/test_utils/ (14): test_echo_via_pager.py, test__expand_args.py, test_prompt.py, test_make_default_short_help.py, test_KeepOpenFile.py, test_LazyFile.py, test_echo.py, test_style.py, test_confirm.py, test_sentinel.py, … +4 more
+tests/test_exceptions/: test_FileError.py, __init__.py
+examples/imagepipe/: imagepipe.py
+examples/aliases/: aliases.py
+examples/inout/: inout.py
+examples/repo/: repo.py
+examples/completion/: completion.py
+examples/validation/: validation.py
+examples/colors/: colors.py
+examples/termui/: termui.py
+examples/naval/: naval.py
+examples/complex/complex/: cli.py, __init__.py
+examples/complex/complex/commands/: cmd_init.py, cmd_status.py, __init__.py
+docs/: conf.py
+[ojas: 91 lines → 19, ≈720 → ≈392 tokens. Full output: ojas get 3660bcb36b75]

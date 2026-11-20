@@ -1,0 +1,82 @@
+/tmp/rs_cat_lib.rs (1194 lines, rust outline; bodies elided)
+112: use std::cmp::{min, Ordering};
+113: use std::fmt;
+114: use std::fs::{self, ReadDir};
+115: use std::io;
+116: use std::iter;
+117: use std::path::{Path, PathBuf};
+… +6 more imports (lines 118-126)
+137: macro_rules! itry { … 7 lines }
+157: pub type Result<T> = ::std::result::Result<T, Error>;
+233: #[derive(Debug)] pub struct WalkDir {
+235:   opts: WalkDirOptions,
+236:   root: PathBuf,
+237: }
+239: struct WalkDirOptions { … 16 lines }
+257: impl fmt::Debug for WalkDirOptions {
+258:   fn fmt(&self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error> { … 17 lines }
+281: impl WalkDir {
+289:   pub fn new<P: AsRef<Path>>(root: P) -> Self { … 14 lines }
+310:   pub fn min_depth(mut self, depth: usize) -> Self { … 6 lines }
+327:   pub fn max_depth(mut self, depth: usize) -> Self { … 6 lines }
+346:   pub fn follow_links(mut self, yes: bool) -> Self { … 3 lines }
+365:   pub fn follow_root_links(mut self, yes: bool) -> Self { … 3 lines }
+395:   pub fn max_open(mut self, mut n: usize) -> Self { … 6 lines }
+417:   pub fn sort_by<F>(mut self, cmp: F) -> Self where F: FnMut(&DirEntry, &DirEntry) -> Ordering + Send + Sync + 'static, { … 3 lines }
+439:   pub fn sort_by_key<K, F>(self, mut cmp: F) -> Self where F: FnMut(&DirEntry) -> K + Send + Sync + 'static, K: Ord, { … 2 lines }
+456:   pub fn sort_by_file_name(self) -> Self { … 2 lines }
+517:   pub fn contents_first(mut self, yes: bool) -> Self { … 3 lines }
+530:   pub fn same_file_system(mut self, yes: bool) -> Self { … 3 lines }
+536: impl IntoIterator for WalkDir {
+537:   type Item = Result<DirEntry>;
+538:   type IntoIter = IntoIter;
+540:   fn into_iter(self) -> IntoIter { … 11 lines }
+565: #[derive(Debug)] pub struct IntoIter { … 40 lines }
+610: #[derive(Debug)] struct Ancestor {
+612:   /// The path of this ancestor.
+613:   path: PathBuf,
+614:   /// An open file to this ancesor. This is only used on Windows where
+615:   /// opening a file handle appears to be quite expensive, so we choose to
+616:   /// cache it. This comes at the cost of not respecting the file descriptor
+617:   /// limit set by the user.
+618:   #[cfg(windows)]
+619:   handle: Handle,
+620: }
+622: impl Ancestor {
+624:   #[cfg(windows)] fn new(dent: &DirEntry) -> io::Result<Ancestor> { … 3 lines }
+631:   #[cfg(not(windows))] fn new(dent: &DirEntry) -> io::Result<Ancestor> { … 2 lines }
+638:   #[cfg(windows)] fn is_same(&self, child: &Handle) -> io::Result<bool> { … 2 lines }
+645:   #[cfg(not(windows))] fn is_same(&self, child: &Handle) -> io::Result<bool> { … 2 lines }
+660: #[derive(Debug)] enum DirList { … 16 lines }
+679: impl Iterator for IntoIter {
+680:   type Item = Result<DirEntry>;
+687:   fn next(&mut self) -> Option<Result<DirEntry>> { … 47 lines }
+737: impl IntoIter {
+781:   pub fn skip_current_dir(&mut self) { … 4 lines }
+833:   pub fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P> where P: FnMut(&DirEntry) -> bool, { … 2 lines }
+840:   fn handle_entry(&mut self, mut dent: DirEntry) -> Option<Result<DirEntry>> { … 39 lines }
+884:   fn get_deferred_dir(&mut self) -> Option<DirEntry> { … 15 lines }
+901:   fn push(&mut self, dent: &DirEntry) -> Result<()> { … 47 lines }
+950:   fn pop(&mut self) { … 9 lines }
+961:   fn follow(&self, mut dent: DirEntry) -> Result<DirEntry> { … 10 lines }
+973:   fn check_loop<P: AsRef<Path>>(&self, child: P) -> Result<()> { … 16 lines }
+991:   fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool> { … 7 lines }
+1000:   fn skippable(&self) -> bool { … 2 lines }
+1005: impl iter::FusedIterator for IntoIter {}
+1007: impl DirList {
+1008:   fn close(&mut self) { … 4 lines }
+1015: impl Iterator for DirList {
+1016:   type Item = Result<DirEntry>;
+1018:   #[inline(always)] fn next(&mut self) -> Option<Result<DirEntry>> { … 11 lines }
+1054: #[derive(Debug)] pub struct FilterEntry<I, P> {
+1056:   it: I,
+1057:   predicate: P,
+1058: }
+1060: impl<P> Iterator for FilterEntry<IntoIter, P> where P: FnMut(&DirEntry) -> bool, {
+1064:   type Item = Result<DirEntry>;
+1072:   fn next(&mut self) -> Option<Result<DirEntry>> { … 14 lines }
+1089: impl<P> iter::FusedIterator for FilterEntry<IntoIter, P> where P: FnMut(&DirEntry) -> bool {
+1094: impl<P> FilterEntry<IntoIter, P> where P: FnMut(&DirEntry) -> bool, {
+1144:   pub fn filter_entry(self, predicate: P) -> FilterEntry<Self, P> { … 2 lines }
+1191:   pub fn skip_current_dir(&mut self) { … 2 lines }
+[ojas: outline of a 1194-line file, ≈10604 → ≈1114 tokens. Bodies: ojas read /tmp/rs_cat_lib.rs --symbol <name>, or --lines START:END. Whole file: --full]

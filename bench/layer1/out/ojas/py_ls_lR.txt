@@ -1,0 +1,92 @@
+docs:
+_static/
+advanced.md  14172
+api.md  4323
+arguments.md  5195
+changes.md  42
+click-concepts.md  2866
+command-line-reference.md  1194
+commands-and-groups.md  11635
+commands.md  14697
+complex.md  12896
+conf.py  1996
+contrib.md  9234
+contributing.md  1195
+design-opinions.md  906
+documentation.md  10461
+entry-points.md  2214
+exceptions.md  5690
+extending-click.md  3752
+faqs.md  12085
+handling-files.md  3732
+index.md  2611
+license.md  86
+option-decorators.md  2424
+options.md  25713
+parameter-types.md  9408
+parameters.md  3970
+prompts.md  4575
+quickstart.md  6818
+setuptools.md  78
+shell-completion.md  10320
+standalone-apps-briefcase.md  3876
+standalone-apps-nuitka.md  6613
+support-multiple-versions.md  2122
+testing.md  9678
+unicode-support.md  4281
+upgrade-guides.md  4577
+utils.md  11989
+virtualenv.md  1251
+why.md  6948
+wincmd.md  3025
+docs/_static:
+click-icon.svg  1566
+click-logo.svg  2765
+click-name.svg  4859
+… 117 lines omitted …
+test_convert_type.cpython-311-pytest-9.2.0.pyc  12914
+tests/test_utils:
+__init__.py  0
+__pycache__/
+test_KeepOpenFile.py  331
+test_LazyFile.py  359
+test__detect_program_name.py  762
+test__expand_args.py  666
+test_confirm.py  1410
+test_echo.py  4888
+test_echo_via_pager.py  8756
+test_format_filename.py  383
+test_make_default_short_help.py  2362
+test_open_file.py  3421
+test_prompt.py  3031
+test_sentinel.py  2494
+test_style.py  5277
+tests/test_utils/__pycache__:
+__init__.cpython-311.pyc  160
+test_KeepOpenFile.cpython-311-pytest-9.2.0.pyc  2480
+test_LazyFile.cpython-311-pytest-9.2.0.pyc  2666
+test__detect_program_name.cpython-311-pytest-9.2.0.pyc  3806
+test__expand_args.cpython-311-pytest-9.2.0.pyc  7962
+test_confirm.cpython-311-pytest-9.2.0.pyc  9648
+test_echo.cpython-311-pytest-9.2.0.pyc  29055
+test_echo_via_pager.cpython-311-pytest-9.2.0.pyc  17930
+test_format_filename.cpython-311-pytest-9.2.0.pyc  5372
+test_make_default_short_help.cpython-311-pytest-9.2.0.pyc  6172
+test_open_file.cpython-311-pytest-9.2.0.pyc  18764
+test_prompt.cpython-311-pytest-9.2.0.pyc  10869
+test_sentinel.cpython-311-pytest-9.2.0.pyc  14903
+test_style.cpython-311-pytest-9.2.0.pyc  10679
+tests/typing:
+typing_aliased_group.py  1181
+typing_confirmation_option.py  316
+typing_edit.py  293
+typing_group_kw_options.py  145
+typing_help_option.py  251
+typing_options.py  380
+typing_password_option.py  243
+typing_path.py  1468
+typing_progressbar.py  548
+typing_prompt.py  1535
+typing_simple_example.py  497
+typing_version_option.py  277
+[ojas: 234 lines → 91, ≈3.4k → ≈617 tokens. Full output: ojas get aca4bd6277e3]

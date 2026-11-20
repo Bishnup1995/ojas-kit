@@ -1,0 +1,879 @@
+[131 files changed, +15440 -4786]
+diff --git a/.github/ISSUE_TEMPLATE/bug-report.md b/.github/ISSUE_TEMPLATE/bug-report.md
+@@ -4,8 +4,8 @@ about: Report a bug in Click (not other projects which depend on Click)
+ <!--
+-This issue tracker is a tool to address bugs in Click itself. Please use
+-GitHub Discussions or the Pallets Discord for questions about your own code.
++This issue tracker is a tool to address bugs in Click itself. Please use the
++Pallets Discord (https://discord.gg/pallets) for questions about your own code.
+
+diff --git a/.github/ISSUE_TEMPLATE/config.yml b/.github/ISSUE_TEMPLATE/config.yml
+@@ -1,8 +1,5 @@
+ contact_links:
+-  - name: Questions on Discussions
+-    url: https://github.com/pallets/click/discussions/
+-    about: Ask questions about your own code on the Discussions tab.
+   - name: Questions on Chat
+diff --git a/.github/workflows/lock.yaml b/.github/workflows/lock.yaml
+@@ -7,17 +7,19 @@ name: Lock inactive closed issues
+     - cron: '0 0 * * *'
+-permissions:
+-  issues: write
+-  pull-requests: write
+-  discussions: write
++permissions: {}
+ concurrency:
+   group: lock
++  cancel-in-progress: true
+ jobs:
+     runs-on: ubuntu-latest
++    permissions:
++      issues: write
++      pull-requests: write
++      discussions: write
+     steps:
+-      - uses: dessant/lock-threads@1bf7ec25051fe7c00bdd17e6a7cf3d7bfb7dc771 # v5.0.1
++      - uses: dessant/lock-threads@89ae32b08ed1a541efecbab17912962a5e38981c # v6.0.2
+         with:
+diff --git a/.github/workflows/nightly.yaml b/.github/workflows/nightly.yaml
+new file mode 100644
+@@ -0,0 +1,69 @@
++name: Nightly tests
++on:
++  schedule:
++    - cron: '0 6 * * *'
++  workflow_dispatch:
++permissions: {}
++concurrency:
++  group: ${{ github.workflow }}
++  cancel-in-progress: false
++jobs:
++  race-tests:
++    name: ${{ matrix.config.name }} (${{ matrix.branch }})
++    runs-on: ${{ matrix.config.os || 'ubuntu-latest' }}
++    strategy:
++      fail-fast: false
++      matrix:
++        branch: [main, stable]
++        config:
++          - {name: Random 3.15, python: '3.15', tox: random}
++          - {name: Random 3.15t, python: '3.15t', tox: random}
++          - {name: Random 3.14, python: '3.14', tox: random}
++          - {name: Random 3.13, python: '3.13', tox: random}
++          - {name: Random 3.12, python: '3.12', tox: random}
++          - {name: Random 3.11, python: '3.11', tox: random}
++          - {name: Random Windows, python: '3.15', tox: random, os: windows-latest}
++          - {name: Random Mac, python: '3.15', tox: random, os: macos-latest}
++          - {name: Stress 3.15, python: '3.15', tox: stress-py3.15}
++          - {name: Stress 3.15t, python: '3.15t', tox: stress-py3.15t}
++          - {name: Stress Mac 3.15t, python: '3.15t', tox: stress-py3.15t, os: macos-latest}
++    steps:
++      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
++        with:
++          persist-credentials: false
++          ref: ${{ matrix.branch }}
++      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
++        with:
++          enable-cache: true
++      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
++        with:
++          python-version: ${{ matrix.config.python }}
++      - run: uv run --locked --no-default-groups --group dev tox run
++        env:
++          TOX_ENV: ${{ matrix.config.tox }}
++  flask-tests:
++    name: Flask (${{ matrix.branch }})
++    runs-on: ubuntu-latest
++    strategy:
++      fail-fast: false
++      matrix:
++        branch: [main, stable]
++    steps:
++      # Check out Flask, not Click: the Click branch under test is installed
++      # from git below, so Flask's own suite runs against it.
++      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
++        with:
++          persist-credentials: false
++          repository: pallets/flask
++      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
++        with:
++          enable-cache: true
++      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
++        with:
++          python-version: '3.14'
++      - run: uv sync --all-extras
++      # --with overlays the Click branch on top of the version Flask's lock
++      # pins, so a downstream regression shows up as a Flask test failure.
++      - run: uv run --with "git+https://github.com/pallets/click.git@${CLICK_REF}" -- pytest
++        env:
++          CLICK_REF: ${{ matrix.branch }}
+diff --git a/.github/workflows/pre-commit.yaml b/.github/workflows/pre-commit.yaml
+@@ -3,23 +3,25 @@ on:
+     branches: [main, stable]
++permissions: {}
++concurrency:
++  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
++  cancel-in-progress: true
+ jobs:
+     steps:
+-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+-      - uses: astral-sh/setup-uv@5a7eac68fb9809dea845d802897dc5c723910fa3 # v7.1.3
+… 15 lines omitted …
+           key: pre-commit|${{ hashFiles('pyproject.toml', '.pre-commit-config.yaml') }}
+-      - run: uv run --locked --group pre-commit pre-commit run --show-diff-on-failure --color=always --all-files
+-      - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
+-        if: ${{ !cancelled() }}
++      - run: uv run --locked --no-default-groups --group pre-commit pre-commit run --show-diff-on-failure --color=always --all-files
+diff --git a/.github/workflows/publish.yaml b/.github/workflows/publish.yaml
+… 31 lines omitted …
++          path: dist/
++          if-no-files-found: error
+   create-release:
+… 174 lines omitted …
++  keyword, is deprecated and raises `TypeError` in Click 9.0. {pr}`3866`
++- An {class}`Option` name written as a Python identifier is deprecated when it
+… 5 lines omitted …
++  {class}`Argument` an override that returns its metavar. {pr}`3877`
++- Error messages and deprecation warnings name an option by its spec instead of
++  its internal name, so they read `The option '--my-option' is deprecated.` where
++  they read `The option 'my_option' is deprecated.` before. {pr}`3877`
++- {attr}`Parameter.human_readable_name` is deprecated and will be removed in
+… 2 lines omitted …
++  longer reads it, and a subclass that overrides it gets a warning when the class
+… 14 lines omitted …
++- Fix `copy.deepcopy()` and `pickle` on a `Parameter`, `Option` or `Command`. {pr}`3805`
++- A `KeyboardInterrupt` arriving while `Command.main()` reports an abort or an error,
++  or while it exits, no longer escapes as an unhandled traceback. The command still
++  exits with the intended code; only the message may be lost. {issue}`3802`
+… 17 lines omitted …
++  or the next word does not start in lowercase. {pr}`3865`
++- With `show_envvar=True`, an option's error message now prints all variables of an
++  `envvar` sequence instead of the `repr` of the sequence. {pr}`3884`
++- An empty `envvar`, such as `[]` or `""`, shows the same help and error message as
++  no `envvar` when `show_envvar=True`. The help screen used to show `[env var: ]`.
+… 1 lines omitted …
++- Align command's deprecated help text to options and arguments: do not translate the
++  command's own help text, only the `(DEPRECATED)` label. {pr}`3901`
+… 16 lines omitted …
++  prompt with `input()` directly. {issue}`3572` {pr}`3653`
++- Fix test failures when using pytest >= 9.1. {pr}`3656`
++- {class}`Path` with `allow_dash=True` no longer triggers a `BytesWarning`,
++  an error under `python -bb`, when checking a value against the `-`
++  convention. {issue}`2877` {pr}`3642`
+… 10 lines omitted …
++  value trigger a warning: an argument sharing its name with another
+… 13 lines omitted …
++- {func}`get_binary_stream` and {func}`get_text_stream` are deprecated and
+… 29 lines omitted …
++  it reached. {issue}`3571` {pr}`3769`
++- An error raised while writing to the pager no longer gets replaced by
++  `PermissionError: [WinError 32]` on Windows. The temporary file backend
++  unlinked its file without closing it first, and Windows refuses to remove a
++  file the process still holds open, so the cleanup failure masked the real
++  exception. {issue}`3731` {pr}`3764`
++- The temporary file the pager writes to on Windows is opened with the encoding
++  {func}`get_pager_file` picked for the output stream, and with
++  `errors="replace"` to match the pipe backend. Any text stdout can encode
++  reaches the pager.
+… 40 lines omitted …
+-      to CLI functions (no more unexpected transformations)
+-    * Exception: flag options with ``default=True`` maintain backward compatibility
+-      by defaulting to their ``flag_value``
+… 8 lines omitted …
+--   Lazily import ``shutil``. :pr:`3023`
+--   Properly forward exception information to resources registered with
+-    ``click.core.Context.with_resource()``. :issue:`2447` :pr:`3058`
+… 16 lines omitted …
+-    colons. :issue:`2703` :pr:`2846`
+--   Don't include envvar in error hint when not configured. :issue:`2971` :pr:`2972`
+--   Fix a rare race in ``click.testing.StreamMixer``'s finalization that manifested
+… 25 lines omitted …
+--   ``BaseCommand`` is deprecated. ``Command`` is the base class for all
+… 1 lines omitted …
+--   ``MultiCommand`` is deprecated. ``Group`` is the base class for all group
+… 1 lines omitted …
+--   The current parser and related classes and methods, are deprecated.
+… 23 lines omitted …
+--   Keep stdout and stderr streams independent in ``CliRunner``. Always
+-    collect stderr output and never raise an exception. Add a new
+-    output stream to simulate what the user sees in its terminal. Removes
+-    the ``mix_stderr`` parameter in ``CliRunner``. :issue:`2522` :pr:`2523`
+--   ``Option.show_envvar`` now also shows environment variable in error messages.
+-    :issue:`2695` :pr:`2696`
+… 180 lines omitted …
++   because command line tools are often invoked with wildcard inputs
++   and they should not error out if the wildcard is empty.
++```
+
+-   It is possible to make an argument required by setting ``required=True``.  It is not recommended since we think command line tools should gracefully degrade into becoming no ops.  We think this because command line tools are often invoked with wildcard inputs and they should not error out if the wildcard is empty.
++## Multiple Arguments
+… 294 lines omitted …
+-To mark a command as deprecated pass in ``deprecated=True``
++To mark a command as deprecated pass in `deprecated=True`
+… 4 lines omitted …
+     @click.command('say-hello', deprecated=True)
+@@ -53,15 +67,19 @@ To mark a command as deprecated pass in ``deprecated=True``
+… 483 lines omitted …
+-   the program with {attr}`ClickException.exit_code`.
+-3. If an {exc}`Abort` exception is raised print the string ``Aborted!``
+-   to standard error and exit the program with exit code ``1``.
+-4. If it goes through well, exit the program with exit code ``0``.
+… 11 lines omitted …
++| It raised a {exc}`ClickException` | Call {meth}`ClickException.show`, then exit with {attr}`ClickException.exit_code` | Propagate it |
++| The user pressed {kbd}`Ctrl+C`, which raises a {exc}`KeyboardInterrupt` | Print a blank line, then ``Aborted!`` to standard error, and exit with code ``1`` | Print a blank line, then raise {exc}`Abort` with the original exception as its ``__cause__`` |
++| The user pressed {kbd}`Ctrl+D`, or {kbd}`Ctrl+Z` on Windows, which raises an {exc}`EOFError` | The same as {kbd}`Ctrl+C` | The same as {kbd}`Ctrl+C` |
++| It raised an {exc}`Abort` | Print ``Aborted!`` to standard error, and exit with code ``1`` | Propagate it |
++| The output pipe closed early, which raises an {exc}`OSError` with ``EPIPE`` | Silence the flush errors, and exit with code ``1`` | The same |
++| It raised any other exception | Propagate it | Propagate it |
++
+… 43 lines omitted …
++
++I decorated a function with `@click.command()` to make it a CLI. When I import that name and call it from Python, it does not run my function. It parses arguments, prints a usage error and exits the process:
++
+… 4 lines omitted …
++
++Error: Got unexpected extra arguments (0 1 7 - 0 9 0)
++SystemExit: 2
+… 9 lines omitted …
++def nasa_date_to_iso(datestr): ...
++  [×2]
++@click.command("nasa_date_to_iso")
+… 30 lines omitted …
++
++This is not a bug in Click. When `<stdout>` is a console, Click relies on the Windows console API, which supports full Unicode rendering. But when `<stdout>` is redirected, it cannot use that API, so Python falls back to encoding the stream with the system's code page (often `cp1252`) and `errors="strict"`. That codec cannot represent every Unicode character, so the write fails.
++
+… 71 lines omitted …
++import click
++  [×2]
++@click.command()
+… 10 lines omitted …
+@@ -88,8 +91,7 @@ wrapper.
+ - A failure at first IO operation will happen by raising an {exc}`FileError`.
+-- It can help minimize resource handling confusion. If a file is opened in lazy mode, it will call
+… 46 lines omitted …
++        hello()
++  [×2]
++And what it looks like when run:
++  [×2]
++.. click:run::
+… 1 lines omitted …
++    invoke(hello, ['--count=3'], prog_name='python hello.py', input='John\n')
++  [×2]
++It automatically generates nicely formatted help pages:
++  [×2]
++.. click:run::
+… 559 lines omitted …
+ - [aliases](https://github.com/pallets/click/tree/main/examples/aliases) : An advanced example that implements
+@@ -81,7 +80,7 @@ What this means is that the {func}`echo` function applies some error correction
+ The echo function also supports color and other styles in output. It will automatically remove styles if the output
+… 197 lines omitted …
++$ briefcase dev -- World --count 2
++Hello, World!  [×2]
++```
+… 24 lines omitted …
++$ hello-cli World --count 2
++Hello, World!  [×2]
++```
+… 57 lines omitted …
++import click
++  [×2]
++@click.command()
+… 108 lines omitted …
++```{warning}
+… 7 lines omitted …
+   - {class}`CliRunner` - used to invoke commands as command line scripts.
+-  - {class}`Result` - returned from {meth}`CliRunner.invoke`. Captures output data, exit code, optional exception, and captures the output as bytes and binary data.
++  - {class}`Result` - returned from {meth}`CliRunner.invoke`. Captures output
++    data, exit code, optional exception, and captures the output as bytes and
++    binary data.
+… 106 lines omitted …
++```{warning}
+… 15 lines omitted …
++```{deprecated} 8.5.0
++{meth}`CliRunner.isolated_filesystem` is deprecated and will be removed in
+… 9 lines omitted …
++- `CliRunner.isolated_filesystem()` is deprecated and will be removed in Click 9.0. The helper predates Python 3 and modern pytest, and it relies on `os.chdir`, which mutates process-global state and is therefore not thread-safe. Replace it with a temporary directo …[336 chars]… ams and other interpreter-wide state. See the [testing guide](testing.md#running-tests-in-parallel).
++- A parameter name that is not a valid Python identifier, or that is a [Python keyword](https://docs.python.org/3/reference/lexical_analysis.html#keywords), is deprecated and raises `TypeError` in 9.0. [`str.isidentifier()`](https://docs.python.org/3/library/stdtyp …[703 chars]… https://github.com/pallets/click/pull/3827) and [#3866](https://github.com/pallets/click/pull/3866).
++- An option name written as a Python identifier is deprecated when it is not already lower cased: `click.option("--x", "Foo_Bar")` names `foo_bar` rather than `Foo_Bar`. To migrate, spell the name the way the callback declares it. See [#3827](https://github.com/pallets/click/pull/3827).
++- `CliRunner.isolated_filesystem()` is deprecated and will be removed in Click 9.0. The helper predates Python 3 and modern pytest, and it relies on `os.chdir`, which mutates process-global state and is therefore not thread-safe. Replace it with a temporary directo …[449 chars]… github.com/pallets/click/issues/3501) and the [testing guide](testing.md#running-tests-in-parallel).
++- `Parameter.human_readable_name` is deprecated and will be removed in Click 9.0. Use `Parameter.spec` instead, which returns how the user spells the parameter on the command line. For an argument the two agree, since both return the metavar. For an option the old  …[317 chars]… eter names](parameters.md#parameter-names) section for the three strings that designate a parameter.
+… 1 lines omitted …
+@@ -27,7 +31,7 @@ The changes were not able to be deprecated prior to removal. Explain clearly why
+… 1 lines omitted …
+-- TBD
++- Error messages and deprecation warnings name an option by its spec rather than its internal name, so `The option 'my_option' is deprecated.` now reads `The option '--my-option' is deprecated.` Tests asserting on the old wording need updating.
+
+… 246 lines omitted …
+     "W",  # pycodestyle warning
+… 60 lines omitted …
+-        import warnings
+… 6 lines omitted …
++        warnings.warn(
++            "'get_binary_stream' is deprecated and will be removed in Click 9.0.",
+… 8 lines omitted …
++        warnings.warn(
++            "'get_text_stream' is deprecated and will be removed in Click 9.0.",
+… 44 lines omitted …
+-            cached = _ansi_stream_wrappers.get(stream)
+-        except Exception:
+-            cached = None
+… 21 lines omitted …
+-            _ansi_stream_wrappers[stream] = rv
+-        except Exception:
+-            pass
+… 80 lines omitted …
++        return getattr(self._stream, name)
++  [×2]
++def _resolve_pager_command(cmd_parts: list[str]) -> tuple[Path, list[str]] | None:
+… 22 lines omitted …
++    return Path(cmd_filepath).absolute(), cmd_parts[1:]
++  [×2]
++def _pager_contextmanager(
+… 176 lines omitted …
+         if not rv:
+-            raise OSError(f"Windows error: {GetLastError()}")
++            raise OSError(_("Windows error: {error}").format(error=GetLastError()))
+
+… 1 lines omitted …
+             return "ERROR_NOT_ENOUGH_MEMORY"
+-        return f"Windows error {errno}"
++        return _("Windows error: {error}").format(error=errno)
+
+… 32 lines omitted …
++def _echo_aborted() -> None:
++    """Write the final abort message to standard error."""
++    echo(_("Aborted!"), file=sys.stderr)
++  [×2]
++def _outside_click_stacklevel(skip: cabc.Container[str] = ()) -> int:
+… 4 lines omitted …
++        warning must point at.
+… 15 lines omitted …
++    return level
++  [×2]
++def _format_deprecated_label(deprecated: bool | str) -> str:
+… 1 lines omitted …
++    label = _("deprecated").upper()
++    if isinstance(deprecated, str):
++        return f"({label}: {deprecated})"
++    return f"({label})"
++  [×2]
++def _format_deprecated_suffix(deprecated: bool | str) -> str:
+… 3 lines omitted …
++    if isinstance(deprecated, str):
++        return f" {deprecated}"
++    return ""
++  [×2]
+ def batch(iterable: cabc.Iterable[V], batch_size: int) -> list[tuple[V, ...]]:
+… 216 lines omitted …
++    return option(*param_decls, **kwargs)
++  [×2]
+ def help_option(*param_decls: str, **kwargs: t.Any) -> t.Callable[[FC], FC]:
+… 9 lines omitted …
++    ).format(possibility=possibility_str, possibilities=possibility_str)
++  [×2]
+ class ClickException(Exception):
+     #: The exit code for this exception.
+-    exit_code = 1
+… 24 lines omitted …
++            # Pick the longest name (like ``--help`` over ``-h``) for
++            # readability in error messages.
+             hint = _("Try '{command} {option}' for help.").format(
+… 56 lines omitted …
++        return f"{self.message} {_format_possibilities(self.possibilities)}"
++  [×2]
++class NoSuchCommand(UsageError):
+… 220 lines omitted …
++    _ValueT_co = t.TypeVar("_ValueT_co", covariant=True)
++  [×2]
++class CompletionItem(t.Generic[_ValueT_co]):
+… 85 lines omitted …
++"""
++  [×2]
++class _SourceVarsDict(t.TypedDict):
+… 54 lines omitted …
++_HIDDEN_INPUT_MASK = "'***'"
++  [×2]
++def _mask_hidden_input(message: str, value: str) -> str:
+… 1 lines omitted …
++
++    Both ``repr(value)`` (the form built-in :class:`ParamType` errors use
++    via ``{value!r}``) and the raw value are masked. The raw-value pass
+… 10 lines omitted …
++    return message
++  [×2]
+ def hidden_prompt_func(prompt: str) -> str:
+… 21 lines omitted …
++    return func(text)
++  [×2]
+ def _build_prompt(
+… 48 lines omitted …
++) -> str: ...
++  [×2]
++@t.overload
+… 11 lines omitted …
++) -> V: ...
++  [×2]
++def prompt(
+… 117 lines omitted …
++        return data
++  [×2]
+ class BytesIOCopy(io.BytesIO):
+… 96 lines omitted …
++    _PathT_co = t.TypeVar("_PathT_co", covariant=True)
++  [×2]
++class ParamTypeInfoDict(t.TypedDict):
+… 211 lines omitted …
++    encoding: str | None
++    errors: str | None
++    atomic: bool
+… 41 lines omitted …
+@@ -0,0 +1,175 @@
++"""A second Ctrl-C while ``Command.main()`` reported an abort or an error used to escape
++as an unhandled traceback: the message and the exit both ran in ``except`` clauses,
++outside every ``try`` that caught ``KeyboardInterrupt``.
+… 2 lines omitted …
++replace the intended outcome. In standalone mode the collected exit code wins, for
++aborts, errors and success alike, and the message is best effort. Without standalone
++mode the interrupt propagates to the caller. Two settled contracts stay in place: the
+… 9 lines omitted …
++import click
++  [×2]
++class RecordingStderr:
+… 3 lines omitted …
++    ``KeyboardInterrupt``. ``echo()`` calls ``isatty()`` before writing, which is where
++    the unhandled traceback ended.
++    """
+… 19 lines omitted …
++        pass
++  [×2]
++def _interrupt_prompt(text):
+… 1 lines omitted …
++    raise KeyboardInterrupt
++  [×2]
++def _prompting_command():
+… 5 lines omitted …
++    return cli
++  [×2]
++def _interrupting_command():
+… 4 lines omitted …
++    return cli
++  [×2]
++def _exit_code(cli, stderr, monkeypatch):
+… 7 lines omitted …
++    except KeyboardInterrupt:
++        pytest.fail("KeyboardInterrupt escaped Command.main()")
++
++    pytest.fail("Command.main() returned without exiting")
++  [×2]
++@pytest.mark.parametrize(
+… 23 lines omitted …
++        assert "Aborted!" in stderr.text
++  [×2]
++def test_interrupt_while_reporting_error(monkeypatch):
++    """A Ctrl-C while Click writes an error keeps the error's exit code."""
++
+… 10 lines omitted …
++    assert _exit_code(cli, RecordingStderr(), monkeypatch) == 3
++  [×2]
++def test_late_interrupt_with_disabled_standalone_mode(monkeypatch):
+… 16 lines omitted …
++        cli.main([], "cli", standalone_mode=False)
++  [×2]
++def test_interrupt_while_exiting_after_success(monkeypatch):
+… 6 lines omitted …
++import warnings
+… 26 lines omitted …
++    result = runner.invoke(cmd, ["value"])
++    assert not result.exception
++    assert result.output == "value\n"
++  [×2]
++def test_argument_normalizes_an_identifier_decl():
+… 4 lines omitted …
++        assert click.Option(["--x", "Foo_Bar"]).name == "Foo_Bar"
++  [×2]
++PARAM_KINDS = [
+… 41 lines omitted …
++]
++  [×2]
++@pytest.mark.parametrize("count", [1, 2])
+… 6 lines omitted …
++            with warnings.catch_warnings(record=True, action="always") as caught:
+… 12 lines omitted …
++                f" named its parameter {param.name!r} without a warning"
+… 2 lines omitted …
++    assert built, "the sweep built no parameter, so it proves nothing"
++  [×2]
++def test_argument_requires_its_one_declaration():
+… 5 lines omitted …
++        assert click.Argument([], expose_value=False).name == ""
++  [×2]
++def test_argument_name_check_applies_when_not_exposed():
+… 2 lines omitted …
++        assert click.Argument(["0foo"], expose_value=False).name == "0foo"
++  [×2]
++def test_argument_metavar_renders_what_a_declaration_may_not(runner):
+… 64 lines omitted …
++    assert result.exit_code == 0
++  [×2]
++def test_param_squatting_help_option_name(runner):
+… 1 lines omitted …
++    triggers a warning.
+… 11 lines omitted …
++    assert result.exit_code == 2
++  [×2]
++def test_option_reusing_help_flag(runner):
+… 17 lines omitted …
++    assert result.exit_code == 0
++  [×2]
+ def test_repr():
+… 61 lines omitted …
+-        result_out = runner.invoke(output, ["--file=example.txt"])
+-        assert result_out.exception
++    result_out = runner.invoke(output, [f"--file={example}"])
++    assert result_out.exception
+  … 216 more changed lines in this file
+… 27 lines omitted …
++    assert result.output.splitlines()[0] == f"Usage: cli [OPTIONS] {metavar}"
++  [×2]
+ def test_aliased_command_canonical_name(runner):
+… 57 lines omitted …
+@@ -491,6 +563,42 @@ def test_deprecated_in_help_messages(runner, doc, deprecated):
+… 1 lines omitted …
++@pytest.mark.parametrize("deprecated", [True, "USE OTHER COMMAND INSTEAD"])
+… 1 lines omitted …
++def test_deprecated_empty_help_no_leading_space(runner, doc, deprecated):
+… 4 lines omitted …
++    @click.command(deprecated=deprecated, help=doc)
+… 4 lines omitted …
++    assert "\n  (DEPRECATED" in out
++    assert "\n   (DEPRECATED" not in out
++  [×2]
++def test_deprecated_help_text_is_not_translated(runner, monkeypatch):
+… 1 lines omitted …
++    application data, and a command that is not deprecated never translates it.
+… 7 lines omitted …
++    @cli.command(deprecated="REASON", help="sub help")
+… 4 lines omitted …
++    assert "sub help (DEPRECATED: REASON)" in runner.invoke(sub, ["--help"]).output
+… 1 lines omitted …
++    assert "sub help (DEPRECATED: REASON)" in runner.invoke(cli, ["--help"]).output
++  [×2]
+ @pytest.mark.parametrize("deprecated", [True, "USE OTHER COMMAND INSTEAD"])
+@@ -573,3 +681,35 @@ def test_abort_exceptions_with_disabled_standalone_mode(runner, exc):
+     assert rv.exception.__cause__.args == ("catch me!",)
++  [×2]
++def test_unknown_command(runner):
++    result = runner.invoke(click.Group(), "unknown")
++    assert result.exception
++    assert "No such command 'unknown'." in result.output
++  [×2]
++@pytest.mark.parametrize(
+… 93 lines omitted …
++    assert click._compat._is_jupyter_kernel_output(stream=JupyterKernelFakeStream())
++  [×2]
++@pytest.mark.parametrize(
+… 35 lines omitted …
++    assert click._compat.should_strip_ansi(stream=stream, color=color) == expected
++  [×2]
++@pytest.mark.parametrize("seq", CLICK_EMITTED + CSI_FOREIGN)
+… 4 lines omitted …
++    assert term_len(f"a{seq}b") == 2
++  [×2]
++@pytest.mark.parametrize("final", ["m", "H", "J", "A", "z"])
+… 6 lines omitted …
++    assert strip_ansi(f"a{seq}b") == "ab"
++  [×2]
++@pytest.mark.parametrize(
+… 68 lines omitted …
++    result = runner.invoke(cli, [])
++    assert not result.exception
++    assert "default: {'value': '/tmp/file', 'source': " in result.output
+… 6 lines omitted …
++    result = runner.invoke(cli, ["--default", "cli", "--nodefault", "also"])
++    assert not result.exception
++    assert (
+… 6 lines omitted …
++    )
++  [×2]
++def test_parameter_source_during_eager_callback(runner):
+… 18 lines omitted …
++    result = runner.invoke(cli, [])
++    assert not result.exception
++    assert "callback source=DEFAULT" in result.output
+… 2 lines omitted …
++    result = runner.invoke(cli, ["--flag"])
++    assert not result.exception
++    assert "callback source=COMMANDLINE" in result.output
++    assert "final source=COMMANDLINE" in result.output
++  [×2]
++def test_flask_debug_env_not_stomped_by_default_flag(runner, monkeypatch):
+… 39 lines omitted …
++    assert result.output.strip() == "APP_DEBUG=0"
++  [×2]
++def test_parameter_source_on_parse_result_bypass(runner):
+… 11 lines omitted …
++import warnings
+… 7 lines omitted …
++import click.utils
++  [×2]
++@pytest.mark.parametrize(
+… 22 lines omitted …
++        # Deprecated `click.utils` utilities.
+… 14 lines omitted …
++    assert value == target
++  [×2]
++@pytest.mark.parametrize(
+… 6 lines omitted …
++        _ = module.no_such_attribute
++  [×2]
++def test_context_protected_args_deprecated():
+… 3 lines omitted …
++        assert ctx.protected_args == []
++  [×2]
++@pytest.mark.parametrize(
+… 11 lines omitted …
++    assert param.spec == expected
++  [×2]
++@pytest.mark.parametrize("base", [click.Parameter, click.Option, click.Argument])
+… 7 lines omitted …
++                return "custom"
++  [×2]
++@pytest.mark.parametrize("base", [click.Parameter, click.Option, click.Argument])
+… 1 lines omitted …
++    """The warning names a subclass that overrides the property, and no other."""
++    with warnings.catch_warnings(action="error", category=DeprecationWarning):
++
+… 1 lines omitted …
++            pass
++  [×2]
++def test_isolated_filesystem_deprecated(runner):
+… 2 lines omitted …
++            pass
++  [×2]
++@pytest.mark.parametrize(
+… 43 lines omitted …
++import click
++  [×2]
++def test_file_error_surrogates():
++    message = click.FileError(filename="\udcff").format_message()
++    assert message == "Could not open file '�': unknown error"
+diff --git a/tests/test_formatting.py b/tests/test_formatting.py
+… 49 lines omitted …
++):
++    """The error hint should only show non-shadowed help option names, picking the
++    longest for readability.
+… 17 lines omitted …
++    assert lines[0] == "Usage: cli foo [OPTIONS] REQUIRED_ARG"
++    assert lines[-1] == "Error: Missing argument 'REQUIRED_ARG'."
++    if expected_hint is not None:
+… 2 lines omitted …
++        assert not any(line.startswith("Try ") for line in lines)
++  [×2]
+ def test_formatting_custom_type_metavar(runner):
+… 1 lines omitted …
+     assert actual == expected
++  [×2]
++@pytest.mark.parametrize(
+… 56 lines omitted …
++    assert "".join(styled.split()) == "".join((initial_indent + body).split())
++  [×2]
++@pytest.mark.parametrize(
+… 40 lines omitted …
+     assert TestType().to_info_dict()["name"] == "TestType"
++  [×2]
++PARAM_KINDS = [
+… 3 lines omitted …
++"""Both concrete kinds of parameter, built from the same keyword arguments."""
++  [×2]
++@pytest.mark.parametrize("make_param", PARAM_KINDS)
+… 15 lines omitted …
++    assert make_param(help=help_in).to_info_dict()["help"] == help_out
++  [×2]
++@pytest.mark.parametrize("make_param", PARAM_KINDS)
+… 1 lines omitted …
++    ("help_in", "deprecated", "help_out"),
+… 1 lines omitted …
++        pytest.param(None, True, "(DEPRECATED)", id="no-help"),
+… 1 lines omitted …
++            "Pack the basket.", True, "Pack the basket. (DEPRECATED)", id="help"
+… 4 lines omitted …
++            "Pack the basket. (DEPRECATED: USE THE CRATE)",
+… 4 lines omitted …
++def test_param_to_info_dict_deprecated_help(make_param, help_in, deprecated, help_out):
++    """A deprecated parameter of any kind gets the same label appended."""
++    param = make_param(help=help_in, required=False, deprecated=deprecated)
++    assert param.to_info_dict()["help"] == help_out
++  [×2]
++def test_argument_to_info_dict_nargs():
+… 3 lines omitted …
++    assert info["help"] == "files to process"
++  [×2]
++def test_command_to_info_dict_multiple_arguments():
+… 15 lines omitted …
++import warnings
+… 9 lines omitted …
+@@ -58,6 +58,72 @@ def test_deprecated_usage(runner, deprecated):
+… 2 lines omitted …
++    ("deprecated", "expected"),
++    [(True, "(DEPRECATED)"), ("USE B INSTEAD", "(DEPRECATED: USE B INSTEAD)")],
+… 2 lines omitted …
++def test_deprecated_empty_help_no_leading_space(help_text, deprecated, expected):
+… 3 lines omitted …
++    opt = click.Option(["--foo"], help=help_text, deprecated=deprecated)
+… 1 lines omitted …
++    assert opt.get_help_record(ctx)[1] == expected
++  [×2]
++@pytest.mark.parametrize(
+… 20 lines omitted …
++        assert opt.get_help_record(ctx)[0] == expected
++  [×2]
++@pytest.mark.parametrize(
+… 17 lines omitted …
++    assert _split_opt(opt.spec)[1].replace("-", "_").lower() == opt.name
++  [×2]
++def test_spec_with_explicit_name():
+… 3 lines omitted …
++    assert opt.name == "repeat_count"
++  [×2]
+ @pytest.mark.parametrize("deprecated", [True, "USE B INSTEAD"])
+@@ -74,7 +140,7 @@ def test_deprecated_warning(runner, deprecated):
+… 1 lines omitted …
+-    assert "option 'my_option' is deprecated" in result.output
++    assert "option '--my-option' is deprecated" in result.output
+… 1 lines omitted …
+@@ -141,15 +207,15 @@ def test_unknown_options(runner, unknown_flag):
+… 136 lines omitted (5 error-like, 0 warning-like) …
+-        with warnings.catch_warnings(record=True) as current_warnings:
+-            assert not current_warnings, "There should be no warnings to start"
+… 1 lines omitted …
+-            assert not current_warnings, "There should be no warnings after either"
+… 16 lines omitted …
++    with warnings.catch_warnings(record=True) as current_warnings:
++        assert not current_warnings, "There should be no warnings to start"
+… 1 lines omitted …
++        assert not current_warnings, "There should be no warnings after either"
+… 745 lines omitted (36 error-like, 0 warning-like) …
++    The warning is only emitted when the interpreter runs with ``-b``, so this
++    has to be checked in a subprocess. ``-bb`` turns the warning into an error,
+… 1264 lines omitted (80 error-like, 0 warning-like) …
+@@ -1,4 +1,4 @@
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/tests/typing/typing_options.py b/tests/typing/typing_options.py
+@@ -1,6 +1,6 @@
+
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/tests/typing/typing_password_option.py b/tests/typing/typing_password_option.py
+@@ -1,6 +1,5 @@
+ import codecs
+-
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/tests/typing/typing_path.py b/tests/typing/typing_path.py
+new file mode 100644
+@@ -0,0 +1,33 @@
++import os
++import pathlib
++from typing import assert_type
++
++import click
++
++# Without ``path_type``, ``convert`` returns the value it was given.
++assert_type(click.Path().convert("a/b.txt", None, None), str | bytes | os.PathLike[str])
++assert_type(click.prompt("File", type=click.Path()), str | bytes | os.PathLike[str])
++
++# ``path_type`` narrows the converted value's type for ``convert`` and ``prompt``.
++assert_type(click.Path(path_type=str).convert("a/b.txt", None, None), str)
++assert_type(click.Path(path_type=bytes).convert("a/b.txt", None, None), bytes)
++assert_type(
++    click.Path(path_type=pathlib.Path).convert("a/b.txt", None, None), pathlib.Path
++)
++assert_type(click.prompt("File", type=click.Path(path_type=str)), str)
++assert_type(click.prompt("File", type=click.Path(path_type=pathlib.Path)), pathlib.Path)
++
++assert_type(click.Path(path_type=pathlib.Path)("a/b.txt"), pathlib.Path)
++assert_type(click.Path(path_type=pathlib.Path)(None), None)
++
++# The class can be parameterized explicitly.
++param_type: click.Path[pathlib.Path] = click.Path(exists=True, path_type=pathlib.Path)
++assert_type(param_type.convert("a/b.txt", None, None), pathlib.Path)
++assert_type(param_type.coerce_path_result("a/b.txt"), pathlib.Path)
++
++general: click.ParamType[str | bytes | os.PathLike[str]] = click.Path()
++specific: click.ParamType[pathlib.Path] = click.Path(path_type=pathlib.Path)
++
++assert_type(
++    click.Path(path_type=pathlib.Path)(pathlib.PurePosixPath("a/b.txt")), pathlib.Path
++)
+diff --git a/tests/typing/typing_progressbar.py b/tests/typing/typing_progressbar.py
+@@ -1,6 +1,6 @@
+
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/tests/typing/typing_prompt.py b/tests/typing/typing_prompt.py
+new file mode 100644
+@@ -0,0 +1,50 @@
++from typing import assert_type
++
++import click
++
++# Without ``type``, ``value_proc``, or a non-``str`` ``default``, the raw
++# string input is returned.
++assert_type(click.prompt("Name"), str)
++assert_type(click.prompt("Name", default="bob"), str)
++
++# The return type is narrowed by the ``type`` argument, whether it is a
++# ParamType instance or a plain class, independently of the default's type.
++assert_type(click.prompt("Age", type=click.INT), int)
++assert_type(click.prompt("Age", type=click.IntRange(0, 130), default=18), int)
++assert_type(click.prompt("Age", type=int), int)
++assert_type(click.prompt("Age", type=int, default="100"), int)
++
++# The return type is narrowed by the ``value_proc`` argument.
++  [×2]
++def to_float(value: str) -> float:
++    return float(value)
++  [×2]
++assert_type(click.prompt("Ratio", value_proc=to_float), float)
++
++# The return type is narrowed by the ``default`` argument alone.
++assert_type(click.prompt("Age", default=18), int)
++  [×2]
++# A custom type may declare both its converted value and accepted input
++# types. Omitting the input type parameter defaults it to ``Any``.
++class DoublingType(click.ParamType[int, str]):
++    name = "doubling"
++
++    def convert(
++        self, value: str, param: click.Parameter | None, ctx: click.Context | None
++    ) -> int:
++        return int(value) * 2
++  [×2]
++assert_type(click.prompt("Num", type=DoublingType()), int)
++assert_type(DoublingType()("21"), int)
++assert_type(DoublingType()(None), None)
++  [×2]
++class SimpleType(click.ParamType[int]):
++    name = "simple"
++  [×2]
++assert_type(SimpleType()("21"), int)
+diff --git a/tests/typing/typing_simple_example.py b/tests/typing/typing_simple_example.py
+@@ -1,6 +1,6 @@
+
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/tests/typing/typing_version_option.py b/tests/typing/typing_version_option.py
+@@ -2,7 +2,7 @@
+
+-from typing_extensions import assert_type
++from typing import assert_type
+
+diff --git a/uv.lock b/uv.lock
+  (lockfile: +528 -526 lines hidden)
+[ojas: 26303 lines → 878, ≈299.3k → ≈9.4k tokens. Full output: ojas get ca7754c391fa]

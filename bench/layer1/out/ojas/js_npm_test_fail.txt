@@ -1,0 +1,132 @@
+[ojas: 1289 passing-test lines and 0 progress lines hidden]
+> express@5.3.0 test
+> mocha --require test/support/env --reporter spec --check-leaks test/ test/acceptance/
+
+  Route
+    .all
+    .VERB
+    errors
+
+  Router
+    .handle
+    .multiple callbacks
+    error
+    FQDN
+    .all
+    .use
+    .param
+    parallel requests
+
+  app.all()
+
+  app
+    .engine(ext, fn)
+
+  HEAD
+
+  app.head()
+
+  app
+
+  app.parent
+
+  app.mountpath
+
+  app.path()
+
+  in development
+
+  in production
+
+  without NODE_ENV
+
+  app.listen()
+
+  app
+… 3 lines omitted …
+  OPTIONS
+    when error occurs in response handler
+
+… 8 lines omitted …
+      when the file does not exist
+      when an error occurs
+      when an extension is given
+… 16 lines omitted …
+    promise support
+      error handling
+
+… 19 lines omitted …
+    promise support
+      error handling
+
+… 278 lines omitted …
+      when options.headers contains Content-Disposition
+    on failure
+
+… 63 lines omitted …
+    .render(name)
+      when an error occurs
+      when "view engine" is given
+… 4 lines omitted …
+    .render(name, fn)
+      when an error occurs
+
+… 112 lines omitted …
+
+  error-pages
+    GET /
+… 12 lines omitted …
+
+  error
+    GET /
+… 8 lines omitted …
+    GET /
+    GET /fail
+
+… 53 lines omitted …
+
+  vhost
+    example.com
+      GET /
+      GET /foo
+    foo.example.com
+      GET /
+    bar.example.com
+      GET /
+
+  web-service
+    GET /api/users
+      without an api key
+      with an invalid api key
+      with a valid api key
+    GET /api/repos
+      without an api key
+      with an invalid api key
+      with a valid api key
+    GET /api/user/:name/repos
+      without an api key
+      with an invalid api key
+      with a valid api key
+    when requesting an invalid route
+
+  1289 passing (4s)
+  1 failing
+
+  1) res
+       .send()
+         should set body to "":
+     Error: expected 418 "I'm a Teapot", got 200 "OK"
+      at Context.<anonymous> (test/res.send.js:23:8)
+      at process.processImmediate (node:internal/timers:484:21)
+      at process.callbackTrampoline (node:internal/async_hooks:130:17)
+  ----
+      at Test._assertStatus (node_modules/supertest/lib/test.js:252:14)
+      at /home/bench/work/express_bad/node_modules/supertest/lib/test.js:308:13
+      at Test._assertFunction (node_modules/supertest/lib/test.js:285:13)
+      at Test.assert (node_modules/supertest/lib/test.js:164:23)
+      at Server.localAssert (node_modules/supertest/lib/test.js:120:14)
+      at Object.onceWrapper (node:events:633:28)
+      at Server.emit (node:events:519:28)
+      at emitCloseNT (node:net:2420:8)
+      at process.processTicksAndRejections (node:internal/process/task_queues:88:21)
+[ojas: 1991 lines → 131, ≈17.9k → ≈673 tokens. Full output: ojas get 394e42fceea8]

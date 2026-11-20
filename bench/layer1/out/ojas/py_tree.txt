@@ -1,0 +1,92 @@
+src
+`-- click
+    |-- __init__.py
+    |-- __pycache__
+    |   |-- __init__.cpython-311.pyc
+    |   |-- _compat.cpython-311.pyc
+    |   |-- _termui_impl.cpython-311.pyc
+    |   |-- _textwrap.cpython-311.pyc
+    |   |-- _utils.cpython-311.pyc
+    |   |-- core.cpython-311.pyc
+    |   |-- decorators.cpython-311.pyc
+    |   |-- exceptions.cpython-311.pyc
+    |   |-- formatting.cpython-311.pyc
+    |   |-- globals.cpython-311.pyc
+    |   |-- parser.cpython-311.pyc
+    |   |-- shell_completion.cpython-311.pyc
+    |   |-- termui.cpython-311.pyc
+    |   |-- testing.cpython-311.pyc
+    |   |-- types.cpython-311.pyc
+    |   `-- utils.cpython-311.pyc
+    |-- _compat.py
+    |-- _termui_impl.py
+    |-- _textwrap.py
+    |-- _utils.py
+    |-- _winconsole.py
+    |-- core.py
+    |-- decorators.py
+    |-- exceptions.py
+    |-- formatting.py
+    |-- globals.py
+    |-- parser.py
+    |-- py.typed
+    |-- shell_completion.py
+    |-- termui.py
+    |-- testing.py
+    |-- types.py
+    `-- utils.py
+tests
+|-- __pycache__
+|   |-- conftest.cpython-311-pytest-9.2.0.pyc
+|   |-- test_abort_interrupt.cpython-311-pytest-9.2.0.pyc
+|   |-- test_arguments.cpython-311-pytest-9.2.0.pyc
+|   |-- test_basic.cpython-311-pytest-9.2.0.pyc
+|   |-- test_chain.cpython-311-pytest-9.2.0.pyc
+|   |-- test_command_decorators.cpython-311-pytest-9.2.0.pyc
+… 64 lines omitted …
+|-- test_utils
+|   |-- __init__.py
+|   |-- __pycache__
+|   |   |-- __init__.cpython-311.pyc
+|   |   |-- test_KeepOpenFile.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_LazyFile.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test__detect_program_name.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test__expand_args.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_confirm.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_echo.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_echo_via_pager.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_format_filename.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_make_default_short_help.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_open_file.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_prompt.cpython-311-pytest-9.2.0.pyc
+|   |   |-- test_sentinel.cpython-311-pytest-9.2.0.pyc
+|   |   `-- test_style.cpython-311-pytest-9.2.0.pyc
+|   |-- test_KeepOpenFile.py
+|   |-- test_LazyFile.py
+|   |-- test__detect_program_name.py
+|   |-- test__expand_args.py
+|   |-- test_confirm.py
+|   |-- test_echo.py
+|   |-- test_echo_via_pager.py
+|   |-- test_format_filename.py
+|   |-- test_make_default_short_help.py
+|   |-- test_open_file.py
+|   |-- test_prompt.py
+|   |-- test_sentinel.py
+|   `-- test_style.py
+`-- typing
+    |-- typing_aliased_group.py
+    |-- typing_confirmation_option.py
+    |-- typing_edit.py
+    |-- typing_group_kw_options.py
+    |-- typing_help_option.py
+    |-- typing_options.py
+    |-- typing_password_option.py
+    |-- typing_path.py
+    |-- typing_progressbar.py
+    |-- typing_prompt.py
+    |-- typing_simple_example.py
+    `-- typing_version_option.py
+
+12 directories, 140 files
+[ojas: 154 lines → 91, ≈1.3k → ≈739 tokens. Full output: ojas get bd789fec1ad7]

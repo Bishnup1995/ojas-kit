@@ -1,0 +1,598 @@
+src/click/utils.py:28:def _posixify(name: str) -> str:
+src/click/utils.py:32:def _safecall(func: t.Callable[P, R]) -> t.Callable[P, R | None]:
+src/click/utils.py:38:    def wrapper(*args: P.args, **kwargs: P.kwargs) -> R | None:
+src/click/utils.py:48:def make_str(value: t.Any) -> str:
+src/click/utils.py:58:def _make_default_short_help(help: str, max_length: int = 45) -> str:
+src/click/utils.py:116:    def __init__(
+src/click/utils.py:141:    def __getattr__(self, name: str) -> t.Any:
+src/click/utils.py:144:    def __repr__(self) -> str:
+src/click/utils.py:149:    def open(self) -> t.IO[t.Any]:
+src/click/utils.py:167:    def close(self) -> None:
+src/click/utils.py:172:    def close_intelligently(self) -> None:
+src/click/utils.py:179:    def __enter__(self) -> t.Self:
+src/click/utils.py:182:    def __exit__(
+src/click/utils.py:190:    def __iter__(self) -> cabc.Iterator[t.AnyStr]:
+src/click/utils.py:212:    def __init__(self, file: t.IO[t.Any]) -> None:
+src/click/utils.py:215:    def __getattr__(self, name: str) -> t.Any:
+src/click/utils.py:218:    def __enter__(self) -> t.Self:
+src/click/utils.py:221:    def __exit__(
+src/click/utils.py:229:    def __repr__(self) -> str:
+src/click/utils.py:232:    def __iter__(self) -> cabc.Iterator[t.AnyStr]:
+src/click/utils.py:236:def echo(
+src/click/utils.py:333:def _get_binary_stream(name: t.Literal["stdin", "stdout", "stderr"]) -> t.BinaryIO:
+src/click/utils.py:350:def _get_text_stream(
+src/click/utils.py:377:def open_file(
+src/click/utils.py:426:def format_filename(
+src/click/utils.py:468:def get_app_dir(app_name: str, roaming: bool = True, force_posix: bool = False) -> str:
+src/click/utils.py:530:    def __init__(self, wrapped: t.IO[t.Any]) -> None:
+src/click/utils.py:533:    def flush(self) -> None:
+src/click/utils.py:542:    def __getattr__(self, attr: str) -> t.Any:
+src/click/utils.py:546:def _detect_program_name(
+src/click/utils.py:601:def _expand_args(
+src/click/utils.py:653:def __getattr__(name: str) -> object:
+src/click/exceptions.py:19:def _join_param_hints(param_hint: cabc.Sequence[str] | str | None) -> str | None:
+src/click/exceptions.py:26:def _format_possibilities(possibilities: list[str]) -> str:
+src/click/exceptions.py:44:    def __init__(self, message: str) -> None:
+src/click/exceptions.py:51:    def format_message(self) -> str:
+src/click/exceptions.py:54:    def __str__(self) -> str:
+src/click/exceptions.py:57:    def show(self, file: t.IO[t.Any] | None = None) -> None:
+src/click/exceptions.py:82:    def __init__(self, message: str, ctx: Context | None = None) -> None:
+src/click/exceptions.py:87:    def show(self, file: t.IO[t.Any] | None = None) -> None:
+src/click/exceptions.py:135:    def __init__(
+src/click/exceptions.py:146:    def format_message(self) -> str:
+src/click/exceptions.py:173:    def __init__(
+src/click/exceptions.py:184:    def format_message(self) -> str:
+src/click/exceptions.py:224:    def __str__(self) -> str:
+src/click/exceptions.py:241:    def __init__(
+src/click/exceptions.py:262:    def format_message(self) -> str:
+src/click/exceptions.py:277:    def __init__(
+src/click/exceptions.py:298:    def format_message(self) -> str:
+src/click/exceptions.py:316:    def __init__(
+src/click/exceptions.py:335:    def __init__(self, ctx: Context) -> None:
+src/click/exceptions.py:338:    def show(self, file: t.IO[t.Any] | None = None) -> None:
+src/click/exceptions.py:348:    def __init__(self, filename: str, hint: str | None = None) -> None:
+src/click/exceptions.py:356:    def format_message(self) -> str:
+src/click/exceptions.py:377:    def __init__(self, code: int = 0) -> None:
+src/click/globals.py:13:def get_current_context(silent: t.Literal[False] = False) -> Context: ...
+src/click/globals.py:17:def get_current_context(silent: bool = ...) -> Context | None: ...
+src/click/globals.py:20:def get_current_context(silent: bool = False) -> Context | None:
+src/click/globals.py:44:def push_context(ctx: Context) -> None:
+src/click/globals.py:49:def pop_context() -> None:
+src/click/globals.py:54:def resolve_color_default(color: bool | None = None) -> bool | None:
+src/click/decorators.py:24:def pass_context(f: t.Callable[t.Concatenate[Context, P], R]) -> t.Callable[P, R]:
+src/click/decorators.py:29:    def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+src/click/decorators.py:35:def pass_obj(f: t.Callable[t.Concatenate[T, P], R]) -> t.Callable[P, R]:
+src/click/decorators.py:41:    def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+src/click/decorators.py:47:def make_pass_decorator(
+src/click/decorators.py:59:        def decorator(f):
+src/click/decorators.py:61:            def new_func(ctx, *args, **kwargs):
+src/click/decorators.py:72:    def decorator(f: t.Callable[t.Concatenate[T, P], R]) -> t.Callable[P, R]:
+src/click/decorators.py:73:        def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+src/click/decorators.py:96:def pass_meta_key(
+src/click/decorators.py:111:    def decorator(f: t.Callable[t.Concatenate[T, P], R]) -> t.Callable[P, R]:
+src/click/decorators.py:112:        def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+src/click/decorators.py:134:def command(name: _AnyCallable) -> Command: ...
+src/click/decorators.py:140:def command(
+src/click/decorators.py:149:def command(
+src/click/decorators.py:159:def command(
+src/click/decorators.py:164:def command(
+src/click/decorators.py:213:    def decorator(f: _AnyCallable) -> CmdType:
+src/click/decorators.py:259:def group(name: _AnyCallable) -> Group: ...
+src/click/decorators.py:265:def group(
+src/click/decorators.py:274:def group(
+src/click/decorators.py:284:def group(
+src/click/decorators.py:289:def group(
+src/click/decorators.py:310:def _param_memo(f: t.Callable[..., t.Any], param: Parameter) -> None:
+src/click/decorators.py:320:def argument(
+src/click/decorators.py:341:    def decorator(f: FC) -> FC:
+src/click/decorators.py:348:def option(
+src/click/decorators.py:369:    def decorator(f: FC) -> FC:
+src/click/decorators.py:376:def confirmation_option(*param_decls: str, **kwargs: t.Any) -> t.Callable[[FC], FC]:
+src/click/decorators.py:385:    def callback(ctx: Context, param: Parameter, value: bool) -> None:
+src/click/decorators.py:400:def password_option(*param_decls: str, **kwargs: t.Any) -> t.Callable[[FC], FC]:
+src/click/decorators.py:417:def version_option(
+src/click/decorators.py:495:    def callback(ctx: Context, param: Parameter, value: bool) -> None:
+src/click/decorators.py:555:def custom_version_option(
+src/click/decorators.py:579:    def show_version(ctx: Context, param: Parameter, value: bool) -> None:
+src/click/decorators.py:597:def help_option(*param_decls: str, **kwargs: t.Any) -> t.Callable[[FC], FC]:
+src/click/decorators.py:606:    def show_help(ctx: Context, param: Parameter, value: bool) -> None:
+src/click/core.py:62:def _complete_visible_commands(
+src/click/core.py:81:def _check_nested_chain(
+src/click/core.py:101:def _echo_aborted() -> None:
+src/click/core.py:106:def _outside_click_stacklevel(skip: cabc.Container[str] = ()) -> int:
+src/click/core.py:130:def _format_deprecated_label(deprecated: bool | str) -> str:
+src/click/core.py:138:def _format_deprecated_suffix(deprecated: bool | str) -> str:
+src/click/core.py:147:def batch(iterable: cabc.Iterable[V], batch_size: int) -> list[tuple[V, ...]]:
+src/click/core.py:152:def augment_usage_errors(
+src/click/core.py:170:def iter_params_for_processing(
+src/click/core.py:186:    def sort_key(item: Parameter) -> tuple[bool, float]:
+src/click/core.py:368:    def __init__(
+src/click/core.py:544:    def protected_args(self) -> list[str]:
+src/click/core.py:555:    def to_info_dict(self) -> dict[str, t.Any]:
+src/click/core.py:576:    def __enter__(self) -> t.Self:
+src/click/core.py:581:    def __exit__(
+src/click/core.py:596:    def scope(self, cleanup: bool = True) -> cabc.Generator[Context]:
+src/click/core.py:634:    def meta(self) -> dict[str, t.Any]:
+src/click/core.py:650:            def set_language(value):
+src/click/core.py:654:            def get_language():
+src/click/core.py:661:    def make_formatter(self) -> HelpFormatter:
+src/click/core.py:675:    def with_resource(self, context_manager: AbstractContextManager[V]) -> V:
+src/click/core.py:694:            def cli(ctx):
+src/click/core.py:704:    def call_on_close(self, f: t.Callable[..., t.Any]) -> t.Callable[..., t.Any]:
+src/click/core.py:716:    def close(self) -> None:
+src/click/core.py:723:    def _close_with_exception_info(
+src/click/core.py:742:    def command_path(self) -> str:
+src/click/core.py:760:    def find_root(self) -> Context:
+src/click/core.py:767:    def find_object(self, object_type: type[V]) -> V | None:
+src/click/core.py:779:    def ensure_object(self, object_type: type[V]) -> V:
+src/click/core.py:788:    def _default_map_has(self, name: str | None) -> bool:
+src/click/core.py:803:    def lookup_default(
+src/click/core.py:808:    def lookup_default(
+src/click/core.py:812:    def lookup_default(self, name: str, call: bool = True) -> t.Any | None:
+src/click/core.py:834:    def fail(self, message: str) -> t.NoReturn:
+src/click/core.py:842:    def abort(self) -> t.NoReturn:
+src/click/core.py:846:    def exit(self, code: int = 0) -> t.NoReturn:
+src/click/core.py:856:    def get_usage(self) -> str:
+src/click/core.py:862:    def get_help(self) -> str:
+src/click/core.py:868:    def _make_sub_context(self, command: Command) -> t.Self:
+src/click/core.py:877:    def invoke(
+src/click/core.py:882:    def invoke(self, callback: Command, /, *args: t.Any, **kwargs: t.Any) -> t.Any: ...
+src/click/core.py:884:    def invoke(
+src/click/core.py:936:    def forward(self, cmd: Command, /, *args: t.Any, **kwargs: t.Any) -> t.Any:
+src/click/core.py:955:    def set_parameter_source(self, name: str, source: ParameterSource) -> None:
+src/click/core.py:964:    def get_parameter_source(self, name: str) -> ParameterSource | None:
+src/click/core.py:1059:    def __init__(
+src/click/core.py:1103:    def to_info_dict(self, ctx: Context) -> dict[str, t.Any]:
+src/click/core.py:1114:    def __repr__(self) -> str:
+src/click/core.py:1117:    def get_usage(self, ctx: Context) -> str:
+src/click/core.py:1126:    def get_params(self, ctx: Context) -> list[Parameter]:
+src/click/core.py:1182:    def format_usage(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1190:    def collect_usage_pieces(self, ctx: Context) -> list[str]:
+src/click/core.py:1201:    def get_help_option_names(self, ctx: Context) -> list[str]:
+src/click/core.py:1216:    def get_help_option(self, ctx: Context) -> Option | None:
+src/click/core.py:1250:    def make_parser(self, ctx: Context) -> _OptionParser:
+src/click/core.py:1257:    def get_help(self, ctx: Context) -> str:
+src/click/core.py:1266:    def get_short_help_str(self, limit: int = 45) -> str:
+src/click/core.py:1282:    def format_help(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1301:    def format_help_text(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1319:    def format_options(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1331:    def format_arguments(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1344:    def format_epilog(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:1353:    def make_context(
+src/click/core.py:1390:    def parse_args(self, ctx: Context, args: list[str]) -> list[str]:
+src/click/core.py:1423:    def invoke(self, ctx: Context) -> t.Any:
+src/click/core.py:1439:    def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:
+src/click/core.py:1487:    def main(
+src/click/core.py:1497:    def main(
+src/click/core.py:1506:    def main(
+src/click/core.py:1642:    def _main_shell_completion(
+src/click/core.py:1674:    def __call__(self, *args: t.Any, **kwargs: t.Any) -> t.Any:
+src/click/core.py:1680:    def __subclasscheck__(cls, subclass: type) -> bool:
+src/click/core.py:1683:    def __instancecheck__(cls, instance: t.Any) -> bool:
+src/click/core.py:1753:    def __init__(
+src/click/core.py:1808:    def to_info_dict(self, ctx: Context) -> dict[str, t.Any]:
+src/click/core.py:1826:    def add_command(self, cmd: Command, name: str | None = None) -> None:
+src/click/core.py:1837:    def command(self, __func: t.Callable[..., t.Any]) -> Command: ...
+src/click/core.py:1840:    def command(
+src/click/core.py:1844:    def command(
+src/click/core.py:1875:        def decorator(f: t.Callable[..., t.Any]) -> Command:
+src/click/core.py:1886:    def group(self, __func: t.Callable[..., t.Any]) -> Group: ...
+src/click/core.py:1889:    def group(
+src/click/core.py:1893:    def group(
+src/click/core.py:1927:        def decorator(f: t.Callable[..., t.Any]) -> Group:
+src/click/core.py:1937:    def result_callback(self, replace: bool = False) -> t.Callable[[F], F]:
+src/click/core.py:1950:            def cli(input):
+src/click/core.py:1954:            def process_result(result, input):
+src/click/core.py:1966:        def decorator(f: F) -> F:
+src/click/core.py:1973:            def function(value: t.Any, /, *args: t.Any, **kwargs: t.Any) -> t.Any:
+src/click/core.py:1982:    def get_command(self, ctx: Context, cmd_name: str) -> Command | None:
+src/click/core.py:1988:    def list_commands(self, ctx: Context) -> list[str]:
+src/click/core.py:1992:    def collect_usage_pieces(self, ctx: Context) -> list[str]:
+src/click/core.py:1997:    def format_options(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:2001:    def format_commands(self, ctx: Context, formatter: HelpFormatter) -> None:
+src/click/core.py:2029:    def parse_args(self, ctx: Context, args: list[str]) -> list[str]:
+src/click/core.py:2043:    def invoke(self, ctx: Context) -> t.Any:
+src/click/core.py:2044:        def _process_result(value: t.Any) -> t.Any:
+src/click/core.py:2111:    def resolve_command(
+src/click/core.py:2137:    def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:
+src/click/core.py:2182:    def __init__(
+src/click/core.py:2192:    def add_source(self, group: Group) -> None:
+src/click/core.py:2196:    def get_command(self, ctx: Context, cmd_name: str) -> Command | None:
+src/click/core.py:2213:    def list_commands(self, ctx: Context) -> list[str]:
+src/click/core.py:2222:def _check_iter(value: cabc.Iterable[V]) -> cabc.Iterator[V]:
+src/click/core.py:2383:    def __init_subclass__(cls, **kwargs: t.Any) -> None:
+src/click/core.py:2397:    def __init__(
+src/click/core.py:2479:    def _hide_unset(value: t.Any) -> t.Any:
+src/click/core.py:2486:    def to_info_dict(self) -> dict[str, t.Any]:
+src/click/core.py:2512:    def __repr__(self) -> str:
+src/click/core.py:2516:    def _parse_decls(
+src/click/core.py:2520:    def _check_name_is_usable(self, name: str, decls: cabc.Sequence[str]) -> None:
+src/click/core.py:2558:    def spec(self) -> str:
+src/click/core.py:2574:    def human_readable_name(self) -> str:
+src/click/core.py:2593:    def get_help_spec(self, ctx: Context) -> str:
+src/click/core.py:2608:    def make_metavar(self, ctx: Context) -> str:
+src/click/core.py:2623:    def get_default(
+src/click/core.py:2628:    def get_default(
+src/click/core.py:2632:    def get_default(
+src/click/core.py:2666:    def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None: ...
+src/click/core.py:2668:    def consume_value(
+src/click/core.py:2716:    def type_cast_value(self, ctx: Context, value: t.Any) -> t.Any:
+src/click/core.py:2726:        def check_iter(value: t.Any) -> cabc.Iterator[t.Any]:
+src/click/core.py:2741:            def convert(value: t.Any) -> t.Any:
+src/click/core.py:2746:            def convert(value: t.Any) -> t.Any:  # tuple[t.Any, ...]
+src/click/core.py:2751:            def convert(value: t.Any) -> t.Any:  # tuple[t.Any, ...]
+src/click/core.py:2772:    def value_is_missing(self, value: t.Any) -> bool:
+src/click/core.py:2790:    def process_value(self, ctx: Context, value: t.Any) -> t.Any:
+src/click/core.py:2852:    def resolve_envvar_value(self, ctx: Context) -> str | None:
+src/click/core.py:2897:    def value_from_envvar(self, ctx: Context) -> str | cabc.Sequence[str] | None:
+src/click/core.py:2913:    def handle_parse_result(
+src/click/core.py:3001:    def get_help_record(self, ctx: Context) -> tuple[str, str] | None:
+src/click/core.py:3004:    def get_usage_pieces(self, ctx: Context) -> list[str]:
+src/click/core.py:3007:    def get_error_hint(self, ctx: Context | None) -> str:
+src/click/core.py:3017:    def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:
+src/click/core.py:3133:    def __init__(
+src/click/core.py:3211:    def is_bool_flag(self) -> bool:
+src/click/core.py:3220:    def flag_activation_value(self) -> t.Any:
+src/click/core.py:3232:    def _infer_flag_kind(
+src/click/core.py:3265:    def _pick_type(
+src/click/core.py:3304:    def _resolve_lazy_default(self, value: t.Any) -> t.Any:
+src/click/core.py:3328:    def _validate(self, prompt: bool | str, deprecated: bool | str) -> None:
+src/click/core.py:3350:    def to_info_dict(self) -> dict[str, t.Any]:
+src/click/core.py:3372:    def get_default(
+src/click/core.py:3404:    def get_error_hint(self, ctx: Context | None) -> str:
+src/click/core.py:3414:    def _check_name_is_normalized(self, name: str, decls: cabc.Sequence[str]) -> None:
+src/click/core.py:3434:    def _parse_decls(
+src/click/core.py:3501:    def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None:
+src/click/core.py:3543:    def get_help_spec(self, ctx: Context) -> str:
+src/click/core.py:3554:        def _write_opts(opts: cabc.Sequence[str]) -> str:
+src/click/core.py:3574:    def get_help_record(self, ctx: Context) -> tuple[str, str] | None:
+src/click/core.py:3599:    def get_help_extra(self, ctx: Context) -> types.OptionHelpExtra:
+src/click/core.py:3682:    def prompt_for_value(self, ctx: Context) -> t.Any:
+src/click/core.py:3731:    def resolve_envvar_value(self, ctx: Context) -> str | None:
+src/click/core.py:3755:    def value_from_envvar(self, ctx: Context) -> t.Any:
+src/click/core.py:3803:    def consume_value(
+src/click/core.py:3859:    def process_value(self, ctx: Context, value: t.Any) -> t.Any:
+src/click/core.py:3889:    def __init__(
+src/click/core.py:3912:    def spec(self) -> str:
+src/click/core.py:3924:    def make_metavar(self, ctx: Context) -> str:
+src/click/core.py:3943:    def _parse_decls(
+src/click/core.py:3964:    def get_usage_pieces(self, ctx: Context) -> list[str]:
+src/click/core.py:3967:    def get_help_spec(self, ctx: Context) -> str:
+src/click/core.py:3975:    def get_help_record(self, ctx: Context) -> tuple[str, str]:
+src/click/core.py:3988:    def get_error_hint(self, ctx: Context | None) -> str:
+src/click/core.py:3993:    def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None:
+src/click/core.py:3997:def __getattr__(name: str) -> object:
+src/click/shell_completion.py:19:def shell_complete(
+src/click/shell_completion.py:88:    def __init__(
+src/click/shell_completion.py:100:    def __getattr__(self, name: str) -> t.Any:
+src/click/shell_completion.py:143:#compdef %(prog_name)s
+src/click/shell_completion.py:182:    compdef %(complete_func)s %(prog_name)s
+src/click/shell_completion.py:306:    def __init__(
+src/click/shell_completion.py:319:    def func_name(self) -> str:
+src/click/shell_completion.py:326:    def source_vars(self) -> _SourceVarsDict:
+src/click/shell_completion.py:338:    def source(self) -> str:
+src/click/shell_completion.py:346:    def get_completion_args(self) -> tuple[list[str], str]:
+src/click/shell_completion.py:353:    def get_completions(
+src/click/shell_completion.py:367:    def format_completion(self, item: CompletionItem[str]) -> str:
+src/click/shell_completion.py:375:    def complete(self) -> str:
+src/click/shell_completion.py:395:    def _check_version() -> None:
+src/click/shell_completion.py:427:    def source(self) -> str:
+src/click/shell_completion.py:431:    def get_completion_args(self) -> tuple[list[str], str]:
+src/click/shell_completion.py:443:    def format_completion(self, item: CompletionItem[t.Any]) -> str:
+src/click/shell_completion.py:453:    def get_completion_args(self) -> tuple[list[str], str]:
+src/click/shell_completion.py:465:    def format_completion(self, item: CompletionItem[str]) -> str:
+src/click/shell_completion.py:485:    def get_completion_args(self) -> tuple[list[str], str]:
+src/click/shell_completion.py:499:    def format_completion(self, item: CompletionItem[str]) -> str:
+src/click/shell_completion.py:525:    def get_completion_args(self) -> tuple[list[str], str]:
+src/click/shell_completion.py:537:    def format_completion(self, item: CompletionItem[str]) -> str:
+src/click/shell_completion.py:560:def add_completion_class(
+src/click/shell_completion.py:581:def get_completion_class(shell: t.Literal["bash"]) -> type[BashComplete]: ...
+src/click/shell_completion.py:583:def get_completion_class(shell: t.Literal["fish"]) -> type[FishComplete]: ...
+src/click/shell_completion.py:585:def get_completion_class(shell: t.Literal["zsh"]) -> type[ZshComplete]: ...
+src/click/shell_completion.py:587:def get_completion_class(shell: str) -> type[ShellComplete] | None: ...
+src/click/shell_completion.py:588:def get_completion_class(shell: str) -> type[ShellComplete] | None:
+src/click/shell_completion.py:598:def split_arg_string(string: str) -> list[str]:
+src/click/shell_completion.py:634:def _is_incomplete_argument(ctx: Context, param: Parameter) -> bool:
+src/click/shell_completion.py:657:def _start_of_option(ctx: Context, value: str) -> bool:
+src/click/shell_completion.py:666:def _is_incomplete_option(ctx: Context, args: list[str], param: Parameter) -> bool:
+src/click/shell_completion.py:691:def _resolve_context(
+src/click/shell_completion.py:752:def _resolve_incomplete(
+src/click/_winconsole.py:101:    def get_buffer(obj: Buffer, writable: bool = False) -> Array[c_char]:
+src/click/_winconsole.py:115:    def __init__(self, handle: int | None) -> None:
+src/click/_winconsole.py:118:    def isatty(self) -> t.Literal[True]:
+src/click/_winconsole.py:124:    def readable(self) -> t.Literal[True]:
+src/click/_winconsole.py:127:    def readinto(self, b: Buffer) -> int:
+src/click/_winconsole.py:159:    def writable(self) -> t.Literal[True]:
+src/click/_winconsole.py:163:    def _get_error_message(errno: int) -> str:
+src/click/_winconsole.py:170:    def write(self, b: Buffer) -> int:
+src/click/_winconsole.py:191:    def __init__(self, text_stream: t.TextIO, byte_stream: t.BinaryIO) -> None:
+src/click/_winconsole.py:196:    def name(self) -> str:
+src/click/_winconsole.py:199:    def write(self, x: t.AnyStr) -> int:
+src/click/_winconsole.py:208:    def writelines(self, lines: cabc.Iterable[t.AnyStr]) -> None:
+src/click/_winconsole.py:212:    def __getattr__(self, name: str) -> t.Any:
+src/click/_winconsole.py:215:    def isatty(self) -> bool:
+src/click/_winconsole.py:218:    def __repr__(self) -> str:
+src/click/_winconsole.py:222:def _get_text_stdin(buffer_stream: t.BinaryIO) -> t.TextIO:
+src/click/_winconsole.py:232:def _get_text_stdout(buffer_stream: t.BinaryIO) -> t.TextIO:
+src/click/_winconsole.py:242:def _get_text_stderr(buffer_stream: t.BinaryIO) -> t.TextIO:
+src/click/_winconsole.py:259:def _is_console(f: t.TextIO) -> bool:
+src/click/_winconsole.py:272:def _get_windows_console_stream(
+src/click/termui.py:61:def _mask_hidden_input(message: str, value: str) -> str:
+src/click/termui.py:79:def hidden_prompt_func(prompt: str) -> str:
+src/click/termui.py:85:def _readline_prompt(func: t.Callable[[str], str], text: str, err: bool) -> str:
+src/click/termui.py:108:def _build_prompt(
+src/click/termui.py:128:def _format_default(default: V) -> V | str:
+src/click/termui.py:139:def prompt(
+src/click/termui.py:154:def prompt(
+src/click/termui.py:168:def prompt(
+src/click/termui.py:235:    def prompt_func(text: str) -> str:
+src/click/termui.py:289:def confirm(
+src/click/termui.py:348:def get_pager_file(
+src/click/termui.py:367:def echo_via_pager(
+src/click/termui.py:403:def progressbar(
+src/click/termui.py:423:def progressbar(
+src/click/termui.py:443:def progressbar(
+src/click/termui.py:602:def clear() -> None:
+src/click/termui.py:616:def _interpret_color(color: int | tuple[int, int, int] | str, offset: int = 0) -> str:
+src/click/termui.py:641:def style(
+src/click/termui.py:768:def unstyle(text: str) -> str:
+src/click/termui.py:780:def secho(
+src/click/termui.py:815:def edit(
+src/click/termui.py:825:def edit(
+src/click/termui.py:835:def edit(
+src/click/termui.py:848:def edit(
+src/click/termui.py:923:def launch(url: str, wait: bool = False, locate: bool = False) -> int:
+src/click/termui.py:957:def getchar(echo: bool = False) -> str:
+src/click/termui.py:987:def raw_terminal() -> AbstractContextManager[int]:
+src/click/termui.py:993:def pause(info: str | None = None, err: bool = False) -> None:
+src/click/_textwrap.py:20:    def _wrap_chunks(self, chunks: list[str]) -> list[str]:
+src/click/_textwrap.py:79:    def extra_indent(self, indent: str) -> cabc.Iterator[None]:
+src/click/_textwrap.py:91:    def indent_only(self, text: str) -> str:
+src/click/_utils.py:18:    def __repr__(self) -> str:
+src/click/_utils.py:21:    def __reduce_ex__(self, protocol: object) -> tuple[t.Any, ...]:
+src/click/_termui_impl.py:44:    def __init__(
+src/click/_termui_impl.py:115:    def __enter__(self) -> t.Self:
+src/click/_termui_impl.py:120:    def __exit__(
+src/click/_termui_impl.py:128:    def __iter__(self) -> cabc.Iterator[V]:
+src/click/_termui_impl.py:134:    def __next__(self) -> V:
+src/click/_termui_impl.py:142:    def render_finish(self) -> None:
+src/click/_termui_impl.py:157:    def pct(self) -> float:
+src/click/_termui_impl.py:163:    def time_per_iteration(self) -> float:
+src/click/_termui_impl.py:169:    def eta(self) -> float:
+src/click/_termui_impl.py:174:    def format_eta(self) -> str:
+src/click/_termui_impl.py:195:    def format_pos(self) -> str:
+src/click/_termui_impl.py:201:    def format_pct(self) -> str:
+src/click/_termui_impl.py:204:    def format_bar(self) -> str:
+src/click/_termui_impl.py:223:    def format_progress_line(self) -> str:
+src/click/_termui_impl.py:250:    def render_progress(self) -> None:
+src/click/_termui_impl.py:296:    def make_step(self, n_steps: int) -> None:
+src/click/_termui_impl.py:318:    def update(self, n_steps: int, current_item: V | None = None) -> None:
+src/click/_termui_impl.py:344:    def finish(self) -> None:
+src/click/_termui_impl.py:349:    def generator(self) -> cabc.Iterator[V]:
+src/click/_termui_impl.py:397:    def __init__(self, stream: t.TextIO, color: bool) -> None:
+src/click/_termui_impl.py:401:    def write(self, text: str) -> int:
+src/click/_termui_impl.py:407:    def writelines(self, lines: cabc.Iterable[str]) -> None:
+src/click/_termui_impl.py:411:    def flush(self) -> None:
+src/click/_termui_impl.py:414:    def close(self) -> None:
+src/click/_termui_impl.py:419:    def __getattr__(self, name: str) -> t.Any:
+src/click/_termui_impl.py:423:def _resolve_pager_command(cmd_parts: list[str]) -> tuple[Path, list[str]] | None:
+src/click/_termui_impl.py:449:def _pager_contextmanager(
+src/click/_termui_impl.py:495:def get_pager_file(color: bool | None = None) -> t.Generator[t.TextIO, None, None]:
+src/click/_termui_impl.py:518:def _less_uses_raw_mode(less_env: str, cmd_params: list[str]) -> bool:
+src/click/_termui_impl.py:547:def _pipepager(
+src/click/_termui_impl.py:634:def _tempfilepager(
+src/click/_termui_impl.py:669:def _nullpager(
+src/click/_termui_impl.py:682:    def __init__(
+src/click/_termui_impl.py:694:    def get_editor(self) -> str:
+src/click/_termui_impl.py:711:    def edit_files(self, filenames: cabc.Iterable[str | os.PathLike[str]]) -> None:
+src/click/_termui_impl.py:742:    def edit(self, text: bytes | bytearray) -> bytes | None: ...
+src/click/_termui_impl.py:747:    def edit(self, text: str | None) -> str | None: ...
+src/click/_termui_impl.py:749:    def edit(self, text: str | bytes | bytearray | None) -> str | bytes | None:
+src/click/_termui_impl.py:797:def open_url(url: str, wait: bool = False, locate: bool = False) -> int:
+src/click/_termui_impl.py:800:    def _unquote_file(url: str) -> str:
+src/click/_termui_impl.py:867:def _translate_ch_to_exc(ch: str) -> None:
+src/click/_termui_impl.py:882:    def raw_terminal() -> cabc.Iterator[int]:
+src/click/_termui_impl.py:885:    def getchar(echo: bool) -> str:
+src/click/_termui_impl.py:936:    def raw_terminal() -> cabc.Iterator[int]:
+src/click/_termui_impl.py:962:    def getchar(echo: bool) -> str:
+src/click/types.py:113:        def __class_getitem__(cls, params: t.Any) -> t.Any:
+src/click/types.py:122:    def to_info_dict(self) -> ParamTypeInfoDict:
+src/click/types.py:144:    def __call__(
+src/click/types.py:152:    def __call__(
+src/click/types.py:159:    def __call__(
+src/click/types.py:169:    def get_metavar(self, param: Parameter, ctx: Context) -> str | None:
+src/click/types.py:172:    def get_missing_message(self, param: Parameter, ctx: Context | None) -> str | None:
+src/click/types.py:179:    def convert(
+src/click/types.py:205:    def split_envvar_value(self, rv: str) -> cabc.Sequence[str]:
+src/click/types.py:215:    def fail(
+src/click/types.py:224:    def shell_complete(
+src/click/types.py:247:    def arity(self) -> int: ...  # type: ignore[override]
+src/click/types.py:258:    def __init__(self, func: t.Callable[[_ValueT_contra], _ValueT_co]) -> None:
+src/click/types.py:262:    def to_info_dict(self) -> FuncParamTypeInfoDict[_ValueT_contra, _ValueT_co]:
+src/click/types.py:265:    def convert(
+src/click/types.py:285:    def convert(
+src/click/types.py:290:    def __repr__(self) -> str:
+src/click/types.py:297:    def convert(
+src/click/types.py:315:    def __repr__(self) -> str:
+src/click/types.py:357:    def __init__(
+src/click/types.py:363:    def to_info_dict(self) -> ChoiceInfoDict[_ValueT_co]:
+src/click/types.py:370:    def _normalized_mapping(
+src/click/types.py:388:    def normalize_choice(self, choice: object, ctx: Context | None) -> str:
+src/click/types.py:408:    def get_metavar(self, param: Parameter, ctx: Context) -> str | None:
+src/click/types.py:426:    def get_missing_message(self, param: Parameter, ctx: Context | None) -> str:
+src/click/types.py:436:    def convert(
+src/click/types.py:460:    def get_invalid_choice_message(self, value: t.Any, ctx: Context | None) -> str:
+src/click/types.py:474:    def __repr__(self) -> str:
+src/click/types.py:477:    def shell_complete(
+src/click/types.py:529:    def __init__(self, formats: cabc.Sequence[str] | None = None):
+src/click/types.py:536:    def to_info_dict(self) -> DateTimeInfoDict:
+src/click/types.py:539:    def get_metavar(self, param: Parameter, ctx: Context) -> str:
+src/click/types.py:542:    def _try_to_convert_date(self, value: t.Any, format: str) -> datetime | None:
+src/click/types.py:548:    def convert(
+src/click/types.py:571:    def __repr__(self) -> str:
+src/click/types.py:580:    def convert(
+src/click/types.py:613:    def __init__(
+src/click/types.py:627:    def to_info_dict(self) -> NumberRangeInfoDict[_FloatValueT_co]:
+src/click/types.py:637:    def convert(
+src/click/types.py:671:    def _clamp(
+src/click/types.py:688:    def _describe_range(self) -> str:
+src/click/types.py:702:    def __repr__(self) -> str:
+src/click/types.py:711:    def __repr__(self) -> str:
+src/click/types.py:732:    def _clamp(self, bound: int, dir: t.Literal[1, -1], open: bool) -> int:
+src/click/types.py:743:    def __repr__(self) -> str:
+src/click/types.py:765:    def __init__(
+src/click/types.py:780:    def _clamp(self, bound: float, dir: t.Literal[1, -1], open: bool) -> float:
+src/click/types.py:827:    def str_to_bool(value: str | bool) -> bool | None:
+src/click/types.py:841:    def convert(
+src/click/types.py:855:    def __repr__(self) -> str:
+src/click/types.py:862:    def convert(
+src/click/types.py:877:    def __repr__(self) -> str:
+src/click/types.py:925:    def __init__(
+src/click/types.py:939:    def to_info_dict(self) -> FileInfoDict:
+src/click/types.py:946:    def resolve_lazy_flag(self, value: str | os.PathLike[str]) -> bool:
+src/click/types.py:955:    def convert(
+src/click/types.py:1000:    def shell_complete(
+src/click/types.py:1017:def _is_file_like(value: t.Any) -> te.TypeIs[t.IO[t.Any]]:
+src/click/types.py:1078:    def __init__(
+src/click/types.py:1107:    def to_info_dict(self) -> PathInfoDict:
+src/click/types.py:1118:    def coerce_path_result(self, value: str | os.PathLike[str]) -> _PathT_co:
+src/click/types.py:1132:    def convert(
+src/click/types.py:1206:    def shell_complete(
+src/click/types.py:1243:    def __init__(self, types: cabc.Sequence[type[t.Any] | ParamType[t.Any]]) -> None:
+src/click/types.py:1246:    def to_info_dict(self) -> TupleInfoDict:
+src/click/types.py:1253:    def name(self) -> str:  # type: ignore[override]
+src/click/types.py:1257:    def arity(self) -> int:  # type: ignore[override]
+src/click/types.py:1260:    def convert(
+src/click/types.py:1282:def _guess_type(
+src/click/types.py:1318:def convert_type(ty: None, default: None = None) -> StringParamType: ...
+src/click/types.py:1320:def convert_type(
+src/click/types.py:1324:def convert_type(
+src/click/types.py:1327:def convert_type(
+src/click/parser.py:51:def _unpack_args(
+src/click/parser.py:68:    def _fetch(c: deque[str]) -> str | T_UNSET:
+src/click/parser.py:111:def _split_opt(opt: str) -> tuple[str, str]:
+src/click/parser.py:120:def _normalize_opt(opt: str, ctx: Context | None) -> str:
+src/click/parser.py:128:    def __init__(
+src/click/parser.py:166:    def takes_value(self) -> bool:
+src/click/parser.py:169:    def process(self, value: t.Any, state: _ParsingState) -> None:
+src/click/parser.py:186:    def __init__(self, obj: CoreArgument, dest: str | None, nargs: int = 1):
+src/click/parser.py:191:    def process(
+src/click/parser.py:217:    def __init__(self, rargs: list[str]) -> None:
+src/click/parser.py:241:    def __init__(self, ctx: Context | None = None) -> None:
+src/click/parser.py:265:    def add_option(
+src/click/parser.py:290:    def add_argument(self, obj: CoreArgument, dest: str | None, nargs: int = 1) -> None:
+src/click/parser.py:298:    def parse_args(
+src/click/parser.py:316:    def _process_args_for_args(self, state: _ParsingState) -> None:
+src/click/parser.py:327:    def _process_args_for_options(self, state: _ParsingState) -> None:
+src/click/parser.py:363:    def _match_long_opt(
+src/click/parser.py:390:    def _match_short_opt(self, arg: str, state: _ParsingState) -> None:
+src/click/parser.py:430:    def _get_value_from_state(
+src/click/parser.py:470:    def _process_opts(self, arg: str, state: _ParsingState) -> None:
+src/click/parser.py:503:def __getattr__(name: str) -> object:
+src/click/formatting.py:14:def measure_table(rows: cabc.Iterable[tuple[str, str]]) -> tuple[int, ...]:
+src/click/formatting.py:24:def iter_rows(
+src/click/formatting.py:31:def wrap_text(
+src/click/formatting.py:87:    def _flush_par() -> None:
+src/click/formatting.py:136:    def __init__(
+src/click/formatting.py:155:    def write(self, string: str) -> None:
+src/click/formatting.py:159:    def indent(self) -> None:
+src/click/formatting.py:163:    def dedent(self) -> None:
+src/click/formatting.py:167:    def write_usage(self, prog: str, args: str = "", prefix: str | None = None) -> None:
+src/click/formatting.py:213:    def write_heading(self, heading: str) -> None:
+src/click/formatting.py:217:    def write_paragraph(self) -> None:
+src/click/formatting.py:222:    def write_text(self, text: str) -> None:
+src/click/formatting.py:238:    def write_dl(
+src/click/formatting.py:283:    def section(self, name: str) -> cabc.Generator[None]:
+src/click/formatting.py:298:    def indentation(self) -> cabc.Generator[None]:
+src/click/formatting.py:306:    def getvalue(self) -> str:
+src/click/formatting.py:311:def join_options(options: cabc.Iterable[str]) -> tuple[str, bool]:
+src/click/_compat.py:22:def _make_text_stream(
+src/click/_compat.py:43:def is_ascii_encoding(encoding: str) -> bool:
+src/click/_compat.py:51:def get_best_encoding(stream: t.IO[t.Any]) -> str:
+src/click/_compat.py:60:    def __init__(
+src/click/_compat.py:74:    def __del__(self) -> None:
+src/click/_compat.py:80:    def isatty(self) -> bool:
+src/click/_compat.py:95:    def __init__(
+src/click/_compat.py:105:    def __getattr__(self, name: str) -> t.Any:
+src/click/_compat.py:108:    def read1(self, size: int) -> bytes:
+src/click/_compat.py:116:    def readable(self) -> bool:
+src/click/_compat.py:128:    def writable(self) -> bool:
+src/click/_compat.py:143:    def seekable(self) -> bool:
+src/click/_compat.py:154:def _is_binary_reader(stream: t.IO[t.Any], default: bool = False) -> bool:
+src/click/_compat.py:163:def _is_binary_writer(stream: t.IO[t.Any], default: bool = False) -> bool:
+src/click/_compat.py:176:def _find_binary_reader(stream: t.IO[t.Any]) -> t.BinaryIO | None:
+src/click/_compat.py:194:def _find_binary_writer(stream: t.IO[t.Any]) -> t.BinaryIO | None:
+src/click/_compat.py:212:def _stream_is_misconfigured(stream: t.TextIO) -> bool:
+src/click/_compat.py:221:def _is_compat_stream_attr(stream: t.TextIO, attr: str, value: str | None) -> bool:
+src/click/_compat.py:230:def _is_compatible_text_stream(
+src/click/_compat.py:241:def _force_correct_text_stream(
+src/click/_compat.py:287:def _force_correct_text_reader(
+src/click/_compat.py:303:def _force_correct_text_writer(
+src/click/_compat.py:319:def get_binary_stdin() -> t.BinaryIO:
+src/click/_compat.py:326:def get_binary_stdout() -> t.BinaryIO:
+src/click/_compat.py:333:def get_binary_stderr() -> t.BinaryIO:
+src/click/_compat.py:340:def get_text_stdin(encoding: str | None = None, errors: str | None = None) -> t.TextIO:
+src/click/_compat.py:347:def get_text_stdout(encoding: str | None = None, errors: str | None = None) -> t.TextIO:
+src/click/_compat.py:354:def get_text_stderr(encoding: str | None = None, errors: str | None = None) -> t.TextIO:
+src/click/_compat.py:361:def _wrap_io_open(
+src/click/_compat.py:374:def open_stream(
+src/click/_compat.py:456:    def __init__(self, f: t.IO[t.Any], tmp_filename: str, real_filename: str) -> None:
+src/click/_compat.py:463:    def name(self) -> str:
+src/click/_compat.py:466:    def close(self, delete: bool = False) -> None:
+src/click/_compat.py:473:    def __getattr__(self, name: str) -> t.Any:
+src/click/_compat.py:476:    def __enter__(self) -> t.Self:
+src/click/_compat.py:479:    def __exit__(
+src/click/_compat.py:487:    def __repr__(self) -> str:
+src/click/_compat.py:491:def strip_ansi(value: str) -> str:
+src/click/_compat.py:495:def _is_jupyter_kernel_output(stream: t.IO[t.Any]) -> bool:
+src/click/_compat.py:502:def should_strip_ansi(
+src/click/_compat.py:520:    def _get_argv_encoding() -> str:
+src/click/_compat.py:527:    def _get_argv_encoding() -> str:
+src/click/_compat.py:530:    def _get_windows_console_stream(
+src/click/_compat.py:536:def term_len(x: str) -> int:
+src/click/_compat.py:540:def isatty(stream: t.IO[t.Any]) -> bool:
+src/click/_compat.py:547:def _make_cached_stream_func(
+src/click/_compat.py:553:    def func() -> t.TextIO | None:
+src/click/__init__.py:76:def __getattr__(name: str) -> object:
+src/click/testing.py:46:    def __init__(self, input: t.BinaryIO, output: t.BinaryIO) -> None:
+src/click/testing.py:51:    def __getattr__(self, x: str) -> t.Any:
+src/click/testing.py:54:    def _echo(self, rv: bytes) -> bytes:
+src/click/testing.py:72:    def read(self, n: int = -1) -> bytes:
+src/click/testing.py:75:    def read1(self, n: int = -1) -> bytes:
+src/click/testing.py:78:    def readline(self, n: int = -1) -> bytes:
+src/click/testing.py:81:    def readlines(self) -> list[bytes]:
+src/click/testing.py:86:    def __iter__(self) -> cabc.Iterator[bytes]:
+src/click/testing.py:90:    def __repr__(self) -> str:
+src/click/testing.py:95:def _pause_echo(stream: EchoingStdin | None) -> cabc.Generator[None]:
+src/click/testing.py:119:    def __init__(self, targetfd: int) -> None:
+src/click/testing.py:124:    def start(self) -> None:
+src/click/testing.py:129:    def stop(self) -> bytes:
+src/click/testing.py:149:    def __init__(self, copy_to: io.BytesIO) -> None:
+src/click/testing.py:153:    def flush(self) -> None:
+src/click/testing.py:157:    def write(self, b: ReadableBuffer) -> int:
+src/click/testing.py:174:    def __init__(self) -> None:
+src/click/testing.py:196:    def __init__(
+src/click/testing.py:208:    def close(self) -> None:
+src/click/testing.py:216:    def fileno(self) -> int:
+src/click/testing.py:227:    def name(self) -> str:
+src/click/testing.py:231:    def mode(self) -> str:
+src/click/testing.py:235:def make_input_stream(
+src/click/testing.py:286:    def __init__(
+src/click/testing.py:307:    def output(self) -> str:
+src/click/testing.py:319:    def stdout(self) -> str:
+src/click/testing.py:326:    def stderr(self) -> str:
+src/click/testing.py:336:    def __repr__(self) -> str:
+src/click/testing.py:389:    def __init__(
+src/click/testing.py:411:    def get_default_prog_name(self, cli: Command) -> str:
+src/click/testing.py:418:    def make_env(
+src/click/testing.py:428:    def isolation(
+src/click/testing.py:504:        def visible_input(prompt: str | None = None) -> str:
+src/click/testing.py:515:        def hidden_input(prompt: str | None = None) -> str:
+src/click/testing.py:524:        def _getchar(echo: bool) -> str:
+src/click/testing.py:535:        def should_strip_ansi(
+src/click/testing.py:554:        def _patched_pdb_init(
+src/click/testing.py:625:    def invoke(
+src/click/testing.py:785:    def isolated_filesystem(
+grep: src/click/__pycache__/shell_completion.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/decorators.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/core.cpython-311.pyc: binary file matches

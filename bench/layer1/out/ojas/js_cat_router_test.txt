@@ -1,0 +1,10 @@
+/tmp/js_cat_router_test.js (635 lines, javascript outline; bodies elided)
+3: var assert = require('node:assert')
+4: const { Buffer } = require('node:buffer');
+5: var express = require('..');
+6: var methods = require('../lib/utils').methods;
+7: var request = require('supertest');
+8: var utils = require('./support/utils');
+10: var shouldSkipQuery = require('./support/utils').shouldSkipQuery
+12: describe('res', function(){ … 623 lines }
+[ojas: outline of a 635-line file, ≈3893 → ≈92 tokens. Bodies: ojas read /tmp/js_cat_router_test.js --symbol <name>, or --lines START:END. Whole file: --full]

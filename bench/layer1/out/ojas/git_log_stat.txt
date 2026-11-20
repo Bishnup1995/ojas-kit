@@ -1,0 +1,96 @@
+08b803cf32 Nov 16 2026 Rowlando13: Python 3.11 cleanups (#3921)
+34e513b402 Nov 14 2026 Kevin Deldycke: Drop `Sentinel.__copy__` and `__deepcopy__`, test its `object()` values
+  CHANGES.md                        |  2 +-
+  src/click/_utils.py               |  6 ------
+  tests/test_utils/test_sentinel.py | 11 ++++++++---
+  3 files changed, 9 insertions(+), 10 deletions(-)
+8847720881 Nov 14 2026 Kevin Deldycke: Use `t.Self` and `catch_warnings()` filter arguments
+  src/click/_compat.py       | 2 +-
+  src/click/_termui_impl.py  | 2 +-
+  src/click/core.py          | 2 +-
+  src/click/utils.py         | 4 ++--
+  tests/test_arguments.py    | 4 +---
+  tests/test_deprecations.py | 6 ++----
+  tests/test_options.py      | 3 +--
+  7 files changed, 9 insertions(+), 14 deletions(-)
+e38188e9e2 Nov 12 2026 Rowlando13: Drop support for Python 3.10 (#3920)
+8d0cd41bb5 Nov 12 2026 Rowlando13: The parameter receives an open file object, not a path (#3918)
+a46a95c733 Nov 12 2026 Rowlando13: Help pages no longer break a line within a hyphenated word (#3902)
+a2b9b2f295 Nov 12 2026 Kevin Deldycke: Drop support for Python 3.10
+  .github/workflows/nightly.yaml             |   1 -
+  .github/workflows/tests.yaml               |   1 -
+  CHANGES.md                                 |   1 +
+  examples/aliases/pyproject.toml            |   2 +-
+  examples/colors/pyproject.toml             |   2 +-
+  examples/completion/pyproject.toml         |   2 +-
+  examples/complex/pyproject.toml            |   2 +-
+  examples/imagepipe/pyproject.toml          |   2 +-
+  examples/inout/pyproject.toml              |   2 +-
+  examples/naval/pyproject.toml              |   2 +-
+  examples/repo/pyproject.toml               |   2 +-
+  examples/termui/pyproject.toml             |   2 +-
+  examples/validation/pyproject.toml         |   2 +-
+  pyproject.toml                             |   8 +-
+  src/click/core.py                          |   4 +-
+  src/click/decorators.py                    |  18 +-
+  src/click/types.py                         |  51 +---
+  src/click/utils.py                         |   6 +-
+  tests/test_basic.py                        |   2 +-
+  tests/test_options.py                      |   3 -
+  tests/typing/typing_aliased_group.py       |   2 +-
+  tests/typing/typing_confirmation_option.py |   2 +-
+  tests/typing/typing_edit.py                |   3 +-
+  tests/typing/typing_group_kw_options.py    |   2 +-
+  tests/typing/typing_help_option.py         |   2 +-
+  tests/typing/typing_options.py             |   2 +-
+… 90 lines omitted …
+5125851aaa Nov 4 2026 Rowlando13: Stop passing a deprecated command's help text through `gettext` (#3901)
+… 1 lines omitted …
+c4dd0cd968 Sep 9 2026 Kevin Deldycke: Stop passing a deprecated command's help text through `gettext`
+… 71 lines omitted …
+6d5bac5c71 Sep 10 2026 Rowlando13: Move common `help` argument from `Option` and `Argument` to `Parameter` (#3861)
+05f6fd0df4 Sep 10 2026 Kevin Deldycke: Always return a help record for an `Argument`
+  CHANGES.md              |  2 ++
+  src/click/core.py       | 20 ++++++++++++--------
+  tests/test_arguments.py | 15 +++++++++++++++
+  3 files changed, 29 insertions(+), 8 deletions(-)
+405a5481e4 Sep 10 2026 Kevin Deldycke: Move common `help` argument from `Option` and `Argument` to `Parameter`
+  CHANGES.md              |  3 +++
+  src/click/core.py       | 53 +++++++++++++++++++++++--------------------------
+  tests/test_info_dict.py | 36 ++++++++++++++++++++++++++++++---
+  3 files changed, 61 insertions(+), 31 deletions(-)
+f25f697a43 Sep 9 2026 Kevin Deldycke: List every argument in the `Positional arguments` help section (+1 body lines)
+  CHANGES.md              |  3 ++
+  docs/arguments.md       |  3 +-
+  docs/documentation.md   |  4 +++
+  src/click/core.py       | 20 ++++++++-----
+  tests/test_arguments.py | 78 +++++++++++++++++++++++++++++++++++++++++++++++++
+  5 files changed, 99 insertions(+), 9 deletions(-)
+86949d19b9 Sep 8 2026 Rowlando13: Make `click.Path` generic on `path_type` (#3858)
+22177f857a Sep 8 2026 Kevin Deldycke: `path_type` narrows the converted value's type for `convert` and `prompt` (+1 body lines)
+  CHANGES.md                    |  2 ++
+  src/click/types.py            | 43 +++++++++++++++++++++++++++++--------------
+  tests/test_types/test_Path.py |  5 +++++
+  tests/typing/typing_path.py   | 34 ++++++++++++++++++++++++++++++++++
+  4 files changed, 70 insertions(+), 14 deletions(-)
+6aabf099bf Sep 5 2026 Rowlando13: Stable (#3851)
+7944461a80 Sep 5 2026 Rowlando13: Merge branch 'main' into stable
+7ecc8d7ee4 Sep 5 2026 Rowlando13: Split out types tests. (#3850)
+b8a4486d52 Sep 5 2026 Eddie Girling: Split out types tests.
+  tests/test_basic.py                     |  24 ++
+  tests/test_exceptions/__init__.py       |   0
+  tests/test_exceptions/test_FileError.py |   6 +
+  tests/test_types.py                     | 438 --------------------------------
+  tests/test_types/__init__.py            |   0
+  tests/test_types/test_Choice.py         |   7 +
+  tests/test_types/test_File.py           |  31 +++
+  tests/test_types/test_FloatRange.py     |  42 +++
+  tests/test_types/test_FuncParamType.py  |  22 ++
+  tests/test_types/test_IntRange.py       |  38 +++
+  tests/test_types/test_ParamType.py      |  24 ++
+  tests/test_types/test_Path.py           | 185 ++++++++++++++
+  tests/test_types/test_convert_type.py   | 108 ++++++++
+  13 files changed, 487 insertions(+), 438 deletions(-)
+87f7a316f4 Sep 2 2026 Rowlando13: Add missing a reference for Windows and use the `kbd` role (#3829)
+00aca23ee9 Sep 2 2026 Rowlando13: Add `Option.get_help_spec` to extract the help's left part of an hidden option (#3821)
+[ojas: 634 lines → 95, ≈5.8k → ≈1.4k tokens. Full output: ojas get 562eb87edb81]

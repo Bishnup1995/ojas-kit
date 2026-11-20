@@ -1,0 +1,10 @@
+[ojas: 72 passing-test lines and 1 progress lines hidden]
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.31s
+
+
+test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+[ojas: 82 lines → 9, ≈995 → ≈82 tokens. Full output: ojas get 4cf954aa0f49]

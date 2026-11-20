@@ -1,0 +1,156 @@
+3105 matches in 97 files
+lib/response.js (62)
+  65: res.status = function status(code) {
+  98: res.links = function(links) {
+  101: return this.set('Link', link + Object.keys(links).map(function(rel) {
+  104: return links[rel].map(function (singleLink) {
+  126: res.send = function send(body) {
+  163: var generateETag = !this.get('ETag') && typeof etagFn === 'function'
+  236: res.json = function json(obj) {
+  264: res.jsonp = function jsonp(obj) {
+  … +54 more
+lib/express.js (2)
+  36: function createApplication() {
+  37: var app = function(req, res, next) {
+lib/view.js (9)
+  52: function View(name, options) {
+  83: if (typeof fn !== 'function') {
+  104: View.prototype.lookup = function lookup(name) {
+  129: * @param {function} callback
+  133: View.prototype.render = function render(options, callback) {
+  139: this.engine(this.path, options, function onRender() {
+  153: return process.nextTick(function renderTick() {
+  169: View.prototype.resolve = function resolve(dir, file) {
+  … +1 more
+lib/utils.js (23)
+  61: exports.normalizeType = function(type){
+  75: exports.normalizeTypes = function(types) {
+  89: function acceptParams (str) {
+  123: * Compile "etag" value to function.
+  130: exports.compileETag = function(val) {
+  133: if (typeof val === 'function') {
+  148: throw new TypeError('unknown value for etag function: ' + val);
+  155: * Compile "query parser" value to function.
+  … +15 more
+lib/application.js (35)
+  59: app.init = function init() {
+  72: get: function getrouter() {
+  90: app.defaultConfiguration = function defaultConfiguration() {
+  109: this.on('mount', function onmount(parent) {
+  112: && typeof parent.settings['trust proxy fn'] === 'function') {
+  152: app.handle = function handle(req, res, callback) {
+  190: app.use = function use(fn) {
+  196: if (typeof fn !== 'function') {
+  … +27 more
+lib/request.js (21)
+  64: req.header = function header(name) {
+  127: req.accepts = function(){
+  140: req.acceptsEncodings = function(){
+  171: req.acceptsCharsets = function(...charsets) {
+  185: req.acceptsLanguages = function(...languages) {
+  214: req.range = function range(size, options) {
+  230: defineGetter(req, 'query', function query(){
+  269: req.is = function is(types) {
+  … +13 more
+test/req.host.js (25)
+  6: describe('req', function(){
+  7: describe('.host', function(){
+  8: it('should return the Host when present', function(done){
+  11: app.use(function(req, res){
+  21: it('should strip port number', function(done){
+  24: app.use(function(req, res){
+  34: it('should return undefined otherwise', function(done){
+  37: app.use(function(req, res){
+  … +17 more
+test/req.path.js (4)
+  6: describe('req', function(){
+  7: describe('.path', function(){
+  8: it('should return the parsed pathname', function(done){
+  11: app.use(function(req, res){
+test/app.request.js (24)
+  7: describe('app', function(){
+  8: describe('.request', function(){
+  9: it('should extend the request prototype', function(done){
+  12: app.request.querystring = function(){
+  16: app.use(function(req, res){
+  25: it('should only extend for the referenced app', function (done) {
+  30: app1.request.foobar = function () {
+  34: app1.get('/', function (req, res) {
+  … +16 more
+test/req.acceptsCharsets.js (12)
+  6: describe('req', function(){
+  7: describe('.acceptsCharsets(type)', function(){
+  8: describe('when Accept-Charset is not present', function(){
+  9: it('should return true', function(done){
+  12: app.use(function(req, res, next){
+  22: describe('when Accept-Charset is present', function () {
+  23: it('should return true', function (done) {
+  26: app.use(function(req, res, next){
+  … +4 more
+test/express.text.js (86)
+  9: describe('express.text()', function () {
+  10: before(function () {
+  14: it('should parse text/plain', function (done) {
+  22: it('should 400 when invalid content-length', function (done) {
+  25: app.use(function (req, res, next) {
+  32: app.post('/', function (req, res) {
+  43: it('should handle Content-Length: 0', function (done) {
+  51: it('should handle empty message-body', function (done) {
+  … +78 more
+test/res.type.js (19)
+  6: describe('res', function(){
+  7: describe('.type(str)', function(){
+  8: it('should set the Content-Type based on a filename', function(done){
+  11: app.use(function(req, res){
+  21: it('should default to application/octet-stream', function(done){
+  24: app.use(function(req, res){
+  33: it('should set the Content-Type with type/subtype', function(done){
+  36: app.use(function(req, res){
+  … +11 more
+test/req.is.js (43)
+  8: describe('req.is()', function () {
+  9: it('should return null when the request has no body, even if content-type matches', function (done) {
+  12: app.use(function (req, res) {
+  22: describe('when given a mime type', function () {
+  23: it('should return the type when matching', function (done) {
+  26: app.use(function (req, res) {
+  37: it('should return false when not matching', function (done) {
+  40: app.use(function (req, res) {
+  … +35 more
+test/req.signedCookies.js (5)
+  7: describe('req', function(){
+  8: describe('.signedCookies', function(){
+  9: it('should return a signed JSON cookie', function(done){
+  14: app.use(function(req, res){
+  25: .end(function(err, res){
+test/req.ip.js (19)
+  6: describe('req', function(){
+  7: describe('.ip', function(){
+  8: describe('when X-Forwarded-For is present', function(){
+  9: describe('when "trust proxy" is enabled', function(){
+  10: it('should return the client addr', function(done){
+  15: app.use(function(req, res, next){
+  25: it('should return the addr after trusted proxy based on count', function (done) {
+  30: app.use(function(req, res, next){
+  … +11 more
+test/res.attachment.js (20)
+  8: describe('res', function(){
+  9: describe('.attachment()', function(){
+  10: it('should Content-Disposition to attachment', function(done){
+  13: app.use(function(req, res){
+  23: describe('.attachment(filename)', function(){
+  24: it('should add the filename param', function(done){
+  27: app.use(function(req, res){
+  37: it('should quote file names that are not a valid token', function(done){
+  … +12 more
+test/req.xhr.js (8)
+  6: describe('req', function(){
+  7: describe('.xhr', function(){
+  8: before(function () {
+  10: this.app.get('/', function (req, res) {
+  15: it('should return true when X-Requested-With is xmlhttprequest', function(done){
+  22: it('should case-insensitive', function(done){
+  29: it('should return false otherwise', function(done){
+  36: it('should return false when not present', function(done){
+… +2688 more matches in 80 more files
+[ojas: 3105 lines → 155, ≈57.2k → ≈1.7k tokens. Full output: ojas get 29de99219383]

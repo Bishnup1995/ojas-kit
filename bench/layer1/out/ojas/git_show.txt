@@ -1,0 +1,315 @@
+commit b90faad1788bc030bb3320938f07c9189f42d7d0
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 11:44:03 2026 +0400
+
+    Deprecate a parameter name that Click 9.0 will refuse or lower case
+
+    Prepares the ground for #3827
+
+[6 files changed, +871 -5]
+diff --git a/CHANGES.md b/CHANGES.md
+@@ -2,6 +2,11 @@
+
++- A parameter name that is not a valid Python identifier, or that is a Python
++  keyword, is deprecated and raises `TypeError` in Click 9.0. {pr}`3866`
++- An {class}`Option` name written as a Python identifier is deprecated when it
++  is not already lower-cased. {pr}`3866`
++
+ ## Version 8.5.1
+diff --git a/docs/upgrade-guides.md b/docs/upgrade-guides.md
+@@ -13,6 +13,8 @@ This guide assumes the user is on version 8.3.X.
+ For each deprecation, provide a brief explanation, and direct users to new function / class if available.
++- A parameter name that is not a valid Python identifier, or that is a [Python keyword](https://docs.python.org/3/reference/lexical_analysis.html#keywords), is deprecated and raises `TypeError` in 9.0. [`str.isidentifier()`](https://docs.python.org/3/library/stdtyp …[703 chars]… https://github.com/pallets/click/pull/3827) and [#3866](https://github.com/pallets/click/pull/3866).
++- An option name written as a Python identifier is deprecated when it is not already lower cased: `click.option("--x", "Foo_Bar")` names `foo_bar` rather than `Foo_Bar`. To migrate, spell the name the way the callback declares it. See [#3827](https://github.com/pallets/click/pull/3827).
+ - `CliRunner.isolated_filesystem()` is deprecated and will be removed in Click 9.0. The helper predates Python 3 and modern pytest, and it relies on `os.chdir`, which mutates process-global state and is therefore not thread-safe. Replace it with a temporary directo …[449 chars]… github.com/pallets/click/issues/3501) and the [testing guide](testing.md#running-tests-in-parallel).
+diff --git a/src/click/core.py b/src/click/core.py
+@@ -18,6 +18,7 @@ from functools import update_wrapper
+ from itertools import repeat
++from types import FrameType
+ from types import TracebackType
+@@ -104,6 +105,26 @@ def _echo_aborted() -> None:
+
++def _outside_click_stacklevel() -> int:
++    """Depth of the first stack frame outside Click.
++
++    .. versionadded:: 8.6.0
++    """
++    frame: FrameType | None = sys._getframe(1)
++    level = 1
++
++    while frame is not None:
++        module = frame.f_globals.get("__name__", "")
++
++        if module != "click" and not module.startswith("click."):
++            return level
++
++        frame = frame.f_back
++        level += 1
++
++    return level
++  [×2]
+ def _format_deprecated_label(deprecated: bool | str) -> str:
+@@ -2458,6 +2479,43 @@ class Parameter(ABC):
+
++    def _check_name_is_usable(self, name: str, decls: cabc.Sequence[str]) -> None:
++        """Warn about a name Click 9.0 will refuse.
++
++        A name is refused for one of two reasons, and never for both: it is not
++        an identifier (``0-file``), or it is a keyword (``from``).
++        ``str.isidentifier`` accepts a keyword, so ``--from`` names a parameter
++        ``from`` today. No callback can declare that, which leaves the value
++        reachable through ``**kwargs`` alone.
++
++        Soft keywords such as ``match`` and ``type`` are contextual and name a
++        parameter fine, so :func:`keyword.iskeyword` passes them.
++
++        Both imports are local because neither :mod:`keyword` nor
++        :mod:`warnings` is on the allow-list ``tests/test_imports.py`` holds
++        Click's import footprint to.
++
++        .. versionadded:: 8.6.0
++        """
++        import keyword
++
++        if keyword.iskeyword(name):
++            reason = "which is a Python keyword"
++        elif not name.isidentifier():
++            reason = "which is not a valid Python identifier"
++        else:
++            return
++
++        import warnings
++
++        warnings.warn(
++            f"{self.param_type_name.capitalize()} {list(decls)!r} uses {name!r}"
++            f" as its name, {reason}. This is deprecated and will raise a"
++            " TypeError in Click 9.0.",
++            DeprecationWarning,
++            stacklevel=_outside_click_stacklevel(),
++        )
++
+     @property
+@@ -3274,19 +3332,40 @@ class Option(Parameter):
+
++    def _check_name_is_normalized(self, name: str, decls: cabc.Sequence[str]) -> None:
++        """Warn about an explicit name Click 9.0 will spell differently.
++
++        .. versionadded:: 8.6.0
++        """
++        normalized = name.lower()
++
++        if normalized == name:
++            return
++
++        import warnings
++
++        warnings.warn(
++            f"Option {list(decls)!r} uses {name!r} as its name. Click 9.0"
++            f" lower cases an explicit name like any other declaration, naming"
++            f" {normalized!r} instead.",
++            DeprecationWarning,
++            stacklevel=_outside_click_stacklevel(),
++        )
++
+     def _parse_decls(
+         name = None
++        explicit_name = None
+         possible_names = []
+                     raise TypeError(_("Name '{name}' defined twice").format(name=name))
+-                name = decl
++                name = explicit_name = decl
+… 34 lines omitted …
++import warnings
+… 26 lines omitted …
++    result = runner.invoke(cmd, ["value"])
++    assert not result.exception
++    assert result.output == "value\n"
++  [×2]
++def test_argument_normalizes_an_identifier_decl():
+… 4 lines omitted …
++        assert click.Option(["--x", "Foo_Bar"]).name == "Foo_Bar"
++  [×2]
++PARAM_KINDS = [
+… 41 lines omitted …
++]
++  [×2]
++@pytest.mark.parametrize("count", [1, 2])
+… 6 lines omitted …
++            with warnings.catch_warnings(record=True) as caught:
++                warnings.simplefilter("always")
+… 13 lines omitted …
++                f" named its parameter {param.name!r} without a warning"
+… 2 lines omitted …
++    assert built, "the sweep built no parameter, so it proves nothing"
++  [×2]
++def test_argument_requires_its_one_declaration():
+… 5 lines omitted …
++        assert click.Argument([], expose_value=False).name == ""
++  [×2]
++def test_argument_name_check_applies_when_not_exposed():
+… 2 lines omitted …
++        assert click.Argument(["0foo"], expose_value=False).name == "0foo"
++  [×2]
++def test_argument_metavar_renders_what_a_declaration_may_not(runner):
+… 21 lines omitted …
++import warnings
+… 2 lines omitted …
+             pass
++  [×2]
++@pytest.mark.parametrize(
+… 63 lines omitted …
++        make_param()
++  [×2]
++@pytest.mark.parametrize(
+… 19 lines omitted …
++    assert [w for w in recwarn if issubclass(w.category, DeprecationWarning)] == []
++  [×2]
++@pytest.mark.parametrize(
+… 6 lines omitted …
++def test_unusable_name_names_the_release_that_refuses_it(make_param):
++    """Both refusals name the release that turns the warning into an error."""
++    match = r"will raise a TypeError in Click 9\.0"
+… 1 lines omitted …
++        make_param()
++  [×2]
++@pytest.mark.parametrize(
+… 14 lines omitted …
++    assert decl.lower() == expect
++  [×2]
++@pytest.mark.parametrize(
+… 11 lines omitted …
++    assert [w for w in recwarn if issubclass(w.category, DeprecationWarning)] == []
++  [×2]
++def test_unnormalized_name_on_a_refused_option_is_silent():
+… 2 lines omitted …
++        with warnings.catch_warnings():
++            warnings.simplefilter("error", DeprecationWarning)
+  … 1 more changed lines in this file
+… 4 lines omitted …
++import warnings
+… 14 lines omitted …
++ENV_NAMES_ARE_CASE_INSENSITIVE = sys.platform == "win32"
++  [×2]
++def test_auto_envvar_uses_the_transformed_name(runner):
+… 2 lines omitted …
++    @click.command()
++    @click.option("--Foo-Bar")
++    def cmd(foo_bar):
++        click.echo(foo_bar)
++
++    result = runner.invoke(
++        cmd, [], auto_envvar_prefix="TEST", env={"TEST_FOO_BAR": "foo"}
++    )
++    assert not result.exception
++    assert result.output == "foo\n"
++  [×2]
++def test_auto_envvar_ignores_decl_case(runner):
++    """The case written in the declaration never reaches the auto envvar."""
++
++    @click.command()
++    @click.option("--Foo-Bar")
++    def cmd(foo_bar):
++        click.echo(repr(foo_bar))
++
++    result = runner.invoke(
++        cmd, [], auto_envvar_prefix="TEST", env={"TEST_Foo_Bar": "foo"}
++    )
++    assert not result.exception
++    expect = "'foo'" if ENV_NAMES_ARE_CASE_INSENSITIVE else "None"
++    assert result.output == f"{expect}\n"
++  [×2]
++def test_auto_envvar_prefix_is_upper_cased(runner):
++    """A lower-case prefix reaches an upper-case variable, and only that one."""
++
++    @click.command()
++    @click.option("--flag/--no-flag")
++    def cmd(flag):
++        click.echo(repr(flag))
++
++    result = runner.invoke(cmd, [], auto_envvar_prefix="yo", env={"YO_FLAG": "1"})
++    assert not result.exception
++    assert result.output == "True\n"
++
++    result = runner.invoke(cmd, [], auto_envvar_prefix="yo", env={"yo_FLAG": "1"})
++    assert not result.exception
++    assert result.output == f"{ENV_NAMES_ARE_CASE_INSENSITIVE}\n"
++  [×2]
++def test_auto_envvar_flattens_name_case(runner):
++    """Two names differing only by case share one auto envvar."""
++    with pytest.warns(DeprecationWarning, match="lower cases an explicit name"):
++
++        @click.command()
++        @click.option("--foo-bar")
++        @click.option("--other", "Foo_Bar")
++        def cmd(**kwargs):
++            click.echo(repr(sorted(kwargs.items())))
++
++    assert [p.name for p in cmd.params if p.name] == ["foo_bar", "Foo_Bar"]
++
++    result = runner.invoke(
++        cmd, [], auto_envvar_prefix="TEST", env={"TEST_FOO_BAR": "foo"}
++    )
++    assert not result.exception
++    assert result.output == "[('Foo_Bar', 'foo'), ('foo_bar', 'foo')]\n"
++  [×2]
++def test_auto_envvar_upper_can_change_length(runner):
++    """Deriving the envvar is not the inverse of deriving the name."""
++
++    @click.command()
++    @click.option("--ẞ")
++    def cmd(**kwargs):
++        click.echo(repr(kwargs))
++
++    result = runner.invoke(cmd, [], auto_envvar_prefix="TEST", env={"TEST_SS": "foo"})
++    assert not result.exception
++    assert result.output == "{'ß': 'foo'}\n"
++  [×2]
++@pytest.mark.parametrize(
++    ("env", "expect"),
++    [
++        pytest.param({"ArG": "foo"}, "'foo'", id="exact"),
++        pytest.param({"ARG": "foo"}, "None", id="upper"),
++        pytest.param({"arg": "foo"}, "None", id="lower"),
++    ],
++)
++def test_explicit_envvar_case_sensitivity(runner, env, expect):
++    """An explicitly named envvar keeps the case it was registered with."""
++
++    @click.command()
++    @click.option("--arg", envvar="ArG")
++    def cmd(arg):
++        click.echo(repr(arg))
++
++    result = runner.invoke(cmd, [], env=env)
++    assert not result.exception
++    if ENV_NAMES_ARE_CASE_INSENSITIVE:
++        expect = "'foo'"
++    assert result.output == f"{expect}\n"
++  [×2]
++@pytest.mark.parametrize("name", ("FlAg", "sUper"))
++def test_explicit_envvar_list_keeps_each_spelling(runner, name):
++    """Every name of an envvar list is matched with its own case."""
++
++    @click.command()
++    @click.option("--flag/--no-flag", envvar=["FlAg", "sUper"])
++    def cmd(flag):
++        click.echo(repr(flag))
++
++    result = runner.invoke(cmd, [], env={name: "1"})
++    assert not result.exception
++    assert result.output == "True\n"
++  [×2]
+ def test_nargs_envvar(runner):
+@@ -1273,6 +1401,20 @@ def test_aliases_for_flags(runner):
+         (["--return", "-r", "_ret"], "_ret"),
++        # A name derived from an option string is lower-cased.
++        (["--Foo-Bar"], "foo_bar"),
++        (["--FOO-BAR", "-F"], "foo_bar"),
++        # An identifier declaration goes through the same transform.
++        (["--foo-bar", "-f", "explicit_name"], "explicit_name"),
++        # Underscores survive, and every dash past the prefix becomes one.
++        (["--foo__bar"], "foo__bar"),
++        (["--foo--bar"], "foo__bar"),
++        (["--_foo"], "_foo"),
+  … 124 more changed lines in this file
+[ojas: 1052 lines → 314, ≈9.7k → ≈3.0k tokens. Full output: ojas get 13362b326976]

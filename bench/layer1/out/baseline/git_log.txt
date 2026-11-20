@@ -1,0 +1,2089 @@
+commit 08b803cf32ceb2ae6a772c62d5da42757a897d44
+Merge: e38188e 34e513b
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Nov 16 09:03:40 2026 -0800
+
+    Python 3.11 cleanups (#3921)
+
+commit 34e513b402804d0ab489b586ab3d7eb90a261bda
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Nov 14 14:56:51 2026 +0400
+
+    Drop `Sentinel.__copy__` and `__deepcopy__`, test its `object()` values
+
+commit 884772088134d701385458a99bb6da0a5bb80d42
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Nov 14 14:56:29 2026 +0400
+
+    Use `t.Self` and `catch_warnings()` filter arguments
+
+commit e38188e9e205005d5af5f9e59df51904c984586a
+Merge: 8d0cd41 a2b9b2f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:38:08 2026 -0800
+
+    Drop support for Python 3.10 (#3920)
+
+commit 8d0cd41bb5c36b792cc3a22d2c668472b8b9b079
+Merge: a46a95c cad9755
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:33:05 2026 -0800
+
+    The parameter receives an open file object, not a path (#3918)
+
+commit a46a95c733d0ed72f63cd2915f2bc4a09a7179f9
+Merge: 8abb77a 7996a89
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 12 08:28:54 2026 -0800
+
+    Help pages no longer break a line within a hyphenated word (#3902)
+
+commit a2b9b2f29580aa253fdbc210718f047a1e98b916
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Nov 12 16:19:06 2026 +0400
+
+    Drop support for Python 3.10
+
+commit cad975587f91ca2c9dde0ccaaaa75aa33a39554c
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Nov 12 14:29:41 2026 +0400
+
+    The parameter receives an open file object, not a path
+
+commit 7996a89c5a4ce1c451e2e1c9c5a00eb0c844d4ce
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Nov 2 10:39:33 2026 +0400
+
+    Help pages no longer break a line within a hyphenated word
+    
+    Closes #3362, reverts part of #3420.
+
+commit 8abb77a8432e03ed14a95f972b44f905279415a7
+Merge: fdb65f4 2e2fcd5
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:58:14 2026 -0800
+
+    Merge stable into main (#3911)
+
+commit 2e2fcd59e6873d9eb6f302b93f951f276634f76b
+Merge: e57387d 94ad94f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:56:04 2026 -0800
+
+    Document Click UI scope and direction (#3898)
+
+commit fdb65f4809719580436acb067410cec64433e5de
+Merge: dd149eb 90a2973
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:50:06 2026 -0800
+
+    Add `context_settings` parameter to `CliRunner.invoke` (#3896)
+
+commit e57387dc36b03720a3fa721f46f60700e1e8e345
+Merge: 831a687 40134e1
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:49:02 2026 -0800
+
+    Add Python 3.15 to the test matrix (#3909)
+
+commit dd149eb3129d887a22202c3fafa5ceb0e0d7018d
+Merge: ac0e297 831a687
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:48:11 2026 -0800
+
+    Merge stable into main (#3910)
+
+commit 831a687bc823391fa9897536081e0f81b0f7057b
+Merge: 57d9ac6 ac0e297
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Nov 6 09:45:05 2026 -0800
+
+    Merge branch 'main' into stable
+
+commit 57d9ac6c2cf793217c7d7b5386281539f17d701c
+Merge: 16da191 cf19179
+Author: David Lord <davidism@gmail.com>
+Date:   Fri Nov 6 09:37:26 2026 -0800
+
+    Release 8.5.1 (#3908)
+
+commit 94ad94f33ca7e0a04748cf9c084e343e7a608dfa
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Oct 29 11:59:49 2026 +0400
+
+    Document Click UI scope and give `click-contrib` its own section
+
+commit 90a2973f85fffc4d8a20effb2bcdff3f394c5e62
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Oct 26 12:58:01 2026 +0400
+
+    Add `context_settings` parameter to `CliRunner.invoke`
+    
+    Closes #2110
+
+commit 40134e1a8521d655984877abfbe80b87e3e67b49
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Nov 6 10:31:03 2026 +0400
+
+    Add Python 3.15 to the test matrix
+
+commit cf19179e8e2fd54c601378cec9e0d21bb12b6fb1
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 22:25:43 2026 -0800
+
+    Release version 8.5.1
+
+commit 1ff766d6a38cf80d9b881e629ec5037e793c2bcf
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 22:24:46 2026 -0800
+
+    Remove documentation changelog entry.
+
+commit 16da191cb11639a6386178303c1d6ceaa1967bad
+Merge: 473f652 ff0c369
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 22:02:02 2026 -0800
+
+    Add a standalone application guide for Nuitka (#3897)
+
+commit ac0e297ec2d7d78455a7d18ce306996e668c4a85
+Merge: 2247b35 f8c5a8e
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Nov 5 21:58:35 2026 -0800
+
+    Print `\x04` and `\x1a` input bytes as `^D` and `^Z` in `CliRunner` (#3878)
+
+commit 473f65225cfc65f996ab005e488d4fd4a0e5b0bd
+Merge: 4fd4206 df7fe0b
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Fri Nov 6 09:15:17 2026 +0400
+
+    Remove issue and PR references outside the changelog (#3905)
+
+commit df7fe0b97297d07748dc2f88008e2bd136e0cf43
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Nov 5 12:10:10 2026 +0400
+
+    Remove issue and PR references outside the changelog
+
+commit 4fd4206320e521878c1a8b532a6e1abe03622e9f
+Merge: 5125851 9048ab0
+Author: David Lord <davidism@gmail.com>
+Date:   Thu Nov 5 05:51:54 2026 -0800
+
+    Bump `pypa/gh-action-pypi-publish` to `v1.14.3` (#3906)
+
+commit 9048ab0c885f3a5a320f00559d0cbb8769113741
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Nov 5 15:36:50 2026 +0400
+
+    Bump `pypa/gh-action-pypi-publish` to `v1.14.3`
+
+commit ff0c3692a06e3bbf464ab31fe745cce02dfd16ca
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Oct 27 12:13:58 2026 +0400
+
+    Add a standalone application guide for Nuitka
+    
+    Adopt the same template as the Briefcase tutorial proposed in #3315.
+
+commit 5125851aaa19840c82b9811193b2c2d6cf245326
+Merge: 6d34602 c4dd0cd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Nov 4 10:53:30 2026 -0800
+
+    Stop passing a deprecated command's help text through `gettext` (#3901)
+
+commit 6d34602f4b0668a61873af1c547bfd40cb7deffc
+Merge: 5e7cf6b 685dadf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Nov 1 09:57:56 2026 -0800
+
+    Additional round-trip tests for `unstyle()` (#3899)
+
+commit c4dd0cd968f61d0ee7a163af810bd695ed893ec3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 9 14:01:24 2026 +0400
+
+    Stop passing a deprecated command's help text through `gettext`
+
+commit 5e7cf6b6db197de4259e91b299bd4313beb481b4
+Merge: 8c73ff1 5c1963a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Oct 30 13:59:14 2026 -0700
+
+    Document `less` interruption behavior (#3900)
+
+commit 5c1963ae06bf17094f67dcb8f64c089ef1e52209
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Oct 29 14:59:16 2026 +0400
+
+    Document `less` interruption behavior
+    
+    Closes #3886
+
+commit 685dadf1499d785082ab2c0b8e7c226b200b968d
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Oct 29 13:25:57 2026 +0400
+
+    Add more round-trip tests for `unstyle()`
+    
+    Add explicit exception unstyling test to cover #2419
+
+commit 8c73ff134480f436faa0d041bd19aaf949aac22c
+Merge: bb695aa c53d373
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Oct 6 13:58:59 2026 -0700
+
+    Fix `show_envvar` output for a sequence or an empty `envvar` (#3884)
+
+commit c53d3732b98c764932e146c007146ad402acb229
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Oct 6 15:20:26 2026 +0200
+
+    Fix `show_envvar` output for a sequence or an empty `envvar`
+
+commit f8c5a8efc17d01a9fb10bba961def4c3215ce369
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 23 21:57:23 2026 +0400
+
+    Print `\x04` and `\x1a` input bytes as `^D` and `^Z` in `CliRunner`
+
+commit 2247b35ea1c47c727d7a06e51fa280e12a863ff6
+Merge: 06b2a67 9f0bcdf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Oct 4 15:19:53 2026 -0700
+
+    Add `Parameter.spec` and deprecate `human_readable_name` (#3877)
+
+commit 9f0bcdf0d868edfc71435cd0aac2dcc08cf94828
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 2 16:23:32 2026 +0200
+
+    Add `Parameter.spec` and deprecate `human_readable_name`
+
+commit 06b2a678741131fd577ce170e23e5ca0aeba0309
+Merge: 3cbaa76 b90faad
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 22 21:07:17 2026 -0700
+
+    Deprecate parameter names that are: not a Python identifier, or a Python Keyword, or not lower-cased (#3866)
+
+commit b90faad1788bc030bb3320938f07c9189f42d7d0
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 11:44:03 2026 +0400
+
+    Deprecate a parameter name that Click 9.0 will refuse or lower case
+    
+    Prepares the ground for #3827
+
+commit a59f7c624fb7272e37d97921047dab8bf3ff0675
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Sep 22 10:39:50 2026 +0400
+
+    Start 8.6.0.
+
+commit 3cbaa76b6014be7427d1ab06b4af40f01e7c278e
+Merge: 6aabf09 bb695aa
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Sep 21 11:54:47 2026 -0700
+
+    Merge stable into main (#3876)
+
+commit bb695aaecdef95832d167fc1d508921745aa824e
+Merge: 7068985 05f6fd0
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Sep 21 11:30:59 2026 -0700
+
+    Always list all positional arguments (#3860)
+
+commit 70689853e39c30e36eb0d83d586cc914a74db9d3
+Merge: d036881 f67c2bb
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Sep 11 19:35:07 2026 -0700
+
+    Fix short help abbreviation (#3865)
+
+commit d036881798e34289a49b18a5c550c7cf687e5a7a
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 17:18:27 2026 +0400
+
+    Revert "Deprecate a parameter name that is not a Python identifier"
+    
+    This reverts commit e2bddbc801dabc4efc3c3c1e32b53b3f938d3efc.
+
+commit e2bddbc801dabc4efc3c3c1e32b53b3f938d3efc
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 11:44:03 2026 +0400
+
+    Deprecate a parameter name that is not a Python identifier
+    
+    Click 9.0 refuses such a name; warn a release ahead so the break can diffuse.
+    Prepares the ground for #3827, as promised in pull/3827#issuecomment-5583963038.
+
+commit f67c2bb6c2f055c1c7a57cd46c3697fc26a7742e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Sep 11 10:22:32 2026 +0400
+
+    Fix short help abbreviation
+
+commit 6d5bac5c712195cbfa9666ba0ecbf0573cdea356
+Merge: 86949d1 405a548
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Sep 10 12:29:49 2026 -0700
+
+    Move common `help` argument from `Option` and `Argument` to `Parameter` (#3861)
+
+commit 05f6fd0df4ecbd104eb7a229f9f185c2484dee69
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Sep 10 13:11:43 2026 +0400
+
+    Always return a help record for an `Argument`
+
+commit 405a5481e4dbd5022799993d787bd8446137d9a3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Sep 10 12:54:52 2026 +0400
+
+    Move common `help` argument from `Option` and `Argument` to `Parameter`
+
+commit f25f697a439acc2b0d84aa8f5413330f4e2e75cf
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 9 13:17:20 2026 +0400
+
+    List every argument in the `Positional arguments` help section
+    
+    Cloup already renders the section this way: https://github.com/janluke/cloup/issues/210
+
+commit 86949d19b930ef68a45566544cb4b9508d895d0d
+Merge: 7944461 22177f8
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 8 12:48:10 2026 -0700
+
+    Make `click.Path` generic on `path_type` (#3858)
+
+commit 22177f857a34e3c35ba957553853a37f23feb37e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Sep 8 14:33:40 2026 +0400
+
+    `path_type` narrows the converted value's type for `convert` and `prompt`
+    
+    Closes #3822
+
+commit 6aabf099bfdd4c1e75fe8d0e0d4241372b988ab1
+Merge: 36baa15 7944461
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:28:42 2026 -0700
+
+    Stable (#3851)
+
+commit 7944461a80b780d060899c8835acab3c273a04a6
+Merge: 7ecc8d7 36baa15
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:27:33 2026 -0700
+
+    Merge branch 'main' into stable
+
+commit 7ecc8d7ee4a2e5c0732d6551baeb7597b7a73ade
+Merge: 87f7a31 b8a4486
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:24:20 2026 -0700
+
+    Split out types tests. (#3850)
+
+commit b8a4486d52083981babc1642449420db6b09662e
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Sep 5 18:22:18 2026 -0700
+
+    Split out types tests.
+
+commit 87f7a316f482d88d7ef45660da12cdcc5a5c14f6
+Merge: 00aca23 fa99fbd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Sep 2 06:10:03 2026 -0700
+
+    Add missing a reference for Windows and use the `kbd` role (#3829)
+
+commit 00aca23ee9135eedc651c6929c7bc1d39e522431
+Merge: be13b15 271effb
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Sep 2 06:01:38 2026 -0700
+
+    Add `Option.get_help_spec` to extract the help's left part of an hidden option (#3821)
+
+commit fa99fbd7b96883c60275203b62914d3ce6d51010
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Sep 2 09:25:16 2026 +0200
+
+    Use the `kbd` role for keyboard sequences in the docs
+    
+    Also adds a missing reference to `Ctrl+Z` on Windows, introduced by #3818
+
+commit 271effb3d96da5575eb527216ce3552bd7628fab
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Sep 1 00:51:16 2026 +0200
+
+    Add `Option.get_help_spec` to return the option's help left part
+    
+    Follows up on: #2516, #2517
+
+commit be13b152cf5949a362926322c835fa76019cc6fe
+Merge: b024123 bb86cde
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 1 17:20:14 2026 -0700
+
+    Document calling a command as a regular function (#3820)
+
+commit bb86cdea6e83bc8e2711290eeffb4c8654baa7a3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Aug 31 23:04:54 2026 +0200
+
+    Document calling a command as a regular function
+    
+    Closes #1054
+
+commit b0241232f775c45e28c5d5d4e9ea2fbc70b8448f
+Merge: e5cb12b cb43e05
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 1 14:32:53 2026 -0700
+
+    Add FAQ entry about tab completion in prompts (#3826)
+
+commit e5cb12ba5e81ca382062a4b513daddb535a576e3
+Merge: 00f257b 394088a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Sep 1 11:21:57 2026 -0700
+
+    Document type auto-conversion and test `set` and `frozenset` (#3808)
+
+commit cb43e055741b2416bf3ec46b5f84b140cca23e18
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Sep 1 12:08:27 2026 +0200
+
+    Add FAQ entry about tab completion in prompts
+    
+    Closes #173
+
+commit 394088a09a210c152a4295e4a493ffdebd4c5047
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Aug 27 16:25:53 2026 +0200
+
+    Test frozen types; Documents type conversion
+    
+    Refs #3036
+
+commit 00f257bb8e714064bea16425007543bbc0800445
+Merge: b47c052 fc518e4
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Aug 31 16:42:24 2026 -0700
+
+    Fix race condition on `KeyboardInterrupt` in `Command.main()` (#3818)
+
+commit b47c0529e99129d4785fecc2cb39a8ec8b4aa5f8
+Merge: cbb5b2d c4597ed
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Aug 31 16:39:08 2026 -0700
+
+    Document completion of path in shells (#3819)
+
+commit c4597ed340477f3a69cfb8a9944149fab9d09b74
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Aug 31 21:24:42 2026 +0200
+
+    Document completion of path in shells
+    
+    Closes #3135
+
+commit fc518e41218b447e875fe27244ae692c269bcb77
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Aug 31 15:49:23 2026 +0200
+
+    Fix race condition on `KeyboardInterrupt` arriving in `Command.main()`
+    
+    Closes #3802
+
+commit cbb5b2df1ee3492115f8c2ee5cbb09e2271fc714
+Merge: 08a7bc6 94f17e2
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Aug 31 06:24:59 2026 -0700
+
+    Remove unused bindings and constants from `_winconsole` (#3817)
+
+commit 94f17e276fbdd7348b88b05170923ecacb7b32bf
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon Aug 31 10:47:36 2026 +0200
+
+    Remove unused bindings and constants from `_winconsole`
+
+commit 08a7bc6d2a2af02268b09b3b5fd8079546c81c03
+Merge: 4295457 cc1e188
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Aug 30 02:09:19 2026 -0700
+
+    Add `shtab` to third-party contrib list (#3793)
+
+commit 4295457ddc7b5ca9a733d59ca40d9651b02b9b1d
+Merge: 3cbcf9b f58ca3e
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Aug 29 08:12:36 2026 -0700
+
+    Fix `copy`, `deepcopy` and `pickle` of `Sentinel` members (#3805)
+
+commit f58ca3e81424a35626c8a475eb59ab95589008ce
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Aug 28 23:28:17 2026 +0200
+
+    Fix `copy`, `deepcopy` and `pickle` of `Sentinel` members
+
+commit 3cbcf9b11546f4cf10b36d3e2e531733ba6fe001
+Merge: 420c8fb ce57b87
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Aug 28 21:45:55 2026 -0700
+
+    Add FAQ entry about `edit()` returning immediately (#3780)
+
+commit ce57b87ac490ac8744491658d092bd86f571bf58
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Aug 19 09:36:41 2026 +0400
+
+    Add FAQ entry about `edit()` returning immediately
+    
+    Closes #2582
+
+commit 36baa15ff831b939a22bc527cd76ce653ef6f66d
+Merge: 68e7ea7 dda8db4
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Aug 26 21:19:34 2026 -0700
+
+    Start 8.5.1. (#3801)
+
+commit dda8db496c69db15d5146d68360f140c2515d6d0
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Aug 26 21:15:32 2026 -0700
+
+    Start 8.5.1.
+
+commit 420c8fb44eeadb537cae69d2fee3796e808558dd
+Merge: 8ee83dd 68e7ea7
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Aug 26 21:07:04 2026 -0700
+
+    Merge main into stable (#3800)
+
+commit 68e7ea7228ca144c52e4d1d282cc09da59f7771f
+Merge: 2c8cd3a 8b19813
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Aug 24 18:48:48 2026 -0700
+
+    Release version 8.5.0 (#3787)
+
+commit cc1e188bf5ac6267c2a2a81e7b2c8ad7e55d2862
+Author: Casper da Costa-Luis <casper.dcl@physics.org>
+Date:   Mon Aug 24 18:13:50 2026 +0100
+
+    Add 'shtab' project to contribution list
+
+commit 8b19813f2bfca99f1018a587a8cf54fc959f2e5d
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Fri Aug 21 21:31:25 2026 -0700
+
+    Release version 8.5.0
+
+commit 2c8cd3ac958a7eb316d67f2d316c27086c4c0369
+Merge: e1fd594 131c86a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Aug 20 09:12:10 2026 -0700
+
+    Add FAQ entry about `UnicodeEncodeError` on Windows (#3778)
+
+commit 131c86aadddfa5cb6dca8339c9d6294c4eacb8ac
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Aug 19 08:40:07 2026 +0400
+
+    Add FAQ entry about `UnicodeEncodeError` on Windows
+    
+    Closes #2121
+
+commit e1fd5946ab26aaf372009eaff1acf947140b40fb
+Merge: 2103e15 a1d8785
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Aug 19 19:50:19 2026 -0700
+
+    Add support of `pathlib.Path` to `edit` (#3781)
+
+commit a1d87858abd77fa8e3ffc204670ccd75b96c4781
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Aug 19 10:09:09 2026 +0400
+
+    Add support of `pathlib.Path` to `edit`
+    
+    Closes #2869
+
+commit 2103e157683c5e4cadc8ee1838df526a54bde9a4
+Merge: 61b69e9 a6256bf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Aug 19 08:20:27 2026 -0700
+
+    Forward all user's parameters set in `PAGER` and improve flag detection (#3777)
+
+commit a6256bfb5971d5e58585fe7b6c656134e1ade5a4
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Aug 18 12:09:47 2026 +0400
+
+    Forwards all user's parameters set in `PAGER`
+    
+    Improve detection of raw mode by parsing the option tokens
+    Fix detection of `less.exe` on Windows
+
+commit 61b69e967e525bd502f5bf42def4d551e761fe0e
+Merge: f36d58b 9835b0f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Aug 18 09:24:12 2026 -0700
+
+    Resolve the pager command once, in `_pager_contextmanager` (#3776)
+
+commit 9835b0f7612d1b1ea180a975fd6d24cf16791ba8
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Aug 15 10:00:25 2026 +0400
+
+    Resolve the pager command once, in `_pager_contextmanager`
+    
+    Follow up on #3767
+
+commit f36d58bbd7f188178de2d4fe1d0292c510375ca7
+Merge: cbd7a41 bc32a92
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Aug 17 22:38:45 2026 -0700
+
+    Refactor pager stream handling (#3767)
+
+commit bc32a92cd2ae77afb2352f79ebdf00997f35d333
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 16:35:59 2026 +0200
+
+    Refactor pager stream handling; drop text/binary branching
+
+commit cbd7a4109da16ce58f54c2a618b4c986e3041fcf
+Merge: fc5c7f4 3ee9309
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Aug 16 16:43:41 2026 -0700
+
+    Run Flask's test suite in the nightly workflow (#3768)
+
+commit fc5c7f45da0a4443f60ba2d322fe4bf829977739
+Merge: 150d107 1f9cd54
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Aug 16 16:40:02 2026 -0700
+
+    Fix error reporting on Windows when an error is raised in the pager  (#3764)
+
+commit 1f9cd54f686eb343cec714230ad825ce972739ab
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Aug 13 13:13:53 2026 +0400
+
+    Close the pager temp file before unlinking it
+
+commit 150d1071d69c5cdad7de78590013ffe56cf9e3bb
+Merge: 8b44edf f316d5c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Aug 15 10:56:57 2026 -0700
+
+    Settles progress bar on its final position (#3769)
+
+commit f316d5cb3aa89b57c14aee54da6ac9062ac5bec4
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Aug 15 11:01:10 2026 +0400
+
+    Land the progress bar on its final position
+    
+    Closes #3571.
+
+commit 3ee9309b9c1804528842392c461526760bff0035
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Aug 15 10:49:14 2026 +0400
+
+    Run Flask's test suite in the nightly workflow
+    
+    Was dropped by mistake in 97b300c.
+    Closes #3766.
+
+commit 8b44edfff7d9a6c895fa804148c16b3a0bc9efb5
+Merge: 9c4dfda a2ac583
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Aug 14 11:51:51 2026 -0700
+
+    Changed `tempfile.NamedTemporaryFile` mode to `w` (#3739)
+
+commit a2ac5839f29f61cf7f3f229c67b97d07988e479b
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Aug 13 13:03:18 2026 +0400
+
+    Open the pager temp file in text mode
+    
+    Co-authored-by: H-Sorkatti <H.Sorkatti.B@Gmail.com>
+
+commit 9c4dfdaebe0e6b2aabc566eb81f6f10eb5cd6ea1
+Merge: 00e592c 047adef
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Aug 9 10:51:57 2026 -0700
+
+    Sort help args to make them reproducible (#3728)
+
+commit 047adef258fc25566163ffc3efd14effc0ef7352
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Jul 31 15:02:01 2026 +0400
+
+    Preserve declaration order of help option names
+    
+    Co-authored-by: Jochen Sprickerhof <git@jochen.sprickerhof.de>
+
+commit 00e592cea702e0b2caa0dee42489fdb1c22cd845
+Merge: 5aa8ac4 0f4738d
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jul 24 13:26:39 2026 -0700
+
+    Pre-8.5.0 release changelog and doc fixes (#3697)
+
+commit 0f4738df88e3ea47c40a4a442103596a61cfee79
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Jul 17 11:33:21 2026 +0200
+
+    Fix docs and changelog
+
+commit 5aa8ac43527f91c4c801a50b485c09576715d340
+Merge: 42235de 0c9e836
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 23 11:58:19 2026 -0700
+
+    Update all GitHub actions (#3721)
+
+commit 42235de05e38e3b9c9346662a3c6b6a36901b8a1
+Merge: 398f915 b3a191b
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Thu Jul 23 15:45:17 2026 +0400
+
+    Fix `sdist` include to ship `CHANGES.md` after changelog rename (#3685)
+
+commit 0c9e836c7c22f72492e82c448d1981b59a20795e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Jul 23 14:57:00 2026 +0400
+
+    Update all GitHub actions, fix thread locking
+
+commit 398f9154317f6c54bf98fe3359672ad5cb851585
+Merge: 5e906a8 10b43c2
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jul 22 15:29:10 2026 -0700
+
+    Parametrize deprecation tests and check targets (#3715)
+
+commit 5e906a8afb67242dffdd91404dbf31f469054b15
+Merge: cfa01ee 3b16957
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jul 22 15:25:16 2026 -0700
+
+    `click.prompt` typing clarifications / improvements (#3407)
+
+commit 10b43c211b825181cb81ef383e8091fd41750150
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 22 22:47:44 2026 +0400
+
+    Parametrize deprecation tests and check targets
+
+commit 3b16957cba718a6d77ef680114de8e0830c436ba
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Jul 16 07:57:57 2026 +0200
+
+    Make `prompt`/`ParamType` typing work without runtime `typing_extensions`
+
+commit 0585f456baa6eeb2edbaab7c85fa796a004aef86
+Author: Andreas Backx <andreas@backx.org>
+Date:   Thu Jul 16 07:23:28 2026 +0200
+
+    `click.prompt` typing clarifications / improvements
+
+commit cfa01eeb7894a408af70b29d28c0b24f8680f9fb
+Merge: 333c28d c2ed414
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Mon Jul 20 10:43:21 2026 -0700
+
+    Deprecate `isolated_filesystem` and document its limits (#3704)
+
+commit c2ed41490baa08002714ab79afa4a41f2d67c02c
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 14:28:49 2026 +0200
+
+    Deprecate `isolated_filesystem` and document its limits
+    
+    Fix #3700
+    Refs #3501
+
+commit 8ee83ddbf5a7a4c2eac5308c9599c5ee67ee005e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri Jul 17 23:32:37 2026 +0200
+
+    Revert "Deprecate `isolated_filesystem` and document its limits"
+    
+    This reverts commit fbdd434028fe07ecf35084c945b43b938dfd639f.
+
+commit fbdd434028fe07ecf35084c945b43b938dfd639f
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 14:28:49 2026 +0200
+
+    Deprecate `isolated_filesystem` and document its limits
+    
+    Fix #3700
+    Refs #3501
+
+commit 333c28d79cd982990ee98eef61ec20ab1a4f38ba
+Merge: 7df2f82 051725f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jul 17 12:24:58 2026 -0700
+
+    Mark clearly functions private status. Deprecated Python 2 utilities. (#3695)
+
+commit 051725fa7e0c69effc9107066d8791c5b99242c3
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jul 17 12:21:15 2026 -0700
+
+    Add tests to deprecations. Better deprecate streams.
+
+commit 7df2f82305f20f1611a9668b38d26933b648d807
+Merge: b551fe8 cbc6765
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 16 16:56:43 2026 -0700
+
+    Add built-in PowerShell shell completion support (#3637)
+
+commit 7a0a3447f6ddd2c15438c5d098e289323f9f9556
+Author: Eddie Girling <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 16 15:50:06 2026 -0700
+
+    Mark clearly functions private status. Deprecated Python 2 utilities.
+
+commit b551fe85714c906565303fae98136d7c72b252ea
+Merge: b67832c 8f30085
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jul 15 21:54:41 2026 -0700
+
+    Streamline option flag management (#3641)
+
+commit b3a191bf58db2a4bd13706981af78d41b7b5a056
+Author: Kobi Hikri <kobi.hikri@gmail.com>
+Date:   Sun Jul 12 19:55:16 2026 +0300
+
+    Fix sdist include to ship CHANGES.md after changelog rename
+
+commit 8f300853dc5f33120d9872ea0e4c9e00318446b1
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 8 15:36:45 2026 +0200
+
+    Streamline option flag management
+
+commit b67832c2167e5b0ff6764a8c04a0a9087e697b5a
+Merge: 8c1a0a7 a28d839
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 9 20:24:08 2026 -0700
+
+    Fix parsing when a parameter is named `help` (#3678)
+
+commit a28d839d3e68bb81b77bcd862fb29e35dcf894f9
+Merge: 3495fba 8c1a0a7
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 9 20:23:04 2026 -0700
+
+    Merge branch 'main' into fix-help-name-collision
+
+commit 8c1a0a7abbc1c36f70d1f65f3604acc46c5ce6ab
+Merge: 8a4ce84 71f2baf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 9 20:14:25 2026 -0700
+
+    Strip all ANSI sequences (#3681)
+
+commit 71f2bafa541e7f798834e74076786ff4281ac83e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 1 07:46:38 2026 +0400
+
+    Strip all ANSI sequences
+
+commit 3495fba163dd61dea837cd557095df6c21515ac8
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Jul 7 15:40:56 2026 +0200
+
+    Warn when an argument name collide with other parameters
+    
+    Fix parsing when a parameter is named `help`, closing #2819
+
+commit 8a4ce842564ae94ab050062db8525196ad476c19
+Merge: 8dd4d60 07c909f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jul 8 09:05:23 2026 -0700
+
+    Validate `style()` color arguments (#3677)
+
+commit 8dd4d60eb5ad4532abdd9b2809a7d9e2aa679b87
+Merge: 7925a34 c52f43c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jul 8 08:57:37 2026 -0700
+
+    Restore `test_echo_color_flag` from #3505 (#3676)
+
+commit 07c909f23f0f83b5ca137c167b9a134d66201f67
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 8 13:20:37 2026 +0200
+
+    Validate style() color arguments, fix explicit black color argument
+
+commit c52f43c8ba734545b222af36ac35d87579031870
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 8 12:38:14 2026 +0200
+
+    Restore `test_echo_color_flag` from #3505 that was lost in #3674 merge
+
+commit 7925a3410d7098c28cfca3b2baa6c852666bbd14
+Merge: a44e9f0 ea811f9
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Jul 7 23:27:39 2026 -0700
+
+    Merge stable into main.  (#3674)
+
+commit ea811f9540a9117fd0edbfebb0589213bc9f7dc9
+Merge: 9ab346f a44e9f0
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 23:23:26 2026 -0700
+
+    Merge stable into main. Resolve conflicts about test utils.
+
+commit a44e9f05edbfcea04b5ec91d4403976a50381c59
+Merge: 94c191c 13f075c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Jul 7 22:57:12 2026 -0700
+
+    Update documentation following Colorama removal (#3671)
+
+commit 9ab346f6b57f2c99388b4e9db58a0961bc3027c8
+Merge: df2e5ed 47cc96f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Jul 7 22:55:03 2026 -0700
+
+    Move test utils to a module and each function to its own file (#3672)
+
+commit 47cc96fb1fcaca88f55c1937afc50ba518d0ca8a
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:52:43 2026 -0700
+
+    Add files for _detect_program_name, _expand_args, and make_default_short_help.
+
+commit 700798252a509ca57bc7a12f7aa7fd67f9f8fd25
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:46:21 2026 -0700
+
+    Add KeepOpenFile, LazyFile and open_file files.
+
+commit 18400b2495347c684c8182f775b4aaec0838cc0e
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:37:17 2026 -0700
+
+    Add format_filename and sentinel files.
+
+commit 1103c5cac2a9336dad3b4b5ce1a25a0bcff49ec0
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:33:38 2026 -0700
+
+    Move move test to prompt file.
+
+commit 182944f90a0103b87570dbc5a55eff873ca9a4c2
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:29:39 2026 -0700
+
+    Make confirm, prompt, style files.
+
+commit a391797d00d2ef32ebc4fb0034462a2ec5e6d3d4
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jul 7 22:25:43 2026 -0700
+
+    Make test echo file.
+
+commit 13f075c4bd2d1343eaac528994165750671da351
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 8 06:41:55 2026 +0200
+
+    Update documentation following Colorama removal
+    
+    Refs #3505
+
+commit 94c191ca6c9598865fc5672b85cf138845b337d5
+Merge: 16fc00e 4453103
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Jul 7 20:26:27 2026 -0700
+
+    Add `@custom_version_option`, freeze `@version_option` (#3581)
+
+commit 445310365b3a0437d5e46bf57fa2a801b704c30d
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Jul 7 15:14:41 2026 +0200
+
+    Use `click.echo` everywhere in the docs, document exception
+    
+    Refs https://github.com/pallets/click/pull/3581#issuecomment-4903297318
+
+commit 9f9b149ea30287b4977b800a024ee68144b8c869
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 29 11:26:36 2026 +0200
+
+    Add `@custom_version_option`, freeze `@version_option`
+    
+    Refs: https://github.com/pallets/click/discussions/3527
+
+commit 16fc00e2f4a2717a521084f193709a6058afc693
+Merge: fe3ad76 dbfb10a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 2 18:11:47 2026 -0700
+
+    Do not trigger a `BytesWarning` under `python -bb` (#3642)
+
+commit fe3ad76e5807e7a401ed7520f051071c6ae1fa6e
+Merge: 6ec99f8 8008ab9
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 2 16:39:09 2026 -0700
+
+    Strip ANSI from `confirm()` and `prompt()` (#3653)
+
+commit 8008ab93aa43c44a4008ac871571aa52ee0fffe1
+Merge: 93ba007 6ec99f8
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jul 2 16:37:44 2026 -0700
+
+    Merge branch 'main' into fix-prompt-ansi-stripping
+
+commit 6ec99f89261b32f8a50848786eca055e1967659f
+Merge: 240603f 30749b4
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Wed Jul 1 14:13:04 2026 +0400
+
+    Don't parameterize tests using non-Collection iterables (#3656)
+
+commit 30749b45c50f4811a3487fc9d11da2b7afc6007f
+Author: Colin Watson <cjwatson@debian.org>
+Date:   Wed Jul 1 10:16:42 2026 +0100
+
+    Don't parameterize tests using non-Collection iterables
+    
+    This is deprecated as of pytest 9.1; see
+    https://docs.pytest.org/en/stable/deprecations.html#non-collection-iterables-in-pytest-mark-parametrize.
+
+commit cbc676549ec50e391c75560a8e560f37aa3ab524
+Merge: 1ac08db 240603f
+Author: Zhihua Lai <zhihualai@microsoft.com>
+Date:   Wed Jul 1 08:41:59 2026 +0100
+
+    Merge remote-tracking branch 'origin/main' into zhihua/powershell
+    
+    # Conflicts:
+    #       src/click/shell_completion.py
+
+commit 93ba0075f4881b858b61f89a753c7c10e330027e
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Tue Jun 30 20:26:47 2026 +0400
+
+    Strip ANSI from `confirm()` and `prompt()` when the stream don't support them
+    
+    Closes #3572
+    Refs #2969
+
+commit dbfb10aba610605dc646bf9374e888905366c545
+Merge: 6f85d26 240603f
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Wed Jul 1 08:57:28 2026 +0400
+
+    Merge branch 'main' into fix-path-byteswarning
+
+commit 240603f240a9ff179d834fede836060d897c6980
+Merge: 679a7a0 df2e5ed
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jul 1 08:04:24 2026 +0400
+
+    Merge remote-tracking branch 'upstream/stable' into merge-stable-into-main
+
+commit 6f85d26dcd50c1745e81040ed4f2b61f8bf293cf
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Jun 27 12:47:47 2026 +0400
+
+    Do not trigger a `BytesWarning` under `python -bb`
+    
+    Closes #2877
+
+commit df2e5ed8c4e89f51ff4eddb9600d913083613e62
+Merge: 7a16b20 b2e30a1
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jun 26 09:08:01 2026 -0700
+
+    Release version 8.4.2 (#3631)
+
+commit 1ac08db953684e10ed97adbbda81381efd82ce09
+Author: Zhihua Lai <zhihualai@microsoft.com>
+Date:   Fri Jun 26 11:36:56 2026 +0100
+
+    Fix ruff E501 line-too-long in PowerShell template
+
+commit 27b3ee2633f80aeb04d6e15c2fb3c91542efa32b
+Author: Zhihua Lai <zhihualai@microsoft.com>
+Date:   Fri Jun 26 11:32:04 2026 +0100
+
+    Add built-in PowerShell shell completion support
+
+commit b2e30a175449cfda909ee4fbf4a29a6a071cad53
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Tue Jun 23 23:22:10 2026 -0700
+
+    Release version 8.4.2
+
+commit 679a7a0eccbdded7a6e85680bdaaf08003765e01
+Merge: 8a1b1a3 c4a6b57
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue Jun 23 19:43:36 2026 -0700
+
+    Optimize `split_arg_string` with `extend(...)` instead of a for loop system. (#3627)
+
+commit c4a6b57bb8a79556ceb6a91b1e756bbaf896ffae
+Author: Vizonex <VizonexBusiness@gmail.com>
+Date:   Mon Jun 22 22:35:59 2026 -0500
+
+    type-hint out varibale
+
+commit 748a34d01e0f4f2e5f75e293c1dd8480b16c2068
+Author: Vizonex <VizonexBusiness@gmail.com>
+Date:   Mon Jun 22 22:30:42 2026 -0500
+
+    optimize split_arg_string with extend(...) instead of a for loop system.
+
+commit 7a16b20e8a8a9bb57c7b4f6f15f60f6597478a49
+Merge: 916883a bec5928
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun Jun 14 13:30:14 2026 -0700
+
+    Fix `package_name` resolution when module differs from distribution name (#3582)
+
+commit bec59289d8cf9b9b4010642b2fee483e5f8eeefc
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Jun 11 09:59:39 2026 +0400
+
+    Fix `package_name` resolution when top-level module differs from distribution name
+    
+    Refs: #1884 #2331 #3125
+
+commit 916883afad450c0c9bbc4212817900949131adbd
+Merge: 09195f6 1557e26
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat Jun 13 12:00:09 2026 -0700
+
+    Fix tests to not rely on `-Wdefault` option (#3591)
+
+commit 09195f6a92972c4e1bbb5493686456e6ba624520
+Merge: d9ff133 762c97e
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jun 12 20:59:02 2026 -0700
+
+    Fix double-bracketing of choices in synopsis (#3578)
+
+commit 1557e265222c431b1e4d6c4dd6754006ed10dc02
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat Jun 13 06:53:52 2026 +0400
+
+    Check for warning exception with idiomatic context manager
+    
+    Closes #3476
+
+commit d9ff13369ac78d9acff693faa79f26badd566ab3
+Merge: 8929d39 bb0cd17
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Sat Jun 13 06:29:11 2026 +0400
+
+    Static typing improvements in `click.shell_completion` (#3460)
+
+commit 762c97eef7c1b3779678992f26a553a2a8c80793
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Wed Jun 10 17:26:48 2026 +0400
+
+    Fix double-bracketing of choices in synopsis
+
+commit 8a1b1a33d739be05b7e91251e3c0dde77c5e152f
+Merge: 4fc0e90 1ca1cea
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Sun Jun 7 08:59:46 2026 +0500
+
+    Merge `stable` into `main` after `CHANGES` rST to Markdown conversion (#3563)
+    
+    Divergence were introduced while migrating `CHANGES.rst` to `CHANGES.md` in #3559 (`stable`) and #3560 (`main`).
+
+commit 1ca1cea0f034f370bb6d95cfc9096031d017125a
+Merge: 4fc0e90 8929d39
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sun Jun 7 08:32:47 2026 +0500
+
+    Merge stable into main
+
+commit 4fc0e90e1c19faf82bc18f8551eb1ed78dc738ac
+Merge: c480210 03d3b8a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jun 5 23:02:01 2026 -0700
+
+    Move changes to markdown (#3560)
+
+commit 03d3b8a313f2676380f6a34a080b3ca09423082e
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Fri Jun 5 23:00:17 2026 -0700
+
+    Move changes to markdown
+
+commit 8929d392781c8113bc569f388c15c47b94f86581
+Merge: 832ca22 237be50
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri Jun 5 22:53:39 2026 -0700
+
+    Convert changes to markdown. (#3559)
+
+commit 237be507dbe3e653f6b41b3ea53266805534e8cd
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Fri Jun 5 22:52:09 2026 -0700
+
+    Move changes headings down a level.
+
+commit a0232a8ffc75269dd10af67881538b12bdf95a9c
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Fri Jun 5 22:31:41 2026 -0700
+
+    Convert changes to markdown.
+
+commit 832ca2231174bff71e0af600a52c1b18612573a2
+Merge: 4df304c 5ec03bd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu Jun 4 09:22:38 2026 -0700
+
+    Run nightly tests on both `main` and `stable` branches (#3553)
+
+commit 5ec03bdba195737aeb8f5b3d9625607c41a35236
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu Jun 4 17:48:47 2026 +0500
+
+    Run nightly tests on both `main` and `stable` branches
+    
+    Follows up on #3500
+
+commit 4df304c658666f34a5ca4335ab0da15832f02f9e
+Merge: cd9bdd9 051bb0f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed Jun 3 09:04:39 2026 -0700
+
+    Do not let the GC close a borrowed `stdout` (#3533)
+
+commit 051bb0f30b545cf7426deef819811815297c2798
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 29 15:30:33 2026 +0200
+
+    Do not let the GC close a borrowed `stdout`
+    
+    Complete the "I/O operation on closed file" fix from #3482, and definitely addresses #3449.
+
+commit cd9bdd96a9dcc8e4ecabd45b5c244dbc70034484
+Merge: 65feb61 399919f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 30 13:23:10 2026 -0700
+
+    Support incremental output in the pager (#3534)
+
+commit 65feb6127e33ce6339e0c0ae230a90ea6b3772bc
+Merge: e34e526 9a2d169
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 30 12:28:25 2026 -0700
+
+    `types`: fix variance issues and improve type coverage (#3450)
+
+commit e34e526e4e4738f3c75d4bf7c792de8d302cf4e7
+Merge: 9be25a2 d5da635
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Sat May 30 08:40:56 2026 +0200
+
+    Add type annotations for instance attributes in `click.core` (#3463)
+
+commit 9be25a239b5a664ce1ef0f0c20f8be614feeb342
+Merge: e02a981 88b8e31
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 29 23:22:50 2026 -0700
+
+    platform-dependent `testing.CaptureMode` type alias (#3452)
+
+commit e02a981c98cde14152ac38fe2b1d7daae7c37167
+Merge: 907470e 534761c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 29 23:12:35 2026 -0700
+
+    Pre-8.4.2 release changelog and doc fixes (#3498)
+
+commit 399919f740bfd26cb30d544877fafd03cfcd9091
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 29 16:48:26 2026 +0200
+
+    Support incremental output in the pager
+    
+    Closes #3242 and #2542
+
+commit 907470ea03e945fe712d49a3549747d91c72e094
+Merge: ffcc749 63ab153
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 29 00:38:37 2026 -0700
+
+    docs: fix typo "with in" to "within" in parameters page (#3528)
+
+commit 534761cde3b1ae4877232c42feee063ca68f8480
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 16:21:14 2026 +0200
+
+    Add missing closing issue ref
+    
+    Refs: https://github.com/pallets/click/issues/2868
+
+commit 5eea580808f0b563a79066207dfcbf29669e3896
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 10:40:31 2026 +0200
+
+    Add missing changelog entry
+    
+    Refs: #2994 and #3478
+
+commit c3041c6caf4deadf04c4eccf010ea59922d8007c
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 10:35:24 2026 +0200
+
+    Add missing PR link and update style
+    
+    Ref: #3471
+
+commit 9b3fe6b8b43cd242cc200563dfd6425d51909f43
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 10:34:07 2026 +0200
+
+    Typo
+    
+    Refs: https://github.com/pallets/click/pull/3484
+
+commit 10f78cdb1df9874a8aa1757102ade4efa6a54732
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 10:27:47 2026 +0200
+
+    Use MyST syntax
+
+commit a198674bc46e8c95801c78c6d65b88dc254bdc10
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 10:15:16 2026 +0200
+
+    Remove empty H1 header
+    
+    Refs: https://github.com/pallets/click/pull/3447
+
+commit bff780ff9df7a8d0a271db2f80c17c7be32dc2a1
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 09:49:59 2026 +0200
+
+    Fix layout, align full version
+
+commit 2b8ba4f57414b62b60ae481398547dfce1694248
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 09:23:50 2026 +0200
+
+    Fix quoting, add PR references
+    
+    https://github.com/pallets/click/pull/3493
+    https://github.com/pallets/click/pull/3482
+
+commit ffcc7494c991c9197902fdf4995e11b2da3e9762
+Merge: 567d7e9 7eb57cf
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu May 28 23:26:27 2026 -0700
+
+    Fix pager test flackiness and add stress tests for `echo_via_pager` (#3499)
+
+commit 567d7e9220d6d6f52104ddbccd333d3f0c5b2d41
+Merge: 97210f2 9f9ae45
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Thu May 28 20:42:13 2026 -0700
+
+    Accept ZFS error-message for non-UTF-8 names (#3526)
+
+commit 63ab153198cde6a39192fc5fed9d810f58344a79
+Author: DineshBunny-1 <bogadinesh123@gmail.com>
+Date:   Thu May 28 21:47:52 2026 +0530
+
+    docs: fix typo 'with in' to 'within' in parameters page
+
+commit 9f9ae4538cea5ff672f6da51b2df184a4cd4304c
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu May 28 14:24:28 2026 +0200
+
+    Accept ZFS error-message for non-UTF-8 names
+    
+    Closes: #2634
+
+commit c48021040a50c659b74e24ac2b11c9c9c6620a21
+Merge: 1a994ad 684b3f5
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Thu May 28 09:30:44 2026 +0200
+
+    Add help parameter to arguments (#3473)
+
+commit 684b3f5b5150761ec1c930bef300eb6169f483d8
+Author: Yuri Shevtsov <yuri.shevtsov@mobiledefense.com>
+Date:   Tue May 19 01:48:00 2026 +0000
+
+    Add help parameter to arguments
+    
+    Closes #2983
+    
+    Co-authored-by: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+    Co-authored-by: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+
+commit 1a994adbb114d402275a614942e2f838a654e648
+Merge: 6a141c3 97210f2
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed May 27 20:55:17 2026 -0700
+
+    Merge stable into main (#3521)
+
+commit 97210f24eb22399eb6db87d01bfef14f78862d01
+Merge: 8240d25 665736b
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Wed May 27 09:23:33 2026 -0700
+
+    Mark commands as optional in the synopsis (#3507)
+
+commit 665736bc85a19a7a2357c071394b4a545617faa3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 07:30:13 2026 +0200
+
+    Mark commands as optional in the synopsis
+    
+    Closes #3059
+
+commit 8240d25bdbb8c081b745199620b8f2fe03b10579
+Merge: 1050d95 16bf6cc
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Wed May 27 10:59:54 2026 +0200
+
+    docs: fix flag-pair separator and small typos in options guide (#3510)
+
+commit 88b8e313f7ec09ddd16f33bded0b4c39d7935f58
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 15:03:57 2026 +0200
+
+    platform-dependent `testing.CaptureMode` type alias
+
+commit 16bf6ccc6b401b2299b8db25d3698e8f18ac272a
+Author: hernanr2205 <hernan.r2205@gmail.com>
+Date:   Thu May 21 17:00:18 2026 -0500
+
+    docs: fix flag-pair separator and small typos in options guide
+
+commit 7eb57cff7cd292fbd526eaf861c8f945ddeb07a3
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 11:13:12 2026 +0200
+
+    Fix pager test race by raising before yield
+    
+    Refs: #3470 #2899
+
+commit 1050d955ea5a219c72467ad832934ea80682b5fb
+Merge: 9830b60 af54674
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 22:17:20 2026 -0700
+
+    Use current `urllib` API, idiomatic Python and fix option name (#3503)
+
+commit 9830b602440a04576d6a4b19717fd15b5cf4efc5
+Merge: e169e82 e39679a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 22:15:38 2026 -0700
+
+    Add type annotations for instance attributes in `testing` (#3451)
+
+commit e169e82a6550ec8577e692717db8cf3417795149
+Merge: 2b4d35b aef225d
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 22:15:23 2026 -0700
+
+    Add type annotations for instance attributes in `formatting` (#3454)
+
+commit 2b4d35bb8d83b220ae6f76e085c7501e76746e51
+Merge: 18c2451 9207bdc
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 22:13:24 2026 -0700
+
+    Add type annotations for instance attributes in `exceptions` (#3453)
+
+commit 18c2451fd18a9aa1dd66534108290edfff68f109
+Merge: 29bacc7 ea76281
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 22:12:00 2026 -0700
+
+    Add type annotations for instance attributes in `shell_completion` (#3455)
+
+commit 29bacc773e817b2e49a75b6258399dc3e129b031
+Merge: 648d7c4 82f377c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 26 21:53:12 2026 -0700
+
+    Fix deprecated label formatting (#3509)
+
+commit aef225df47377a1bc3d967327b501f577dd5462c
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 15:50:00 2026 +0200
+
+    Add type annotations for instance attributes in `formatting`
+
+commit 9207bdc073181b0699938a7d7b4d0b7dde23fe4f
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 15:41:39 2026 +0200
+
+    Add type annotations for instance attributes in `exceptions`
+
+commit ea76281c3f5ad062e9f24eb5deaa961ac6a5c0e7
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 16:03:45 2026 +0200
+
+    Add type annotations for instance attributes in `shell_completion`
+
+commit bb0cd175d574a06fb4a5a7276ebe9570bb5c083d
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 17:37:38 2026 +0200
+
+    Static typing improvements in `click.shell_completion`
+
+commit d5da63588cdef9bf16596d40ea39d1e69954e4f5
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 18:29:46 2026 +0200
+
+    Add type annotations for instance attributes in `click.core`
+
+commit e39679ab8d0cf0a8ce203a881c5ae7f44fadaebc
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 14:54:12 2026 +0200
+
+    Add type annotations for instance attributes in `testing`
+
+commit 9a2d169fcf5c3cce7b0cd5971ca2786e1f72c210
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 14:25:45 2026 +0200
+
+    fix generic typed dict `TypeError` on Python 3.10
+
+commit 77bd81f3f0c9d7fc8e1ca83f641c41489c508991
+Author: jorenham <jhammudoglu@gmail.com>
+Date:   Mon May 18 14:08:10 2026 +0200
+
+    `types`: fix variance issues and improve type coverage
+
+commit 6a141c3681027e8124ce5a3c70e608dbbebffafb
+Merge: 3a40e43 7454647
+Author: David Lord <davidism@gmail.com>
+Date:   Sun May 24 07:30:05 2026 -0700
+
+    remove colorama (#3505)
+
+commit 745464765a3fc9ddd5f9e445e5a2ca37efd63237
+Author: David Lord <davidism@gmail.com>
+Date:   Fri May 22 21:40:47 2026 -0700
+
+    remove colorama
+
+commit 82f377c547e1867d073f02bb8f476214d07e245b
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 15:52:07 2026 +0200
+
+    Fix deprecated label formatting
+
+commit 3a40e43e8f61761cb7bd4f3e27ae3060690a84eb
+Merge: c353590 648d7c4
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 10:36:49 2026 +0200
+
+    Merge branch 'stable'
+
+commit 648d7c403829013ade629d63ddbfe808f6b2b770
+Merge: 5b1aba8 ddf20d0
+Author: Kevin Deldycke <kdeldycke@users.noreply.github.com>
+Date:   Sat May 23 10:21:30 2026 +0200
+
+    Backport #3504 from `main` to `stable` branch (#3508)
+
+commit ddf20d0673788ebe8ec28b6031a24a36cba92115
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 23 09:43:12 2026 +0200
+
+    Add changelog entry, fix admonition and add test
+
+commit b7e5fd4cc7de70280eccd39f2bb956df617e5519
+Author: Sitiyou <sitiyou7@gmail.com>
+Date:   Sat May 23 15:05:16 2026 +0800
+
+    Fix broken fish completion and multiline help string
+    
+    Fix regression introduced in 8.4.0 by #3126 and properly fix #3043 and #3502
+
+commit c3535905c77a29afc84861b29d3ad366ce5451bd
+Author: Sitiyou <sitiyou7@gmail.com>
+Date:   Sat May 23 15:05:16 2026 +0800
+
+    Fix broken fish completion and multiline help string
+    
+    Fix regression introduced in 8.4.0 by #3126 and properly fix #3043 and #3502
+
+commit 5b1aba82745cbde04c75e0bab995e5ddf0804196
+Merge: aa5a8da 7fb117a
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 22 22:25:38 2026 -0700
+
+    Add example for Group Help Page in documentation (#3472)
+
+commit af54674f806c85182c8dd1b08ea6dd85d7f18cde
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 16:11:29 2026 +0200
+
+    Use current `urllib` API, idiomatic Python and fix option name
+    
+    Closes #3489
+
+commit aa5a8dab430d23f4a5e6f518052b40afca5d54d0
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Fri May 22 12:42:29 2026 +0200
+
+    Activate nightly workflow for random and stress tests
+
+commit bc36cd1a2b3bc18f401a98476154dbc5a2d212c9
+Merge: dbf4d14 a42300a
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 21:11:09 2026 -0700
+
+    Merge branch 'stable'
+
+commit a42300ab9eb032c986ad030fae65f1eb58518dae
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 21:10:01 2026 -0700
+
+    start version 8.4.2
+
+commit 7064ccf0dbcad268e8f86773003c594f9449c63a
+Merge: 67921d5 6eeb50e
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 21:09:09 2026 -0700
+
+    release version 8.4.1 (#3496)
+
+commit 6eeb50e948ea136db145280f6f5dd52eca3fa7e5
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 21:01:50 2026 -0700
+
+    release version 8.4.1
+
+commit 67921d5b71584112eebcbf89596b5f0e6d14c49f
+Merge: 6cb3477 9c41f46
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 20:59:43 2026 -0700
+
+    change log and doc fixes (#3495)
+
+commit 9c41f46a4015700489ad009266edf1f3893d01d1
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu May 21 09:43:18 2026 +0200
+
+    Fix changelog and version admonitions
+
+commit 6cb34774f20598aa288332f8da02c5aee85448a6
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 20:55:15 2026 -0700
+
+    fix skip condition
+
+commit 5ee8e3123d8ddece6c47eff9a7a7d4ca478c4f37
+Merge: a5f5aa6 becbde5
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 20:40:18 2026 -0700
+
+    fix I/O operation on closed file error with CliRunner and echo_via_pager (#3482)
+
+commit becbde5cf416441627f779e8dd34e57738ee1c1f
+Author: Chris Pappalardo <cpappalardo@alvarezandmarsal.com>
+Date:   Tue May 19 12:37:31 2026 -0700
+
+    pager doesn't close std streams
+
+commit a5f5aa6d4012d256ccca24638f2642fc371e9f77
+Merge: d42f15b 4d3db84
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 15:46:00 2026 -0700
+
+    Handle empty bytes in echo (#3493)
+
+commit 4d3db84b251518e97299a38a5ca4bab3d01873a2
+Author: Iain-S <25081046+Iain-S@users.noreply.github.com>
+Date:   Thu May 21 10:26:28 2026 +0100
+
+    handle empty bytes in echo
+
+commit d42f15b71757de791a5781fb179fd972da9169f5
+Merge: 4b24a6c 0baa8db
+Author: David Lord <davidism@gmail.com>
+Date:   Thu May 21 08:20:34 2026 -0700
+
+    Fix `get_parameter_source()` during type conversion and eager callbacks (#3484)
+
+commit 0baa8db07736fc7ad3d3eed97d4c73b0059c63e1
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Thu May 21 14:44:08 2026 +0200
+
+    Document ctx.params bypass with test and doc
+
+commit 7d05a59b9d46a415d85937630d1d812cf477f60a
+Author: Yuri Shevtsov <yuri.shevtsov@mobiledefense.com>
+Date:   Tue May 19 19:43:26 2026 -0400
+
+    Fix get_parameter_source() during type conversion and eager callbacks
+    
+    Record parameter source on the context immediately after consume_value(),
+    before process_value() runs. In 8.4.0, set_parameter_source() was deferred
+    until after type conversion and flag-group arbitration (0f71fe7, #3403), so
+    get_parameter_source() returned None inside ParamType.convert() and eager
+    callbacks (#3458).
+    
+    When several options share one parameter name, the losing option still sets a
+    provisional source before process_value(); restore the previous source if
+    arbitration rejects it so the winner's origin is not replaced unintentionally.
+
+commit 4b24a6c8f6658ef89fd6db4dcaf8ee88eef75dfa
+Merge: 9b327da ac2cd07
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 19 16:16:10 2026 -0700
+
+    Added flake8-import-conventions and rule for typing (#3483)
+
+commit ac2cd072555905176955eaf33909ebbcbd94b827
+Author: Alex Koster <alexkoster@users.noreply.github.com>
+Date:   Tue May 19 15:25:06 2026 -0700
+
+    Added flake8-import-conventions and rule for typing
+
+commit dbf4d14c712750c31e15916b659925683150533b
+Merge: 4e869f3 9b327da
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 19 11:49:06 2026 -0700
+
+    Merge stable into main (#3479)
+
+commit 9b327da8275bb63bd7bbd43ad8ff9862480da267
+Merge: 3c12ce7 c6bf75f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Tue May 19 09:46:31 2026 -0700
+
+    Fix 2994 launch locate files w spaces windows (#3478)
+
+commit c6bf75fa74bff6523375cf91f97af0a7aae85fce
+Author: plumlariat <ericjeffcoat85@gmail.com>
+Date:   Tue May 19 09:35:41 2026 -0700
+
+    Fixes windows specific error regarding spaces in filepaths for open_url.
+
+commit 7fb117a9aeb82e0d5260b8935ab4a8bab6291aec
+Author: Anurag Saxena <SAXENAA@ccf.org>
+Date:   Tue May 19 07:36:17 2026 -0700
+
+    fix: update example invocation in Group Help Page documentation
+
+commit 3c12ce7050bf63c9fa522e5d7b95543037da0f63
+Merge: bee3314 32ae2ac
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 17:03:26 2026 -0700
+
+    shell autocomplete uses normalize_choice()  (#3471)
+
+commit dfb15ee66a119e85def0bd69e39e64f69a883f2f
+Author: Anurag Saxena <SAXENAA@ccf.org>
+Date:   Mon May 18 16:44:25 2026 -0700
+
+    Add example for Group Help Page in documentation
+
+commit 32ae2acd3474a57d2450ea849545b2e1258bf76a
+Author: Keerthana Panyam <panyam.k@northeastern.edu>
+Date:   Mon May 18 13:59:38 2026 -0700
+
+    choice shell autocompletion to use normalize_choice()
+    
+    -fixes enum choice autocomplete showing "MyEnum.foo" instead of "foo"
+    -changed shell_complete() to use normalize_choice() instead of simply converting choices to strings
+
+commit bee33141650ce7c91551f5fac9ebfb0c8fca473e
+Merge: e0d1678 d15f3c2
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 14:02:53 2026 -0700
+
+    fix: Skip flaky pager test on macOS with free-threaded Python 3.14t (#3470)
+
+commit d15f3c23a177e80c324e1ee9681c9449c31ac965
+Author: Jazzcort <jason101011113@gmail.com>
+Date:   Mon May 18 12:46:02 2026 -0700
+
+    fix: Skip flaky pager test on macOS with free-threaded Python 3.14t
+    
+    Add a MAC platform constant in `_compat.py` and use it to skip
+    `test_echo_via_pager` on macOS when running free-threaded Python,
+    where generator exception tests are flaky in parallel execution.
+
+commit e0d1678ebc10cc663f2bc1973e0399b31415f8db
+Merge: b8b9ffe a3321c9
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 12:16:43 2026 -0700
+
+    apply Unix line endings for shell completion output for windows compat (#3466)
+
+commit a3321c9ca14ddb951f04ac981f275b0de2f46208
+Author: Ben Falk <bfalk@stsci.edu>
+Date:   Mon May 18 10:14:33 2026 -0700
+
+    Implement Unix line endings for shell completion output to ensure compatibility with Windows (#3277)
+
+commit 4e869f3a172a58df077932dc80b130cdf4ba9774
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 12:13:34 2026 -0700
+
+    start version 8.5.0
+
+commit a9a218cd523dfc41743eeae7a94d1ba763b64b1e
+Merge: c9e9413 b8b9ffe
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 12:13:08 2026 -0700
+
+    Merge branch 'stable'
+
+commit b8b9ffeb5d012f5d041685c81152636bf596cf72
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 12:11:04 2026 -0700
+
+    fix version string
+
+commit 1bd3a8790932195e4bb891d1f213671ece258416
+Merge: 1887902 c0d16f3
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 11:36:13 2026 -0700
+
+    Fix indentation on quickstart (#3469)
+
+commit 18879025d61fb6a23d68cbce70180264bd987ab8
+Merge: f49391b 0ab9d5d
+Author: David Lord <davidism@gmail.com>
+Date:   Mon May 18 11:34:57 2026 -0700
+
+    Fixed a typo in windows command docs (#3467)
+
+commit 0ab9d5d79bb816916140b2b7b13db3e263eb674b
+Author: Roger Baker <rogerb121@yahoo.com>
+Date:   Mon May 18 11:15:23 2026 -0700
+
+    Fixed typo
+
+commit c0d16f32f06d21820fde7235817c1ba0f6273211
+Author: Pamela Fox <pamelafox@microsoft.com>
+Date:   Mon May 18 11:12:16 2026 -0700
+
+    Fix indentation
+
+commit f49391b9c8565aa6f606ce77b4085866243966e2
+Merge: 613cb9a 8e1eafd
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun May 17 16:45:57 2026 -0700
+
+    Remove index.rst and changes.rst! (#3447)
+
+commit 8e1eafd71f042b745d936fb264accc9fcf28c3c6
+Author: Edward Girling <egirling@wallstreet.io>
+Date:   Sun May 17 16:38:08 2026 -0700
+
+    Remove index.rst and changes.rst
+
+commit c9e94136b39b1fad4a47ac0d4478fa372bd07ff8
+Merge: c938ac0 37aa0c6
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sun May 17 13:20:19 2026 -0700
+
+    Fix dev version 8.4.1 (#3446)
+
+commit 37aa0c6568eb156749aea613dd78fe35bc5cfcef
+Author: Edward Girling <egirling@wallstreet.io>
+Date:   Sun May 17 13:18:18 2026 -0700
+
+    Fix dev version in 8.4.1
+
+commit 613cb9a0c0b7ecf7455b3eefe7004c7839f2f231
+Merge: e364f8b 0c694e0
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 22:32:58 2026 -0700
+
+    Bump version to 8.4.dev (#3444)
+
+commit 0c694e006c3a17ad9897f557a7cc3cc107c81572
+Author: Edward G <edward.g2013@gmail.com>
+Date:   Sat May 16 22:30:14 2026 -0700
+
+    Bump version to 8.4.dev
+
+commit e364f8b362e0dec197d0991950bac0383120b371
+Merge: cd4674a c938ac0
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 22:20:49 2026 -0700
+
+    Merge main into stable (#3443)
+
+commit c938ac0a9602350463bcac02a075900f45400cf8
+Merge: e3e69e3 41f410f
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 22:15:42 2026 -0700
+
+    Release 8.4.0 (#3436)
+
+commit cd4674a6de725e1d7cac7ea7b6cd27ea68b4094c
+Merge: d5fbd32 e3e69e3
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 22:15:10 2026 -0700
+
+    Merge Main into Stable (#3442)
+
+commit 41f410fb7528305d7e87c8cfa704f6c2456f57fc
+Author: Edward Girling <egirling@wallstreet.io>
+Date:   Sat May 16 09:46:26 2026 -0700
+
+    Release 8.4.0
+
+commit e3e69e3bf8d749ac1a632f2ece4d38ec7f6588f5
+Merge: 3bb230d fc41aa1
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 08:55:46 2026 -0700
+
+    Add type annotations for instance attributes in `utils` (#3422)
+
+commit 3bb230dcd5d751f8605b46e9df5a541639d5fd4e
+Merge: 63274a7 0551bf5
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 08:53:39 2026 -0700
+
+    WIP: Fix `HelpFormatter.write_usage` producing spurious characters (#3434)
+
+commit 63274a79d08fdc5c19220696144489f7144a8547
+Merge: 7c99ebe b761eda
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Sat May 16 08:50:46 2026 -0700
+
+    `click.get_pager_file`: add tests (#1572 followup) (#3405)
+
+commit 0551bf53588ae87f462d336f24f853a156fefe3a
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 16 08:19:58 2026 +0200
+
+    Fix `HelpFormatter.write_usage` producing spurious characters
+    
+    Closes #3360
+
+commit fc41aa1d0b62494eb93e92ff3929601221e3abf4
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Sat May 16 07:46:07 2026 +0200
+
+    Apply class-body annotations to `KeepOpenFile` for consistency
+
+commit b761eda3bad977ec2f485451d85fd8ec365f0bf4
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon May 11 14:20:56 2026 +0200
+
+    Skip some tests on Windows
+
+commit 98302ac4f49e443a48abd3fbb95c86202b89547d
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon May 11 14:20:39 2026 +0200
+
+    Check `PAGER` usage, color preservation and edge-cases
+
+commit dbdae170879d460e78963f8af35c5cb9c5b86e89
+Author: Kevin Deldycke <kevin@deldycke.com>
+Date:   Mon May 11 14:11:22 2026 +0200
+
+    Fix documentation
+
+commit 1aa2d53d63ff68bf14b35931177aac9270e39713
+Author: Andreas Backx <andreas@backx.org>
+Date:   Tue May 5 19:18:44 2026 +0100
+
+    Redesigned tests and get_pager_file branching to be more clear and not set color
+    unknowingly.
+
+commit e94e8dc40da6fc3975fe4931ecd8ecbac87f7cc9
+Author: Andreas Backx <andreas@backx.org>
+Date:   Mon May 4 21:05:41 2026 +0200
+
+    Add some unit tests and integration tests for get_pager_file.
+
+commit 7c99ebe23b931f27562d926814423cce85fd9766
+Merge: d959898 587e3cc
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 22:04:29 2026 -0700
+
+    Make `TextWrapper` ANSI-aware (#3420)
+
+commit 587e3cc7f4804a4fa62f3dab8839a6e1f8954d7c
+Merge: d946074 d959898
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 22:03:38 2026 -0700
+
+    Merge branch 'main' into fix-wrap-text-ansi
+
+commit d959898db264aaf07e70ad4eafa254286f9a5185
+Merge: ba745ac d65315c
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:57:45 2026 -0700
+
+    Add capture mode to `CliRunner` and revert default `fileno` exposure (#3391)
+
+commit d65315cfc3577a0e9f1f4e77f8c9cebb0e570164
+Merge: ad39d74 ba745ac
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:56:54 2026 -0700
+
+    Merge branch 'main' into fix-3384-clirunner-fd-capture
+
+commit ba745ac64037b7d4cdd0abce10446c0a2861935f
+Merge: ec82269 84a42d3
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:48:03 2026 -0700
+
+    Cleanup documentation for `8.4.0` (#3393)
+
+commit 84a42d35822ab3aa6607212fc993f37dced5e9ac
+Merge: 5dd4acd ec82269
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:46:41 2026 -0700
+
+    Merge branch 'main' into changelog-3372
+
+commit ec8226954e2657324e7a25fec6657e4fbde33bcb
+Merge: 3619563 98cba78
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:44:49 2026 -0700
+
+    Dual-option value arbitration: `first` vs. `last` vs. `most explicit` policy (#3404)
+
+commit 98cba78d0a567eca8f19620a5cb3bcad3f63dbe5
+Merge: 0f71fe7 3619563
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:43:54 2026 -0700
+
+    Merge branch 'main' into dual-flags-competition
+
+commit 3619563d9bf8763360d3f0d95eb76e43f26dea5e
+Merge: 63daae2 8438798
+Author: Rowlando13 <67291205+Rowlando13@users.noreply.github.com>
+Date:   Fri May 15 21:38:39 2026 -0700
+
+    Deduplicate deprecated label translation (#3430)

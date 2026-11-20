@@ -1,0 +1,72 @@
+   Compiling doc-comment v0.3.4
+   Compiling walkdir v2.5.0 (/home/bench/work/walkdir_bad)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.08s
+     Running unittests src/lib.rs (target/debug/deps/walkdir-75705f5c1238a4f2)
+
+running 48 tests
+test tests::recursive::broken_sym_root_dir_nofollow_and_root_nofollow ... ok
+test tests::recursive::empty_file ... ok
+test tests::recursive::empty_file_follow ... ok
+test tests::recursive::empty_follow ... ok
+test tests::recursive::broken_sym_root_dir_follow_and_root_nofollow ... ok
+test tests::recursive::broken_sym_root_dir_root_is_always_followed ... ok
+test tests::recursive::contents_first ... ok
+test tests::recursive::empty ... FAILED
+test tests::recursive::filter_entry ... ok
+test tests::recursive::many_dirs ... ok
+test tests::recursive::many_files ... ok
+test tests::recursive::many_mixed ... ok
+test tests::recursive::max_depth_0 ... ok
+test tests::recursive::max_depth_1 ... ok
+test tests::recursive::max_depth_2 ... ok
+test tests::recursive::min_depth_1 ... ok
+test tests::recursive::min_depth_2 ... ok
+test tests::recursive::min_max_depth_diff_0 ... ok
+test tests::recursive::min_max_depth_diff_1 ... ok
+test tests::recursive::min_max_depth_diff_nada ... ok
+test tests::recursive::nested ... ok
+test tests::recursive::one_dir ... ok
+test tests::recursive::nested_small_max_open ... ok
+test tests::recursive::one_dir_one_file ... ok
+test tests::recursive::one_file ... ok
+test tests::recursive::regression_skip_current_dir ... ok
+test tests::recursive::same_file_system ... ok
+test tests::recursive::send_sync_traits ... ok
+test tests::recursive::siblings ... ok
+test tests::recursive::skip_current_dir ... ok
+test tests::recursive::sort_by ... ok
+test tests::recursive::sort_by_file_name ... ok
+test tests::recursive::sort_by_key ... ok
+test tests::recursive::sort_max_open ... ok
+test tests::recursive::sym_dir_follow ... ok
+test tests::recursive::sym_dir_nofollow ... ok
+test tests::recursive::sym_dir_self_loop_io_error ... ok
+test tests::recursive::sym_file_follow ... ok
+test tests::recursive::sym_file_nofollow ... ok
+test tests::recursive::sym_file_self_loop_io_error ... ok
+test tests::recursive::sym_loop_detect ... ok
+test tests::recursive::sym_noloop ... ok
+test tests::recursive::sym_root_dir_follow ... ok
+test tests::recursive::sym_root_dir_nofollow_root_follow ... ok
+test tests::recursive::sym_root_dir_nofollow_root_nofollow ... ok
+test tests::recursive::sym_root_file_follow ... ok
+test tests::recursive::sym_root_file_nofollow ... ok
+test tests::recursive::sym_self_loop_no_error ... ok
+
+failures:
+
+---- tests::recursive::empty stdout ----
+
+thread 'tests::recursive::empty' panicked at src/tests/recursive.rs:29:5:
+assertion `left != right` failed
+  left: 1
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::recursive::empty
+
+test result: FAILED. 47 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--lib`

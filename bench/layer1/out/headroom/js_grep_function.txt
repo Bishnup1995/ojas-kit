@@ -1,0 +1,3202 @@
+lib/response.js
+65:res.status = function status(code) {
+98:res.links = function(links) {
+101:  return this.set('Link', link + Object.keys(links).map(function(rel) {
+104:      return links[rel].map(function (singleLink) {
+126:res.send = function send(body) {
+163:  var generateETag = !this.get('ETag') && typeof etagFn === 'function'
+236:res.json = function json(obj) {
+264:res.jsonp = function jsonp(obj) {
+304:    body = '/**/ typeof ' + callback + ' === \'function\' && ' + callback + '(' + body + ');';
+325:res.sendStatus = function sendStatus(statusCode) {
+359: *     app.get('/user/:uid/photos/:file', function(req, res){
+363: *       req.user.mayViewFilesFrom(uid, function(yes){
+375:res.sendFile = function sendFile(path, options, callback) {
+390:  // support function as second arg
+391:  if (typeof options === 'function') {
+408:  sendfile(res, file, opts, function (err) {
+428: * This function will set the `Content-Disposition` header, overriding
+437:res.download = function download (path, filename, options, callback) {
+442:  // support function as second or third arg
+443:  if (typeof filename === 'function') {
+447:  } else if (typeof options === 'function') {
+454:    (typeof options === 'function' || options === undefined)) {
+508:res.type = function contentType(type) {
+533: *      'text/plain': function(){
+537: *      'text/html': function(){
+541: *      'application/json': function () {
+550: *      text: function(){
+554: *      html: function(){
+558: *      json: function(){
+574:res.format = function(obj){
+579:    .filter(function (v) { return v !== 'default' })
+594:      types: normalizeTypes(keys).map(function (o) { return o.value })
+609:res.attachment = function attachment(filename) {
+635:res.append = function append(field, val) {
+671:res.header = function header(field, val) {
+702:res.get = function(field){
+715:res.clearCookie = function clearCookie(name, options) {
+748:res.cookie = function (name, value, options) {
+797:res.location = function location(url) {
+815:res.redirect = function redirect(url) {
+843:    text: function(){
+847:    html: function(){
+853:    default: function(){
+878:res.vary = function(field){
+886: * When a callback function is given a response will _not_ be made
+897:res.render = function render(view, options, callback) {
+904:  // support callback function as second arg
+905:  if (typeof options === 'function') {
+914:  done = done || function (err, str) {
+924:function sendfile(res, file, options, callback) {
+929:  function onaborted() {
+939:  function ondirectory() {
+949:  function onerror(err) {
+956:  function onend() {
+963:  function onfile() {
+968:  function onfinish(err) {
+973:    setImmediate(function () {
+986:  function onstream() {
+999:    file.on('headers', function headers(res) {
+1019: * @param {function} replacer
+1026:function stringify (value, replacer, spaces, escape) {
+1034:    json = json.replace(/[<>&]/g, function (c) {
+lib/express.js
+36:function createApplication() {
+37:  var app = function(req, res, next) {
+lib/view.js
+52:function View(name, options) {
+83:    if (typeof fn !== 'function') {
+104:View.prototype.lookup = function lookup(name) {
+129: * @param {function} callback
+133:View.prototype.render = function render(options, callback) {
+139:  this.engine(this.path, options, function onRender() {
+153:    return process.nextTick(function renderTick() {
+169:View.prototype.resolve = function resolve(dir, file) {
+197:function tryStat(path) {
+lib/utils.js
+61:exports.normalizeType = function(type){
+75:exports.normalizeTypes = function(types) {
+89:function acceptParams (str) {
+123: * Compile "etag" value to function.
+130:exports.compileETag = function(val) {
+133:  if (typeof val === 'function') {
+148:      throw new TypeError('unknown value for etag function: ' + val);
+155: * Compile "query parser" value to function.
+162:exports.compileQueryParser = function compileQueryParser(val) {
+165:  if (typeof val === 'function') {
+180:      throw new TypeError('unknown value for query parser function: ' + val);
+187: * Compile "proxy trust" value to function.
+194:exports.compileTrust = function(val) {
+195:  if (typeof val === 'function') return val;
+199:    return function(){ return true };
+204:    return function(a, i){ return i < val };
+210:      .map(function (v) { return v.trim() })
+225:exports.setCharset = function setCharset(type, charset) {
+241: * Create an ETag generator function, generating ETags with
+245: * @return {function}
+249:function createETagGenerator (options) {
+250:  return function generateETag (body, encoding) {
+267:function parseExtendedQueryString(str) {
+lib/application.js
+59:app.init = function init() {
+72:    get: function getrouter() {
+90:app.defaultConfiguration = function defaultConfiguration() {
+109:  this.on('mount', function onmount(parent) {
+112:      && typeof parent.settings['trust proxy fn'] === 'function') {
+152:app.handle = function handle(req, res, callback) {
+190:app.use = function use(fn) {
+196:  if (typeof fn !== 'function') {
+204:    if (typeof arg !== 'function') {
+213:    throw new TypeError('app.use() requires a middleware function')
+219:  fns.forEach(function (fn) {
+230:    router.use(path, function mounted_app(req, res, next) {
+232:      fn.handle(req, res, function (err) {
+256:app.route = function route(path) {
+294:app.engine = function engine(ext, fn) {
+295:  if (typeof fn !== 'function') {
+296:    throw new Error('callback function required');
+322:app.param = function param(name, fn) {
+351:app.set = function set(setting, val) {
+399:app.path = function path() {
+420:app.enabled = function enabled(setting) {
+439:app.disabled = function disabled(setting) {
+451:app.enable = function enable(setting) {
+463:app.disable = function disable(setting) {
+471:methods.forEach(function (method) {
+472:  app[method] = function (path) {
+494:app.all = function all(path) {
+512: *    app.render('email', { name: 'Tobi' }, function(err, html){
+522:app.render = function render(name, options, callback) {
+529:  // support callback function as second arg
+530:  if (typeof options === 'function') {
+598:app.listen = function listen() {
+601:  if (typeof args[args.length - 1] === 'function') {
+615:function logerror(err) {
+625:function tryRender(view, options, callback) {
+lib/request.js
+64:req.header = function header(name) {
+127:req.accepts = function(){
+140:req.acceptsEncodings = function(){
+171:req.acceptsCharsets = function(...charsets) {
+185:req.acceptsLanguages = function(...languages) {
+214:req.range = function range(size, options) {
+230:defineGetter(req, 'query', function query(){
+269:req.is = function is(types) {
+297:defineGetter(req, 'protocol', function protocol(){
+326:defineGetter(req, 'secure', function secure(){
+340:defineGetter(req, 'ip', function ip(){
+357:defineGetter(req, 'ips', function ips() {
+383:defineGetter(req, 'subdomains', function subdomains() {
+403:defineGetter(req, 'path', function path() {
+418:defineGetter(req, 'host', function host(){
+444:defineGetter(req, 'hostname', function hostname(){
+469:defineGetter(req, 'fresh', function(){
+497:defineGetter(req, 'stale', function stale(){
+508:defineGetter(req, 'xhr', function xhr(){
+514: * Helper function for creating a getter on an object.
+521:function defineGetter(obj, name, getter) {
+test/req.host.js
+6:describe('req', function(){
+7:  describe('.host', function(){
+8:    it('should return the Host when present', function(done){
+11:      app.use(function(req, res){
+21:    it('should strip port number', function(done){
+24:      app.use(function(req, res){
+34:    it('should return undefined otherwise', function(done){
+37:      app.use(function(req, res){
+47:    it('should work with IPv6 Host', function(done){
+50:      app.use(function(req, res){
+60:    it('should work with IPv6 Host and port', function(done){
+63:      app.use(function(req, res){
+73:    describe('when "trust proxy" is enabled', function(){
+74:      it('should respect X-Forwarded-Host', function(done){
+79:        app.use(function(req, res){
+90:      it('should ignore X-Forwarded-Host if socket addr not trusted', function(done){
+95:        app.use(function(req, res){
+106:      it('should default to Host', function(done){
+111:        app.use(function(req, res){
+121:      describe('when trusting hop count', function () {
+122:        it('should respect X-Forwarded-Host', function (done) {
+127:          app.use(function (req, res) {
+140:    describe('when "trust proxy" is disabled', function(){
+141:      it('should ignore X-Forwarded-Host', function(done){
+144:        app.use(function(req, res){
+test/req.path.js
+6:describe('req', function(){
+7:  describe('.path', function(){
+8:    it('should return the parsed pathname', function(done){
+11:      app.use(function(req, res){
+test/app.request.js
+7:describe('app', function(){
+8:  describe('.request', function(){
+9:    it('should extend the request prototype', function(done){
+12:      app.request.querystring = function(){
+16:      app.use(function(req, res){
+25:    it('should only extend for the referenced app', function (done) {
+30:      app1.request.foobar = function () {
+34:      app1.get('/', function (req, res) {
+38:      app2.get('/', function (req, res) {
+48:        .expect(500, /(?:not a function|has no method)/, cb)
+51:    it('should inherit to sub apps', function (done) {
+56:      app1.request.foobar = function () {
+62:      app1.get('/', function (req, res) {
+66:      app2.get('/', function (req, res) {
+79:    it('should allow sub app to override', function (done) {
+84:      app1.request.foobar = function () {
+88:      app2.request.foobar = function () {
+94:      app1.get('/', function (req, res) {
+98:      app2.get('/', function (req, res) {
+111:    it('should not pollute parent app', function (done) {
+116:      app1.request.foobar = function () {
+120:      app2.request.foobar = function () {
+126:      app1.get('/sub/foo', function (req, res) {
+130:      app2.get('/', function (req, res) {
+test/req.acceptsCharsets.js
+6:describe('req', function(){
+7:  describe('.acceptsCharsets(type)', function(){
+8:    describe('when Accept-Charset is not present', function(){
+9:      it('should return true', function(done){
+12:        app.use(function(req, res, next){
+22:    describe('when Accept-Charset is present', function () {
+23:      it('should return true', function (done) {
+26:        app.use(function(req, res, next){
+36:      it('should return false otherwise', function(done){
+39:        app.use(function(req, res, next){
+49:      it('should return the best matching charset from multiple inputs', function (done) {
+52:        app.use(function(req, res, next){
+test/express.text.js
+9:describe('express.text()', function () {
+10:  before(function () {
+14:  it('should parse text/plain', function (done) {
+22:  it('should 400 when invalid content-length', function (done) {
+25:    app.use(function (req, res, next) {
+32:    app.post('/', function (req, res) {
+43:  it('should handle Content-Length: 0', function (done) {
+51:  it('should handle empty message-body', function (done) {
+60:  it('should handle duplicated middleware', function (done) {
+66:    app.post('/', function (req, res) {
+77:  describe('with defaultCharset option', function () {
+78:    it('should change default charset', function (done) {
+86:    it('should honor content-type charset', function (done) {
+95:  describe('with limit option', function () {
+96:    it('should 413 when over limit with Content-Length', function (done) {
+106:    it('should 413 when over limit with chunked encoding', function (done) {
+116:    it('should 413 when inflated body over limit', function (done) {
+125:    it('should accept number of bytes', function (done) {
+134:    it('should not change when options altered', function (done) {
+148:    it('should not hang response', function (done) {
+159:    it('should not error when inflating', function (done) {
+165:      setTimeout(function () {
+171:  describe('with inflate option', function () {
+172:    describe('when false', function () {
+173:      before(function () {
+177:      it('should not accept content-encoding', function (done) {
+186:    describe('when true', function () {
+187:      before(function () {
+191:      it('should accept content-encoding', function (done) {
+201:  describe('with type option', function () {
+202:    describe('when "text/html"', function () {
+203:      before(function () {
+207:      it('should parse for custom type', function (done) {
+215:      it('should ignore standard type', function (done) {
+224:    describe('when ["text/html", "text/plain"]', function () {
+225:      before(function () {
+229:      it('should parse "text/html"', function (done) {
+237:      it('should parse "text/plain"', function (done) {
+245:      it('should ignore "text/xml"', function (done) {
+254:    describe('when a function', function () {
+255:      it('should parse when truthy value returned', function (done) {
+258:        function accept (req) {
+269:      it('should work without content-type', function (done) {
+272:        function accept (req) {
+281:      it('should not invoke without a body', function (done) {
+284:        function accept (req) {
+295:  describe('with verify option', function () {
+296:    it('should assert value is function', function () {
+298:        /TypeError: option verify must be function/)
+301:    it('should error from verify', function (done) {
+303:        verify: function (req, res, buf) {
+315:    it('should allow custom codes', function (done) {
+317:        verify: function (req, res, buf) {
+332:    it('should allow pass-through', function (done) {
+334:        verify: function (req, res, buf) {
+346:    it('should 415 on unknown charset prior to verify', function (done) {
+348:        verify: function (req, res, buf) {
+360:  describe('async local storage', function () {
+361:    before(function () {
+365:      app.use(function (req, res, next) {
+372:      app.use(function (req, res, next) {
+382:      app.use(function (err, req, res, next) {
+393:      app.post('/', function (req, res) {
+400:    it('should persist store', function (done) {
+411:    it('should persist store when unmatched content-type', function (done) {
+421:    it('should persist store when inflated', function (done) {
+432:    it('should persist store when inflate error', function (done) {
+442:    it('should persist store when limit exceeded', function (done) {
+453:  describe('charset', function () {
+454:    before(function () {
+458:    it('should parse utf-8', function (done) {
+465:    it('should parse codepage charsets', function (done) {
+472:    it('should parse when content-length != char length', function (done) {
+480:    it('should default to utf-8', function (done) {
+487:    it('should 415 on unknown charset', function (done) {
+495:  describe('encoding', function () {
+496:    before(function () {
+500:    it('should parse without encoding', function (done) {
+507:    it('should support identity encoding', function (done) {
+515:    it('should support gzip encoding', function (done) {
+523:    it('should support deflate encoding', function (done) {
+531:    it('should be case-insensitive', function (done) {
+539:    it('should 415 on unknown encoding', function (done) {
+549:function createApp (options) {
+554:  app.use(function (err, req, res, next) {
+561:  app.post('/', function (req, res) {
+test/res.type.js
+6:describe('res', function(){
+7:  describe('.type(str)', function(){
+8:    it('should set the Content-Type based on a filename', function(done){
+11:      app.use(function(req, res){
+21:    it('should default to application/octet-stream', function(done){
+24:      app.use(function(req, res){
+33:    it('should set the Content-Type with type/subtype', function(done){
+36:      app.use(function(req, res){
+46:    describe('edge cases', function(){
+47:      it('should handle empty string gracefully', function(done){
+50:        app.use(function(req, res){
+60:      it('should handle file extension with dots', function(done){
+63:        app.use(function(req, res){
+73:      it('should handle multiple file extensions', function(done){
+76:        app.use(function(req, res){
+86:      it('should handle uppercase extensions', function(done){
+89:        app.use(function(req, res){
+99:      it('should handle extension with special characters', function(done){
+102:        app.use(function(req, res){
+test/req.is.js
+8:describe('req.is()', function () {
+9:  it('should return null when the request has no body, even if content-type matches', function (done) {
+12:    app.use(function (req, res) {
+22:  describe('when given a mime type', function () {
+23:    it('should return the type when matching', function (done) {
+26:      app.use(function (req, res) {
+37:    it('should return false when not matching', function (done) {
+40:      app.use(function (req, res) {
+51:    it('should return false when none in list matches', function (done) {
+54:      app.use(function (req, res) {
+65:    it('should ignore charset', function (done) {
+68:      app.use(function (req, res) {
+80:  describe('when content-type is not present', function(){
+81:    it('should return false for single type', function (done) {
+84:      app.use(function (req, res) {
+96:    it('should return false for multiple types', function (done) {
+99:      app.use(function (req, res) {
+112:  describe('when given an extension', function(){
+113:    it('should lookup the mime type', function (done) {
+116:      app.use(function (req, res) {
+127:    it('should lookup the first matching extension from list', function (done) {
+131:      app.use(function (req, res) {
+149:  describe('when given */subtype', function(){
+150:    it('should return the full type when matching', function (done) {
+153:      app.use(function (req, res) {
+164:    it('should return false when not matching', function (done) {
+167:      app.use(function (req, res) {
+178:    it('should ignore charset', function (done) {
+181:      app.use(function (req, res) {
+193:  describe('when given type/*', function(){
+194:    it('should return the full type when matching', function (done) {
+197:      app.use(function (req, res) {
+208:    it('should return false when not matching', function (done) {
+211:      app.use(function (req, res) {
+222:    it('should ignore charset', function (done) {
+225:      app.use(function (req, res) {
+237:  describe('when given an array of types', function () {
+238:    it('should return the first match when multiple types match', function (done) {
+241:      app.use(function (req, res) {
+258:    it('should not flatten the argument', function (done) {
+261:      app.use(function (req, res) {
+273:  it('should match wildcards in list and return full type or false', function (done){
+277:    app.use(function (req, res) {
+test/req.signedCookies.js
+7:describe('req', function(){
+8:  describe('.signedCookies', function(){
+9:    it('should return a signed JSON cookie', function(done){
+14:      app.use(function(req, res){
+25:      .end(function(err, res){
+test/req.ip.js
+6:describe('req', function(){
+7:  describe('.ip', function(){
+8:    describe('when X-Forwarded-For is present', function(){
+9:      describe('when "trust proxy" is enabled', function(){
+10:        it('should return the client addr', function(done){
+15:          app.use(function(req, res, next){
+25:        it('should return the addr after trusted proxy based on count', function (done) {
+30:          app.use(function(req, res, next){
+40:        it('should return the addr after trusted proxy based on list', function (done) {
+45:          app.get('/', function (req, res) {
+55:        it('should return the addr after trusted proxy, from sub app', function (done) {
+62:          sub.use(function (req, res, next) {
+73:      describe('when "trust proxy" is disabled', function(){
+74:        it('should return the remote address', function(done){
+77:          app.use(function(req, res, next){
+88:    describe('when X-Forwarded-For is not present', function(){
+89:      it('should return the remote address', function(done){
+94:        app.use(function(req, res, next){
+109:function getExpectedClientAddress(server) {
+test/res.attachment.js
+8:describe('res', function(){
+9:  describe('.attachment()', function(){
+10:    it('should Content-Disposition to attachment', function(done){
+13:      app.use(function(req, res){
+23:  describe('.attachment(filename)', function(){
+24:    it('should add the filename param', function(done){
+27:      app.use(function(req, res){
+37:    it('should quote file names that are not a valid token', function(done){
+40:      app.use(function(req, res){
+50:    it('should handle an empty file name', function(done){
+53:      app.use(function(req, res){
+63:    it('should set the Content-Type', function(done){
+66:      app.use(function(req, res){
+77:  describe('.attachment(utf8filename)', function(){
+78:    it('should add the filename and filename* params', function(done){
+81:      app.use(function(req, res){
+92:    it('should encode latin1 file names with an ASCII fallback and filename* param', function(done){
+95:      app.use(function(req, res){
+106:    it('should set the Content-Type', function(done){
+109:      app.use(function(req, res){
+test/req.xhr.js
+6:describe('req', function(){
+7:  describe('.xhr', function(){
+8:    before(function () {
+10:      this.app.get('/', function (req, res) {
+15:    it('should return true when X-Requested-With is xmlhttprequest', function(done){
+22:    it('should case-insensitive', function(done){
+29:    it('should return false otherwise', function(done){
+36:    it('should return false when not present', function(done){
+test/req.protocol.js
+6:describe('req', function(){
+7:  describe('.protocol', function(){
+8:    it('should return the protocol string', function(done){
+11:      app.use(function(req, res){
+20:    describe('when "trust proxy" is enabled', function(){
+21:      it('should respect X-Forwarded-Proto', function(done){
+26:        app.use(function(req, res){
+36:      it('should default to the socket addr if X-Forwarded-Proto not present', function(done){
+41:        app.use(function(req, res){
+51:      it('should ignore X-Forwarded-Proto if socket addr not trusted', function(done){
+56:        app.use(function(req, res){
+66:      it('should default to http', function(done){
+71:        app.use(function(req, res){
+80:      describe('when trusting hop count', function () {
+81:        it('should respect X-Forwarded-Proto', function (done) {
+86:          app.use(function (req, res) {
+98:    describe('when "trust proxy" is disabled', function(){
+99:      it('should ignore X-Forwarded-Proto', function(done){
+102:        app.use(function(req, res){
+test/Route.js
+9:describe('Route', function(){
+10:  it('should work without handlers', function(done) {
+16:  it('should not stack overflow with a large sync stack', function (done) {
+22:    route.get(function (req, res, next) {
+28:      route.all(function (req, res, next) {
+34:    route.get(function (req, res, next) {
+39:    route.dispatch(req, {}, function (err) {
+47:  describe('.all', function(){
+48:    it('should add handler', function(done){
+52:      route.all(function(req, res, next) {
+57:      route.dispatch(req, {}, function (err) {
+64:    it('should handle VERBS', function(done) {
+67:      var cb = after(methods.length, function (err) {
+73:      route.all(function(req, res, next) {
+78:      methods.forEach(function testMethod(method) {
+84:    it('should stack', function(done) {
+88:      route.all(function(req, res, next) {
+93:      route.all(function(req, res, next) {
+98:      route.dispatch(req, {}, function (err) {
+106:  describe('.VERB', function(){
+107:    it('should support .get', function(done){
+111:      route.get(function(req, res, next) {
+116:      route.dispatch(req, {}, function (err) {
+123:    it('should limit to just .VERB', function(done){
+127:      route.get(function () {
+131:      route.post(function(req, res, next) {
+136:      route.dispatch(req, {}, function (err) {
+143:    it('should allow fallthrough', function(done){
+147:      route.get(function(req, res, next) {
+152:      route.all(function(req, res, next) {
+157:      route.get(function(req, res, next) {
+162:      route.dispatch(req, {}, function (err) {
+170:  describe('errors', function(){
+171:    it('should handle errors via arity 4 functions', function(done){
+175:      route.all(function(req, res, next){
+179:      route.all(function(req, res, next){
+184:      route.all(function(err, req, res, next){
+189:      route.dispatch(req, {}, function (err) {
+197:    it('should handle throw', function(done) {
+201:      route.all(function () {
+205:      route.all(function(req, res, next){
+210:      route.all(function(err, req, res, next){
+215:      route.dispatch(req, {}, function (err) {
+223:    it('should handle throwing inside error handlers', function(done) {
+227:      route.get(function () {
+231:      route.get(function(err, req, res, next){
+235:      route.get(function(err, req, res, next){
+240:      route.dispatch(req, {}, function (err) {
+247:    it('should handle throw in .all', function(done) {
+251:      route.all(function(req, res, next){
+255:      route.dispatch(req, {}, function(err){
+262:    it('should handle single error handler', function(done) {
+266:      route.all(function(err, req, res, next){
+test/express.static.js
+16:describe('express.static()', function () {
+17:  describe('basic operations', function () {
+18:    before(function () {
+22:    it('should require root path', function () {
+26:    it('should require root path to be string', function () {
+30:    it('should serve static files', function (done) {
+36:    it('should support nesting', function (done) {
+42:    it('should set Content-Type', function (done) {
+49:    it('should set Last-Modified', function (done) {
+56:    it('should default max-age=0', function (done) {
+63:    it('should support urlencoded pathnames', function (done) {
+69:    it('should not choke on auth-looking URL', function (done) {
+75:    it('should support index.html', function (done) {
+83:    it('should support ../', function (done) {
+89:    it('should support HEAD', function (done) {
+97:    it('should skip POST requests', function (done) {
+103:    it('should support conditional requests', function (done) {
+108:        .end(function (err, res) {
+117:    it('should support precondition checks', function (done) {
+124:    it('should serve zero-length files', function (done) {
+130:    it('should ignore hidden files', function (done) {
+137:  (skipRelative ? describe.skip : describe)('current dir', function () {
+138:    before(function () {
+142:    it('should be served with "."', function (done) {
+150:  describe('acceptRanges', function () {
+151:    describe('when false', function () {
+152:      it('should not include Accept-Ranges', function (done) {
+159:      it('should ignore Rage request header', function (done) {
+169:    describe('when true', function () {
+170:      it('should include Accept-Ranges', function (done) {
+177:      it('should obey Rage request header', function (done) {
+188:  describe('cacheControl', function () {
+189:    describe('when false', function () {
+190:      it('should not include Cache-Control', function (done) {
+197:      it('should ignore maxAge', function (done) {
+205:    describe('when true', function () {
+206:      it('should include Cache-Control', function (done) {
+215:  describe('extensions', function () {
+216:    it('should be not be enabled by default', function (done) {
+222:    it('should be configurable', function (done) {
+228:    it('should support disabling extensions', function (done) {
+234:    it('should support fallbacks', function (done) {
+240:    it('should 404 if nothing found', function (done) {
+247:  describe('fallthrough', function () {
+248:    it('should default to true', function (done) {
+254:    describe('when true', function () {
+255:      before(function () {
+259:      it('should fall-through when OPTIONS request', function (done) {
+265:      it('should fall-through when URL malformed', function (done) {
+271:      it('should fall-through when traversing past root', function (done) {
+277:      it('should fall-through when URL too long', function (done) {
+282:        app.use(function (req, res, next) {
+291:      describe('with redirect: true', function () {
+292:        before(function () {
+296:        it('should fall-through when directory', function (done) {
+302:        it('should redirect when directory without slash', function (done) {
+309:      describe('with redirect: false', function () {
+310:        before(function () {
+314:        it('should fall-through when directory', function (done) {
+320:        it('should fall-through when directory without slash', function (done) {
+328:    describe('when false', function () {
+329:      before(function () {
+333:      it('should 405 when OPTIONS request', function (done) {
+340:      it('should 400 when URL malformed', function (done) {
+346:      it('should 403 when traversing past root', function (done) {
+352:      it('should 404 when URL too long', function (done) {
+357:        app.use(function (req, res, next) {
+366:      describe('with redirect: true', function () {
+367:        before(function () {
+371:        it('should 404 when directory', function (done) {
+377:        it('should redirect when directory without slash', function (done) {
+384:      describe('with redirect: false', function () {
+385:        before(function () {
+389:        it('should 404 when directory', function (done) {
+395:        it('should 404 when directory without slash', function (done) {
+404:  describe('hidden files', function () {
+405:    before(function () {
+409:    it('should be served when dotfiles: "allow" is given', function (done) {
+418:  describe('immutable', function () {
+419:    it('should default to false', function (done) {
+425:    it('should set immutable directive in Cache-Control', function (done) {
+432:  describe('lastModified', function () {
+433:    describe('when false', function () {
+434:      it('should not include Last-Modified', function (done) {
+442:    describe('when true', function () {
+443:      it('should include Last-Modified', function (done) {
+452:  describe('maxAge', function () {
+453:    it('should accept string', function (done) {
+460:    it('should be reasonable when infinite', function (done) {
+468:  describe('redirect', function () {
+469:    before(function () {
+471:      this.app.use(function (req, res, next) {
+479:    it('should redirect directories', function (done) {
+486:    it('should include HTML link', function (done) {
+493:    it('should redirect directories with query string', function (done) {
+500:    it('should not redirect to protocol-relative locations', function (done) {
+507:    it('should ensure redirect URL is properly encoded', function (done) {
+515:    it('should respond with default Content-Security-Policy', function (done) {
+522:    it('should not redirect incorrectly', function (done) {
+528:    describe('when false', function () {
+529:      before(function () {
+533:      it('should disable redirect', function (done) {
+541:  describe('setHeaders', function () {
+542:    before(function () {
+544:      this.app.use(express.static(fixtures, { 'setHeaders': function (res) {
+549:    it('should reject non-functions', function () {
+550:      assert.throws(express.static.bind(null, fixtures, { 'setHeaders': 3 }), /setHeaders.*function/)
+553:    it('should get called when sending file', function (done) {
+560:    it('should not get called on 404', function (done) {
+567:    it('should not get called on redirect', function (done) {
+575:  describe('when traversing past root', function () {
+576:    before(function () {
+580:    it('should catch urlencoded ../', function (done) {
+586:    it('should not allow root path disclosure', function (done) {
+593:  describe('when request has "Range" header', function () {
+594:    before(function () {
+598:    it('should support byte ranges', function (done) {
+605:    it('should be inclusive', function (done) {
+612:    it('should set Content-Range', function (done) {
+619:    it('should support -n', function (done) {
+626:    it('should support n-', function (done) {
+633:    it('should respond with 206 "Partial Content"', function (done) {
+640:    it('should set Content-Length to the # of octets transferred', function (done) {
+648:    describe('when last-byte-pos of the range is greater than current length', function () {
+649:      it('is taken to be equal to one less than the current length', function (done) {
+656:      it('should adapt the Content-Length accordingly', function (done) {
+665:    describe('when the first- byte-pos of the range is greater than the current length', function () {
+666:      it('should respond with 416', function (done) {
+673:      it('should include a Content-Range header of complete length', function (done) {
+682:    describe('when syntactically invalid', function () {
+683:      it('should respond with 200 and the entire contents', function (done) {
+692:  describe('when index at mount point', function () {
+693:    before(function () {
+698:    it('should redirect correctly', function (done) {
+706:  describe('when mounted', function () {
+707:    before(function () {
+712:    it('should redirect relative to the originalUrl', function (done) {
+719:    it('should not choke on auth-looking URL', function (done) {
+732:  describe('when mounted "root" as a file', function () {
+733:    before(function () {
+738:    it('should load the file when on trailing slash', function (done) {
+744:    it('should 404 when trailing slash', function (done) {
+751:  describe('when responding non-2xx or 304', function () {
+752:    it('should not alter the status', function (done) {
+755:      app.use(function (req, res, next) {
+767:  describe('when index file serving disabled', function () {
+768:    before(function () {
+771:      this.app.use(function (req, res, next) {
+776:    it('should next() on directory', function (done) {
+782:    it('should redirect to trailing slash', function (done) {
+789:    it('should next() on mount point', function (done) {
+795:    it('should redirect to trailing slash mount point', function (done) {
+804:function createApp (dir, options, fn) {
+810:  app.use(function (req, res, next) {
+test/app.head.js
+7:describe('HEAD', function(){
+8:  it('should default to GET', function(done){
+11:    app.get('/tobi', function(req, res){
+21:  it('should output the same headers as GET requests', function(done){
+24:    app.get('/tobi', function(req, res){
+31:    .expect(200, function(err, res){
+36:      .expect(200, function(err, res){
+47:describe('app.head()', function(){
+48:  it('should override', function(done){
+51:    app.head('/tobi', function(req, res){
+56:    app.get('/tobi', function(req, res){
+test/req.accepts.js
+6:describe('req', function(){
+7:  describe('.accepts(type)', function(){
+8:    it('should return true when Accept is not present', function(done){
+11:      app.use(function(req, res, next){
+20:    it('should return true when present', function(done){
+23:      app.use(function(req, res, next){
+33:    it('should return false otherwise', function(done){
+36:      app.use(function(req, res, next){
+47:  it('should accept an argument list of type names', function(done){
+50:    app.use(function(req, res, next){
+60:  describe('.accepts(types)', function(){
+61:    it('should return the first when Accept is not present', function(done){
+64:      app.use(function(req, res, next){
+73:    it('should return the first acceptable type', function(done){
+76:      app.use(function(req, res, next){
+86:    it('should return false when no match is made', function(done){
+89:      app.use(function(req, res, next){
+99:    it('should take quality into account', function(done){
+102:      app.use(function(req, res, next){
+112:    it('should return the first acceptable type with canonical mime types', function(done){
+115:      app.use(function(req, res, next){
+test/req.ips.js
+6:describe('req', function(){
+7:  describe('.ips', function(){
+8:    describe('when X-Forwarded-For is present', function(){
+9:      describe('when "trust proxy" is enabled', function(){
+10:        it('should return an array of the specified addresses', function(done){
+15:          app.use(function(req, res, next){
+25:        it('should stop at first untrusted', function(done){
+30:          app.use(function(req, res, next){
+41:      describe('when "trust proxy" is disabled', function(){
+42:        it('should return an empty array', function(done){
+45:          app.use(function(req, res, next){
+57:    describe('when X-Forwarded-For is not present', function(){
+58:      it('should return []', function(done){
+61:        app.use(function(req, res, next){
+test/regression.js
+6:describe('throw after .end()', function(){
+7:  it('should fail gracefully', function(done){
+10:    app.get('/', function(req, res){
+test/res.render.js
+8:describe('res', function(){
+9:  describe('.render(name)', function(){
+10:    it('should support absolute paths', function(done){
+15:      app.use(function(req, res){
+24:    it('should support absolute paths with "view engine"', function(done){
+30:      app.use(function(req, res){
+39:    it('should error without "view engine" set and file extension to a non-engine module', function (done) {
+44:      app.use(function (req, res) {
+53:    it('should error without "view engine" set and no file extension', function (done) {
+58:      app.use(function(req, res){
+67:    it('should forward errors for a missing view engine module', function(done){
+72:      app.use(function (req, res) {
+76:      app.use(function (err, req, res, next) {
+91:    it('should expose app.locals', function(done){
+97:      app.use(function(req, res){
+106:    it('should expose app.locals with `name` property', function(done){
+112:      app.use(function(req, res){
+121:    it('should support index.<engine>', function(done){
+127:      app.use(function(req, res){
+136:    describe('when an error occurs', function(){
+137:      it('should next(err)', function(done){
+142:        app.use(function(req, res){
+146:        app.use(function(err, req, res, next){
+156:    describe('when "view engine" is given', function(){
+157:      it('should render the template', function(done){
+163:        app.use(function(req, res){
+173:    describe('when "views" is given', function(){
+174:      it('should lookup the file in the path', function(done){
+179:        app.use(function(req, res){
+188:      describe('when array of paths', function(){
+189:        it('should lookup the file in the path', function(done){
+198:          app.use(function(req, res){
+207:        it('should lookup in later paths until found', function(done){
+216:          app.use(function(req, res){
+228:  describe('.render(name, option)', function(){
+229:    it('should render the template', function(done){
+236:      app.use(function(req, res){
+245:    it('should expose app.locals', function(done){
+251:      app.use(function(req, res){
+260:    it('should expose res.locals', function(done){
+265:      app.use(function(req, res){
+275:    it('should give precedence to res.locals over app.locals', function(done){
+281:      app.use(function(req, res){
+291:    it('should give precedence to res.render() locals over res.locals', function(done){
+297:      app.use(function(req, res){
+307:    it('should give precedence to res.render() locals over app.locals', function(done){
+314:      app.use(function(req, res){
+324:  describe('.render(name, options, fn)', function(){
+325:    it('should pass the resulting string', function(done){
+330:      app.use(function(req, res){
+332:        res.render('user.tmpl', { user: tobi }, function (err, html) {
+344:  describe('.render(name, fn)', function(){
+345:    it('should pass the resulting string', function(done){
+350:      app.use(function(req, res){
+352:        res.render('user.tmpl', function (err, html) {
+363:    describe('when an error occurs', function(){
+364:      it('should pass it to the callback', function(done){
+369:        app.use(function(req, res){
+370:          res.render('user.tmpl', function (err) {
+385:function createApp() {
+test/support/tmpl.js
+5:module.exports = function renderFile(fileName, options, callback) {
+6:  function onReadFile(err, str) {
+25:function generateVariableLookup(data) {
+26:  return function variableLookup(str, path) {
+test/support/utils.js
+25: * @returns {function}
+28:function shouldHaveBody (buf) {
+29:  return function (res) {
+42: * @returns {function}
+45:function shouldHaveHeader (header) {
+46:  return function (res) {
+54: * @returns {function}
+57:function shouldNotHaveBody () {
+58:  return function (res) {
+67: * @returns {function}
+69:function shouldNotHaveHeader(header) {
+70:  return function (res) {
+75:function getMajorVersion(versionString) {
+79:function shouldSkipQuery(versionString) {
+test/app.router.js
+11:describe('app.router', function () {
+12:  it('should restore req.params after leaving router', function (done) {
+16:    function handler1(req, res, next) {
+21:    function handler2(req, res) {
+25:    router.use(function (req, res, next) {
+39:  describe('methods', function () {
+40:    methods.forEach(function (method) {
+43:      it('should include ' + method.toUpperCase(), function (done) {
+49:        app[method]('/foo', function (req, res) {
+58:      it('should reject numbers for app.' + method, function () {
+60:        assert.throws(app[method].bind(app, '/', 3), /argument handler must be a function/);
+64:    it('should re-route when method is altered', function (done) {
+68:      app.use(function (req, res, next) {
+75:      app.delete('/', function (req, res) {
+94:  describe('decode params', function () {
+95:    it('should decode correct params', function (done) {
+98:      app.get('/:name', function (req, res) {
+107:    it('should not accept params in malformed paths', function (done) {
+110:      app.get('/:name', function (req, res) {
+119:    it('should not decode spaces', function (done) {
+122:      app.get('/:name', function (req, res) {
+131:    it('should work with unicode', function (done) {
+134:      app.get('/:name', function (req, res) {
+144:  it('should be .use()able', function (done) {
+149:    app.use(function (req, res, next) {
+154:    app.get('/', function (req, res, next) {
+159:    app.use(function (req, res, next) {
+169:  describe('when given a regexp', function () {
+170:    it('should match the pathname only', function (done) {
+173:      app.get(/^\/user\/[0-9]+$/, function (req, res) {
+182:    it('should populate req.params with the captures', function (done) {
+185:      app.get(/^\/user\/([0-9]+)\/(view|edit)?$/, function (req, res) {
+197:      it('should populate req.params with named captures', function (done) {
+201:        app.get(re, function (req, res) {
+213:    it('should ensure regexp matches path prefix', function (done) {
+217:      app.use(/\/api.*/, function (req, res, next) {
+221:      app.use(/api/, function (req, res, next) {
+225:      app.use(/\/test/, function (req, res, next) {
+229:      app.use(function (req, res) {
+235:        .expect(200, function (err) {
+243:  describe('case sensitivity', function () {
+244:    it('should be disabled by default', function (done) {
+247:      app.get('/user', function (req, res) {
+256:    describe('when "case sensitive routing" is enabled', function () {
+257:      it('should match identical casing', function (done) {
+262:        app.get('/uSer', function (req, res) {
+271:      it('should not match otherwise', function (done) {
+276:        app.get('/uSer', function (req, res) {
+287:  describe('params', function () {
+288:    it('should overwrite existing req.params by default', function (done) {
+292:      router.get('/:action', function (req, res) {
+303:    it('should allow merging existing req.params', function (done) {
+307:      router.get('/:action', function (req, res) {
+309:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+319:    it('should use params from router', function (done) {
+323:      router.get('/:thing', function (req, res) {
+325:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+335:    it('should merge numeric indices req.params', function (done) {
+339:      router.get(/^\/(.*)\.(.*)/, function (req, res) {
+341:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+351:    it('should merge numeric indices req.params when more in parent', function (done) {
+355:      router.get(/\/(.*)/, function (req, res) {
+357:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+367:    it('should merge numeric indices req.params when parent has same number', function (done) {
+371:      router.get(/\/name:(\w+)/, function (req, res) {
+373:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+383:    it('should ignore invalid incoming req.params', function (done) {
+387:      router.get('/:name', function (req, res) {
+389:        res.send(keys.map(function (k) { return [k, req.params[k]] }));
+392:      app.use('/user/', function (req, res, next) {
+402:    it('should restore req.params', function (done) {
+406:      router.get(/\/user:(\w+)\//, function (req, res, next) {
+410:      app.use(/\/user\/id:(\d+)/, function (req, res, next) {
+411:        router(req, res, function (err) {
+413:          res.send(keys.map(function (k) { return [k, req.params[k]] }));
+423:  describe('trailing slashes', function () {
+424:    it('should be optional by default', function (done) {
+427:      app.get('/user', function (req, res) {
+436:    describe('when "strict routing" is enabled', function () {
+437:      it('should match trailing slashes', function (done) {
+442:        app.get('/user/', function (req, res) {
+451:      it('should pass-through middleware', function (done) {
+456:        app.use(function (req, res, next) {
+461:        app.get('/user/', function (req, res) {
+471:      it('should pass-through mounted middleware', function (done) {
+476:        app.use('/user/', function (req, res, next) {
+481:        app.get('/user/test/', function (req, res) {
+491:      it('should match no slashes', function (done) {
+496:        app.get('/user', function (req, res) {
+505:      it('should match middleware when omitting the trailing slash', function (done) {
+510:        app.use('/user/', function (req, res) {
+519:      it('should match middleware', function (done) {
+524:        app.use('/user', function (req, res) {
+533:      it('should match middleware when adding the trailing slash', function (done) {
+538:        app.use('/user', function (req, res) {
+547:      it('should fail when omitting the trailing slash', function (done) {
+552:        app.get('/user/', function (req, res) {
+561:      it('should fail when adding the trailing slash', function (done) {
+566:        app.get('/user', function (req, res) {
+577:  it('should allow literal "."', function (done) {
+580:    app.get('/api/users/:from..:to', function (req, res) {
+592:  describe(':name', function () {
+593:    it('should denote a capture group', function (done) {
+596:      app.get('/user/:user', function (req, res) {
+605:    it('should match a single segment only', function (done) {
+608:      app.get('/user/:user', function (req, res) {
+617:    it('should allow several capture groups', function (done) {
+620:      app.get('/user/:user/:op', function (req, res) {
+629:    it('should work following a partial capture group', function (done) {
+633:      app.get('/user{s}/:user/:op', function (req, res) {
+646:    it('should work inside literal parenthesis', function (done) {
+649:      app.get('/:user\\(:op\\)', function (req, res) {
+658:    it('should work in array of paths', function (done) {
+662:      app.get(['/user/:user/poke', '/user/:user/pokes'], function (req, res) {
+676:  describe(':name?', function () {
+677:    it('should denote an optional capture group', function (done) {
+680:      app.get('/user/:user{/:op}', function (req, res) {
+690:    it('should populate the capture group', function (done) {
+693:      app.get('/user/:user{/:op}', function (req, res) {
+704:  describe(':name*', function () {
+705:    it('should match one segment', function (done) {
+708:      app.get('/user/*user', function (req, res) {
+717:    it('should match many segments', function (done) {
+720:      app.get('/user/*user', function (req, res) {
+729:    it('should match zero segments', function (done) {
+732:      app.get('/user{/*user}', function (req, res) {
+742:  describe(':name+', function () {
+743:    it('should match one segment', function (done) {
+746:      app.get('/user/*user', function (req, res) {
+755:    it('should match many segments', function (done) {
+758:      app.get('/user/*user', function (req, res) {
+767:    it('should not match zero segments', function (done) {
+770:      app.get('/user/*user', function (req, res) {
+780:  describe('.:name', function () {
+781:    it('should denote a format', function (done) {
+785:      app.get('/:name.:format', function (req, res) {
+799:  describe('.:name?', function () {
+800:    it('should denote an optional format', function (done) {
+804:      app.get('/:name{.:format}', function (req, res) {
+818:  describe('when next() is called', function () {
+819:    it('should continue lookup', function (done) {
+823:      app.get('/foo{/:bar}', function (req, res, next) {
+828:      app.get('/bar', function () {
+832:      app.get('/foo', function (req, res, next) {
+837:      app.get('/foo', function (req, res) {
+848:  describe('when next("route") is called', function () {
+849:    it('should jump to next route', function (done) {
+852:      function fn(req, res, next) {
+857:      app.get('/foo', fn, function (req, res) {
+861:      app.get('/foo', function (req, res) {
+872:  describe('when next("router") is called', function () {
+873:    it('should jump out of router', function (done) {
+877:      function fn(req, res, next) {
+882:      router.get('/foo', fn, function (req, res) {
+886:      router.get('/foo', function (req, res) {
+892:      app.get('/foo', function (req, res) {
+903:  describe('when next(err) is called', function () {
+904:    it('should break out of app.router', function (done) {
+908:      app.get('/foo{/:bar}', function (req, res, next) {
+913:      app.get('/bar', function () {
+917:      app.get('/foo', function (req, res, next) {
+922:      app.get('/foo', function () {
+926:      app.use(function (err, req, res, next) {
+938:    it('should call handler in same route, if exists', function (done) {
+941:      function fn1(req, res, next) {
+945:      function fn2(req, res, next) {
+949:      function fn3(err, req, res, next) {
+955:      app.use(function (err, req, res, next) {
+965:  describe('promise support', function () {
+966:    it('should pass rejected promise value', function (done) {
+970:      router.use(function createError(req, res, next) {
+974:      router.use(function sawError(err, req, res, next) {
+985:    it('should pass rejected promise without value', function (done) {
+989:      router.use(function createError(req, res, next) {
+993:      router.use(function sawError(err, req, res, next) {
+1004:    it('should ignore resolved promise', function (done) {
+1008:      router.use(function createError(req, res, next) {
+1013:      router.use(function () {
+1024:    describe('error handling', function () {
+1025:      it('should pass rejected promise value', function (done) {
+1029:        router.use(function createError(req, res, next) {
+1033:        router.use(function handleError(err, req, res, next) {
+1037:        router.use(function sawError(err, req, res, next) {
+1048:      it('should pass rejected promise without value', function (done) {
+1052:        router.use(function createError(req, res, next) {
+1056:        router.use(function handleError(err, req, res, next) {
+1060:        router.use(function sawError(err, req, res, next) {
+1071:      it('should ignore resolved promise', function (done) {
+1075:        router.use(function createError(req, res, next) {
+1079:        router.use(function handleError(err, req, res, next) {
+1084:        router.use(function () {
+1097:  it('should allow rewriting of the url', function (done) {
+1100:    app.get('/account/edit', function (req, res, next) {
+1106:    app.get('/user/:id/edit', function (req, res) {
+1115:  it('should run in order added', function (done) {
+1119:    app.get('/*path', function (req, res, next) {
+1124:    app.get('/user/:id', function (req, res, next) {
+1129:    app.use(function (req, res, next) {
+1134:    app.all('/user/:id', function (req, res, next) {
+1139:    app.get('/*splat', function (req, res, next) {
+1144:    app.use(function (req, res, next) {
+1154:  it('should be chainable', function () {
+1156:    assert.strictEqual(app.get('/', function () { }), app)
+1159:  it('should not use disposed router/middleware', function (done) {
+1165:    router.use(function (req, res, next) {
+1170:    app.use(function (req, res, next) {
+1174:    app.get('/', function (req, res, next) {
+1182:      .expect(function (res) {
+1187:      .expect(200, 'yee', function (err, res) {
+1192:        router.use(function (req, res, next) {
+1200:          .expect(function (res) {
+1210:function supportsRegexp(source) {
+test/view.js
+6:describe('View', function () {
+7:  it('should handle missing options object', function () {
+8:    assert.throws(function () {
+test/exports.js
+7:describe('exports', function(){
+8:  it('should expose Router', function(){
+9:    assert.strictEqual(typeof express.Router, 'function')
+12:  it('should expose json middleware', function () {
+13:    assert.equal(typeof express.json, 'function')
+17:  it('should expose raw middleware', function () {
+18:    assert.equal(typeof express.raw, 'function')
+22:  it('should expose static middleware', function () {
+23:    assert.equal(typeof express.static, 'function')
+27:  it('should expose text middleware', function () {
+28:    assert.equal(typeof express.text, 'function')
+32:  it('should expose urlencoded middleware', function () {
+33:    assert.equal(typeof express.urlencoded, 'function')
+37:  it('should expose the application prototype', function(){
+39:    assert.strictEqual(typeof express.application.set, 'function')
+42:  it('should expose the request prototype', function(){
+44:    assert.strictEqual(typeof express.request.accepts, 'function')
+47:  it('should expose the response prototype', function(){
+49:    assert.strictEqual(typeof express.response.send, 'function')
+52:  it('should permit modifying the .application prototype', function(){
+53:    express.application.foo = function(){ return 'bar'; };
+57:  it('should permit modifying the .request prototype', function(done){
+58:    express.request.foo = function(){ return 'bar'; };
+61:    app.use(function(req, res, next){
+70:  it('should permit modifying the .response prototype', function(done){
+71:    express.response.foo = function(){ this.send('bar'); };
+74:    app.use(function(req, res, next){
+test/res.locals.js
+6:describe('res', function(){
+7:  describe('.locals', function(){
+8:    it('should be empty by default', function(done){
+11:      app.use(function(req, res){
+21:  it('should work when mounted', function(done){
+27:    blog.use(function(req, res, next){
+32:    app.use(function(req, res){
+test/utils.js
+7:describe('utils.etag(body, encoding)', function(){
+8:  it('should support strings', function(){
+13:  it('should support utf8 strings', function(){
+18:  it('should support buffer', function(){
+23:  it('should support empty string', function(){
+48:describe('utils.setCharset(type, charset)', function () {
+49:  it('should do anything without type', function () {
+53:  it('should return type if not given charset', function () {
+57:  it('should keep charset if not given charset', function () {
+61:  it('should set charset', function () {
+65:  it('should override charset', function () {
+70:describe('utils.wetag(body, encoding)', function(){
+71:  it('should support strings', function(){
+76:  it('should support utf8 strings', function(){
+81:  it('should support buffer', function(){
+86:  it('should support empty string', function(){
+92:describe('utils.compileETag()', function () {
+93:  it('should return generateETag for true', function () {
+98:  it('should return undefined for false', function () {
+102:  it('should return generateETag for string values "strong" and "weak"', function () {
+107:  it('should throw for unknown string values', function () {
+111:  it('should throw for unsupported types like arrays and objects', function () {
+test/res.location.js
+8:describe('res', function(){
+9:  describe('.location(url)', function(){
+10:    it('should set the header', function(done){
+13:      app.use(function(req, res){
+23:    it('should preserve trailing slashes when not present', function(done){
+26:      app.use(function(req, res){
+36:    it('should encode "url"', function (done) {
+39:      app.use(function (req, res) {
+49:    it('should encode data uri', function (done) {
+51:      app.use(function (req, res) {
+61:    it('should consistently handle non-string input: boolean', function (done) {
+63:      app.use(function (req, res) {
+73:    it('should consistently handle non-string inputs: object', function (done) {
+75:      app.use(function (req, res) {
+85:    it('should consistently handle non-string inputs: array', function (done) {
+87:      app.use(function (req, res) {
+97:    it('should consistently handle empty string input', function (done) {
+99:      app.use(function (req, res) {
+111:      it('should accept an instance of URL', function (done) {
+114:        app.use(function(req, res){
+126:  describe('location header encoding', function() {
+127:    function createRedirectServerForDomain (domain) {
+129:      app.use(function (req, res) {
+141:    function testRequestedRedirect (app, inputUrl, expected, expectedHost, done) {
+150:        .end(function (err, res) {
+172:    it('should not touch already-encoded sequences in "url"', function (done) {
+183:    it('should consistently handle relative urls', function (done) {
+194:    it('should not encode urls in such a way that they can bypass redirect allow lists', function (done) {
+205:    it('should not be case sensitive', function (done) {
+216:    it('should work with https', function (done) {
+227:    it('should correctly encode schemaless paths', function (done) {
+238:    it('should keep backslashes in the path', function (done) {
+249:    it('should escape header splitting for old node versions', function (done) {
+260:    it('should encode unicode correctly', function (done) {
+271:    it('should encode unicode correctly even with a bad host', function (done) {
+282:    it('should work correctly despite using deprecated url.parse', function (done) {
+293:    it('should encode file uri path', function (done) {
+test/req.hostname.js
+6:describe('req', function(){
+7:  describe('.hostname', function(){
+8:    it('should return the Host when present', function(done){
+11:      app.use(function(req, res){
+21:    it('should strip port number', function(done){
+24:      app.use(function(req, res){
+34:    it('should return undefined otherwise', function(done){
+37:      app.use(function(req, res){
+47:    it('should work with IPv6 Host', function(done){
+50:      app.use(function(req, res){
+60:    it('should work with IPv6 Host and port', function(done){
+63:      app.use(function(req, res){
+73:    describe('when "trust proxy" is enabled', function(){
+74:      it('should respect X-Forwarded-Host', function(done){
+79:        app.use(function(req, res){
+90:      it('should ignore X-Forwarded-Host if socket addr not trusted', function(done){
+95:        app.use(function(req, res){
+106:      it('should default to Host', function(done){
+111:        app.use(function(req, res){
+121:      describe('when multiple X-Forwarded-Host', function () {
+122:        it('should use the first value', function (done) {
+127:          app.use(function (req, res) {
+138:        it('should remove OWS around comma', function (done) {
+143:          app.use(function (req, res) {
+154:        it('should strip port number', function (done) {
+159:          app.use(function (req, res) {
+172:    describe('when "trust proxy" is disabled', function(){
+173:      it('should ignore X-Forwarded-Host', function(done){
+176:        app.use(function(req, res){
+test/res.status.js
+5:describe('res', function () {
+6:  describe('.status(code)', function () {
+8:    it('should set the status code when valid', function (done) {
+11:      app.use(function (req, res) {
+20:    describe('accept valid ranges', function() {
+22:      it('should set the response status code to 101', function (done) {
+25:        app.use(function (req, res) {
+34:      it('should set the response status code to 201', function (done) {
+37:        app.use(function (req, res) {
+46:      it('should set the response status code to 302', function (done) {
+49:        app.use(function (req, res) {
+58:      it('should set the response status code to 403', function (done) {
+61:        app.use(function (req, res) {
+70:      it('should set the response status code to 501', function (done) {
+73:        app.use(function (req, res) {
+82:      it('should set the response status code to 700', function (done) {
+85:        app.use(function (req, res) {
+94:      it('should set the response status code to 800', function (done) {
+97:        app.use(function (req, res) {
+106:      it('should set the response status code to 900', function (done) {
+109:        app.use(function (req, res) {
+119:    describe('invalid status codes', function () {
+120:      it('should raise error for status code below 100', function (done) {
+123:        app.use(function (req, res) {
+132:      it('should raise error for status code above 999', function (done) {
+135:        app.use(function (req, res) {
+144:      it('should raise error for non-integer status codes', function (done) {
+147:        app.use(function (req, res) {
+156:      it('should raise error for undefined status code', function (done) {
+159:        app.use(function (req, res) {
+168:      it('should raise error for null status code', function (done) {
+171:        app.use(function (req, res) {
+180:      it('should raise error for string status code', function (done) {
+183:        app.use(function (req, res) {
+192:      it('should raise error for NaN status code', function (done) {
+195:        app.use(function (req, res) {
+test/res.format.js
+10:app1.use(function(req, res, next){
+12:    'text/plain': function(){
+16:    'text/html': function(){
+20:    'application/json': function(a, b, c){
+29:app1.use(function(err, req, res, next){
+37:app2.use(function(req, res, next){
+39:    text: function(){ res.send('hey') },
+40:    html: function(){ res.send('<p>hey</p>') },
+41:    json: function(){ res.send({ message: 'hey' }) }
+45:app2.use(function(err, req, res, next){
+52:app3.use(function(req, res, next){
+54:    text: function(){ res.send('hey') },
+55:    default: function (a, b, c) {
+66:app4.get('/', function (req, res) {
+68:    text: function(){ res.send('hey') },
+69:    html: function(){ res.send('<p>hey</p>') },
+70:    json: function(){ res.send({ message: 'hey' }) }
+74:app4.use(function(err, req, res, next){
+81:app5.use(function (req, res, next) {
+83:    default: function () { res.send('hey') }
+87:describe('res', function(){
+88:  describe('.format(obj)', function(){
+89:    describe('with canonicalized mime types', function(){
+93:    describe('with extnames', function(){
+97:    describe('with parameters', function(){
+100:      app.use(function(req, res, next){
+102:          'text/plain; charset=utf-8': function(){ res.send('hey') },
+103:          'text/html; foo=bar; bar=baz': function(){ res.send('<p>hey</p>') },
+104:          'application/json; q=0.5': function(){ res.send({ message: 'hey' }) }
+108:      app.use(function(err, req, res, next){
+116:    describe('given .default', function(){
+117:      it('should be invoked instead of auto-responding', function(done){
+124:      it('should work when only .default is provided', function (done) {
+131:      it('should be able to invoke other formatter', function (done) {
+134:        app.use(function (req, res, next) {
+136:            json: function () { res.send('json') },
+137:            default: function () {
+154:    describe('in router', function(){
+158:    describe('in router', function(){
+162:      router.get('/', function (req, res) {
+164:          text: function(){ res.send('hey') },
+165:          html: function(){ res.send('<p>hey</p>') },
+166:          json: function(){ res.send({ message: 'hey' }) }
+170:      router.use(function(err, req, res, next){
+182:function test(app) {
+183:  it('should utilize qvalues in negotiation', function(done){
+190:  it('should allow wildcard type/subtypes', function(done){
+197:  it('should default the Content-Type', function(done){
+205:  it('should set the correct charset for the Content-Type', function (done) {
+224:  it('should Vary: Accept', function(done){
+231:  describe('when Accept is not present', function(){
+232:    it('should invoke the first callback', function(done){
+239:  describe('when no match is made', function(){
+240:    it('should respond with 406 not acceptable', function(done){
+test/app.route.js
+6:describe('app.route', function(){
+7:  it('should return a new route', function(done){
+11:    .get(function(req, res) {
+14:    .post(function(req, res) {
+23:  it('should all .VERB after .all', function(done){
+27:    .all(function(req, res, next) {
+30:    .get(function(req, res) {
+33:    .post(function(req, res) {
+42:  it('should support dynamic routes', function(done){
+46:    .get(function(req, res) {
+55:  it('should not error on empty routes', function(done){
+65:  describe('promise support', function () {
+66:    it('should pass rejected promise value', function (done) {
+70:      route.all(function createError (req, res, next) {
+74:      route.all(function helloWorld (req, res) {
+78:      route.all(function handleError (err, req, res, next) {
+88:    it('should pass rejected promise without value', function (done) {
+92:      route.all(function createError (req, res, next) {
+96:      route.all(function helloWorld (req, res) {
+100:      route.all(function handleError (err, req, res, next) {
+110:    it('should ignore resolved promise', function (done) {
+114:      route.all(function createError (req, res, next) {
+119:      route.all(function () {
+128:    describe('error handling', function () {
+129:      it('should pass rejected promise value', function (done) {
+133:        route.all(function createError (req, res, next) {
+137:        route.all(function handleError (err, req, res, next) {
+141:        route.all(function handleError (err, req, res, next) {
+151:      it('should pass rejected promise without value', function (done) {
+155:        route.all(function createError (req, res, next) {
+159:        route.all(function handleError (err, req, res, next) {
+163:        route.all(function handleError (err, req, res, next) {
+173:      it('should ignore resolved promise', function (done) {
+177:        route.all(function createError (req, res, next) {
+181:        route.all(function handleError (err, req, res, next) {
+187:        route.all(function () {
+test/res.vary.js
+7:describe('res.vary()', function(){
+8:  describe('with no arguments', function(){
+9:    it('should throw error', function (done) {
+12:      app.use(function (req, res) {
+23:  describe('with an empty array', function(){
+24:    it('should not set Vary', function (done) {
+27:      app.use(function (req, res) {
+39:  describe('with an array', function(){
+40:    it('should set the values', function (done) {
+43:      app.use(function (req, res) {
+55:  describe('with a string', function(){
+56:    it('should set the value', function (done) {
+59:      app.use(function (req, res) {
+71:  describe('when the value is present', function(){
+72:    it('should not add it again', function (done) {
+75:      app.use(function (req, res) {
+test/app.locals.js
+6:describe('app', function(){
+7:  describe('.locals', function () {
+8:    it('should default object with null prototype', function () {
+15:    describe('.settings', function () {
+16:      it('should contain app settings ', function () {
+test/req.fresh.js
+7:describe('req', function(){
+8:  describe('.fresh', function(){
+9:    it('should return true when the resource is not modified', function(done){
+13:      app.use(function(req, res){
+24:    it('should return false when the resource is modified', function(done){
+27:      app.use(function(req, res){
+38:    it('should return false without response headers', function(done){
+42:      app.use(function(req, res){
+51:    it('should return true for a QUERY request with a body when the resource is not modified', function(done){
+58:      app.use(function(req, res){
+70:    it('should return false for a QUERY request with a body when the resource is modified', function(done){
+76:      app.use(function(req, res){
+88:    it('should ignore "If-Modified-Since" when "If-None-Match" is present', function(done) {
+94:      app.use(function(req, res) {
+test/express.json.js
+10:describe('express.json()', function () {
+11:  it('should parse JSON', function (done) {
+19:  it('should handle Content-Length: 0', function (done) {
+27:  it('should handle empty message-body', function (done) {
+35:  it('should handle no message-body', function (done) {
+44:  it('should 400 when only whitespace', function (done) {
+52:  it('should 400 when invalid content-length', function (done) {
+55:    app.use(function (req, res, next) {
+62:    app.post('/', function (req, res) {
+73:  it('should handle duplicated middleware', function (done) {
+79:    app.post('/', function (req, res) {
+90:  describe('when JSON is invalid', function () {
+91:    before(function () {
+95:    it('should 400 for bad token', function (done) {
+103:    it('should 400 for incomplete', function (done) {
+111:    it('should include original body on error object', function (done) {
+121:  describe('with limit option', function () {
+122:    it('should 413 when over limit with Content-Length', function (done) {
+132:    it('should 413 when over limit with chunked encoding', function (done) {
+143:    it('should 413 when inflated body over limit', function (done) {
+152:    it('should accept number of bytes', function (done) {
+161:    it('should not change when options altered', function (done) {
+175:    it('should not hang response', function (done) {
+186:    it('should not error when inflating', function (done) {
+196:  describe('with inflate option', function () {
+197:    describe('when false', function () {
+198:      before(function () {
+202:      it('should not accept content-encoding', function (done) {
+211:    describe('when true', function () {
+212:      before(function () {
+216:      it('should accept content-encoding', function (done) {
+226:  describe('with strict option', function () {
+227:    describe('when undefined', function () {
+228:      before(function () {
+232:      it('should 400 on primitives', function (done) {
+241:    describe('when false', function () {
+242:      before(function () {
+246:      it('should parse primitives', function (done) {
+255:    describe('when true', function () {
+256:      before(function () {
+260:      it('should not parse primitives', function (done) {
+268:      it('should not parse primitives with leading whitespaces', function (done) {
+276:      it('should allow leading whitespaces in JSON', function (done) {
+284:      it('should include correct message in stack trace', function (done) {
+297:  describe('with type option', function () {
+298:    describe('when "application/vnd.api+json"', function () {
+299:      before(function () {
+303:      it('should parse JSON for custom type', function (done) {
+311:      it('should ignore standard type', function (done) {
+320:    describe('when ["application/json", "application/vnd.api+json"]', function () {
+321:      before(function () {
+327:      it('should parse JSON for "application/json"', function (done) {
+335:      it('should parse JSON for "application/vnd.api+json"', function (done) {
+343:      it('should ignore "application/x-json"', function (done) {
+352:    describe('when a function', function () {
+353:      it('should parse when truthy value returned', function (done) {
+356:        function accept (req) {
+367:      it('should work without content-type', function (done) {
+370:        function accept (req) {
+379:      it('should not invoke without a body', function (done) {
+382:        function accept (req) {
+393:  describe('with verify option', function () {
+394:    it('should assert value if function', function () {
+396:        /TypeError: option verify must be function/)
+399:    it('should error from verify', function (done) {
+401:        verify: function (req, res, buf) {
+413:    it('should allow custom codes', function (done) {
+415:        verify: function (req, res, buf) {
+430:    it('should allow custom type', function (done) {
+432:        verify: function (req, res, buf) {
+447:    it('should include original body on error object', function (done) {
+449:        verify: function (req, res, buf) {
+462:    it('should allow pass-through', function (done) {
+464:        verify: function (req, res, buf) {
+476:    it('should work with different charsets', function (done) {
+478:        verify: function (req, res, buf) {
+489:    it('should 415 on unknown charset prior to verify', function (done) {
+491:        verify: function (req, res, buf) {
+503:  describe('async local storage', function () {
+504:    before(function () {
+508:      app.use(function (req, res, next) {
+515:      app.use(function (req, res, next) {
+525:      app.use(function (err, req, res, next) {
+536:      app.post('/', function (req, res) {
+543:    it('should persist store', function (done) {
+554:    it('should persist store when unmatched content-type', function (done) {
+565:    it('should persist store when inflated', function (done) {
+576:    it('should persist store when inflate error', function (done) {
+586:    it('should persist store when parse error', function (done) {
+596:    it('should persist store when limit exceeded', function (done) {
+607:  describe('charset', function () {
+608:    before(function () {
+612:    it('should parse utf-8', function (done) {
+619:    it('should parse utf-16', function (done) {
+626:    it('should parse when content-length != char length', function (done) {
+634:    it('should default to utf-8', function (done) {
+641:    it('should fail on unknown charset', function (done) {
+649:  describe('encoding', function () {
+650:    before(function () {
+654:    it('should parse without encoding', function (done) {
+661:    it('should support identity encoding', function (done) {
+669:    it('should support gzip encoding', function (done) {
+677:    it('should support deflate encoding', function (done) {
+685:    it('should be case-insensitive', function (done) {
+693:    it('should 415 on unknown encoding', function (done) {
+701:    it('should 400 on malformed encoding', function (done) {
+709:    it('should 413 when inflated value exceeds limit', function (done) {
+722:function createApp (options) {
+727:  app.use(function (err, req, res, next) {
+735:  app.post('/', function (req, res) {
+742:function parseError (str) {
+750:function shouldContainInBody (str) {
+751:  return function (res) {
+test/express.raw.js
+10:describe('express.raw()', function () {
+11:  before(function () {
+15:  it('should parse application/octet-stream', function (done) {
+23:  it('should 400 when invalid content-length', function (done) {
+26:    app.use(function (req, res, next) {
+33:    app.post('/', function (req, res) {
+48:  it('should handle Content-Length: 0', function (done) {
+56:  it('should handle empty message-body', function (done) {
+65:  it('should handle duplicated middleware', function (done) {
+71:    app.post('/', function (req, res) {
+86:  describe('with limit option', function () {
+87:    it('should 413 when over limit with Content-Length', function (done) {
+97:    it('should 413 when over limit with chunked encoding', function (done) {
+107:    it('should 413 when inflated body over limit', function (done) {
+116:    it('should accept number of bytes', function (done) {
+125:    it('should not change when options altered', function (done) {
+138:    it('should not hang response', function (done) {
+149:    it('should not error when inflating', function (done) {
+159:  describe('with inflate option', function () {
+160:    describe('when false', function () {
+161:      before(function () {
+165:      it('should not accept content-encoding', function (done) {
+174:    describe('when true', function () {
+175:      before(function () {
+179:      it('should accept content-encoding', function (done) {
+189:  describe('with type option', function () {
+190:    describe('when "application/vnd+octets"', function () {
+191:      before(function () {
+195:      it('should parse for custom type', function (done) {
+202:      it('should ignore standard type', function (done) {
+210:    describe('when ["application/octet-stream", "application/vnd+octets"]', function () {
+211:      before(function () {
+217:      it('should parse "application/octet-stream"', function (done) {
+224:      it('should parse "application/vnd+octets"', function (done) {
+231:      it('should ignore "application/x-foo"', function (done) {
+239:    describe('when a function', function () {
+240:      it('should parse when truthy value returned', function (done) {
+243:        function accept (req) {
+253:      it('should work without content-type', function (done) {
+256:        function accept (req) {
+265:      it('should not invoke without a body', function (done) {
+268:        function accept (req) {
+279:  describe('with verify option', function () {
+280:    it('should assert value is function', function () {
+282:        /TypeError: option verify must be function/)
+285:    it('should error from verify', function (done) {
+287:        verify: function (req, res, buf) {
+298:    it('should allow custom codes', function (done) {
+300:        verify: function (req, res, buf) {
+314:    it('should allow pass-through', function (done) {
+316:        verify: function (req, res, buf) {
+328:  describe('async local storage', function () {
+329:    before(function () {
+333:      app.use(function (req, res, next) {
+340:      app.use(function (req, res, next) {
+350:      app.use(function (err, req, res, next) {
+361:      app.post('/', function (req, res) {
+372:    it('should persist store', function (done) {
+383:    it('should persist store when unmatched content-type', function (done) {
+393:    it('should persist store when inflated', function (done) {
+404:    it('should persist store when inflate error', function (done) {
+414:    it('should persist store when limit exceeded', function (done) {
+425:  describe('charset', function () {
+426:    before(function () {
+430:    it('should ignore charset', function (done) {
+438:  describe('encoding', function () {
+439:    before(function () {
+443:    it('should parse without encoding', function (done) {
+450:    it('should support identity encoding', function (done) {
+458:    it('should support gzip encoding', function (done) {
+466:    it('should support deflate encoding', function (done) {
+474:    it('should be case-insensitive', function (done) {
+482:    it('should 415 on unknown encoding', function (done) {
+492:function createApp (options) {
+497:  app.use(function (err, req, res, next) {
+504:  app.post('/', function (req, res) {
+test/app.options.js
+6:describe('OPTIONS', function(){
+7:  it('should default to the routes defined', function(done){
+10:    app.post('/', function(){});
+11:    app.get('/users', function(req, res){});
+12:    app.put('/users', function(req, res){});
+20:  it('should only include each method once', function(done){
+23:    app.delete('/', function(){});
+24:    app.get('/users', function(req, res){});
+25:    app.put('/users', function(req, res){});
+26:    app.get('/users', function(req, res){});
+34:  it('should not be affected by app.all', function(done){
+37:    app.get('/', function(){});
+38:    app.get('/users', function(req, res){});
+39:    app.put('/users', function(req, res){});
+40:    app.all('/users', function(req, res, next){
+52:  it('should not respond if the path is not defined', function(done){
+55:    app.get('/users', function(req, res){});
+62:  it('should forward requests down the middleware chain', function(done){
+66:    router.get('/users', function(req, res){});
+68:    app.get('/other', function(req, res){});
+76:  describe('when error occurs in response handler', function () {
+77:    it('should pass error to callback', function (done) {
+81:      router.get('/users', function(req, res){});
+83:      app.use(function (req, res, next) {
+88:      app.use(function (err, req, res, next) {
+99:describe('app.options()', function(){
+100:  it('should override the default behavior', function(done){
+103:    app.options('/users', function(req, res){
+108:    app.get('/users', function(req, res){});
+109:    app.put('/users', function(req, res){});
+test/res.links.js
+6:describe('res', function(){
+7:  describe('.links(obj)', function(){
+8:    it('should set Link header field', function (done) {
+11:      app.use(function (req, res) {
+25:    it('should set Link header field for multiple calls', function (done) {
+28:      app.use(function (req, res) {
+47:    it('should set multiple links for single rel', function (done) {
+50:      app.use(function (req, res) {
+test/Router.js
+9:describe('Router', function () {
+10:  it('should return a function with router methods', function () {
+12:    assert(typeof router === 'function')
+14:    assert(typeof router.get === 'function')
+15:    assert(typeof router.handle === 'function')
+16:    assert(typeof router.use === 'function')
+19:  it('should support .use of other routers', function (done) {
+23:    another.get('/bar', function (req, res) {
+28:    router.handle({ url: '/foo/bar', method: 'GET' }, { end: done }, function () { });
+31:  it('should support dynamic routes', function (done) {
+35:    another.get('/:bar', function (req, res) {
+41:    router.handle({ url: '/test/route', method: 'GET' }, { end: done }, function () { });
+44:  it('should handle blank URL', function (done) {
+47:    router.use(function (req, res) {
+54:  it('should handle missing URL', function (done) {
+57:    router.use(function (req, res) {
+64:  it('handle missing method', function (done) {
+70:    route.post(function (req, res, next) { next(new Error('should not run')) })
+71:    route.all(function (req, res, next) {
+75:    route.get(function (req, res, next) { next(new Error('should not run')) })
+77:    router.get('/foo', function (req, res, next) { next(new Error('should not run')) })
+78:    router.use(function (req, res, next) {
+83:    router.handle({ url: '/foo' }, {}, function (err) {
+91:  it('should not stack overflow with many registered routes', function (done) {
+94:    var handler = function (req, res) { res.end(new Error('wrong handler')) };
+101:    router.get('/', function (req, res) {
+105:    router.handle({ url: '/', method: 'GET' }, { end: done }, function () { });
+108:  it('should not stack overflow with a large sync route stack', function (done) {
+113:    router.get('/foo', function (req, res, next) {
+119:      router.get('/foo', function (req, res, next) {
+125:    router.get('/foo', function (req, res) {
+130:    router.handle({ url: '/foo', method: 'GET' }, { end: done }, function (err) {
+135:  it('should not stack overflow with a large sync middleware stack', function (done) {
+140:    router.use(function (req, res, next) {
+146:      router.use(function (req, res, next) {
+152:    router.use(function (req, res) {
+157:    router.handle({ url: '/', method: 'GET' }, { end: done }, function (err) {
+162:  describe('.handle', function () {
+163:    it('should dispatch', function (done) {
+166:      router.route('/foo').get(function (req, res) {
+171:        send: function (val) {
+176:      router.handle({ url: '/foo', method: 'GET' }, res, function () { });
+180:  describe('.multiple callbacks', function () {
+181:    it('should throw if a callback is null', function () {
+182:      assert.throws(function () {
+188:    it('should throw if a callback is undefined', function () {
+189:      assert.throws(function () {
+195:    it('should throw if a callback is not a function', function () {
+196:      assert.throws(function () {
+198:        router.route('/foo').all('not a function');
+202:    it('should not throw if all callbacks are functions', function () {
+204:      router.route('/foo').all(function () { }).all(function () { });
+208:  describe('error', function () {
+209:    it('should skip non error middleware', function (done) {
+212:      router.get('/foo', function (req, res, next) {
+216:      router.get('/bar', function (req, res, next) {
+220:      router.use(function (req, res, next) {
+224:      router.use(function (err, req, res, next) {
+232:    it('should handle throwing inside routes with params', function (done) {
+235:      router.get('/foo/:id', function () {
+239:      router.use(function (req, res, next) {
+243:      router.use(function (err, req, res, next) {
+248:      router.handle({ url: '/foo/2', method: 'GET' }, {}, function () { });
+251:    it('should handle throwing in handler after async param', function (done) {
+254:      router.param('user', function (req, res, next, val) {
+255:        process.nextTick(function () {
+261:      router.use('/:user', function (req, res, next) {
+265:      router.use(function (err, req, res, next) {
+270:      router.handle({ url: '/bob', method: 'GET' }, {}, function () { });
+273:    it('should handle throwing inside error handlers', function (done) {
+276:      router.use(function (req, res, next) {
+280:      router.use(function (err, req, res, next) {
+284:      router.use(function (err, req, res, next) {
+293:  describe('FQDN', function () {
+294:    it('should not obscure FQDNs', function (done) {
+298:      router.use(function (req, res, next) {
+304:      router.handle(request, {}, function (err) {
+311:    it('should ignore FQDN in search', function (done) {
+315:      router.use('/proxy', function (req, res, next) {
+321:      router.handle(request, {}, function (err) {
+328:    it('should ignore FQDN in path', function (done) {
+332:      router.use('/proxy', function (req, res, next) {
+338:      router.handle(request, {}, function (err) {
+345:    it('should adjust FQDN req.url', function (done) {
+349:      router.use('/blog', function (req, res, next) {
+355:      router.handle(request, {}, function (err) {
+362:    it('should adjust FQDN req.url with multiple handlers', function (done) {
+366:      router.use(function (req, res, next) {
+372:      router.use('/blog', function (req, res, next) {
+378:      router.handle(request, {}, function (err) {
+385:    it('should adjust FQDN req.url with multiple routed handlers', function (done) {
+389:      router.use('/blog', function (req, res, next) {
+395:      router.use('/blog', function (req, res, next) {
+401:      router.use(function (req, res, next) {
+407:      router.handle(request, {}, function (err) {
+415:  describe('.all', function () {
+416:    it('should support using .all to capture all http verbs', function (done) {
+420:      router.all('/foo', function () { count++; });
+424:      methods.forEach(function testMethod(method) {
+425:        router.handle({ url: url, method: method }, {}, function () { });
+433:  describe('.use', function () {
+434:    it('should require middleware', function () {
+436:      assert.throws(function () { router.use('/') }, /argument handler is required/)
+439:    it('should reject string as middleware', function () {
+441:      assert.throws(function () { router.use('/', 'foo') }, /argument handler must be a function/)
+444:    it('should reject number as middleware', function () {
+446:      assert.throws(function () { router.use('/', 42) }, /argument handler must be a function/)
+449:    it('should reject null as middleware', function () {
+451:      assert.throws(function () { router.use('/', null) }, /argument handler must be a function/)
+454:    it('should reject Date as middleware', function () {
+456:      assert.throws(function () { router.use('/', new Date()) }, /argument handler must be a function/)
+459:    it('should be called for any URL', function (done) {
+463:      function no() {
+467:      router.use(function (req, res) {
+477:    it('should accept array of middleware', function (done) {
+481:      function fn1(req, res, next) {
+486:      function fn2(req, res, next) {
+491:      router.use([fn1, fn2], function (req, res) {
+496:      router.handle({ url: '/foo', method: 'GET' }, {}, function () { });
+500:  describe('.param', function () {
+501:    it('should require function', function () {
+506:    it('should reject non-function', function () {
+508:      assert.throws(router.param.bind(router, 'id', 42), /argument fn must be a function/);
+511:    it('should call param function when routing VERBS', function (done) {
+514:      router.param('id', function (req, res, next, id) {
+519:      router.get('/foo/:id/bar', function (req, res, next) {
+527:    it('should call param function when routing middleware', function (done) {
+530:      router.param('id', function (req, res, next, id) {
+535:      router.use('/foo/:id/bar', function (req, res, next) {
+544:    it('should only call once per request', function (done) {
+550:      sub.get('/bar', function (req, res, next) {
+554:      router.param('user', function (req, res, next, user) {
+563:      router.handle(req, {}, function (err) {
+571:    it('should call when values differ', function (done) {
+577:      sub.get('/bar', function (req, res, next) {
+581:      router.param('user', function (req, res, next, user) {
+590:      router.handle(req, {}, function (err) {
+599:  describe('parallel requests', function () {
+600:    it('should not mix requests', function (done) {
+608:      sub.get('/bar', function (req, res, next) {
+612:      router.param('ms', function (req, res, next, ms) {
+621:      router.handle(req1, {}, function (err) {
+628:      router.handle(req2, {}, function (err) {
+test/res.download.js
+15:describe('res', function(){
+16:  describe('.download(path)', function(){
+17:    it('should transfer as an attachment', function(done){
+20:      app.use(function(req, res){
+31:    it('should accept range requests', function (done) {
+34:      app.get('/', function (req, res) {
+44:    it('should respond with requested byte range', function (done) {
+47:      app.get('/', function (req, res) {
+59:  describe('.download(path, filename)', function(){
+60:    it('should provide an alternate filename', function(done){
+63:      app.use(function(req, res){
+75:  describe('.download(path, fn)', function(){
+76:    it('should invoke the callback', function(done){
+80:      app.use(function(req, res){
+91:    describe('async local storage', function () {
+92:      it('should persist store', function (done) {
+97:        app.use(function (req, res, next) {
+102:        app.use(function (req, res) {
+103:          res.download('test/fixtures/name.txt', function (err) {
+120:      it('should persist store on error', function (done) {
+124:        app.use(function (req, res, next) {
+129:        app.use(function (req, res) {
+130:          res.download('test/fixtures/does-not-exist', function (err) {
+151:  describe('.download(path, options)', function () {
+152:    it('should allow options to res.sendFile()', function (done) {
+155:      app.use(function (req, res) {
+171:    describe('with "headers" option', function () {
+172:      it('should set headers on response', function (done) {
+175:        app.use(function (req, res) {
+192:      it('should use last header when duplicated', function (done) {
+195:        app.use(function (req, res) {
+211:      it('should override Content-Type', function (done) {
+214:        app.use(function (req, res) {
+229:      it('should not set headers on 404', function (done) {
+232:        app.use(function (req, res) {
+247:      describe('when headers contains Content-Disposition', function () {
+248:        it('should be ignored', function (done) {
+251:          app.use(function (req, res) {
+266:        it('should be ignored case-insensitively', function (done) {
+269:          app.use(function (req, res) {
+286:    describe('with "root" option', function () {
+287:      it('should allow relative path', function (done) {
+290:        app.use(function (req, res) {
+304:      it('should allow up within root', function (done) {
+307:        app.use(function (req, res) {
+321:      it('should reject up outside root', function (done) {
+324:        app.use(function (req, res) {
+340:      it('should reject reading outside root', function (done) {
+343:        app.use(function (req, res) {
+358:  describe('.download(path, filename, fn)', function(){
+359:    it('should invoke the callback', function(done){
+363:      app.use(function(req, res){
+375:  describe('.download(path, filename, options, fn)', function () {
+376:    it('should invoke the callback', function (done) {
+381:      app.use(function (req, res) {
+393:    it('should allow options to res.sendFile()', function (done) {
+396:      app.use(function (req, res) {
+412:    describe('when options.headers contains Content-Disposition', function () {
+413:      it('should be ignored', function (done) {
+416:        app.use(function (req, res) {
+433:      it('should be ignored case-insensitively', function (done) {
+436:        app.use(function (req, res) {
+455:  describe('on failure', function(){
+456:    it('should invoke the callback', function(done){
+459:      app.use(function (req, res, next) {
+460:        res.download('test/fixtures/foobar.html', function(err){
+471:    it('should remove Content-Disposition', function(done){
+474:      app.use(function (req, res, next) {
+475:        res.download('test/fixtures/foobar.html', function(err){
+test/req.route.js
+6:describe('req', function(){
+7:  describe('.route', function(){
+8:    it('should be the executed Route', function(done){
+11:      app.get('/user/:id{/:op}', function(req, res, next){
+16:      app.get('/user/:id/edit', function(req, res){
+test/res.redirect.js
+7:describe('res', function(){
+8:  describe('.redirect(url)', function(){
+9:    it('should default to a 302 redirect', function(done){
+12:      app.use(function(req, res){
+22:    it('should encode "url"', function (done) {
+25:      app.use(function (req, res) {
+35:    it('should not touch already-encoded sequences in "url"', function (done) {
+38:      app.use(function (req, res) {
+49:  describe('.redirect(status, url)', function(){
+50:    it('should set the response status', function(done){
+53:      app.use(function(req, res){
+64:  describe('when the request method is HEAD', function(){
+65:    it('should ignore the body', function(done){
+68:      app.use(function(req, res){
+81:  describe('when accepting html', function(){
+82:    it('should respond with html', function(done){
+85:      app.use(function(req, res){
+97:    it('should escape the url', function(done){
+100:      app.use(function(req, res){
+113:    it('should not render evil javascript links in anchor href (prevent XSS)', function(done){
+118:      app.use(function(req, res){
+131:    it('should include the redirect type', function(done){
+134:      app.use(function(req, res){
+147:  describe('when accepting text', function(){
+148:    it('should respond with text', function(done){
+151:      app.use(function(req, res){
+163:    it('should encode the url', function(done){
+166:      app.use(function(req, res){
+179:    it('should include the redirect type', function(done){
+182:      app.use(function(req, res){
+195:  describe('when accepting neither text or html', function(){
+196:    it('should respond with an empty body', function(done){
+199:      app.use(function(req, res){
+test/app.param.js
+6:describe('app', function(){
+7:  describe('.param(names, fn)', function(){
+8:    it('should map the array', function(done){
+11:      app.param(['id', 'uid'], function(req, res, next, id){
+18:      app.get('/post/:id', function(req, res){
+23:      app.get('/user/:uid', function(req, res){
+30:        .expect(200, 'number:123', function (err) {
+39:  describe('.param(name, fn)', function(){
+40:    it('should map logic for a single param', function(done){
+43:      app.param('id', function(req, res, next, id){
+50:      app.get('/user/:id', function(req, res){
+60:    it('should only call once per request', function(done) {
+65:      app.param('user', function(req, res, next, user) {
+71:      app.get('/foo/:user', function(req, res, next) {
+75:      app.get('/foo/:user', function(req, res, next) {
+79:      app.use(function(req, res) {
+88:    it('should call when values differ', function(done) {
+93:      app.param('user', function(req, res, next, user) {
+99:      app.get('/:user/bob', function(req, res, next) {
+103:      app.get('/foo/:user', function(req, res, next) {
+107:      app.use(function(req, res) {
+116:    it('should support altering req.params across routes', function(done) {
+119:      app.param('user', function(req, res, next, user) {
+124:      app.get('/:user', function(req, res, next) {
+127:      app.get('/:user', function (req, res) {
+136:    it('should not invoke without route handler', function(done) {
+139:      app.param('thing', function(req, res, next, thing) {
+144:      app.param('user', function(req, res, next, user) {
+148:      app.post('/:user', function (req, res) {
+152:      app.get('/:thing', function (req, res) {
+161:    it('should work with encoded values', function(done){
+164:      app.param('name', function(req, res, next, name){
+169:      app.get('/user/:name', function(req, res){
+179:    it('should catch thrown error', function(done){
+182:      app.param('id', function(req, res, next, id){
+186:      app.get('/user/:id', function(req, res){
+196:    it('should catch thrown secondary error', function(done){
+199:      app.param('id', function(req, res, next, val){
+203:      app.param('id', function(req, res, next, id){
+207:      app.get('/user/:id', function(req, res){
+217:    it('should defer to next route', function(done){
+220:      app.param('id', function(req, res, next, id){
+224:      app.get('/user/:id', function(req, res){
+229:      app.get('/:name/123', function(req, res){
+238:    it('should defer all the param routes', function(done){
+241:      app.param('id', function(req, res, next, val){
+246:      app.all('/user/:id', function(req, res){
+250:      app.get('/user/:id', function(req, res){
+254:      app.get('/user/new', function(req, res){
+263:    it('should not call when values differ on error', function(done) {
+268:      app.param('user', function(req, res, next, user) {
+275:      app.get('/:user/bob', function(req, res, next) {
+279:      app.get('/foo/:user', function(req, res, next) {
+284:      app.use(function(err, req, res, next) {
+294:    it('should call when values differ when using "next"', function(done) {
+299:      app.param('user', function(req, res, next, user) {
+306:      app.get('/:user/bob', function(req, res, next) {
+310:      app.get('/foo/:user', function(req, res, next) {
+314:      app.use(function(req, res) {
+test/res.append.js
+7:describe('res', function () {
+8:  describe('.append(field, val)', function () {
+9:    it('should append multiple headers', function (done) {
+12:      app.use(function (req, res, next) {
+17:      app.use(function (req, res) {
+29:    it('should accept array of values', function (done) {
+32:      app.use(function (req, res, next) {
+44:    it('should get reset by res.set(field, val)', function (done) {
+47:      app.use(function (req, res, next) {
+53:      app.use(function (req, res) {
+65:    it('should work with res.set(field, val) first', function (done) {
+68:      app.use(function (req, res, next) {
+73:      app.use(function(req, res){
+85:    it('should append an array to an existing single value', function (done) {
+88:      app.use(function (req, res) {
+101:    it('should work together with res.cookie', function (done) {
+104:      app.use(function (req, res, next) {
+109:      app.use(function (req, res) {
+123:function shouldHaveHeaderValues (key, values) {
+124:  return function (res) {
+test/res.jsonp.js
+8:describe('res', function(){
+9:  describe('.jsonp(object)', function(){
+10:    it('should respond with jsonp', function(done){
+13:      app.use(function(req, res){
+23:    it('should use first callback parameter with jsonp', function(done){
+26:      app.use(function(req, res){
+36:    it('should ignore object callback parameter with jsonp', function(done){
+39:      app.use(function(req, res){
+49:    it('should allow renaming callback', function(done){
+54:      app.use(function(req, res){
+64:    it('should allow []', function(done){
+67:      app.use(function(req, res){
+77:    it('should disallow arbitrary js', function(done){
+80:      app.use(function(req, res){
+90:    it('should escape utf whitespace', function(done){
+93:      app.use(function(req, res){
+103:    it('should not escape utf whitespace for json fallback', function(done){
+106:      app.use(function(req, res){
+116:    it('should include security header and prologue', function (done) {
+119:      app.use(function(req, res){
+130:    it('should not override previous Content-Types with no callback', function(done){
+133:      app.get('/', function(req, res){
+145:    it('should override previous Content-Types with callback', function(done){
+148:      app.get('/', function(req, res){
+160:    describe('when given undefined', function () {
+161:      it('should invoke callback with no arguments', function (done) {
+164:        app.use(function (req, res) {
+175:    describe('when given null', function () {
+176:      it('should invoke callback with null', function (done) {
+179:        app.use(function (req, res) {
+190:    describe('when given a string', function () {
+191:      it('should invoke callback with a string', function (done) {
+194:        app.use(function (req, res) {
+205:    describe('when given a number', function () {
+206:      it('should invoke callback with a number', function (done) {
+209:        app.use(function (req, res) {
+220:    describe('when given an object with toJSON', function () {
+221:      it('should serialize the value returned by toJSON', function (done) {
+224:        app.use(function (req, res) {
+226:            toJSON: function () {
+235:          .expect(200, '/**/ typeof cb === \'function\' && cb(42);', done)
+238:      it('should invoke callback with no arguments when toJSON returns undefined', function (done) {
+241:        app.use(function (req, res) {
+243:            toJSON: function () {
+252:          .expect(200, '/**/ typeof cb === \'function\' && cb();', done)
+255:      it('should forward errors thrown by toJSON before sending a response', function (done) {
+259:        app.use(function (req, res) {
+261:            toJSON: function () {
+267:        app.use(function (err, req, res, next) {
+279:    describe('when given an array', function () {
+280:      it('should invoke callback with an array', function (done) {
+283:        app.use(function (req, res) {
+294:    describe('when given an object', function () {
+295:      it('should invoke callback with an object', function (done) {
+298:        app.use(function (req, res) {
+309:    describe('"json escape" setting', function () {
+310:      it('should be undefined by default', function () {
+315:      it('should unicode escape HTML-sniffing characters', function (done) {
+320:        app.use(function (req, res) {
+330:      it('should not break undefined escape', function (done) {
+335:        app.use(function (req, res) {
+346:    describe('"json replacer" setting', function(){
+347:      it('should be passed to JSON.stringify()', function(done){
+350:        app.set('json replacer', function(key, val){
+356:        app.use(function(req, res){
+367:    describe('"json spaces" setting', function(){
+368:      it('should be undefined by default', function(){
+373:      it('should be passed to JSON.stringify()', function(done){
+378:        app.use(function(req, res){
+test/req.get.js
+7:describe('req', function(){
+8:  describe('.get(field)', function(){
+9:    it('should return the header field value', function(done){
+12:      app.use(function(req, res){
+23:    it('should special-case Referer', function(done){
+26:      app.use(function(req, res){
+36:    it('should throw missing header name', function (done) {
+39:      app.use(function (req, res) {
+48:    it('should throw for non-string header name', function (done) {
+51:      app.use(function (req, res) {
+test/app.use.js
+8:describe('app', function(){
+9:  it('should emit "mount" when mounted', function(done){
+13:    blog.on('mount', function(arg){
+21:  describe('.use(app)', function(){
+22:    it('should mount the app', function(done){
+26:      blog.get('/blog', function(req, res){
+37:    it('should support mount-points', function(done){
+43:      blog.get('/', function(req, res){
+47:      forum.get('/', function(req, res){
+63:    it('should set the child\'s .parent', function(){
+71:    it('should support dynamic routes', function(done){
+75:      blog.get('/', function(req, res){
+86:    it('should support mounted app anywhere', function(done){
+92:      function fn1(req, res, next) {
+97:      function fn2(req, res, next) {
+102:      blog.get('/', function(req, res){
+106:      blog.once('mount', function (parent) {
+110:      other.once('mount', function (parent) {
+125:  describe('.use(middleware)', function(){
+126:    it('should accept multiple arguments', function (done) {
+129:      function fn1(req, res, next) {
+134:      function fn2(req, res, next) {
+139:      app.use(fn1, fn2, function fn3(req, res) {
+152:    it('should invoke middleware for all requests', function (done) {
+156:      app.use(function (req, res) {
+173:    it('should accept array of middleware', function (done) {
+176:      function fn1(req, res, next) {
+181:      function fn2(req, res, next) {
+186:      function fn3(req, res, next) {
+201:    it('should accept multiple arrays of middleware', function (done) {
+204:      function fn1(req, res, next) {
+209:      function fn2(req, res, next) {
+214:      function fn3(req, res, next) {
+229:    it('should accept nested arrays of middleware', function (done) {
+232:      function fn1(req, res, next) {
+237:      function fn2(req, res, next) {
+242:      function fn3(req, res, next) {
+258:  describe('.use(path, middleware)', function(){
+259:    it('should require middleware', function () {
+261:      assert.throws(function () { app.use('/') }, 'TypeError: app.use() requires a middleware function')
+264:    it('should reject string as middleware', function () {
+266:      assert.throws(function () { app.use('/', 'foo') }, /argument handler must be a function/)
+269:    it('should reject number as middleware', function () {
+271:      assert.throws(function () { app.use('/', 42) }, /argument handler must be a function/)
+274:    it('should reject null as middleware', function () {
+276:      assert.throws(function () { app.use('/', null) }, /argument handler must be a function/)
+279:    it('should reject Date as middleware', function () {
+281:      assert.throws(function () { app.use('/', new Date()) }, /argument handler must be a function/)
+284:    it('should strip path from req.url', function (done) {
+287:      app.use('/foo', function (req, res) {
+296:    it('should accept multiple arguments', function (done) {
+299:      function fn1(req, res, next) {
+304:      function fn2(req, res, next) {
+309:      app.use('/foo', fn1, fn2, function fn3(req, res) {
+322:    it('should invoke middleware for all requests starting with path', function (done) {
+326:      app.use('/foo', function (req, res) {
+343:    it('should work if path has trailing slash', function (done) {
+347:      app.use('/foo/', function (req, res) {
+364:    it('should accept array of middleware', function (done) {
+367:      function fn1(req, res, next) {
+372:      function fn2(req, res, next) {
+377:      function fn3(req, res, next) {
+392:    it('should accept multiple arrays of middleware', function (done) {
+395:      function fn1(req, res, next) {
+400:      function fn2(req, res, next) {
+405:      function fn3(req, res, next) {
+420:    it('should accept nested arrays of middleware', function (done) {
+423:      function fn1(req, res, next) {
+428:      function fn2(req, res, next) {
+433:      function fn3(req, res, next) {
+448:    it('should support array of paths', function (done) {
+452:      app.use(['/foo/', '/bar'], function (req, res) {
+469:    it('should support array of paths with middleware array', function (done) {
+473:      function fn1(req, res, next) {
+478:      function fn2(req, res, next) {
+483:      function fn3(req, res, next) {
+505:    it('should support regexp path', function (done) {
+509:      app.use(/^\/[a-z]oo/, function (req, res) {
+530:    it('should support empty string path', function (done) {
+533:      app.use('', function (req, res) {
+test/config.js
+6:describe('config', function () {
+7:  describe('.set()', function () {
+8:    it('should set a value', function () {
+14:    it('should set prototype values', function () {
+20:    it('should return the app', function () {
+25:    it('should return the app when undefined', function () {
+30:    it('should return set value', function () {
+36:    it('should return undefined for prototype values', function () {
+41:    describe('"etag"', function(){
+42:      it('should throw on bad value', function(){
+47:      it('should set "etag fn"', function(){
+49:        var fn = function(){}
+55:    describe('"trust proxy"', function(){
+56:      it('should set "trust proxy fn"', function(){
+58:        var fn = function(){}
+65:  describe('.get()', function(){
+66:    it('should return undefined when unset', function(){
+71:    it('should return undefined for prototype values', function () {
+76:    it('should otherwise return the value', function(){
+82:    describe('when mounted', function(){
+83:      it('should default to the parent app', function(){
+92:      it('should given precedence to the child', function(){
+103:      it('should inherit "trust proxy" setting', function () {
+107:        function fn() { return false }
+119:      it('should prefer child "trust proxy" setting', function () {
+123:        function fn1() { return false }
+124:        function fn2() { return true }
+144:  describe('.enable()', function(){
+145:    it('should set the value to true', function(){
+151:    it('should set prototype values', function () {
+158:  describe('.disable()', function(){
+159:    it('should set the value to false', function(){
+165:    it('should set prototype values', function () {
+172:  describe('.enabled()', function(){
+173:    it('should default to false', function(){
+178:    it('should return true when set', function(){
+184:    it('should default to false for prototype values', function () {
+190:  describe('.disabled()', function(){
+191:    it('should default to true', function(){
+196:    it('should return false when set', function(){
+202:    it('should default to true for prototype values', function () {
+test/res.set.js
+6:describe('res', function(){
+7:  describe('.set(field, value)', function(){
+8:    it('should set the response header field', function(done){
+11:      app.use(function(req, res){
+21:    it('should coerce to a string', function (done) {
+24:      app.use(function (req, res) {
+36:  describe('.set(field, values)', function(){
+37:    it('should set multiple response header fields', function(done){
+40:      app.use(function(req, res){
+50:    it('should coerce to an array of strings', function (done) {
+53:      app.use(function (req, res) {
+64:    it('should not set a charset of one is already set', function (done) {
+67:      app.use(function (req, res) {
+78:    it('should throw when Content-Type is an array', function (done) {
+81:      app.use(function (req, res) {
+92:  describe('.set(object)', function(){
+93:    it('should set multiple fields', function(done){
+96:      app.use(function(req, res){
+110:    it('should coerce to a string', function (done) {
+113:      app.use(function (req, res) {
+test/app.response.js
+7:describe('app', function(){
+8:  describe('.response', function(){
+9:    it('should extend the response prototype', function(done){
+12:      app.response.shout = function(str){
+16:      app.use(function(req, res){
+25:    it('should only extend for the referenced app', function (done) {
+30:      app1.response.shout = function (str) {
+34:      app1.get('/', function (req, res) {
+38:      app2.get('/', function (req, res) {
+48:        .expect(500, /(?:not a function|has no method)/, cb)
+51:    it('should inherit to sub apps', function (done) {
+56:      app1.response.shout = function (str) {
+62:      app1.get('/', function (req, res) {
+66:      app2.get('/', function (req, res) {
+79:    it('should allow sub app to override', function (done) {
+84:      app1.response.shout = function (str) {
+88:      app2.response.shout = function (str) {
+94:      app1.get('/', function (req, res) {
+98:      app2.get('/', function (req, res) {
+111:    it('should not pollute parent app', function (done) {
+116:      app1.response.shout = function (str) {
+120:      app2.response.shout = function (str) {
+126:      app1.get('/sub/foo', function (req, res) {
+130:      app2.get('/', function (req, res) {
+test/app.render.js
+9:describe('app', function(){
+10:  describe('.render(name, fn)', function(){
+11:    it('should support absolute paths', function(done){
+16:      app.render(path.join(__dirname, 'fixtures', 'user.tmpl'), function (err, str) {
+23:    it('should support absolute paths with "view engine"', function(done){
+29:      app.render(path.join(__dirname, 'fixtures', 'user'), function (err, str) {
+36:    it('should throw without a view engine or file extension', function(){
+39:      assert.throws(function () {
+40:        app.render('user', function () {
+46:    it('should throw when the view engine module does not exist', function(){
+51:      assert.throws(function () {
+52:        app.render('user', function () {
+61:    it('should expose app.locals', function(done){
+67:      app.render('user.tmpl', function (err, str) {
+74:    it('should support index.<engine>', function(done){
+80:      app.render('blog/post', function (err, str) {
+87:    it('should handle render error throws', function(done){
+90:      function View(name, options){
+95:      View.prototype.render = function(options, fn){
+101:      app.render('something', function(err, str){
+108:    describe('when the file does not exist', function(){
+109:      it('should provide a helpful error', function(done){
+113:        app.render('rawr.tmpl', function (err) {
+121:    describe('when an error occurs', function(){
+122:      it('should invoke the callback', function(done){
+127:        app.render('user.tmpl', function (err) {
+134:      it('should pass a sync engine throw to the callback on first render', function(done){
+138:        app.engine('tmpl', function () {
+143:        app.render('user.tmpl', function (err) {
+150:    describe('when an extension is given', function(){
+151:      it('should render the template', function(done){
+156:        app.render('email.tmpl', function (err, str) {
+164:    describe('when "view engine" is given', function(){
+165:      it('should render the template', function(done){
+171:        app.render('email', function(err, str){
+179:    describe('when "views" is given', function(){
+180:      it('should lookup the file in the path', function(done){
+186:        app.render('user.tmpl', function (err, str) {
+193:      describe('when array of paths', function(){
+194:        it('should lookup the file in the path', function(done){
+204:          app.render('user.tmpl', function (err, str) {
+211:        it('should lookup in later paths until found', function(done){
+221:          app.render('name.tmpl', function (err, str) {
+228:        it('should continue past an empty-string root', function(done){
+234:          app.render('user.tmpl', function (err, str) {
+241:        it('should continue looking up after an ENOTDIR stat error', function(done){
+251:          app.render('user.tmpl', function (err, str) {
+258:        it('should error if file does not exist', function(done){
+268:          app.render('pet.tmpl', function (err, str) {
+277:    describe('when a "view" constructor is given', function(){
+278:      it('should create an instance of it', function(done){
+281:        function View(name, options){
+286:        View.prototype.render = function(options, fn){
+292:        app.render('something', function(err, str){
+299:      it('should error when a custom view leaves path unset', function(done){
+302:        function View(name, options){
+307:        View.prototype.render = function(){
+313:        app.render('something', function(err){
+320:      it('should honor a View subclass that clears path to deny a view', function(done){
+324:        app.engine('tmpl', function (file, options, fn) {
+329:        function DenyView(name, options){
+339:        app.render('user.tmpl', function (err){
+347:    describe('engine caching', function(){
+348:      it('should cache an automatically loaded engine', function(done){
+357:        app.render('user.ejs', function (err, str) {
+365:      it('should use a replacement engine on subsequent renders', function(done){
+374:        app.render('user.ejs', function (err, str) {
+381:          app.engine('ejs', function (file, options, callback) {
+387:          app.render('user.ejs', function (err2, str2) {
+397:    describe('caching', function(){
+398:      it('should not cache views whose lookup failed', function(done){
+404:        app.render('email.tmpl', function (err) {
+410:          app.render('email.tmpl', function (err2, str) {
+418:      it('should always lookup view without cache', function(done){
+422:        function View(name, options){
+428:        View.prototype.render = function(options, fn){
+435:        app.render('something', function(err, str){
+439:          app.render('something', function(err, str){
+448:      it('should cache with "view cache" setting', function(done){
+452:        function View(name, options){
+458:        View.prototype.render = function(options, fn){
+465:        app.render('something', function(err, str){
+469:          app.render('something', function(err, str){
+480:  describe('.render(name, options, fn)', function(){
+481:    it('should render the template', function(done){
+488:      app.render('user.tmpl', { user: user }, function (err, str) {
+495:    it('should expose app.locals', function(done){
+501:      app.render('user.tmpl', {}, function (err, str) {
+508:    it('should give precedence to app.render() locals', function(done){
+515:      app.render('user.tmpl', { user: jane }, function (err, str) {
+522:    it('should accept null or undefined options', function (done) {
+528:      app.render('user.tmpl', null, function (err, str) {
+532:        app.render('user.tmpl', undefined, function (err2, str2) {
+540:    describe('caching', function(){
+541:      it('should cache with cache option', function(done){
+545:        function View(name, options){
+551:        View.prototype.render = function(options, fn){
+558:        app.render('something', {cache: true}, function(err, str){
+562:          app.render('something', {cache: true}, function(err, str){
+574:function createApp() {
+test/res.json.js
+7:describe('res', function(){
+8:  describe('.json(object)', function(){
+9:    it('should not support jsonp callbacks', function(done){
+12:      app.use(function(req, res){
+21:    it('should not override previous Content-Types', function(done){
+24:      app.get('/', function(req, res){
+35:    describe('when given primitives', function(){
+36:      it('should respond with json for null', function(done){
+39:        app.use(function(req, res){
+49:      it('should respond with json for Number', function(done){
+52:        app.use(function(req, res){
+62:      it('should respond with json for String', function(done){
+65:        app.use(function(req, res){
+76:    describe('when given an array', function(){
+77:      it('should respond with json', function(done){
+80:        app.use(function(req, res){
+91:    describe('when given an object', function(){
+92:      it('should respond with json', function(done){
+95:        app.use(function(req, res){
+106:    describe('"json escape" setting', function () {
+107:      it('should be undefined by default', function () {
+112:      it('should unicode escape HTML-sniffing characters', function (done) {
+117:        app.use(function (req, res) {
+127:      it('should not break undefined escape', function (done) {
+132:        app.use(function (req, res) {
+143:    describe('"json replacer" setting', function(){
+144:      it('should be passed to JSON.stringify()', function(done){
+147:        app.set('json replacer', function(key, val){
+153:        app.use(function(req, res){
+164:    describe('"json spaces" setting', function(){
+165:      it('should be undefined by default', function(){
+170:      it('should be passed to JSON.stringify()', function(done){
+175:        app.use(function(req, res){
+test/app.routes.error.js
+7:describe('app', function(){
+8:  describe('.VERB()', function(){
+9:    it('should not get invoked without error handler on error', function(done) {
+12:      app.use(function(req, res, next){
+16:      app.get('/bar', function(req, res){
+25:    it('should only call an error handling routing callback when an error is propagated', function(done){
+33:      app.get('/', function(req, res, next){
+35:      }, function(req, res, next) {
+38:      }, function(err, req, res, next){
+42:      }, function(err, req, res, next){
+46:      }, function(err, req, res, next){
+49:      }, function(req, res){
+test/res.get.js
+6:describe('res', function(){
+7:  describe('.get(field)', function(){
+8:    it('should get the response header field', function (done) {
+11:      app.use(function (req, res) {
+test/res.sendFile.js
+15:describe('res', function(){
+16:  describe('.sendFile(path)', function () {
+17:    it('should error missing path', function (done) {
+25:    it('should error for non-string path', function (done) {
+33:    it('should error for non-absolute path', function (done) {
+41:    it('should transfer a file', function (done) {
+49:    it('should transfer a file with special characters in string', function (done) {
+57:    it('should include ETag', function (done) {
+66:    it('should 304 when ETag matches', function (done) {
+72:      .expect(200, 'tobi', function (err, res) {
+82:    it('should disable the ETag function if requested', function (done) {
+90:      function handleHeaders (res) {
+95:    it('should 404 for directory', function (done) {
+103:    it('should 404 when not found', function (done) {
+106:      app.use(function (req, res) {
+116:    it('should send cache-control by default', function (done) {
+125:    it('should not serve dotfiles by default', function (done) {
+133:    it('should not override manual content-types', function (done) {
+136:      app.use(function (req, res) {
+147:    it('should not error if the client aborts', function (done) {
+152:      app.use(function (req, res) {
+153:        setImmediate(function () {
+155:          setTimeout(function () {
+162:      app.use(function (err, req, res, next) {
+169:      test.end(function (err) {
+176:  describe('.sendFile(path, fn)', function () {
+177:    it('should invoke the callback when complete', function (done) {
+186:    it('should invoke the callback once on a socket error during transfer', function (done) {
+192:      app.use(function (req, res) {
+193:        res.once('pipe', function () {
+197:        res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+204:      request(server).get('/').end(function (err) {
+210:    ;['ECONNRESET', 'EPIPE'].forEach(function (code) {
+211:      it('should invoke the callback once when ' + code + ' follows a directory error', function (done) {
+217:        app.use(function (req, res) {
+218:          res.sendFile(path.resolve(fixtures, 'blog'), function (err) {
+227:        request(server).get('/').end(function (err) {
+234:    it('should invoke the callback once when a socket error precedes the stream end', function (done) {
+240:      app.use(function (req, res) {
+242:        res.once('pipe', function (stream) {
+244:          stream.prependOnceListener('end', function () {
+249:        res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+256:      request(server).get('/').end(function () {
+262:    it('should invoke the callback once when a stream error follows response finish', function (done) {
+268:      app.use(function (req, res) {
+269:        res.once('pipe', function (stream) {
+270:          res.once('finish', function () {
+274:          stream.once('open', function () {
+279:        res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+286:      request(server).get('/').end(function (err) {
+292:    it('should invoke the callback when client aborts', function (done) {
+296:      app.use(function (req, res) {
+297:        setImmediate(function () {
+298:          res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+309:      test.end(function (err) {
+315:    it('should invoke the callback when client already aborted', function (done) {
+319:      app.use(function (req, res) {
+320:        onFinished(res, function () {
+321:          res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+332:      test.end(function (err) {
+338:    it('should invoke the callback without error when HEAD', function (done) {
+342:      app.use(function (req, res) {
+351:    it('should invoke the callback without error when 304', function (done) {
+355:      app.use(function (req, res) {
+362:      .expect(200, 'tobi', function (err, res) {
+372:    it('should invoke the callback on 404', function(done){
+375:      app.use(function (req, res) {
+376:        res.sendFile(path.resolve(fixtures, 'does-not-exist'), function (err) {
+386:    describe('async local storage', function () {
+387:      it('should persist store', function (done) {
+392:        app.use(function (req, res, next) {
+397:        app.use(function (req, res) {
+398:          res.sendFile(path.resolve(fixtures, 'name.txt'), function (err) {
+414:      it('should persist store on error', function (done) {
+418:        app.use(function (req, res, next) {
+423:        app.use(function (req, res) {
+424:          res.sendFile(path.resolve(fixtures, 'does-not-exist'), function (err) {
+445:  describe('.sendFile(path, options)', function () {
+446:    it('should pass options to send module', function (done) {
+452:    describe('with "acceptRanges" option', function () {
+453:      describe('when true', function () {
+454:        it('should advertise byte range accepted', function (done) {
+457:          app.use(function (req, res) {
+471:        it('should respond to range request', function (done) {
+474:          app.use(function (req, res) {
+487:      describe('when false', function () {
+488:        it('should not advertise accept-ranges', function (done) {
+491:          app.use(function (req, res) {
+504:        it('should not honor range requests', function (done) {
+507:          app.use(function (req, res) {
+521:    describe('with "cacheControl" option', function () {
+522:      describe('when true', function () {
+523:        it('should send cache-control header', function (done) {
+526:          app.use(function (req, res) {
+540:      describe('when false', function () {
+541:        it('should not send cache-control header', function (done) {
+544:          app.use(function (req, res) {
+559:    describe('with "dotfiles" option', function () {
+560:      describe('when "allow"', function () {
+561:        it('should allow dotfiles', function (done) {
+564:          app.use(function (req, res) {
+578:      describe('when "deny"', function () {
+579:        it('should deny dotfiles', function (done) {
+582:          app.use(function (req, res) {
+596:      describe('when "ignore"', function () {
+597:        it('should ignore dotfiles', function (done) {
+600:          app.use(function (req, res) {
+615:    describe('with "headers" option', function () {
+616:      it('should set headers on response', function (done) {
+619:        app.use(function (req, res) {
+636:      it('should use last header when duplicated', function (done) {
+639:        app.use(function (req, res) {
+655:      it('should override Content-Type', function (done) {
+658:        app.use(function (req, res) {
+673:      it('should not set headers on 404', function (done) {
+676:        app.use(function (req, res) {
+692:    describe('with "immutable" option', function () {
+693:      describe('when true', function () {
+694:        it('should send cache-control header with immutable', function (done) {
+697:          app.use(function (req, res) {
+711:      describe('when false', function () {
+712:        it('should not send cache-control header with immutable', function (done) {
+715:          app.use(function (req, res) {
+730:    describe('with "lastModified" option', function () {
+731:      describe('when true', function () {
+732:        it('should send last-modified header', function (done) {
+735:          app.use(function (req, res) {
+748:        it('should conditionally respond with if-modified-since', function (done) {
+751:          app.use(function (req, res) {
+764:      describe('when false', function () {
+765:        it('should not have last-modified header', function (done) {
+768:          app.use(function (req, res) {
+781:        it('should not honor if-modified-since', function (done) {
+784:          app.use(function (req, res) {
+800:    describe('with "maxAge" option', function () {
+801:      it('should set cache-control max-age to milliseconds', function (done) {
+804:        app.use(function (req, res) {
+817:      it('should cap cache-control max-age to 1 year', function (done) {
+820:        app.use(function (req, res) {
+833:      it('should min cache-control max-age to 0', function (done) {
+836:        app.use(function (req, res) {
+849:      it('should floor cache-control max-age', function (done) {
+852:        app.use(function (req, res) {
+865:      describe('when cacheControl: false', function () {
+866:        it('should not send cache-control', function (done) {
+869:          app.use(function (req, res) {
+884:      describe('when string', function () {
+885:        it('should accept plain number as milliseconds', function (done) {
+888:          app.use(function (req, res) {
+901:        it('should accept suffix "s" for seconds', function (done) {
+904:          app.use(function (req, res) {
+917:        it('should accept suffix "m" for minutes', function (done) {
+920:          app.use(function (req, res) {
+933:        it('should accept suffix "d" for days', function (done) {
+936:          app.use(function (req, res) {
+951:    describe('with "root" option', function () {
+952:      it('should allow relative path', function (done) {
+955:        app.use(function (req, res) {
+966:      it('should allow up within root', function (done) {
+969:        app.use(function (req, res) {
+980:      it('should reject up outside root', function (done) {
+983:        app.use(function (req, res) {
+994:      it('should reject reading outside root', function (done) {
+997:        app.use(function (req, res) {
+1011:function createApp(path, options, fn) {
+1014:  app.use(function (req, res) {
+test/app.listen.js
+6:describe('app.listen()', function(){
+7:  it('should wrap with an HTTP server', function(done){
+10:    var server = app.listen(0, function () {
+14:  it('should callback on HTTP server errors', function (done) {
+18:    var server1 = app1.listen(0, function (err) {
+20:      app2.listen(server1.address().port, function (err) {
+27:  it('accepts port + hostname + backlog + callback', function (done) {
+29:    const server = app.listen(0, '127.0.0.1', 5, function () {
+38:  it('accepts just a callback (no args)', function (done) {
+45:  it('should not invoke callback more than once', function (done) {
+48:    var server = app.listen(0, function () {
+52:    server.once('listening', function () {
+54:      server.close(function (err) {
+62:  it('server.address() gives a { address, port, family } object', function (done) {
+test/res.cookie.js
+7:describe('res', function(){
+8:  describe('.cookie(name, object)', function(){
+9:    it('should generate a JSON cookie', function(done){
+12:      app.use(function(req, res){
+23:  describe('.cookie(name, string)', function(){
+24:    it('should set a cookie', function(done){
+27:      app.use(function(req, res){
+37:    it('should allow multiple calls', function(done){
+40:      app.use(function(req, res){
+54:  describe('.cookie(name, string, options)', function(){
+55:    it('should set params', function(done){
+58:      app.use(function(req, res){
+69:    describe('expires', function () {
+70:      it('should throw on invalid date', function (done) {
+73:        app.use(function (req, res) {
+84:    describe('partitioned', function () {
+85:      it('should set partitioned', function (done) {
+88:        app.use(function (req, res) {
+100:    describe('maxAge', function(){
+101:      it('should set relative expires', function(done){
+104:        app.use(function(req, res){
+115:      it('should set max-age', function(done){
+118:        app.use(function(req, res){
+128:      it('should not mutate the options object', function(done){
+134:        app.use(function(req, res){
+144:      it('should not throw on null', function (done) {
+147:        app.use(function (req, res) {
+159:      it('should not throw on undefined', function (done) {
+162:        app.use(function (req, res) {
+174:      it('should throw an error with invalid maxAge', function (done) {
+177:        app.use(function (req, res) {
+188:    describe('priority', function () {
+189:      it('should set low priority', function (done) {
+192:        app.use(function (req, res) {
+203:      it('should set medium priority', function (done) {
+206:        app.use(function (req, res) {
+217:      it('should set high priority', function (done) {
+220:        app.use(function (req, res) {
+231:      it('should throw with invalid priority', function (done) {
+234:        app.use(function (req, res) {
+245:    describe('signed', function(){
+246:      it('should generate a signed JSON cookie', function(done){
+251:        app.use(function(req, res){
+262:    describe('signed without secret', function(){
+263:      it('should throw an error', function(done){
+268:        app.use(function(req, res){
+278:    describe('.signedCookie(name, string)', function(){
+279:      it('should set a signed cookie', function(done){
+284:        app.use(function(req, res){
+test/app.js
+7:describe('app', function(){
+8:  it('should inherit from event emitter', function(done){
+14:  it('should be callable', function(){
+16:    assert.equal(typeof app, 'function');
+19:  it('should 404 without routes', function(done){
+26:describe('app.parent', function(){
+27:  it('should return the parent when mounted', function(){
+41:describe('app.mountpath', function(){
+42:  it('should return the mounted path', function(){
+59:describe('app.path()', function(){
+60:  it('should return the canonical', function(){
+74:describe('in development', function(){
+75:  before(function () {
+80:  after(function () {
+84:  it('should disable "view cache"', function(){
+90:describe('in production', function(){
+91:  before(function () {
+96:  after(function () {
+100:  it('should enable "view cache"', function(){
+106:describe('without NODE_ENV', function(){
+107:  before(function () {
+112:  after(function () {
+116:  it('should default to development', function(){
+test/app.all.js
+7:describe('app.all()', function(){
+8:  it('should add a router per method', function(done){
+12:    app.all('/tobi', function(req, res){
+25:  it('should run the callback for a method just once', function(done){
+29:    app.all('/*splat', function(req, res, next){
+test/res.clearCookie.js
+6:describe('res', function(){
+7:  describe('.clearCookie(name)', function(){
+8:    it('should set a cookie passed expiry', function(done){
+11:      app.use(function(req, res){
+22:  describe('.clearCookie(name, options)', function(){
+23:    it('should set the given params', function(done){
+26:      app.use(function(req, res){
+36:    it('should ignore maxAge', function(done){
+39:      app.use(function(req, res){
+49:    it('should ignore user supplied expires param', function(done){
+52:      app.use(function(req, res){
+test/req.query.js
+7:describe('req', function(){
+8:  describe('.query', function(){
+9:    it('should default to {}', function(done){
+17:    it('should default to parse simple keys', function (done) {
+25:    describe('when "query parser" is extended', function () {
+26:      it('should parse complex keys', function (done) {
+34:      it('should parse parameters with dots', function (done) {
+43:    describe('when "query parser" is simple', function () {
+44:      it('should not parse complex keys', function (done) {
+53:    describe('when "query parser" is a function', function () {
+54:      it('should parse using function', function (done) {
+55:        var app = createApp(function (str) {
+65:    describe('when "query parser" disabled', function () {
+66:      it('should not parse query', function (done) {
+75:    describe('when "query parser" enabled', function () {
+76:      it('should not parse complex keys', function (done) {
+85:    describe('when "query parser" an unknown value', function () {
+86:      it('should throw', function () {
+94:function createApp(setting) {
+101:  app.use(function (req, res) {
+test/req.range.js
+6:describe('req', function(){
+7:  describe('.range(size)', function(){
+8:    it('should return parsed ranges', function (done) {
+11:      app.use(function (req, res) {
+21:    it('should cap to the given size', function (done) {
+24:      app.use(function (req, res) {
+34:    it('should cap to the given size when open-ended', function (done) {
+37:      app.use(function (req, res) {
+47:    it('should have a .type', function (done) {
+50:      app.use(function (req, res) {
+60:    it('should accept any type', function (done) {
+63:      app.use(function (req, res) {
+73:    it('should return undefined if no range', function (done) {
+76:      app.use(function (req, res) {
+86:  describe('.range(size, options)', function(){
+87:    describe('with "combine: true" option', function(){
+88:      it('should return combined ranges', function (done) {
+91:        app.use(function (req, res) {
+test/acceptance/cookie-sessions.js
+5:describe('cookie-sessions', function () {
+6:  describe('GET /', function () {
+7:    it('should display no views', function (done) {
+13:    it('should set a session cookie', function (done) {
+20:    it('should display 1 view on revisit', function (done) {
+23:      .expect(200, 'viewed 1 times\n', function (err, res) {
+34:function getCookies(res) {
+35:  return res.headers['set-cookie'].map(function (val) {
+test/acceptance/multi-router.js
+4:describe('multi-router', function(){
+5:  describe('GET /',function(){
+6:    it('should respond with root handler', function(done){
+13:  describe('GET /api/v1/',function(){
+14:    it('should respond with APIv1 root handler', function(done){
+21:  describe('GET /api/v1/users',function(){
+22:    it('should respond with users from APIv1', function(done){
+29:  describe('GET /api/v2/',function(){
+30:    it('should respond with APIv2 root handler', function(done){
+37:  describe('GET /api/v2/users',function(){
+38:    it('should respond with users from APIv2', function(done){
+test/acceptance/error.js
+5:describe('error', function(){
+6:  describe('GET /', function(){
+7:    it('should respond with 500', function(done){
+14:  describe('GET /next', function(){
+15:    it('should respond with 500', function(done){
+22:  describe('GET /missing', function(){
+23:    it('should respond with 404', function(done){
+test/acceptance/error-pages.js
+5:describe('error-pages', function(){
+6:  describe('GET /', function(){
+7:    it('should respond with page list', function(done){
+14:  describe('Accept: text/html',function(){
+15:    describe('GET /403', function(){
+16:      it('should respond with 403', function(done){
+23:    describe('GET /404', function(){
+24:      it('should respond with 404', function(done){
+31:    describe('GET /500', function(){
+32:      it('should respond with 500', function(done){
+40:  describe('Accept: application/json',function(){
+41:    describe('GET /403', function(){
+42:      it('should respond with 403', function(done){
+50:    describe('GET /404', function(){
+51:      it('should respond with 404', function(done){
+59:    describe('GET /500', function(){
+60:      it('should respond with 500', function(done){
+70:  describe('Accept: text/plain',function(){
+71:    describe('GET /403', function(){
+72:      it('should respond with 403', function(done){
+80:    describe('GET /404', function(){
+81:      it('should respond with 404', function(done){
+90:    describe('GET /500', function(){
+91:      it('should respond with 500', function(done){
+test/acceptance/downloads.js
+5:describe('downloads', function(){
+6:  describe('GET /', function(){
+7:    it('should have a link to amazing.txt', function(done){
+14:  describe('GET /files/notes/groceries.txt', function () {
+15:    it('should have a download header', function (done) {
+23:  describe('GET /files/amazing.txt', function(){
+24:    it('should have a download header', function(done){
+32:  describe('GET /files/missing.txt', function(){
+33:    it('should respond with 404', function(done){
+40:  describe('GET /files/../index.js', function () {
+41:    it('should respond with 403', function (done) {
+test/acceptance/web-service.js
+5:describe('web-service', function(){
+6:  describe('GET /api/users', function(){
+7:    describe('without an api key', function(){
+8:      it('should respond with 400 bad request', function(done){
+15:    describe('with an invalid api key', function(){
+16:      it('should respond with 401 unauthorized', function(done){
+23:    describe('with a valid api key', function(){
+24:      it('should respond users json', function(done){
+33:  describe('GET /api/repos', function(){
+34:    describe('without an api key', function(){
+35:      it('should respond with 400 bad request', function(done){
+42:    describe('with an invalid api key', function(){
+43:      it('should respond with 401 unauthorized', function(done){
+50:    describe('with a valid api key', function(){
+51:      it('should respond repos json', function(done){
+62:  describe('GET /api/user/:name/repos', function(){
+63:    describe('without an api key', function(){
+64:      it('should respond with 400 bad request', function(done){
+71:    describe('with an invalid api key', function(){
+72:      it('should respond with 401 unauthorized', function(done){
+79:    describe('with a valid api key', function(){
+80:      it('should respond user repos json', function(done){
+89:      it('should 404 with unknown user', function(done){
+97:  describe('when requesting an invalid route', function(){
+98:    it('should respond with 404 json', function(done){
+test/acceptance/mvc.js
+5:describe('mvc', function(){
+6:  describe('GET /', function(){
+7:    it('should redirect to /users', function(done){
+15:  describe('GET /pet/0', function(){
+16:    it('should get pet', function(done){
+23:  describe('GET /pet/0/edit', function(){
+24:    it('should get pet edit page', function(done){
+32:  describe('PUT /pet/2', function(){
+33:    it('should update the pet', function(done){
+38:      .expect(302, function (err, res) {
+47:  describe('GET /users', function(){
+48:    it('should display a list of users', function(done){
+59:  describe('GET /user/:id', function(){
+60:    describe('when present', function(){
+61:      it('should display the user', function(done){
+67:      it('should display the users pets', function(done){
+77:    describe('when not present', function(){
+78:      it('should 404', function(done){
+86:  describe('GET /user/:id/edit', function(){
+87:    it('should display the edit form', function(done){
+95:  describe('PUT /user/:id', function(){
+96:    it('should 500 on error', function(done){
+103:    it('should update the user', function(done){
+108:      .expect(302, function (err, res) {
+117:  describe('POST /user/:id/pet', function(){
+118:    it('should create a pet for user', function(done){
+124:      .expect(302, function(err, res){
+test/acceptance/auth.js
+4:function getCookie(res) {
+8:describe('auth', function(){
+9:  describe('GET /',function(){
+10:    it('should redirect to /login', function(done){
+18:  describe('GET /login',function(){
+19:    it('should render login form', function(done){
+25:    it('should display login error for bad user', function (done) {
+31:      .expect(302, function(err, res){
+40:    it('should display login error for bad password', function (done) {
+46:        .expect(302, function (err, res) {
+56:  describe('GET /logout',function(){
+57:    it('should redirect to /', function(done){
+65:  describe('GET /restricted',function(){
+66:    it('should redirect to /login without cookie', function(done){
+73:    it('should succeed with proper cookie', function(done){
+79:      .expect(302, function(err, res){
+89:  describe('POST /login', function(){
+90:    it('should fail without proper username', function(done){
+99:    it('should fail without proper password', function(done){
+108:    it('should succeed with proper credentials', function(done){
+test/acceptance/route-separation.js
+5:describe('route-separation', function () {
+6:  describe('GET /', function () {
+7:    it('should respond with index', function (done) {
+14:  describe('GET /users', function () {
+15:    it('should list users', function (done) {
+24:  describe('GET /user/:id', function () {
+25:    it('should get a user', function (done) {
+31:    it('should 404 on missing user', function (done) {
+38:  describe('GET /user/:id/view', function () {
+39:    it('should get a user', function (done) {
+45:    it('should 404 on missing user', function (done) {
+52:  describe('GET /user/:id/edit', function () {
+53:    it('should get a user to edit', function (done) {
+60:  describe('PUT /user/:id/edit', function () {
+61:    it('should edit a user', function (done) {
+66:      .expect(302, function (err) {
+75:  describe('POST /user/:id/edit?_method=PUT', function () {
+76:    it('should edit a user', function (done) {
+81:      .expect(302, function (err) {
+90:  describe('GET /posts', function () {
+91:    it('should get a list of posts', function (done) {
+test/acceptance/cookies.js
+6:describe('cookies', function(){
+7:  describe('GET /', function(){
+8:    it('should have a form', function(done){
+14:    it('should respond with no cookies', function(done){
+21:    it('should respond to cookie', function(done){
+26:      .expect(302, function(err, res){
+36:  describe('GET /forget', function(){
+37:    it('should clear cookie', function(done){
+42:      .expect(302, function(err, res){
+53:  describe('POST /', function(){
+54:    it('should set a cookie', function(done){
+63:    it('should no set cookie w/o reminder', function(done){
+test/acceptance/vhost.js
+4:describe('vhost', function(){
+5:  describe('example.com', function(){
+6:    describe('GET /', function(){
+7:      it('should say hello', function(done){
+15:    describe('GET /foo', function(){
+16:      it('should say foo', function(done){
+25:  describe('foo.example.com', function(){
+26:    describe('GET /', function(){
+27:      it('should redirect to /foo', function(done){
+36:  describe('bar.example.com', function(){
+37:    describe('GET /', function(){
+38:      it('should redirect to /bar', function(done){
+test/acceptance/markdown.js
+5:describe('markdown', function(){
+6:  describe('GET /', function(){
+7:    it('should respond with html', function(done){
+14:  describe('GET /fail',function(){
+15:    it('should respond with an error', function(done){
+test/acceptance/content-negotiation.js
+5:describe('content-negotiation', function(){
+6:  describe('GET /', function(){
+7:    it('should default to text/html', function(done){
+13:    it('should accept to text/plain', function(done){
+20:    it('should accept to application/json', function(done){
+28:  describe('GET /users', function(){
+29:    it('should default to text/html', function(done){
+35:    it('should accept to text/plain', function(done){
+42:    it('should accept to application/json', function(done){
+test/acceptance/route-map.js
+5:describe('route-map', function(){
+6:  describe('GET /users', function(){
+7:    it('should respond with users', function(done){
+14:  describe('DELETE /users', function(){
+15:    it('should delete users', function(done){
+22:  describe('GET /users/:id', function(){
+23:    it('should get a user', function(done){
+30:  describe('GET /users/:id/pets', function(){
+31:    it('should get a users pets', function(done){
+38:  describe('GET /users/:id/pets/:pid', function(){
+39:    it('should get a users pet', function(done){
+test/acceptance/ejs.js
+5:describe('ejs', function(){
+6:  describe('GET /', function(){
+7:    it('should respond with html', function(done){
+test/acceptance/hello-world.js
+5:describe('hello-world', function () {
+6:  describe('GET /', function () {
+7:    it('should respond with hello world', function (done) {
+14:  describe('GET /missing', function () {
+15:    it('should respond with 404', function (done) {
+test/acceptance/params.js
+4:describe('params', function(){
+5:  describe('GET /', function(){
+6:    it('should respond with instructions', function(done){
+13:  describe('GET /user/0', function(){
+14:    it('should respond with a user', function(done){
+21:  describe('GET /user/9', function(){
+22:    it('should fail to find user', function(done){
+29:  describe('GET /users/0-2', function(){
+30:    it('should respond with three users', function(done){
+37:  describe('GET /users/foo-bar', function(){
+38:    it('should fail integer parsing', function(done){
+test/acceptance/resource.js
+4:describe('resource', function(){
+5:  describe('GET /', function(){
+6:    it('should respond with instructions', function(done){
+13:  describe('GET /users', function(){
+14:    it('should respond with all users', function(done){
+21:  describe('GET /users/1', function(){
+22:    it('should respond with user 1', function(done){
+29:  describe('GET /users/9', function(){
+30:    it('should respond with error', function(done){
+37:  describe('GET /users/1..3', function(){
+38:    it('should respond with users 1 through 3', function(done){
+45:  describe('DELETE /users/1', function(){
+46:    it('should delete user 1', function(done){
+53:  describe('DELETE /users/9', function(){
+54:    it('should fail', function(done){
+61:  describe('GET /users/1..3.json', function(){
+62:    it('should respond with users 2 and 3 as json', function(done){
+test/res.sendStatus.js
+6:describe('res', function () {
+7:  describe('.sendStatus(statusCode)', function () {
+8:    it('should send the status code and message as body', function (done) {
+11:      app.use(function(req, res){
+20:    it('should work with unknown code', function (done) {
+23:      app.use(function(req, res){
+32:    it('should raise error for invalid status code', function (done) {
+35:      app.use(function (req, res) {
+test/req.acceptsEncodings.js
+6:describe('req', function(){
+7:  describe('.acceptsEncodings', function () {
+8:    it('should return encoding if accepted', function (done) {
+11:      app.get('/', function (req, res) {
+24:    it('should be false if encoding not accepted', function(done){
+27:      app.get('/', function (req, res) {
+test/req.acceptsLanguages.js
+6:describe('req', function(){
+7:  describe('.acceptsLanguages', function(){
+8:    it('should return language if accepted', function (done) {
+11:      app.get('/', function (req, res) {
+24:    it('should be false if language not accepted', function(done){
+27:      app.get('/', function (req, res) {
+39:    describe('when Accept-Language is not present', function(){
+40:      it('should always return language', function (done) {
+43:        app.get('/', function (req, res) {
+test/req.secure.js
+6:describe('req', function(){
+7:  describe('.secure', function(){
+8:    describe('when X-Forwarded-Proto is missing', function(){
+9:      it('should return false when http', function(done){
+12:        app.get('/', function(req, res){
+23:  describe('.secure', function(){
+24:    describe('when X-Forwarded-Proto is present', function(){
+25:      it('should return false when http', function(done){
+28:        app.get('/', function(req, res){
+38:      it('should return true when "trust proxy" is enabled', function(done){
+43:        app.get('/', function(req, res){
+53:      it('should return false when initial proxy is http', function(done){
+58:        app.get('/', function(req, res){
+68:      it('should return true when initial proxy is https', function(done){
+73:        app.get('/', function(req, res){
+83:      describe('when "trust proxy" trusting hop count', function () {
+84:        it('should respect X-Forwarded-Proto', function (done) {
+89:          app.get('/', function (req, res) {
+test/express.urlencoded.js
+10:describe('express.urlencoded()', function () {
+11:  before(function () {
+15:  it('should parse x-www-form-urlencoded', function (done) {
+23:  it('should 400 when invalid content-length', function (done) {
+26:    app.use(function (req, res, next) {
+33:    app.post('/', function (req, res) {
+44:  it('should handle Content-Length: 0', function (done) {
+53:  it('should handle empty message-body', function (done) {
+62:  it('should handle duplicated middleware', function (done) {
+68:    app.post('/', function (req, res) {
+79:  it('should not parse extended syntax', function (done) {
+87:  describe('with extended option', function () {
+88:    describe('when false', function () {
+89:      before(function () {
+93:      it('should not parse extended syntax', function (done) {
+101:      it('should parse multiple key instances', function (done) {
+110:    describe('when true', function () {
+111:      before(function () {
+115:      it('should parse multiple key instances', function (done) {
+123:      it('should parse extended syntax', function (done) {
+131:      it('should parse parameters with dots', function (done) {
+139:      it('should parse fully-encoded extended syntax', function (done) {
+147:      it('should parse array index notation', function (done) {
+155:      it('should parse array index notation with large array', function (done) {
+166:          .expect(function (res) {
+175:      it('should parse array of objects syntax', function (done) {
+183:      it('should parse deep object', function (done) {
+196:          .expect(function (res) {
+211:  describe('with inflate option', function () {
+212:    describe('when false', function () {
+213:      before(function () {
+217:      it('should not accept content-encoding', function (done) {
+226:    describe('when true', function () {
+227:      before(function () {
+231:      it('should accept content-encoding', function (done) {
+241:  describe('with limit option', function () {
+242:    it('should 413 when over limit with Content-Length', function (done) {
+252:    it('should 413 when over limit with chunked encoding', function (done) {
+263:    it('should 413 when inflated body over limit', function (done) {
+272:    it('should accept number of bytes', function (done) {
+281:    it('should not change when options altered', function (done) {
+295:    it('should not hang response', function (done) {
+306:    it('should not error when inflating', function (done) {
+316:  describe('with parameterLimit option', function () {
+317:    describe('with extended: false', function () {
+318:      it('should reject 0', function () {
+323:      it('should reject string', function () {
+328:      it('should 413 if over limit', function (done) {
+336:      it('should work when at the limit', function (done) {
+345:      it('should work if number is floating point', function (done) {
+353:      it('should work with large limit', function (done) {
+362:      it('should work with Infinity limit', function (done) {
+372:    describe('with extended: true', function () {
+373:      it('should reject 0', function () {
+378:      it('should reject string', function () {
+383:      it('should 413 if over limit', function (done) {
+391:      it('should work when at the limit', function (done) {
+400:      it('should work if number is floating point', function (done) {
+408:      it('should work with large limit', function (done) {
+417:      it('should work with Infinity limit', function (done) {
+428:  describe('with type option', function () {
+429:    describe('when "application/vnd.x-www-form-urlencoded"', function () {
+430:      before(function () {
+434:      it('should parse for custom type', function (done) {
+442:      it('should ignore standard type', function (done) {
+451:    describe('when ["urlencoded", "application/x-pairs"]', function () {
+452:      before(function () {
+458:      it('should parse "application/x-www-form-urlencoded"', function (done) {
+466:      it('should parse "application/x-pairs"', function (done) {
+474:      it('should ignore application/x-foo', function (done) {
+483:    describe('when a function', function () {
+484:      it('should parse when truthy value returned', function (done) {
+487:        function accept (req) {
+498:      it('should work without content-type', function (done) {
+501:        function accept (req) {
+510:      it('should not invoke without a body', function (done) {
+513:        function accept (req) {
+524:  describe('with verify option', function () {
+525:    it('should assert value if function', function () {
+527:        /TypeError: option verify must be function/)
+530:    it('should error from verify', function (done) {
+532:        verify: function (req, res, buf) {
+544:    it('should allow custom codes', function (done) {
+546:        verify: function (req, res, buf) {
+561:    it('should allow custom type', function (done) {
+563:        verify: function (req, res, buf) {
+578:    it('should allow pass-through', function (done) {
+580:        verify: function (req, res, buf) {
+592:    it('should 415 on unknown charset prior to verify', function (done) {
+594:        verify: function (req, res, buf) {
+606:  describe('async local storage', function () {
+607:    before(function () {
+611:      app.use(function (req, res, next) {
+618:      app.use(function (req, res, next) {
+628:      app.use(function (err, req, res, next) {
+639:      app.post('/', function (req, res) {
+646:    it('should persist store', function (done) {
+657:    it('should persist store when unmatched content-type', function (done) {
+667:    it('should persist store when inflated', function (done) {
+678:    it('should persist store when inflate error', function (done) {
+688:    it('should persist store when limit exceeded', function (done) {
+699:  describe('charset', function () {
+700:    before(function () {
+704:    it('should parse utf-8', function (done) {
+711:    it('should parse when content-length != char length', function (done) {
+719:    it('should default to utf-8', function (done) {
+726:    it('should fail on unknown charset', function (done) {
+734:  describe('encoding', function () {
+735:    before(function () {
+739:    it('should parse without encoding', function (done) {
+746:    it('should support identity encoding', function (done) {
+754:    it('should support gzip encoding', function (done) {
+762:    it('should support deflate encoding', function (done) {
+770:    it('should be case-insensitive', function (done) {
+778:    it('should 415 on unknown encoding', function (done) {
+788:function createManyParams (count) {
+805:function createApp (options) {
+810:  app.use(function (err, req, res, next) {
+817:  app.post('/', function (req, res) {
+824:function expectKeyCount (count) {
+825:  return function (res) {
+test/req.stale.js
+6:describe('req', function(){
+7:  describe('.stale', function(){
+8:    it('should return false when the resource is not modified', function(done){
+12:      app.use(function(req, res){
+23:    it('should return true when the resource is modified', function(done){
+26:      app.use(function(req, res){
+37:    it('should return true without response headers', function(done){
+41:      app.use(function(req, res){
+test/middleware.basic.js
+7:describe('middleware', function(){
+8:  describe('.next()', function(){
+9:    it('should behave like connect', function(done){
+13:      app.use(function(req, res, next){
+18:      app.use(function(req, res, next){
+23:      app.use(function(req, res){
+27:        req.on('data', function(chunk){ buf += chunk });
+28:        req.on('end', function(){
+38:      .expect(function () { assert.deepEqual(calls, ['one', 'two']) })
+test/req.subdomains.js
+6:describe('req', function(){
+7:  describe('.subdomains', function(){
+8:    describe('when present', function(){
+9:      it('should return an array', function(done){
+12:        app.use(function(req, res){
+22:      it('should work with IPv4 address', function(done){
+25:        app.use(function(req, res){
+35:      it('should work with IPv6 address', function(done){
+38:        app.use(function(req, res){
+49:    describe('otherwise', function(){
+50:      it('should return an empty array', function(done){
+53:        app.use(function(req, res){
+64:    describe('with no host', function(){
+65:      it('should return an empty array', function(done){
+68:        app.use(function(req, res){
+79:    describe('with trusted X-Forwarded-Host', function () {
+80:      it('should return an array', function (done) {
+84:        app.use(function (req, res) {
+95:    describe('when subdomain offset is set', function(){
+96:      describe('when subdomain offset is zero', function(){
+97:        it('should return an array with the whole domain', function(done){
+101:          app.use(function(req, res){
+111:        it('should return an array with the whole IPv4', function (done) {
+115:          app.use(function(req, res){
+125:        it('should return an array with the whole IPv6', function (done) {
+129:          app.use(function(req, res){
+140:      describe('when present', function(){
+141:        it('should return an array', function(done){
+145:          app.use(function(req, res){
+156:      describe('otherwise', function(){
+157:        it('should return an empty array', function(done){
+161:          app.use(function(req, res){
+test/req.baseUrl.js
+6:describe('req', function(){
+7:  describe('.baseUrl', function(){
+8:    it('should be empty for top-level route', function(done){
+11:      app.get('/:a', function(req, res){
+20:    it('should contain lower path', function(done){
+24:      sub.get('/:b', function(req, res){
+34:    it('should contain full lower path', function(done){
+40:      sub3.get('/:d', function(req, res){
+52:    it('should travel through routers correctly', function(done){
+59:      sub3.get('/:d', function(req, res, next){
+64:      sub1.use('/', function(req, res, next){
+69:      sub1.use('/bar', function(req, res, next){
+73:      app.use(function(req, res, next){
+78:      app.use(function(req, res, next){
+test/res.send.js
+12:describe('res', function(){
+13:  describe('.send()', function(){
+14:    it('should set body to ""', function(done){
+17:      app.use(function(req, res){
+27:  describe('.send(null)', function(){
+28:    it('should set body to ""', function(done){
+31:      app.use(function(req, res){
+42:  describe('.send(undefined)', function(){
+43:    it('should set body to ""', function(done){
+46:      app.use(function(req, res){
+56:  describe('.send(Number)', function(){
+57:    it('should send as application/json', function(done){
+60:      app.use(function(req, res){
+71:  describe('.send(String)', function(){
+72:    it('should send as html', function(done){
+75:      app.use(function(req, res){
+85:    it('should set ETag', function (done) {
+88:      app.use(function (req, res) {
+99:    it('should not override Content-Type', function(done){
+102:      app.use(function(req, res){
+112:    it('should override charset in Content-Type', function(done){
+115:      app.use(function(req, res){
+125:    it('should preserve existing parameters when adding charset', function(done){
+128:      app.use(function(req, res){
+138:    it('should not throw on a Content-Type that fails to parse', function(done){
+141:      app.use(function(req, res){
+151:    it('should keep charset in Content-Type for Buffers', function(done){
+154:      app.use(function(req, res){
+165:  describe('.send(Buffer)', function(){
+166:    it('should send as octet-stream', function(done){
+169:      app.use(function(req, res){
+181:    it('should set ETag', function (done) {
+184:      app.use(function (req, res) {
+194:    it('should not override Content-Type', function(done){
+197:      app.use(function(req, res){
+207:    it('should accept Uint8Array', function(done){
+209:      app.use(function(req, res){
+220:    it('should not override ETag', function (done) {
+223:      app.use(function (req, res) {
+234:  describe('.send(Object)', function(){
+235:    it('should send as application/json', function(done){
+238:      app.use(function(req, res){
+249:  describe('when the request method is HEAD', function(){
+250:    it('should ignore the body', function(done){
+253:      app.use(function(req, res){
+265:  describe('when .statusCode is 204', function(){
+266:    it('should strip Content-* fields, Transfer-Encoding field, and body', function(done){
+269:      app.use(function(req, res){
+282:  describe('when .statusCode is 205', function () {
+283:    it('should strip Transfer-Encoding field and body, set Content-Length', function (done) {
+286:      app.use(function (req, res) {
+298:  describe('when .statusCode is 304', function(){
+299:    it('should strip Content-* fields, Transfer-Encoding field, and body', function(done){
+302:      app.use(function(req, res){
+315:  it('should always check regardless of length', function(done){
+319:    app.use(function(req, res, next){
+330:  it('should respond with 304 Not Modified when fresh', function(done){
+334:    app.use(function(req, res){
+346:  it('should not perform freshness check unless 2xx or 304', function(done){
+350:    app.use(function(req, res, next){
+363:  it('should not support jsonp callbacks', function(done){
+366:    app.use(function(req, res){
+375:  it('should be chainable', function (done) {
+378:    app.use(function (req, res) {
+387:  describe('"etag" setting', function () {
+388:    describe('when enabled', function () {
+389:      it('should send ETag', function (done) {
+392:        app.use(function (req, res) {
+404:      methods.forEach(function (method) {
+407:        it('should send ETag in response to ' + method.toUpperCase() + ' request', function (done) {
+413:          app[method]('/', function (req, res) {
+424:      it('should send ETag for empty string response', function (done) {
+427:        app.use(function (req, res) {
+439:      it('should send ETag for long response', function (done) {
+442:        app.use(function (req, res) {
+455:      it('should not override ETag when manually set', function (done) {
+458:        app.use(function (req, res) {
+471:      it('should not send ETag for res.send()', function (done) {
+474:        app.use(function (req, res) {
+487:    describe('when disabled', function () {
+488:      it('should send no ETag', function (done) {
+491:        app.use(function (req, res) {
+504:      it('should send ETag when manually set', function (done) {
+509:        app.use(function (req, res) {
+521:    describe('when "strong"', function () {
+522:      it('should send strong ETag', function (done) {
+527:        app.use(function (req, res) {
+538:    describe('when "weak"', function () {
+539:      it('should send weak ETag', function (done) {
+544:        app.use(function (req, res) {
+555:    describe('when a function', function () {
+556:      it('should send custom ETag', function (done) {
+559:        app.set('etag', function (body, encoding) {
+567:        app.use(function (req, res) {
+577:      it('should not send falsy ETag', function (done) {
+580:        app.set('etag', function (body, encoding) {
+584:        app.use(function (req, res) {
+596:  describe('when Transfer-Encoding header is present', function(){
+604:    transferEncodings.forEach(function(encoding){
+605:      it('should not add Content-Length header if Transfer-Encoding header is equal to ' + encoding, function(done){
+608:        app.use(function(_, res){
+620:    it('should still generate an ETag', function(done){
+623:      app.use(function(_, res){
+test/app.engine.js
+8:function render(path, options, fn) {
+9:  fs.readFile(path, 'utf8', function(err, str){
+16:describe('app', function(){
+17:  describe('.engine(ext, fn)', function(){
+18:    it('should map a template engine', function(done){
+25:      app.render('user.html', function(err, str){
+32:    it('should throw when the callback is missing', function(){
+34:      assert.throws(function () {
+36:      }, /callback function required/)
+39:    it('should work without leading "."', function(done){
+46:      app.render('user.html', function(err, str){
+53:    it('should work "view engine" setting', function(done){
+61:      app.render('user', function(err, str){
+68:    it('should work "view engine" with leading "."', function(done){
+76:      app.render('user', function(err, str){

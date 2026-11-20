@@ -1,0 +1,267 @@
+/tmp/py_cat_core.py (4018 lines, python outline; bodies elided)
+1: from __future__ import annotations
+3: import collections.abc as cabc
+4: import enum
+5: import errno
+6: import inspect
+7: import os
+… +41 more imports (lines 8-49)
+54: F = t.TypeVar("F", bound="t.Callable[..., t.Any]")
+55: V = t.TypeVar("V")
+59: _HELP_OPTION_STORAGE_NAME = "_click_default_help"
+62: def _complete_visible_commands(ctx: Context, incomplete: str) -> cabc.Iterator[tuple[str, Command]]:  … 14 lines
+81: def _check_nested_chain(base_command: Group, cmd_name: str, cmd: Command, register: bool = False) -> None:  … 15 lines
+101: def _echo_aborted() -> None:  … 2 lines
+106: def _outside_click_stacklevel(skip: cabc.Container[str] = ()) -> int:  … 21 lines
+130: def _format_deprecated_label(deprecated: bool | str) -> str:  … 5 lines
+138: def _format_deprecated_suffix(deprecated: bool | str) -> str:  … 6 lines
+147: def batch(iterable: cabc.Iterable[V], batch_size: int) -> list[tuple[V, ...]]:  … 1 line
+151: @contextmanager def augment_usage_errors(ctx: Context, param: Parameter | None = None) -> cabc.Generator[None]:  … 13 lines
+170: def iter_params_for_processing(invocation_order: cabc.Sequence[Parameter], declaration_order: cabc.Sequence[Parameter]) -> list[Parameter]:  … 21 lines
+197: class ParameterSource(enum.IntEnum):
+224:   PROMPT = enum.auto()
+226:   COMMANDLINE = enum.auto()
+228:   ENVIRONMENT = enum.auto()
+230:   DEFAULT_MAP = enum.auto()
+232:   DEFAULT = enum.auto()
+236: class Context:
+338:   formatter_class: type[HelpFormatter] = HelpFormatter
+340:   parent: Context | None
+341:   command: Command
+342:   info_name: str | None
+343:   params: dict[str, t.Any]
+344:   args: list[str]
+345:   _protected_args: list[str]
+346:   _opt_prefixes: set[str]
+347:   obj: t.Any
+348:   _meta: dict[str, t.Any]
+349:   default_map: cabc.MutableMapping[str, t.Any] | None
+350:   invoked_subcommand: str | None
+351:   terminal_width: int | None
+352:   max_content_width: int | None
+353:   allow_extra_args: bool
+354:   allow_interspersed_args: bool
+355:   ignore_unknown_options: bool
+356:   help_option_names: list[str]
+357:   token_normalize_func: t.Callable[[str], str] | None
+358:   resilient_parsing: bool
+359:   auto_envvar_prefix: str | None
+360:   color: bool | None
+361:   show_default: bool | None
+362:   _close_callbacks: list[t.Callable[[], t.Any]]
+363:   _depth: int
+364:   _parameter_source: dict[str, ParameterSource]
+365:   _param_default_explicit: dict[str, bool]
+366:   _exit_stack: ExitStack
+368:   def __init__(self, command: Command, parent: Context | None = None, info_name: str | None = None, obj: t.Any | None = None, auto_envvar_prefix: str | None = None, default_map: cabc.MutableMapping[str, …[367 chars]… bool | None = None, show_default: bool | None = None) -> None:  … 155 lines
+543:   @property def protected_args(self) -> list[str]:  … 9 lines
+555:   def to_info_dict(self) -> dict[str, t.Any]:  … 19 lines
+576:   def __enter__(self) -> t.Self:  … 3 lines
+581:   def __exit__(self, exc_type: type[BaseException] | None, exc_value: BaseException | None, tb: TracebackType | None) -> bool | None:  … 7 lines
+595:   @contextmanager def scope(self, cleanup: bool = True) -> cabc.Generator[Context]:  … 35 lines
+633:   @property def meta(self) -> dict[str, t.Any]:  … 25 lines
+661:   def make_formatter(self) -> HelpFormatter:  … 12 lines
+675:   def with_resource(self, context_manager: AbstractContextManager[V]) -> V:  … 27 lines
+704:   def call_on_close(self, f: t.Callable[..., t.Any]) -> t.Callable[..., t.Any]:  … 10 lines
+716:   def close(self) -> None:  … 5 lines
+723:   def _close_with_exception_info(self, exc_type: type[BaseException] | None, exc_value: BaseException | None, tb: TracebackType | None) -> bool | None:  … 11 lines
+741:   @property def command_path(self) -> str:  … 16 lines
+760:   def find_root(self) -> Context:  … 5 lines
+767:   def find_object(self, object_type: type[V]) -> V | None:  … 10 lines
+779:   def ensure_object(self, object_type: type[V]) -> V:  … 7 lines
+788:   def _default_map_has(self, name: str | None) -> bool:  … 12 lines
+802:   @t.overload def lookup_default(self, name: str, call: t.Literal[True] = True) -> t.Any | None: ...
+807:   @t.overload def lookup_default(self, name: str, call: t.Literal[False] = ...) -> t.Any | t.Callable[[], t.Any] | None: ...
+812:   def lookup_default(self, name: str, call: bool = True) -> t.Any | None:  … 20 lines
+834:   def fail(self, message: str) -> t.NoReturn:  … 6 lines
+842:   def abort(self) -> t.NoReturn:  … 2 lines
+846:   def exit(self, code: int = 0) -> t.NoReturn:  … 8 lines
+856:   def get_usage(self) -> str:  … 4 lines
+862:   def get_help(self) -> str:  … 4 lines
+868:   def _make_sub_context(self, command: Command) -> t.Self:  … 6 lines
+876:   @t.overload def invoke(self, callback: t.Callable[..., V], /, *args: t.Any, **kwargs: t.Any) -> V: ...
+881:   @t.overload def invoke(self, callback: Command, /, *args: t.Any, **kwargs: t.Any) -> t.Any: ...
+884:   def invoke(self, callback: Command | t.Callable[..., V], /, *args: t.Any, **kwargs: t.Any) -> t.Any | V:  … 48 lines
+936:   def forward(self, cmd: Command, /, *args: t.Any, **kwargs: t.Any) -> t.Any:  … 17 lines
+955:   def set_parameter_source(self, name: str, source: ParameterSource) -> None:  … 7 lines
+964:   def get_parameter_source(self, name: str) -> ParameterSource | None:  … 16 lines
+983: class Command:
+1034:   context_class: type[Context] = Context
+1037:   allow_extra_args = False
+1040:   allow_interspersed_args = True
+1043:   ignore_unknown_options = False
+1045:   name: str | None
+1046:   context_settings: cabc.MutableMapping[str, t.Any]
+1047:   callback: t.Callable[..., t.Any] | None
+1048:   params: list[Parameter]
+1049:   help: str | None
+1050:   epilog: str | None
+1051:   options_metavar: str | None
+1052:   short_help: str | None
+1053:   add_help_option: bool
+1054:   _help_option: Option | None
+1055:   no_args_is_help: bool
+1056:   hidden: bool
+1057:   deprecated: bool | str
+1059:   def __init__(self, name: str | None, context_settings: cabc.MutableMapping[str, t.Any] | None = None, callback: t.Callable[..., t.Any] | None = None, params: list[Parameter] | None = None, help: str | …[175 chars]…  hidden: bool = False, deprecated: bool | str = False) -> None:  … 28 lines
+1103:   def to_info_dict(self, ctx: Context) -> dict[str, t.Any]:  … 9 lines
+1114:   def __repr__(self) -> str:  … 1 line
+1117:   def get_usage(self, ctx: Context) -> str:  … 7 lines
+1126:   def get_params(self, ctx: Context) -> list[Parameter]:  … 54 lines
+1182:   def format_usage(self, ctx: Context, formatter: HelpFormatter) -> None:  … 6 lines
+1190:   def collect_usage_pieces(self, ctx: Context) -> list[str]:  … 9 lines
+1201:   def get_help_option_names(self, ctx: Context) -> list[str]:  … 13 lines
+1216:   def get_help_option(self, ctx: Context) -> Option | None:  … 32 lines
+1250:   def make_parser(self, ctx: Context) -> _OptionParser:  … 5 lines
+1257:   def get_help(self, ctx: Context) -> str:  … 7 lines
+1266:   def get_short_help_str(self, limit: int = 45) -> str:  … 14 lines
+1282:   def format_help(self, ctx: Context, formatter: HelpFormatter) -> None:  … 17 lines
+1301:   def format_help_text(self, ctx: Context, formatter: HelpFormatter) -> None:  … 16 lines
+1319:   def format_options(self, ctx: Context, formatter: HelpFormatter) -> None:  … 10 lines
+1331:   def format_arguments(self, ctx: Context, formatter: HelpFormatter) -> None:  … 11 lines
+1344:   def format_epilog(self, ctx: Context, formatter: HelpFormatter) -> None:  … 7 lines
+1353:   def make_context(self, info_name: str | None, args: list[str], parent: Context | None = None, **extra: t.Any) -> Context:  … 29 lines
+1390:   def parse_args(self, ctx: Context, args: list[str]) -> list[str]:  … 31 lines
+1423:   def invoke(self, ctx: Context) -> t.Any:  … 14 lines
+1439:   def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:  … 45 lines
+1486:   @t.overload def main(self, args: cabc.Sequence[str] | None = None, prog_name: str | None = None, complete_var: str | None = None, standalone_mode: t.Literal[True] = True, **extra: t.Any) -> t.NoReturn: ...
+1496:   @t.overload def main(self, args: cabc.Sequence[str] | None = None, prog_name: str | None = None, complete_var: str | None = None, standalone_mode: bool = ..., **extra: t.Any) -> t.Any: ...
+1506:   def main(self, args: cabc.Sequence[str] | None = None, prog_name: str | None = None, complete_var: str | None = None, standalone_mode: bool = True, windows_expand_args: bool = True, **extra: t.Any) -> t.Any:  … 126 lines
+1642:   def _main_shell_completion(self, ctx_args: cabc.MutableMapping[str, t.Any], prog_name: str, complete_var: str | None = None) -> None:  … 25 lines
+1674:   def __call__(self, *args: t.Any, **kwargs: t.Any) -> t.Any:  … 2 lines
+1679: class _FakeSubclassCheck(type):
+1680:   def __subclasscheck__(cls, subclass: type) -> bool:  … 1 line
+1683:   def __instancecheck__(cls, instance: t.Any) -> bool:  … 1 line
+1687: class _BaseCommand(Command, metaclass=_FakeSubclassCheck):
+1694: class Group(Command):
+1724:   allow_extra_args = True
+1725:   allow_interspersed_args = False
+1732:   command_class: type[Command] | None = None
+1744:   group_class: type[Group | type] | None = None
+1747:   commands: cabc.MutableMapping[str, Command]
+1748:   invoke_without_command: bool
+1749:   subcommand_metavar: str
+1750:   chain: bool
+1751:   _result_callback: t.Callable[..., t.Any] | None
+1753:   def __init__(self, name: str | None = None, commands: cabc.MutableMapping[str, Command] | cabc.Sequence[Command] | None = None, invoke_without_command: bool = False, no_args_is_help: bool | None = Non …[80 chars]… t.Callable[..., t.Any] | None = None, **kwargs: t.Any) -> None:  … 41 lines
+1808:   def to_info_dict(self, ctx: Context) -> dict[str, t.Any]:  … 16 lines
+1826:   def add_command(self, cmd: Command, name: str | None = None) -> None:  … 8 lines
+1836:   @t.overload def command(self, __func: t.Callable[..., t.Any]) -> Command: ...
+1839:   @t.overload def command(self, *args: t.Any, **kwargs: t.Any) -> t.Callable[[t.Callable[..., t.Any]], Command]: ...
+1844:   def command(self, *args: t.Any, **kwargs: t.Any) -> t.Callable[[t.Callable[..., t.Any]], Command] | Command:  … 37 lines
+1885:   @t.overload def group(self, __func: t.Callable[..., t.Any]) -> Group: ...
+1888:   @t.overload def group(self, *args: t.Any, **kwargs: t.Any) -> t.Callable[[t.Callable[..., t.Any]], Group]: ...
+1893:   def group(self, *args: t.Any, **kwargs: t.Any) -> t.Callable[[t.Callable[..., t.Any]], Group] | Group:  … 40 lines
+1937:   def result_callback(self, replace: bool = False) -> t.Callable[[F], F]:  … 43 lines
+1982:   def get_command(self, ctx: Context, cmd_name: str) -> Command | None:  … 4 lines
+1988:   def list_commands(self, ctx: Context) -> list[str]:  … 2 lines
+1992:   def collect_usage_pieces(self, ctx: Context) -> list[str]:  … 3 lines
+1997:   def format_options(self, ctx: Context, formatter: HelpFormatter) -> None:  … 2 lines
+2001:   def format_commands(self, ctx: Context, formatter: HelpFormatter) -> None:  … 26 lines
+2029:   def parse_args(self, ctx: Context, args: list[str]) -> list[str]:  … 12 lines
+2043:   def invoke(self, ctx: Context) -> t.Any:  … 66 lines
+2111:   def resolve_command(self, ctx: Context, args: list[str]) -> tuple[str | None, Command | None, list[str]]:  … 22 lines
+2137:   def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:  … 17 lines
+2157: class _MultiCommand(Group, metaclass=_FakeSubclassCheck):
+2164: class CommandCollection(Group):
+2180:   sources: list[Group]
+2182:   def __init__(self, name: str | None = None, sources: list[Group] | None = None, **kwargs: t.Any) -> None:  … 3 lines
+2192:   def add_source(self, group: Group) -> None:  … 2 lines
+2196:   def get_command(self, ctx: Context, cmd_name: str) -> Command | None:  … 15 lines
+2213:   def list_commands(self, ctx: Context) -> list[str]:  … 6 lines
+2222: def _check_iter(value: cabc.Iterable[V]) -> cabc.Iterator[V]:  … 7 lines
+2232: class Parameter(ABC):
+2340:   param_type_name = "parameter"
+2342:   name: str
+2350:   opts: list[str]
+2361:   secondary_opts: list[str]
+2367:   required: bool
+2368:   callback: t.Callable[[Context, Parameter, t.Any], t.Any] | None
+2369:   nargs: int
+2370:   multiple: bool
+2371:   expose_value: bool
+2372:   default: t.Any | t.Callable[[], t.Any] | None
+2373:   _default_explicit: bool
+2374:   is_eager: bool
+2375:   metavar: str | None
+2376:   envvar: str | cabc.Sequence[str] | None
+2377:   _custom_shell_complete: ( … (+2 lines)
+2380:   deprecated: bool | str
+2381:   help: str | None
+2383:   def __init_subclass__(cls, **kwargs: t.Any) -> None:  … 12 lines
+2397:   def __init__(self, param_decls: cabc.Sequence[str] | None = None, type: types.ParamType[t.Any] | t.Any | None = None, required: bool = False, default: t.Any | t.Callable[[], t.Any] | None = UNSET, cal …[351 chars]… precated: bool | str = False, help: str | None = None) -> None:  … 52 lines
+2478:   @staticmethod def _hide_unset(value: t.Any) -> t.Any:  … 5 lines
+2486:   def to_info_dict(self) -> dict[str, t.Any]:  … 24 lines
+2512:   def __repr__(self) -> str:  … 1 line
+2515:   @abstractmethod def _parse_decls(self, decls: cabc.Sequence[str], expose_value: bool) -> tuple[str, list[str], list[str]]: ...
+2520:   def _check_name_is_usable(self, name: str, decls: cabc.Sequence[str]) -> None:  … 35 lines
+2557:   @property def spec(self) -> str:  … 13 lines
+2573:   @property def human_readable_name(self) -> str:  … 17 lines
+2593:   def get_help_spec(self, ctx: Context) -> str:  … 13 lines
+2608:   def make_metavar(self, ctx: Context) -> str:  … 12 lines
+2622:   @t.overload def get_default(self, ctx: Context, call: t.Literal[True] = True) -> t.Any | None: ...
+2627:   @t.overload def get_default(self, ctx: Context, call: bool = ...) -> t.Any | t.Callable[[], t.Any] | None: ...
+2632:   def get_default(self, ctx: Context, call: bool = True) -> t.Any | t.Callable[[], t.Any] | None:  … 29 lines
+2665:   @abstractmethod def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None: ...
+2668:   def consume_value(self, ctx: Context, opts: cabc.Mapping[str, t.Any]) -> tuple[t.Any, ParameterSource]:  … 44 lines
+2716:   def type_cast_value(self, ctx: Context, value: t.Any) -> t.Any:  … 54 lines
+2772:   def value_is_missing(self, value: t.Any) -> bool:  … 16 lines
+2790:   def process_value(self, ctx: Context, value: t.Any) -> t.Any:  … 60 lines
+2852:   def resolve_envvar_value(self, ctx: Context) -> str | None:  … 43 lines
+2897:   def value_from_envvar(self, ctx: Context) -> str | cabc.Sequence[str] | None:  … 14 lines
+2913:   def handle_parse_result(self, ctx: Context, opts: cabc.Mapping[str, t.Any], args: list[str]) -> tuple[t.Any, list[str]]:  … 84 lines
+3001:   def get_help_record(self, ctx: Context) -> tuple[str, str] | None:  … 1 line
+3004:   def get_usage_pieces(self, ctx: Context) -> list[str]:  … 1 line
+3007:   def get_error_hint(self, ctx: Context | None) -> str:  … 8 lines
+3017:   def shell_complete(self, ctx: Context, incomplete: str) -> list[CompletionItem]:  … 21 lines
+3041: class Option(Parameter):
+3113:   param_type_name = "option"
+3115:   prompt: str | None
+3116:   confirmation_prompt: bool | str
+3117:   prompt_required: bool
+3118:   hide_input: bool
+3119:   hidden: bool
+3121:   _flag_needs_value: bool
+3122:   is_flag: bool
+3123:   flag_value: t.Any
+3124:   type: types.ParamType[t.Any]
+3125:   default: t.Any | t.Callable[[], t.Any] | None
+3127:   count: bool
+3128:   allow_from_autoenv: bool
+3129:   show_default: bool | str | None
+3130:   show_choices: bool
+3131:   show_envvar: bool
+3133:   def __init__(self, param_decls: cabc.Sequence[str] | None = None, show_default: bool | str | None = None, prompt: bool | str = False, confirmation_prompt: bool | str = False, prompt_required: bool = T …[311 chars]… False, deprecated: bool | str = False, **attrs: t.Any) -> None:  … 55 lines
+3210:   @property def is_bool_flag(self) -> bool:  … 6 lines
+3219:   @property def flag_activation_value(self) -> t.Any:  … 10 lines
+3232:   def _infer_flag_kind(self, is_flag: bool | None, flag_value: t.Any) -> tuple[bool, bool]:  … 29 lines
+3265:   def _pick_type(self, type_arg: t.Any, flag_value: t.Any, count: bool, is_flag: bool) -> types.ParamType[t.Any]:  … 31 lines
+3304:   def _resolve_lazy_default(self, value: t.Any) -> t.Any:  … 22 lines
+3328:   def _validate(self, prompt: bool | str, deprecated: bool | str) -> None:  … 20 lines
+3350:   def to_info_dict(self) -> dict[str, t.Any]:  … 20 lines
+3372:   def get_default(self, ctx: Context, call: bool = True) -> t.Any | t.Callable[[], t.Any] | None:  … 28 lines
+3404:   def get_error_hint(self, ctx: Context | None) -> str:  … 8 lines
+3414:   def _check_name_is_normalized(self, name: str, decls: cabc.Sequence[str]) -> None:  … 18 lines
+3434:   def _parse_decls(self, decls: cabc.Sequence[str], expose_value: bool) -> tuple[str, list[str], list[str]]:  … 63 lines
+3501:   def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None:  … 40 lines
+3543:   def get_help_spec(self, ctx: Context) -> str:  … 29 lines
+3574:   def get_help_record(self, ctx: Context) -> tuple[str, str] | None:  … 23 lines
+3599:   def get_help_extra(self, ctx: Context) -> types.OptionHelpExtra:  … 81 lines
+3682:   def prompt_for_value(self, ctx: Context) -> t.Any:  … 47 lines
+3731:   def resolve_envvar_value(self, ctx: Context) -> str | None:  … 22 lines
+3755:   def value_from_envvar(self, ctx: Context) -> t.Any:  … 46 lines
+3803:   def consume_value(self, ctx: Context, opts: cabc.Mapping[str, Parameter]) -> tuple[t.Any, ParameterSource]:  … 52 lines
+3859:   def process_value(self, ctx: Context, value: t.Any) -> t.Any:  … 12 lines
+3874: class Argument(Parameter):
+3887:   param_type_name = "argument"
+3889:   def __init__(self, param_decls: cabc.Sequence[str], required: bool | None = None, help: str | None = None, **attrs: t.Any) -> None:  … 14 lines
+3911:   @property def spec(self) -> str:  … 10 lines
+3924:   def make_metavar(self, ctx: Context) -> str:  … 17 lines
+3943:   def _parse_decls(self, decls: cabc.Sequence[str], expose_value: bool) -> tuple[str, list[str], list[str]]:  … 17 lines
+3964:   def get_usage_pieces(self, ctx: Context) -> list[str]:  … 1 line
+3967:   def get_help_spec(self, ctx: Context) -> str:  … 6 lines
+3975:   def get_help_record(self, ctx: Context) -> tuple[str, str]:  … 11 lines
+3988:   def get_error_hint(self, ctx: Context | None) -> str:  … 3 lines
+3993:   def add_to_parser(self, parser: _OptionParser, ctx: Context) -> None:  … 1 line
+3997: def __getattr__(name: str) -> object:  … 21 lines
+[ojas: outline of a 4018-line file, ≈39076 → ≈4713 tokens. Bodies: ojas read /tmp/py_cat_core.py --symbol <name>, or --lines START:END. Whole file: --full]

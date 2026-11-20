@@ -1,0 +1,4 @@
+1 paths in 1 directories
+./: node_modules
+node_modules/ … 598 entries hidden
+[ojas: 599 lines → 3, ≈4.1k → ≈20 tokens. Full output: ojas get c8cb1309adff]

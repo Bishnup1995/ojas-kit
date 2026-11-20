@@ -1,0 +1,56 @@
+156 matches in 6 files
+src/dent.rs (22)
+  77: pub fn path(&self) -> &Path {
+  86: pub fn into_path(self) -> PathBuf {
+  100: pub fn path_is_symlink(&self) -> bool {
+  126: pub fn metadata(&self) -> Result<fs::Metadata> {
+  131: fn metadata_internal(&self) -> Result<fs::Metadata> {
+  141: fn metadata_internal(&self) -> Result<fs::Metadata> {
+  158: pub fn file_type(&self) -> fs::FileType {
+  166: pub fn file_name(&self) -> &OsStr {
+  … +14 more
+src/tests/util.rs (22)
+  30: pub fn errs(&self) -> &[Error] {
+  35: pub fn assert_no_errors(&self) {
+  45: pub fn ents(&self) -> &[DirEntry] {
+  52: pub fn paths(&self) -> Vec<PathBuf> {
+  58: pub fn sorted_ents(&self) -> Vec<DirEntry> {
+  68: pub fn sorted_paths(&self) -> Vec<PathBuf> {
+  84: pub fn tmp() -> Dir {
+  90: pub fn path(&self) -> &Path {
+  … +14 more
+src/tests/recursive.rs (50)
+  8: fn send_sync_traits() {
+  11: fn assert_send<T: Send>() {}
+  12: fn assert_sync<T: Sync>() {}
+  23: fn empty() {
+  39: fn empty_follow() {
+  55: fn empty_file() {
+  73: fn empty_file_follow() {
+  91: fn one_dir() {
+  … +42 more
+src/error.rs (14)
+  46: pub fn path(&self) -> Option<&Path> {
+  66: pub fn loop_ancestor(&self) -> Option<&Path> {
+  81: pub fn depth(&self) -> usize {
+  143: pub fn io_error(&self) -> Option<&io::Error> {
+  155: pub fn into_io_error(self) -> Option<io::Error> {
+  162: pub(crate) fn from_path(
+  170: pub(crate) fn from_entry(dent: &DirEntry, err: io::Error) -> Self {
+  180: pub(crate) fn from_io(depth: usize, err: io::Error) -> Self {
+  … +6 more
+src/util.rs (3)
+  5: pub fn device_num<P: AsRef<Path>>(path: P) -> io::Result<u64> {
+  12: pub fn device_num<P: AsRef<Path>>(path: P) -> io::Result<u64> {
+  20: pub fn device_num<P: AsRef<Path>>(_: P) -> io::Result<u64> {
+src/lib.rs (45)
+  37: # fn try_main() -> Result<(), Error> {
+  68: # fn try_main() -> Result<(), Error> {
+  87: fn is_hidden(entry: &DirEntry) -> bool {
+  94: # fn try_main() -> Result<(), Error> {
+  191: /// # fn try_main() -> Result<(), Error> {
+  211: /// # fn try_main() -> Result<(), Error> {
+  258: fn fmt(
+  289: pub fn new<P: AsRef<Path>>(root: P) -> Self {
+  … +37 more
+[ojas: 156 lines → 55, ≈2.4k → ≈534 tokens. Full output: ojas get 37f04266453b]

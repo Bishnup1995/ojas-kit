@@ -1,0 +1,234 @@
+docs:
+total 320
+drwxr-xr-x 2 bench bench  4096 Nov 20 10:01 _static
+-rw-r--r-- 1 bench bench 14172 Nov 20 10:01 advanced.md
+-rw-r--r-- 1 bench bench  4323 Nov 20 10:01 api.md
+-rw-r--r-- 1 bench bench  5195 Nov 20 10:01 arguments.md
+-rw-r--r-- 1 bench bench    42 Nov 20 10:01 changes.md
+-rw-r--r-- 1 bench bench  2866 Nov 20 10:01 click-concepts.md
+-rw-r--r-- 1 bench bench  1194 Nov 20 10:01 command-line-reference.md
+-rw-r--r-- 1 bench bench 11635 Nov 20 10:01 commands-and-groups.md
+-rw-r--r-- 1 bench bench 14697 Nov 20 10:01 commands.md
+-rw-r--r-- 1 bench bench 12896 Nov 20 10:01 complex.md
+-rw-r--r-- 1 bench bench  1996 Nov 20 10:01 conf.py
+-rw-r--r-- 1 bench bench  9234 Nov 20 10:01 contrib.md
+-rw-r--r-- 1 bench bench  1195 Nov 20 10:01 contributing.md
+-rw-r--r-- 1 bench bench   906 Nov 20 10:01 design-opinions.md
+-rw-r--r-- 1 bench bench 10461 Nov 20 10:01 documentation.md
+-rw-r--r-- 1 bench bench  2214 Nov 20 10:01 entry-points.md
+-rw-r--r-- 1 bench bench  5690 Nov 20 10:01 exceptions.md
+-rw-r--r-- 1 bench bench  3752 Nov 20 10:01 extending-click.md
+-rw-r--r-- 1 bench bench 12085 Nov 20 10:01 faqs.md
+-rw-r--r-- 1 bench bench  3732 Nov 20 10:01 handling-files.md
+-rw-r--r-- 1 bench bench  2611 Nov 20 10:01 index.md
+-rw-r--r-- 1 bench bench    86 Nov 20 10:01 license.md
+-rw-r--r-- 1 bench bench  2424 Nov 20 10:01 option-decorators.md
+-rw-r--r-- 1 bench bench 25713 Nov 20 10:01 options.md
+-rw-r--r-- 1 bench bench  9408 Nov 20 10:01 parameter-types.md
+-rw-r--r-- 1 bench bench  3970 Nov 20 10:01 parameters.md
+-rw-r--r-- 1 bench bench  4575 Nov 20 10:01 prompts.md
+-rw-r--r-- 1 bench bench  6818 Nov 20 10:01 quickstart.md
+-rw-r--r-- 1 bench bench    78 Nov 20 10:01 setuptools.md
+-rw-r--r-- 1 bench bench 10320 Nov 20 10:01 shell-completion.md
+-rw-r--r-- 1 bench bench  3876 Nov 20 10:01 standalone-apps-briefcase.md
+-rw-r--r-- 1 bench bench  6613 Nov 20 10:01 standalone-apps-nuitka.md
+-rw-r--r-- 1 bench bench  2122 Nov 20 10:01 support-multiple-versions.md
+-rw-r--r-- 1 bench bench  9678 Nov 20 10:01 testing.md
+-rw-r--r-- 1 bench bench  4281 Nov 20 10:01 unicode-support.md
+-rw-r--r-- 1 bench bench  4577 Nov 20 10:01 upgrade-guides.md
+-rw-r--r-- 1 bench bench 11989 Nov 20 10:01 utils.md
+-rw-r--r-- 1 bench bench  1251 Nov 20 10:01 virtualenv.md
+-rw-r--r-- 1 bench bench  6948 Nov 20 10:01 why.md
+-rw-r--r-- 1 bench bench  3025 Nov 20 10:01 wincmd.md
+
+docs/_static:
+total 16
+-rw-r--r-- 1 bench bench 1566 Nov 20 10:01 click-icon.svg
+-rw-r--r-- 1 bench bench 2765 Nov 20 10:01 click-logo.svg
+-rw-r--r-- 1 bench bench 4859 Nov 20 10:01 click-name.svg
+
+src:
+total 4
+drwxr-xr-x 1 bench bench 4096 Nov 20 10:04 click
+
+src/click:
+total 480
+-rw-r--r-- 1 bench bench   5145 Nov 20 10:01 __init__.py
+drwxr-xr-x 2 bench bench   4096 Nov 20 10:04 __pycache__
+-rw-r--r-- 1 bench bench  17934 Nov 20 10:01 _compat.py
+-rw-r--r-- 1 bench bench  32689 Nov 20 10:01 _termui_impl.py
+-rw-r--r-- 1 bench bench   3234 Nov 20 10:01 _textwrap.py
+-rw-r--r-- 1 bench bench   1117 Nov 20 10:01 _utils.py
+-rw-r--r-- 1 bench bench   8413 Nov 20 10:01 _winconsole.py
+-rw-r--r-- 1 bench bench 156302 Nov 20 10:01 core.py
+-rw-r--r-- 1 bench bench  21676 Nov 20 10:01 decorators.py
+-rw-r--r-- 1 bench bench  11862 Nov 20 10:01 exceptions.py
+-rw-r--r-- 1 bench bench  10896 Nov 20 10:01 formatting.py
+-rw-r--r-- 1 bench bench   1923 Nov 20 10:01 globals.py
+-rw-r--r-- 1 bench bench  19052 Nov 20 10:01 parser.py
+-rw-r--r-- 1 bench bench      0 Nov 20 10:01 py.typed
+-rw-r--r-- 1 bench bench  26058 Nov 20 10:01 shell_completion.py
+-rw-r--r-- 1 bench bench  35883 Nov 20 10:01 termui.py
+-rw-r--r-- 1 bench bench  29457 Nov 20 10:01 testing.py
+-rw-r--r-- 1 bench bench  46667 Nov 20 10:01 types.py
+-rw-r--r-- 1 bench bench  21349 Nov 20 10:01 utils.py
+
+src/click/__pycache__:
+total 552
+-rw-r--r-- 1 bench bench   5858 Nov 20 10:04 __init__.cpython-311.pyc
+-rw-r--r-- 1 bench bench  24549 Nov 20 10:04 _compat.cpython-311.pyc
+-rw-r--r-- 1 bench bench  39484 Nov 20 10:04 _termui_impl.cpython-311.pyc
+-rw-r--r-- 1 bench bench   4581 Nov 20 10:04 _textwrap.cpython-311.pyc
+-rw-r--r-- 1 bench bench   1726 Nov 20 10:04 _utils.cpython-311.pyc
+-rw-r--r-- 1 bench bench 169624 Nov 20 10:04 core.cpython-311.pyc
+-rw-r--r-- 1 bench bench  27180 Nov 20 10:04 decorators.cpython-311.pyc
+-rw-r--r-- 1 bench bench  19456 Nov 20 10:04 exceptions.cpython-311.pyc
+-rw-r--r-- 1 bench bench  16249 Nov 20 10:04 formatting.cpython-311.pyc
+-rw-r--r-- 1 bench bench   3234 Nov 20 10:04 globals.cpython-311.pyc
+-rw-r--r-- 1 bench bench  22580 Nov 20 10:04 parser.cpython-311.pyc
+-rw-r--r-- 1 bench bench  30653 Nov 20 10:04 shell_completion.cpython-311.pyc
+-rw-r--r-- 1 bench bench  41674 Nov 20 10:04 termui.cpython-311.pyc
+-rw-r--r-- 1 bench bench  40785 Nov 20 10:04 testing.cpython-311.pyc
+-rw-r--r-- 1 bench bench  64881 Nov 20 10:04 types.cpython-311.pyc
+-rw-r--r-- 1 bench bench  28524 Nov 20 10:04 utils.cpython-311.pyc
+
+tests:
+total 520
+drwxr-xr-x 2 bench bench   4096 Nov 20 10:04 __pycache__
+-rw-r--r-- 1 bench bench    131 Nov 20 10:01 conftest.py
+-rw-r--r-- 1 bench bench   5202 Nov 20 10:01 test_abort_interrupt.py
+-rw-r--r-- 1 bench bench  38869 Nov 20 10:01 test_arguments.py
+-rw-r--r-- 1 bench bench  28338 Nov 20 10:01 test_basic.py
+-rw-r--r-- 1 bench bench   5786 Nov 20 10:01 test_chain.py
+-rw-r--r-- 1 bench bench   1880 Nov 20 10:01 test_command_decorators.py
+-rw-r--r-- 1 bench bench  22795 Nov 20 10:01 test_commands.py
+-rw-r--r-- 1 bench bench   7693 Nov 20 10:01 test_compat.py
+-rw-r--r-- 1 bench bench  22981 Nov 20 10:01 test_context.py
+-rw-r--r-- 1 bench bench   3022 Nov 20 10:01 test_custom_classes.py
+-rw-r--r-- 1 bench bench  18835 Nov 20 10:01 test_defaults.py
+-rw-r--r-- 1 bench bench   9437 Nov 20 10:01 test_deprecations.py
+drwxr-xr-x 1 bench bench   4096 Nov 20 10:04 test_exceptions
+-rw-r--r-- 1 bench bench  23233 Nov 20 10:01 test_formatting.py
+-rw-r--r-- 1 bench bench   1560 Nov 20 10:01 test_imports.py
+-rw-r--r-- 1 bench bench  10390 Nov 20 10:01 test_info_dict.py
+-rw-r--r-- 1 bench bench   1794 Nov 20 10:01 test_normalization.py
+-rw-r--r-- 1 bench bench 133566 Nov 20 10:01 test_options.py
+-rw-r--r-- 1 bench bench    915 Nov 20 10:01 test_parser.py
+-rw-r--r-- 1 bench bench  20449 Nov 20 10:01 test_shell_completion.py
+-rw-r--r-- 1 bench bench  16595 Nov 20 10:01 test_stream_lifecycle.py
+-rw-r--r-- 1 bench bench  69550 Nov 20 10:01 test_termui.py
+-rw-r--r-- 1 bench bench  28579 Nov 20 10:01 test_testing.py
+drwxr-xr-x 1 bench bench   4096 Nov 20 10:04 test_types
+drwxr-xr-x 1 bench bench   4096 Nov 20 10:04 test_utils
+drwxr-xr-x 2 bench bench   4096 Nov 20 10:01 typing
+
+tests/__pycache__:
+total 1720
+-rw-r--r-- 1 bench bench    627 Nov 20 10:04 conftest.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  15641 Nov 20 10:04 test_abort_interrupt.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 166120 Nov 20 10:04 test_arguments.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 144308 Nov 20 10:04 test_basic.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  26816 Nov 20 10:04 test_chain.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  13054 Nov 20 10:04 test_command_decorators.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  90941 Nov 20 10:04 test_commands.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  30608 Nov 20 10:04 test_compat.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  97558 Nov 20 10:04 test_context.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  19374 Nov 20 10:04 test_custom_classes.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  68207 Nov 20 10:04 test_defaults.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  23847 Nov 20 10:04 test_deprecations.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  68460 Nov 20 10:04 test_formatting.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench   3032 Nov 20 10:04 test_imports.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  18173 Nov 20 10:04 test_info_dict.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench   9755 Nov 20 10:04 test_normalization.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 380767 Nov 20 10:04 test_options.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench   4578 Nov 20 10:04 test_parser.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 124643 Nov 20 10:04 test_shell_completion.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  74349 Nov 20 10:04 test_stream_lifecycle.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 191375 Nov 20 10:04 test_termui.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 143755 Nov 20 10:04 test_testing.cpython-311-pytest-9.2.0.pyc
+
+tests/test_exceptions:
+total 8
+-rw-r--r-- 1 bench bench    0 Nov 20 10:01 __init__.py
+drwxr-xr-x 2 bench bench 4096 Nov 20 10:04 __pycache__
+-rw-r--r-- 1 bench bench  180 Nov 20 10:01 test_FileError.py
+
+tests/test_exceptions/__pycache__:
+total 8
+-rw-r--r-- 1 bench bench  165 Nov 20 10:04 __init__.cpython-311.pyc
+-rw-r--r-- 1 bench bench 1442 Nov 20 10:04 test_FileError.cpython-311-pytest-9.2.0.pyc
+
+tests/test_types:
+total 40
+-rw-r--r-- 1 bench bench    0 Nov 20 10:01 __init__.py
+drwxr-xr-x 2 bench bench 4096 Nov 20 10:04 __pycache__
+-rw-r--r-- 1 bench bench  224 Nov 20 10:01 test_Choice.py
+-rw-r--r-- 1 bench bench  994 Nov 20 10:01 test_File.py
+-rw-r--r-- 1 bench bench 1168 Nov 20 10:01 test_FloatRange.py
+-rw-r--r-- 1 bench bench  539 Nov 20 10:01 test_FuncParamType.py
+-rw-r--r-- 1 bench bench 1219 Nov 20 10:01 test_IntRange.py
+-rw-r--r-- 1 bench bench  746 Nov 20 10:01 test_ParamType.py
+-rw-r--r-- 1 bench bench 5637 Nov 20 10:01 test_Path.py
+-rw-r--r-- 1 bench bench 3151 Nov 20 10:01 test_convert_type.py
+
+tests/test_types/__pycache__:
+total 76
+-rw-r--r-- 1 bench bench   160 Nov 20 10:04 __init__.cpython-311.pyc
+-rw-r--r-- 1 bench bench  1474 Nov 20 10:04 test_Choice.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  1652 Nov 20 10:04 test_File.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  5367 Nov 20 10:04 test_FloatRange.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  2596 Nov 20 10:04 test_FuncParamType.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  5001 Nov 20 10:04 test_IntRange.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  5431 Nov 20 10:04 test_ParamType.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 19641 Nov 20 10:04 test_Path.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 12914 Nov 20 10:04 test_convert_type.cpython-311-pytest-9.2.0.pyc
+
+tests/test_utils:
+total 72
+-rw-r--r-- 1 bench bench    0 Nov 20 10:01 __init__.py
+drwxr-xr-x 2 bench bench 4096 Nov 20 10:04 __pycache__
+-rw-r--r-- 1 bench bench  331 Nov 20 10:01 test_KeepOpenFile.py
+-rw-r--r-- 1 bench bench  359 Nov 20 10:01 test_LazyFile.py
+-rw-r--r-- 1 bench bench  762 Nov 20 10:01 test__detect_program_name.py
+-rw-r--r-- 1 bench bench  666 Nov 20 10:01 test__expand_args.py
+-rw-r--r-- 1 bench bench 1410 Nov 20 10:01 test_confirm.py
+-rw-r--r-- 1 bench bench 4888 Nov 20 10:01 test_echo.py
+-rw-r--r-- 1 bench bench 8756 Nov 20 10:01 test_echo_via_pager.py
+-rw-r--r-- 1 bench bench  383 Nov 20 10:01 test_format_filename.py
+-rw-r--r-- 1 bench bench 2362 Nov 20 10:01 test_make_default_short_help.py
+-rw-r--r-- 1 bench bench 3421 Nov 20 10:01 test_open_file.py
+-rw-r--r-- 1 bench bench 3031 Nov 20 10:01 test_prompt.py
+-rw-r--r-- 1 bench bench 2494 Nov 20 10:01 test_sentinel.py
+-rw-r--r-- 1 bench bench 5277 Nov 20 10:01 test_style.py
+
+tests/test_utils/__pycache__:
+total 164
+-rw-r--r-- 1 bench bench   160 Nov 20 10:04 __init__.cpython-311.pyc
+-rw-r--r-- 1 bench bench  2480 Nov 20 10:04 test_KeepOpenFile.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  2666 Nov 20 10:04 test_LazyFile.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  3806 Nov 20 10:04 test__detect_program_name.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  7962 Nov 20 10:04 test__expand_args.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  9648 Nov 20 10:04 test_confirm.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 29055 Nov 20 10:04 test_echo.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 17930 Nov 20 10:04 test_echo_via_pager.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  5372 Nov 20 10:04 test_format_filename.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench  6172 Nov 20 10:04 test_make_default_short_help.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 18764 Nov 20 10:04 test_open_file.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 10869 Nov 20 10:04 test_prompt.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 14903 Nov 20 10:04 test_sentinel.cpython-311-pytest-9.2.0.pyc
+-rw-r--r-- 1 bench bench 10679 Nov 20 10:04 test_style.cpython-311-pytest-9.2.0.pyc
+
+tests/typing:
+total 48
+-rw-r--r-- 1 bench bench 1181 Nov 20 10:01 typing_aliased_group.py
+-rw-r--r-- 1 bench bench  316 Nov 20 10:01 typing_confirmation_option.py
+-rw-r--r-- 1 bench bench  293 Nov 20 10:01 typing_edit.py
+-rw-r--r-- 1 bench bench  145 Nov 20 10:01 typing_group_kw_options.py
+-rw-r--r-- 1 bench bench  251 Nov 20 10:01 typing_help_option.py
+-rw-r--r-- 1 bench bench  380 Nov 20 10:01 typing_options.py
+-rw-r--r-- 1 bench bench  243 Nov 20 10:01 typing_password_option.py
+-rw-r--r-- 1 bench bench 1468 Nov 20 10:01 typing_path.py
+-rw-r--r-- 1 bench bench  548 Nov 20 10:01 typing_progressbar.py
+-rw-r--r-- 1 bench bench 1535 Nov 20 10:01 typing_prompt.py
+-rw-r--r-- 1 bench bench  497 Nov 20 10:01 typing_simple_example.py
+-rw-r--r-- 1 bench bench  277 Nov 20 10:01 typing_version_option.py

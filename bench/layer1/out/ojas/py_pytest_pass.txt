@@ -1,0 +1,284 @@
+[ojas: 70 passing-test lines and 0 progress lines hidden]
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/bench/work/click
+configfile: pyproject.toml
+testpaths: tests
+collected 33653 items / 31000 deselected / 2653 selected
+
+tests/test_chain.py ...............x                                     [ 12%]
+                                                                         [ 30%]
+.....sssssssssssssssssssss..................ss.......................... [ 67%]
+....s...........                                                         [ 75%]
+tests/test_utils/test_echo_via_pager.py ...FFF...FFF...FFF...FFF...FFF.. [ 80%]
+.............FFF...FFF...FFF.                                            [ 81%]
+
+=================================== FAILURES ===================================
+_______________________ test_echo_via_pager[test0-less] ________________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x72efd0226750>
+capfd = <_pytest.capture.CaptureFixture object at 0x72efd0225d90>
+pager_cmd = 'less'
+test = EchoViaPagerTest(description='Plain string argument', test_input=<function <lambda> at 0x72efd16e74c0>, expected_pager='just text\n', expected_stdout='', expected_stderr='', expected_error=None)
+tmp_path = PosixPath('/tmp/pytest-of-bench/pytest-0/test_echo_via_pager_test0_less0')
+
+    @pytest.mark.skipif(WIN, reason="Different behavior on windows.")
+    @pytest.mark.parametrize(
+        "pager_cmd", ["cat", "cat ", " cat ", "less", " less", " less "]
+    )
+    @pytest.mark.parametrize(
+        "test",
+        [
+            # We need to pass a parameter function instead of a plain param
+            # as pytest.mark.parametrize will reuse the parameters causing the
+            # generators to be used up so they will not yield anymore
+            EchoViaPagerTest(
+                description="Plain string argument",
+                test_input=lambda: "just text",
+                expected_pager="just text\n",
+                expected_stdout="",
+                expected_stderr="",
+                expected_error=None,
+            ),
+            EchoViaPagerTest(
+                description="Iterable argument",
+                test_input=lambda: ["itera", "ble"],
+… 29 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 131 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator function argument",
+                test_input=lambda: _test_gen_func_fails,
+… 7 lines omitted …
+            EchoViaPagerTest(
+                description="Exception in generator argument",
+                test_input=lambda: _test_gen_func_fails,
+… 54 lines omitted …
+                partial(subprocess.Popen, stdout=f),
+            )
+            with force_subprocess_stdout:
+                with check_raise:
+                    click.echo_via_pager(test_input)
+
+        out, err = capfd.readouterr()
+
+        pager = pager_out_tmp.read_text()
+
+>       assert pager == expected_pager, (
+            f"Unexpected pager output in test case '{test.description}'"
+        )
+E       AssertionError: Unexpected pager output in test case 'Writing to stderr during generator execution'
+E       assert '' == 'testtest\n'
+E
+E         - testtest
+
+tests/test_utils/test_echo_via_pager.py:182: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test0- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test1- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test2- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test3- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test4- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test7- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test8- less ]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9-less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less]
+FAILED tests/test_utils/test_echo_via_pager.py::test_echo_via_pager[test9- less ]
+=== 24 failed, 2604 passed, 24 skipped, 31000 deselected, 1 xfailed in 7.66s ===
+[ojas: 3567 lines → 283, ≈39.4k → ≈3.4k tokens. Full output: ojas get ce6571b57c6c]

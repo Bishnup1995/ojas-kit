@@ -1,0 +1,3 @@
+   Compiling same-file v1.0.6
+   Compiling walkdir v2.5.0 (/home/bench/work/walkdir)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s

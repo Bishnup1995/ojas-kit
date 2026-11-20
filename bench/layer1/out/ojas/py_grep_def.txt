@@ -1,0 +1,151 @@
+595 matches in 17 files
+src/click/utils.py (32)
+  28: def _posixify(name: str) -> str:
+  32: def _safecall(func: t.Callable[P, R]) -> t.Callable[P, R | None]:
+  38: def wrapper(*args: P.args, **kwargs: P.kwargs) -> R | None:
+  48: def make_str(value: t.Any) -> str:
+  58: def _make_default_short_help(help: str, max_length: int = 45) -> str:
+  116: def __init__(
+  141: def __getattr__(self, name: str) -> t.Any:
+  144: def __repr__(self) -> str:
+  … +24 more
+src/click/exceptions.py (23)
+  19: def _join_param_hints(param_hint: cabc.Sequence[str] | str | None) -> str | None:
+  26: def _format_possibilities(possibilities: list[str]) -> str:
+  44: def __init__(self, message: str) -> None:
+  51: def format_message(self) -> str:
+  54: def __str__(self) -> str:
+  57: def show(self, file: t.IO[t.Any] | None = None) -> None:
+  82: def __init__(self, message: str, ctx: Context | None = None) -> None:
+  87: def show(self, file: t.IO[t.Any] | None = None) -> None:
+  … +15 more
+src/click/globals.py (6)
+  13: def get_current_context(silent: t.Literal[False] = False) -> Context: ...
+  17: def get_current_context(silent: bool = ...) -> Context | None: ...
+  20: def get_current_context(silent: bool = False) -> Context | None:
+  44: def push_context(ctx: Context) -> None:
+  49: def pop_context() -> None:
+  54: def resolve_color_default(color: bool | None = None) -> bool | None:
+src/click/decorators.py (37)
+  24: def pass_context(f: t.Callable[t.Concatenate[Context, P], R]) -> t.Callable[P, R]:
+  29: def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+  35: def pass_obj(f: t.Callable[t.Concatenate[T, P], R]) -> t.Callable[P, R]:
+  41: def new_func(*args: P.args, **kwargs: P.kwargs) -> R:
+  47: def make_pass_decorator(
+  59: def decorator(f):
+  61: def new_func(ctx, *args, **kwargs):
+  72: def decorator(f: t.Callable[t.Concatenate[T, P], R]) -> t.Callable[P, R]:
+  … +29 more
+src/click/core.py (166)
+  62: def _complete_visible_commands(
+  81: def _check_nested_chain(
+  101: def _echo_aborted() -> None:
+  106: def _outside_click_stacklevel(skip: cabc.Container[str] = ()) -> int:
+  130: def _format_deprecated_label(deprecated: bool | str) -> str:
+  138: def _format_deprecated_suffix(deprecated: bool | str) -> str:
+  147: def batch(iterable: cabc.Iterable[V], batch_size: int) -> list[tuple[V, ...]]:
+  152: def augment_usage_errors(
+  … +158 more
+src/click/shell_completion.py (35)
+  19: def shell_complete(
+  88: def __init__(
+  100: def __getattr__(self, name: str) -> t.Any:
+  143: #compdef %(prog_name)s
+  182: compdef %(complete_func)s %(prog_name)s
+  306: def __init__(
+  319: def func_name(self) -> str:
+  326: def source_vars(self) -> _SourceVarsDict:
+  … +27 more
+src/click/_winconsole.py (20)
+  101: def get_buffer(obj: Buffer, writable: bool = False) -> Array[c_char]:
+  115: def __init__(self, handle: int | None) -> None:
+  118: def isatty(self) -> t.Literal[True]:
+  124: def readable(self) -> t.Literal[True]:
+  127: def readinto(self, b: Buffer) -> int:
+  159: def writable(self) -> t.Literal[True]:
+  163: def _get_error_message(errno: int) -> str:
+  170: def write(self, b: Buffer) -> int:
+  … +12 more
+src/click/termui.py (28)
+  61: def _mask_hidden_input(message: str, value: str) -> str:
+  79: def hidden_prompt_func(prompt: str) -> str:
+  85: def _readline_prompt(func: t.Callable[[str], str], text: str, err: bool) -> str:
+  108: def _build_prompt(
+  128: def _format_default(default: V) -> V | str:
+  139: def prompt(
+  154: def prompt(
+  168: def prompt(
+  … +20 more
+src/click/_textwrap.py (3)
+  20: def _wrap_chunks(self, chunks: list[str]) -> list[str]:
+  79: def extra_indent(self, indent: str) -> cabc.Iterator[None]:
+  91: def indent_only(self, text: str) -> str:
+src/click/_utils.py (2)
+  18: def __repr__(self) -> str:
+  21: def __reduce_ex__(self, protocol: object) -> tuple[t.Any, ...]:
+src/click/_termui_impl.py (45)
+  44: def __init__(
+  115: def __enter__(self) -> t.Self:
+  120: def __exit__(
+  128: def __iter__(self) -> cabc.Iterator[V]:
+  134: def __next__(self) -> V:
+  142: def render_finish(self) -> None:
+  157: def pct(self) -> float:
+  163: def time_per_iteration(self) -> float:
+  … +37 more
+src/click/types.py (73)
+  113: def __class_getitem__(cls, params: t.Any) -> t.Any:
+  122: def to_info_dict(self) -> ParamTypeInfoDict:
+  144: def __call__(
+  152: def __call__(
+  159: def __call__(
+  169: def get_metavar(self, param: Parameter, ctx: Context) -> str | None:
+  172: def get_missing_message(self, param: Parameter, ctx: Context | None) -> str | None:
+  179: def convert(
+  … +65 more
+src/click/parser.py (21)
+  51: def _unpack_args(
+  68: def _fetch(c: deque[str]) -> str | T_UNSET:
+  111: def _split_opt(opt: str) -> tuple[str, str]:
+  120: def _normalize_opt(opt: str, ctx: Context | None) -> str:
+  128: def __init__(
+  166: def takes_value(self) -> bool:
+  169: def process(self, value: t.Any, state: _ParsingState) -> None:
+  186: def __init__(self, obj: CoreArgument, dest: str | None, nargs: int = 1):
+  … +13 more
+src/click/formatting.py (17)
+  14: def measure_table(rows: cabc.Iterable[tuple[str, str]]) -> tuple[int, ...]:
+  24: def iter_rows(
+  31: def wrap_text(
+  87: def _flush_par() -> None:
+  136: def __init__(
+  155: def write(self, string: str) -> None:
+  159: def indent(self) -> None:
+  163: def dedent(self) -> None:
+  … +9 more
+src/click/_compat.py (47)
+  22: def _make_text_stream(
+  43: def is_ascii_encoding(encoding: str) -> bool:
+  51: def get_best_encoding(stream: t.IO[t.Any]) -> str:
+  60: def __init__(
+  74: def __del__(self) -> None:
+  80: def isatty(self) -> bool:
+  95: def __init__(
+  105: def __getattr__(self, name: str) -> t.Any:
+  … +39 more
+src/click/__init__.py (1)
+  76: def __getattr__(name: str) -> object:
+src/click/testing.py (39)
+  46: def __init__(self, input: t.BinaryIO, output: t.BinaryIO) -> None:
+  51: def __getattr__(self, x: str) -> t.Any:
+  54: def _echo(self, rv: bytes) -> bytes:
+  72: def read(self, n: int = -1) -> bytes:
+  75: def read1(self, n: int = -1) -> bytes:
+  78: def readline(self, n: int = -1) -> bytes:
+  81: def readlines(self) -> list[bytes]:
+  86: def __iter__(self) -> cabc.Iterator[bytes]:
+  … +31 more
+grep: src/click/__pycache__/shell_completion.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/decorators.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/core.cpython-311.pyc: binary file matches
+[ojas: 598 lines → 150, ≈10.4k → ≈1.6k tokens. Full output: ojas get 1bb5183d7ba4]

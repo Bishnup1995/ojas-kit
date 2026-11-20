@@ -1,0 +1,22 @@
+[ojas: 49 passing-test lines and 2 progress lines hidden]
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.08s
+
+test tests::recursive::empty ... FAILED
+
+failures:
+
+---- tests::recursive::empty stdout ----
+
+thread 'tests::recursive::empty' panicked at src/tests/recursive.rs:29:5:
+assertion `left != right` failed
+  left: 1
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+failures:
+    tests::recursive::empty
+
+test result: FAILED. 47 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+error: test failed, to rerun pass `--lib`
+[ojas: 72 lines → 21, ≈757 → ≈153 tokens. Full output: ojas get 44622deebd8a]

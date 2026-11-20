@@ -55,8 +55,11 @@ RUN cave setup --yes --agents claude 2>&1 | tee /tmp/cave-setup.log; ! grep -q "
 FROM base AS headroom
 ARG HEADROOM_VERSION
 ENV ARM=headroom
-USER root
-RUN pip install --break-system-packages uv >/dev/null 2>&1 || true
-USER bench
 ENV PATH="/home/bench/.local/bin:${PATH}"
-RUN pip install --user --break-system-packages uv && uv tool install --python 3.13 "headroom-ai[all]==${HEADROOM_VERSION}" && headroom --version
+RUN /usr/bin/python3 -m pip install --user --break-system-packages uv && uv tool install --python 3.13 "headroom-ai[all]==${HEADROOM_VERSION}" && headroom --version
+# Pre-download headroom's Kompress text model into the image so every run has it (as a normal install would after first use).
+RUN ~/.local/share/uv/tools/headroom-ai/bin/python -c "\
+from headroom import compress; import time; \
+big='\n'.join(f'2026-01-01 INFO worker-{i%7} processed item {i} ok took {i%90}ms' for i in range(4000)); \
+m=[{'role':'user','content':'x'},{'role':'assistant','content':[{'type':'tool_use','id':'t','name':'Bash','input':{'command':'cat a.log'}}]},{'role':'user','content':[{'type':'tool_result','tool_use_id':'t','content':big}]}]; \
+r=compress(m, model='claude-sonnet-4-5'); time.sleep(20); r=compress(m, model='claude-sonnet-4-5'); print('warm tokens_saved', r.tokens_saved)" 2>&1 | tail -3

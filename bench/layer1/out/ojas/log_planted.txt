@@ -1,0 +1,8 @@
+2026-11-20T09:00:00Z INFO  worker-6 handled request id=258176 status=200 took=55ms
+  … 3710 similar lines …
+2026-11-20T09:01:51Z INFO  worker-7 handled request id=158478 status=200 took=77ms
+2026-11-20T09:01:52Z FATAL worker-3 db pool exhausted: cannot acquire connection after 30s (pool=20 in_use=20 waiting=147) code=PLANTED-7741
+2026-11-20T09:01:53Z INFO  worker-3 handled request id=210650 status=200 took=56ms
+  … 1285 similar lines …
+2026-11-20T09:23:19Z INFO  worker-1 handled request id=369475 status=200 took=88ms
+[ojas: 5000 lines → 7, ≈103.7k → ≈133 tokens. Full output: ojas get 279c7770f339]

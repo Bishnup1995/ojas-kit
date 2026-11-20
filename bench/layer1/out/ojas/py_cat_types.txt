@@ -1,0 +1,184 @@
+/tmp/py_cat_types.py (1408 lines, python outline; bodies elided)
+1: from __future__ import annotations
+3: import abc
+4: import collections.abc as cabc
+5: import enum
+6: import os
+7: import stat
+… +12 more imports (lines 8-20)
+60: class ParamTypeInfoDict(t.TypedDict):
+61:   param_type: str
+62:   name: str
+65: class ParamType(t.Generic[_ValueT_co, _InputT_contra], abc.ABC):
+94:   is_composite: t.ClassVar[bool] = False
+95:   arity: int = 1  # read-only
+98:   name: str
+106:   envvar_list_splitter: t.ClassVar[str | None] = None
+122:   def to_info_dict(self) -> ParamTypeInfoDict:  … 19 lines
+143:   @t.overload def __call__(self, value: None, param: Parameter | None = None, ctx: Context | None = None) -> None: ...
+151:   @t.overload def __call__(self, value: _InputT_contra, param: Parameter | None = None, ctx: Context | None = None) -> _ValueT_co: ...
+159:   def __call__(self, value: _InputT_contra | None, param: Parameter | None = None, ctx: Context | None = None) -> _ValueT_co | None:  … 3 lines
+169:   def get_metavar(self, param: Parameter, ctx: Context) -> str | None:  … 1 line
+172:   def get_missing_message(self, param: Parameter, ctx: Context | None) -> str | None:  … 5 lines
+179:   def convert(self, value: _InputT_contra, param: Parameter | None, ctx: Context | None) -> _ValueT_co:  … 22 lines
+205:   def split_envvar_value(self, rv: str) -> cabc.Sequence[str]:  … 8 lines
+215:   def fail(self, message: str, param: Parameter | None = None, ctx: Context | None = None) -> t.NoReturn:  … 2 lines
+224:   def shell_complete(self, ctx: Context, param: Parameter, incomplete: str) -> list[CompletionItem]:  … 13 lines
+242: class CompositeParamType(ParamType[_ValueT_co]):
+243:   is_composite: t.ClassVar[bool] = True
+245:   @property @abc.abstractmethod def arity(self) -> int: ...  # type: ignore[override]
+250: class FuncParamTypeInfoDict(ParamTypeInfoDict, t.Generic[_ValueT_contra, _ValueT_co]):
+251:   func: t.Callable[[_ValueT_contra], _ValueT_co]
+254: class FuncParamType(ParamType[_ValueT_co], t.Generic[_ValueT_contra, _ValueT_co]):
+255:   name: str
+256:   func: t.Callable[[_ValueT_contra], _ValueT_co]
+258:   def __init__(self, func: t.Callable[[_ValueT_contra], _ValueT_co]) -> None:  … 2 lines
+262:   def to_info_dict(self) -> FuncParamTypeInfoDict[_ValueT_contra, _ValueT_co]:  … 1 line
+265:   def convert(self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None) -> _ValueT_co:  … 12 lines
+282: class UnprocessedParamType(ParamType[t.Any]):
+283:   name = "text"
+285:   def convert(self, value: _ValueT, param: Parameter | None, ctx: Context | None) -> _ValueT:  … 1 line
+290:   def __repr__(self) -> str:  … 1 line
+294: class StringParamType(ParamType[str]):
+295:   name = "text"
+297:   def convert(self, value: t.Any, param: Parameter | None, ctx: Context | None) -> str:  … 14 lines
+315:   def __repr__(self) -> str:  … 1 line
+319: class ChoiceInfoDict(ParamTypeInfoDict, t.Generic[_ValueT_co]):
+320:   choices: tuple[_ValueT_co, ...]
+321:   case_sensitive: bool
+324: class Choice(ParamType[_ValueT_co], t.Generic[_ValueT_co]):
+352:   name: str = "choice"
+354:   choices: tuple[_ValueT_co, ...]
+355:   case_sensitive: bool
+357:   def __init__(self, choices: cabc.Iterable[_ValueT_co], case_sensitive: bool = True) -> None:  … 2 lines
+363:   def to_info_dict(self) -> ChoiceInfoDict[_ValueT_co]:  … 5 lines
+370:   def _normalized_mapping(self, ctx: Context | None = None) -> cabc.Mapping[_ValueT_co, str]:  … 14 lines
+388:   def normalize_choice(self, choice: object, ctx: Context | None) -> str:  … 18 lines
+408:   def get_metavar(self, param: Parameter, ctx: Context) -> str | None:  … 16 lines
+426:   def get_missing_message(self, param: Parameter, ctx: Context | None) -> str:  … 8 lines
+436:   def convert(self, value: t.Any, param: Parameter | None, ctx: Context | None) -> _ValueT_co:  … 20 lines
+460:   def get_invalid_choice_message(self, value: t.Any, ctx: Context | None) -> str:  … 12 lines
+474:   def __repr__(self) -> str:  … 1 line
+477:   def shell_complete(self, ctx: Context, param: Parameter, incomplete: str) -> list[CompletionItem]:  … 18 lines
+500: class DateTimeInfoDict(ParamTypeInfoDict):
+501:   formats: cabc.Sequence[str]
+504: class DateTime(ParamType[datetime]):
+525:   name = "datetime"
+527:   formats: cabc.Sequence[str]
+529:   def __init__(self, formats: cabc.Sequence[str] | None = None):  … 5 lines
+536:   def to_info_dict(self) -> DateTimeInfoDict:  … 1 line
+539:   def get_metavar(self, param: Parameter, ctx: Context) -> str:  … 1 line
+542:   def _try_to_convert_date(self, value: t.Any, format: str) -> datetime | None:  … 4 lines
+548:   def convert(self, value: t.Any, param: Parameter | None, ctx: Context | None) -> datetime:  … 19 lines
+571:   def __repr__(self) -> str:  … 1 line
+575: class _NumberParamTypeBase(ParamType[_ValueT_co], t.Generic[_ValueT_contra, _ValueT_co]):
+578:   _number_class: t.Callable[[_ValueT_contra], _ValueT_co]
+580:   def convert(self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None) -> _ValueT_co:  … 10 lines
+595: class NumberRangeInfoDict(ParamTypeInfoDict, t.Generic[_FloatValueT_co]):
+596:   min: _FloatValueT_co | None
+597:   max: _FloatValueT_co | None
+598:   min_open: bool
+599:   max_open: bool
+600:   clamp: bool
+603: class _NumberRangeBase(_NumberParamTypeBase[_ValueT_contra, _FloatValueT_co], t.Generic[_ValueT_contra, _FloatValueT_co]):
+607:   min: _FloatValueT_co | None
+608:   max: _FloatValueT_co | None
+609:   min_open: bool
+610:   max_open: bool
+611:   clamp: bool
+613:   def __init__(self, min: _FloatValueT_co | None = None, max: _FloatValueT_co | None = None, min_open: bool = False, max_open: bool = False, clamp: bool = False) -> None:  … 5 lines
+627:   def to_info_dict(self) -> NumberRangeInfoDict[_FloatValueT_co]:  … 8 lines
+637:   def convert(self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None) -> _FloatValueT_co:  … 29 lines
+670:   @abc.abstractmethod def _clamp(self: _NumberRangeBase[t.Any, _FloatValueT], bound: _FloatValueT, dir: t.Literal[1, -1], open: bool) -> _FloatValueT:  … 8 lines
+688:   def _describe_range(self) -> str:  … 12 lines
+702:   def __repr__(self) -> str:  … 2 lines
+707: class IntParamType(_NumberParamTypeBase[t.SupportsInt | t.SupportsIndex, int]):
+708:   name = "integer"
+709:   _number_class = int
+711:   def __repr__(self) -> str:  … 1 line
+715: class IntRange(_NumberRangeBase[int, int], IntParamType):
+730:   name = "integer range"
+732:   def _clamp(self, bound: int, dir: t.Literal[1, -1], open: bool) -> int:  … 4 lines
+739: class FloatParamType(_NumberParamTypeBase[t.SupportsFloat | t.SupportsIndex, float]):
+740:   name = "float"
+741:   _number_class = float
+743:   def __repr__(self) -> str:  … 1 line
+747: class FloatRange(_NumberRangeBase[float, float], FloatParamType):
+763:   name = "float range"
+765:   def __init__(self, min: float | None = None, max: float | None = None, min_open: bool = False, max_open: bool = False, clamp: bool = False) -> None:  … 6 lines
+780:   def _clamp(self, bound: float, dir: t.Literal[1, -1], open: bool) -> float:  … 7 lines
+790: class BoolParamType(ParamType[bool]):
+791:   name = "boolean"
+793:   bool_states: dict[str, bool] = {
+826:   @staticmethod def str_to_bool(value: str | bool) -> bool | None:  … 12 lines
+841:   def convert(self, value: t.Any, param: Parameter | None, ctx: Context | None) -> bool:  … 10 lines
+855:   def __repr__(self) -> str:  … 1 line
+859: class UUIDParameterType(ParamType[uuid.UUID]):
+860:   name = "uuid"
+862:   def convert(self, value: uuid.UUID | str, param: Parameter | None, ctx: Context | None) -> uuid.UUID:  … 11 lines
+877:   def __repr__(self) -> str:  … 1 line
+881: class FileInfoDict(ParamTypeInfoDict):
+882:   mode: str
+883:   encoding: str | None
+886: class File(ParamType[t.IO[t.Any]]):
+916:   name = "filename"
+917:   envvar_list_splitter: t.ClassVar[str] = os.path.pathsep
+919:   mode: str
+920:   encoding: str | None
+921:   errors: str | None
+922:   lazy: bool | None
+923:   atomic: bool
+925:   def __init__(self, mode: str = "r", encoding: str | None = None, errors: str | None = "strict", lazy: bool | None = None, atomic: bool = False) -> None:  … 5 lines
+939:   def to_info_dict(self) -> FileInfoDict:  … 5 lines
+946:   def resolve_lazy_flag(self, value: str | os.PathLike[str]) -> bool:  … 7 lines
+955:   def convert(self, value: str | os.PathLike[str] | t.IO[t.Any], param: Parameter | None, ctx: Context | None) -> t.IO[t.Any]:  … 38 lines
+1000:   def shell_complete(self, ctx: Context, param: Parameter, incomplete: str) -> list[CompletionItem]:  … 12 lines
+1017: def _is_file_like(value: t.Any) -> te.TypeIs[t.IO[t.Any]]:  … 1 line
+1021: class PathInfoDict(ParamTypeInfoDict):
+1022:   exists: bool
+1023:   file_okay: bool
+1024:   dir_okay: bool
+1025:   writable: bool
+1026:   readable: bool
+1027:   allow_dash: bool
+1030: class Path(ParamType[_PathT_co, str | os.PathLike[str]], t.Generic[_PathT_co]):
+1066:   envvar_list_splitter: t.ClassVar[str] = os.path.pathsep
+1068:   exists: bool
+1069:   file_okay: bool
+1070:   dir_okay: bool
+1071:   readable: bool
+1072:   writable: bool
+1073:   executable: bool
+1074:   resolve_path: bool
+1075:   allow_dash: bool
+1076:   name: str
+1078:   def __init__(self, exists: bool = False, file_okay: bool = True, dir_okay: bool = True, writable: bool = False, readable: bool = True, resolve_path: bool = False, allow_dash: bool = False, path_type: type[_PathT_co] | None = None, executable: bool = False) -> None:  … 16 lines
+1107:   def to_info_dict(self) -> PathInfoDict:  … 9 lines
+1118:   def coerce_path_result(self, value: str | os.PathLike[str]) -> _PathT_co:  … 12 lines
+1132:   def convert(self, value: str | os.PathLike[str], param: Parameter | None, ctx: Context | None) -> _PathT_co:  … 67 lines
+1206:   def shell_complete(self, ctx: Context, param: Parameter, incomplete: str) -> list[CompletionItem]:  … 14 lines
+1225: class TupleInfoDict(ParamTypeInfoDict):
+1226:   types: cabc.Sequence[ParamTypeInfoDict]
+1229: class Tuple(CompositeParamType[tuple[t.Any, ...]]):
+1243:   def __init__(self, types: cabc.Sequence[type[t.Any] | ParamType[t.Any]]) -> None:  … 1 line
+1246:   def to_info_dict(self) -> TupleInfoDict:  … 4 lines
+1252:   @property def name(self) -> str:  # type: ignore[override]  … 1 line
+1256:   @property def arity(self) -> int:  # type: ignore[override]  … 1 line
+1260:   def convert(self, value: t.Any, param: Parameter | None, ctx: Context | None) -> tuple[t.Any, ...]:  … 17 lines
+1282: def _guess_type(ty: type[t.Any] | ParamType[t.Any] | None, default: t.Any | None) -> type[t.Any] | tuple[type[t.Any], ...] | ParamType[t.Any] | None:  … 29 lines
+1317: @t.overload def convert_type(ty: None, default: None = None) -> StringParamType: ...
+1319: @t.overload def convert_type(ty: type | ParamType[t.Any], default: t.Any | None = None) -> ParamType[t.Any]: ...
+1323: @t.overload def convert_type(ty: t.Any | None, default: t.Any | None = None) -> ParamType[t.Any]: ...
+1327: def convert_type(ty: t.Any | None = None, default: t.Any | None = None) -> ParamType[t.Any]:  … 39 lines
+1382: UNPROCESSED: t.Final[UnprocessedParamType] = UnprocessedParamType()
+1386: STRING: t.Final[StringParamType] = StringParamType()
+1390: INT: t.Final[IntParamType] = IntParamType()
+1394: FLOAT: t.Final[FloatParamType] = FloatParamType()
+1398: BOOL: t.Final[BoolParamType] = BoolParamType()
+1401: UUID: t.Final[UUIDParameterType] = UUIDParameterType()
+1404: class OptionHelpExtra(t.TypedDict, total=False):
+1405:   envvars: tuple[str, ...]
+1406:   default: str
+1407:   range: str
+1408:   required: str
+[ojas: outline of a 1408-line file, ≈11667 → ≈2911 tokens. Bodies: ojas read /tmp/py_cat_types.py --symbol <name>, or --lines START:END. Whole file: --full]

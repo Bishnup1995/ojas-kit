@@ -1,0 +1,812 @@
+from __future__ import annotations
+
+import abc
+import collections.abc as cabc
+import enum
+import os
+import stat
+import sys
+import typing as t
+import uuid
+from datetime import datetime
+from gettext import gettext as _
+from gettext import ngettext
+
+from ._compat import _get_argv_encoding
+from ._compat import open_stream
+from .exceptions import BadParameter
+from .utils import _LazyFile
+from .utils import _safecall
+from .utils import format_filename
+
+if t.TYPE_CHECKING:
+    import typing_extensions as te
+
+    from .core import Context
+    from .core import Parameter
+    from .shell_completion import CompletionItem
+
+_ValueT = t.TypeVar("_ValueT")
+_ValueT_contra = t.TypeVar("_ValueT_contra", contravariant=True)
+_ValueT_co = t.TypeVar("_ValueT_co", covariant=True)
+
+# The input type parameter of ParamType defaults to Any. TypeVar defaults
+# (PEP 696) landed in typing on Python 3.13, so type checkers get the
+# default from typing_extensions, which is never imported at runtime. On
+# older Pythons the runtime TypeVar carries no default;
+# ParamType.__class_getitem__ fills in the omitted parameter instead.
+if t.TYPE_CHECKING:
+    _InputT_contra = te.TypeVar("_InputT_contra", contravariant=True, default=t.Any)
+elif sys.version_info >= (3, 13):
+    _InputT_contra = t.TypeVar("_InputT_contra", contravariant=True, default=t.Any)
+else:
+    _InputT_contra = t.TypeVar("_InputT_contra", contravariant=True)
+
+_FloatValueT = t.TypeVar("_FloatValueT", bound=float)
+_FloatValueT_co = t.TypeVar("_FloatValueT_co", bound=float, covariant=True)
+
+if t.TYPE_CHECKING:
+    _PathT_co = te.TypeVar(
+        "_PathT_co", covariant=True, default="str | bytes | os.PathLike[str]"
+    )
+elif sys.version_info >= (3, 13):
+    _PathT_co = t.TypeVar(
+        "_PathT_co", covariant=True, default=str | bytes | os.PathLike[str]
+    )
+else:
+    _PathT_co = t.TypeVar("_PathT_co", covariant=True)
+
+
+class ParamTypeInfoDict(t.TypedDict):
+    param_type: str
+    name: str
+
+
+class ParamType(t.Generic[_ValueT_co, _InputT_contra], abc.ABC):
+    """Represents the type of a parameter. Validates and converts values
+    from the command line or Python into the correct type.
+
+    To implement a custom type, subclass and implement at least the
+    following:
+
+    -   The :attr:`name` class attribute must be set.
+    -   Calling an instance of the type with ``None`` must return
+        ``None``. This is already implemented by default.
+    -   :meth:`convert` must convert string values to the correct type.
+    -   :meth:`convert` must accept values that are already the correct
+        type.
+    -   It must be able to convert a value if the ``ctx`` and ``param``
+        arguments are ``None``. This can occur when converting prompt
+        input.
+
+    .. versionchanged:: 8.4.0
+        Now a generic abstract base class. Parameterize with the
+        converted value type (``ParamType[int]`` for an integer-returning
+        type) so that :meth:`convert` and downstream consumers carry the
+        narrowed return type.
+
+    .. versionchanged:: 8.5.0
+        Accepts a second optional type parameter for the input value type
+        that :meth:`convert` accepts (``ParamType[int, str]`` for a type
+        converting strings to integers), defaulting to ``Any``.
+    """
+
+    is_composite: t.ClassVar[bool] = False
+    arity: int = 1  # read-only
+
+    #: the descriptive name of this type
+    name: str
+
+    #: if a list of this type is expected and the value is pulled from a
+    #: string environment variable, this is what splits it up.  `None`
+    #: means any whitespace.  For all parameters the general rule is that
+    #: whitespace splits them up.  The exception are paths and files which
+    #: are split by ``os.path.pathsep`` by default (":" on Unix and ";" on
+    #: Windows).
+    envvar_list_splitter: t.ClassVar[str | None] = None
+
+    if sys.version_info < (3, 13):
+        # ``_InputT_contra`` carries its ``Any`` default only for type
+        # checkers: ``TypeVar(default=...)`` (PEP 696) is unavailable at
+        # runtime before Python 3.13. Fill in the omitted input type
+        # parameter by hand so ``ParamType[int]`` keeps working.
+        def __class_getitem__(cls, params: t.Any) -> t.Any:
+            ...
+
+    def to_info_dict(self) -> ParamTypeInfoDict:
+        ...
+
+    @t.overload
+    def __call__(
+        self,
+        value: None,
+        param: Parameter | None = None,
+        ctx: Context | None = None,
+    ) -> None: ...
+
+    @t.overload
+    def __call__(
+        self,
+        value: _InputT_contra,
+        param: Parameter | None = None,
+        ctx: Context | None = None,
+    ) -> _ValueT_co: ...
+
+    def __call__(
+        self,
+        value: _InputT_contra | None,
+        param: Parameter | None = None,
+        ctx: Context | None = None,
+    ) -> _ValueT_co | None:
+        ...
+
+    def get_metavar(self, param: Parameter, ctx: Context) -> str | None:
+        ...
+
+    def get_missing_message(self, param: Parameter, ctx: Context | None) -> str | None:
+        ...
+
+    def convert(
+        self, value: _InputT_contra, param: Parameter | None, ctx: Context | None
+    ) -> _ValueT_co:
+        ...
+
+    def split_envvar_value(self, rv: str) -> cabc.Sequence[str]:
+        ...
+
+    def fail(
+        self,
+        message: str,
+        param: Parameter | None = None,
+        ctx: Context | None = None,
+    ) -> t.NoReturn:
+        ...
+
+    def shell_complete(
+        self, ctx: Context, param: Parameter, incomplete: str
+    ) -> list[CompletionItem]:
+        ...
+
+
+class CompositeParamType(ParamType[_ValueT_co]):
+    is_composite: t.ClassVar[bool] = True
+
+    @property
+    @abc.abstractmethod
+    def arity(self) -> int: ...
+
+
+class FuncParamTypeInfoDict(ParamTypeInfoDict, t.Generic[_ValueT_contra, _ValueT_co]):
+    func: t.Callable[[_ValueT_contra], _ValueT_co]
+
+
+class FuncParamType(ParamType[_ValueT_co], t.Generic[_ValueT_contra, _ValueT_co]):
+    name: str
+    func: t.Callable[[_ValueT_contra], _ValueT_co]
+
+    def __init__(self, func: t.Callable[[_ValueT_contra], _ValueT_co]) -> None:
+        ...
+
+    def to_info_dict(self) -> FuncParamTypeInfoDict[_ValueT_contra, _ValueT_co]:
+        ...
+
+    def convert(
+        self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None
+    ) -> _ValueT_co:
+        ...
+
+
+class UnprocessedParamType(ParamType[t.Any]):
+    name = "text"
+
+    def convert(
+        self, value: _ValueT, param: Parameter | None, ctx: Context | None
+    ) -> _ValueT:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class StringParamType(ParamType[str]):
+    name = "text"
+
+    def convert(
+        self, value: t.Any, param: Parameter | None, ctx: Context | None
+    ) -> str:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class ChoiceInfoDict(ParamTypeInfoDict, t.Generic[_ValueT_co]):
+    choices: tuple[_ValueT_co, ...]
+    case_sensitive: bool
+
+
+class Choice(ParamType[_ValueT_co], t.Generic[_ValueT_co]):
+    """The choice type allows a value to be checked against a fixed set
+    of supported values.
+
+    You may pass any iterable value which will be converted to a tuple
+    and thus will only be iterated once.
+
+    The resulting value will always be one of the originally passed choices.
+    See :meth:`normalize_choice` for more info on the mapping of strings
+    to choices. See :ref:`choice-opts` for an example.
+
+    :param case_sensitive: Set to false to make choices case
+        insensitive. Defaults to true.
+
+    .. versionchanged:: 8.4.0
+        Now generic in the choice value type. Parameterize with the type of
+        the choice values (``Choice[HashType]`` for an enum, ``Choice[str]``
+        for plain strings) to enable type-checked consumers.
+
+    .. versionchanged:: 8.2.0
+        Non-``str`` ``choices`` are now supported. It can additionally be any
+        iterable. Before you were not recommended to pass anything but a list or
+        tuple.
+
+    .. versionadded:: 8.2.0
+        Choice normalization can be overridden via :meth:`normalize_choice`.
+    """
+
+    name: str = "choice"
+
+    choices: tuple[_ValueT_co, ...]
+    case_sensitive: bool
+
+    def __init__(
+        self, choices: cabc.Iterable[_ValueT_co], case_sensitive: bool = True
+    ) -> None:
+        ...
+
+    def to_info_dict(self) -> ChoiceInfoDict[_ValueT_co]:
+        ...
+
+    def _normalized_mapping(
+        self, ctx: Context | None = None
+    ) -> cabc.Mapping[_ValueT_co, str]:
+        ...
+
+    def normalize_choice(self, choice: object, ctx: Context | None) -> str:
+        ...
+
+    def get_metavar(self, param: Parameter, ctx: Context) -> str | None:
+        ...
+
+    def get_missing_message(self, param: Parameter, ctx: Context | None) -> str:
+        ...
+
+    def convert(
+        self, value: t.Any, param: Parameter | None, ctx: Context | None
+    ) -> _ValueT_co:
+        ...
+
+    def get_invalid_choice_message(self, value: t.Any, ctx: Context | None) -> str:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+    def shell_complete(
+        self, ctx: Context, param: Parameter, incomplete: str
+    ) -> list[CompletionItem]:
+        ...
+
+
+class DateTimeInfoDict(ParamTypeInfoDict):
+    formats: cabc.Sequence[str]
+
+
+class DateTime(ParamType[datetime]):
+    """The DateTime type converts date strings into `datetime` objects.
+
+    The format strings which are checked are configurable, but default to some
+    common (non-timezone aware) ISO 8601 formats.
+
+    When specifying *DateTime* formats, you should only pass a list or a tuple.
+    Other iterables, like generators, may lead to surprising results.
+
+    The format strings are processed using ``datetime.strptime``, and this
+    consequently defines the format strings which are allowed.
+
+    Parsing is tried using each format, in order, and the first format which
+    parses successfully is used.
+
+    :param formats: A list or tuple of date format strings, in the order in
+                    which they should be tried. Defaults to
+                    ``'%Y-%m-%d'``, ``'%Y-%m-%dT%H:%M:%S'``,
+                    ``'%Y-%m-%d %H:%M:%S'``.
+    """
+
+    name = "datetime"
+
+    formats: cabc.Sequence[str]
+
+    def __init__(self, formats: cabc.Sequence[str] | None = None):
+        ...
+
+    def to_info_dict(self) -> DateTimeInfoDict:
+        ...
+
+    def get_metavar(self, param: Parameter, ctx: Context) -> str:
+        ...
+
+    def _try_to_convert_date(self, value: t.Any, format: str) -> datetime | None:
+        ...
+
+    def convert(
+        self, value: t.Any, param: Parameter | None, ctx: Context | None
+    ) -> datetime:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class _NumberParamTypeBase(
+    ParamType[_ValueT_co], t.Generic[_ValueT_contra, _ValueT_co]
+):
+    _number_class: t.Callable[[_ValueT_contra], _ValueT_co]
+
+    def convert(
+        self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None
+    ) -> _ValueT_co:
+        ...
+
+
+class NumberRangeInfoDict(ParamTypeInfoDict, t.Generic[_FloatValueT_co]):
+    min: _FloatValueT_co | None
+    max: _FloatValueT_co | None
+    min_open: bool
+    max_open: bool
+    clamp: bool
+
+
+class _NumberRangeBase(
+    _NumberParamTypeBase[_ValueT_contra, _FloatValueT_co],
+    t.Generic[_ValueT_contra, _FloatValueT_co],
+):
+    min: _FloatValueT_co | None
+    max: _FloatValueT_co | None
+    min_open: bool
+    max_open: bool
+    clamp: bool
+
+    def __init__(
+        self,
+        min: _FloatValueT_co | None = None,
+        max: _FloatValueT_co | None = None,
+        min_open: bool = False,
+        max_open: bool = False,
+        clamp: bool = False,
+    ) -> None:
+        ...
+
+    def to_info_dict(self) -> NumberRangeInfoDict[_FloatValueT_co]:
+        ...
+
+    def convert(
+        self, value: _ValueT_contra, param: Parameter | None, ctx: Context | None
+    ) -> _FloatValueT_co:
+        ...
+
+    @abc.abstractmethod
+    def _clamp(
+        # Covariant type variables cannot be used in input positions, so we use a
+        # separate method-scoped type variable instead.
+        self: _NumberRangeBase[t.Any, _FloatValueT],
+        bound: _FloatValueT,
+        dir: t.Literal[1, -1],
+        open: bool,
+    ) -> _FloatValueT:
+        ...
+
+    def _describe_range(self) -> str:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class IntParamType(_NumberParamTypeBase[t.SupportsInt | t.SupportsIndex, int]):
+    name = "integer"
+    _number_class = int
+
+    def __repr__(self) -> str:
+        ...
+
+
+class IntRange(_NumberRangeBase[int, int], IntParamType):
+    """Restrict an :data:`click.INT` value to a range of accepted
+    values. See :ref:`ranges`.
+
+    If ``min`` or ``max`` are not passed, any value is accepted in that
+    direction. If ``min_open`` or ``max_open`` are enabled, the
+    corresponding boundary is not included in the range.
+
+    If ``clamp`` is enabled, a value outside the range is clamped to the
+    boundary instead of failing.
+
+    .. versionchanged:: 8.0
+        Added the ``min_open`` and ``max_open`` parameters.
+    """
+
+    name = "integer range"
+
+    def _clamp(self, bound: int, dir: t.Literal[1, -1], open: bool) -> int:
+        ...
+
+
+class FloatParamType(_NumberParamTypeBase[t.SupportsFloat | t.SupportsIndex, float]):
+    name = "float"
+    _number_class = float
+
+    def __repr__(self) -> str:
+        ...
+
+
+class FloatRange(_NumberRangeBase[float, float], FloatParamType):
+    """Restrict a :data:`click.FLOAT` value to a range of accepted
+    values. See :ref:`ranges`.
+
+    If ``min`` or ``max`` are not passed, any value is accepted in that
+    direction. If ``min_open`` or ``max_open`` are enabled, the
+    corresponding boundary is not included in the range.
+
+    If ``clamp`` is enabled, a value outside the range is clamped to the
+    boundary instead of failing. This is not supported if either
+    boundary is marked ``open``.
+
+    .. versionchanged:: 8.0
+        Added the ``min_open`` and ``max_open`` parameters.
+    """
+
+    name = "float range"
+
+    def __init__(
+        self,
+        min: float | None = None,
+        max: float | None = None,
+        min_open: bool = False,
+        max_open: bool = False,
+        clamp: bool = False,
+    ) -> None:
+        ...
+
+    def _clamp(self, bound: float, dir: t.Literal[1, -1], open: bool) -> float:
+        ...
+
+
+class BoolParamType(ParamType[bool]):
+    name = "boolean"
+
+    bool_states: dict[str, bool] = {
+        "1": True,
+        "0": False,
+        "yes": True,
+        "no": False,
+        "true": True,
+        "false": False,
+        "on": True,
+        "off": False,
+        "t": True,
+        "f": False,
+        "y": True,
+        "n": False,
+        # Absence of value is considered False.
+        "": False,
+    }
+    """A mapping of string values to boolean states.
+
+    Mapping is inspired by :py:attr:`configparser.ConfigParser.BOOLEAN_STATES`
+    and extends it.
+
+    .. caution::
+        String values are lower-cased, as the ``str_to_bool`` comparison function
+        below is case-insensitive.
+
+    .. warning::
+        The mapping is not exhaustive, and does not cover all possible boolean strings
+        representations. It will remains as it is to avoid endless bikeshedding.
+
+        Future work my be considered to make this mapping user-configurable from public
+        API.
+    """
+
+    @staticmethod
+    def str_to_bool(value: str | bool) -> bool | None:
+        ...
+
+    def convert(
+        self, value: t.Any, param: Parameter | None, ctx: Context | None
+    ) -> bool:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class UUIDParameterType(ParamType[uuid.UUID]):
+    name = "uuid"
+
+    def convert(
+        self, value: uuid.UUID | str, param: Parameter | None, ctx: Context | None
+    ) -> uuid.UUID:
+        ...
+
+    def __repr__(self) -> str:
+        ...
+
+
+class FileInfoDict(ParamTypeInfoDict):
+    mode: str
+    encoding: str | None
+
+
+class File(ParamType[t.IO[t.Any]]):
+    """Declares a parameter to be a file for reading or writing.  The file
+    is automatically closed once the context tears down (after the command
+    finished working).
+
+    Files can be opened for reading or writing.  The special value ``-``
+    indicates stdin or stdout depending on the mode.
+
+    By default, the file is opened for reading text data, but it can also be
+    opened in binary mode or for writing.  The encoding parameter can be used
+    to force a specific encoding.
+
+    The `lazy` flag controls if the file should be opened immediately or upon
+    first IO. The default is to be non-lazy for standard input and output
+    streams as well as files opened for reading, `lazy` otherwise. When opening a
+    file lazily for reading, it is still opened temporarily for validation, but
+    will not be held open until first IO. lazy is mainly useful when opening
+    for writing to avoid creating the file until it is needed.
+
+    Files can also be opened atomically in which case all writes go into a
+    separate file in the same folder and upon completion the file will
+    be moved over to the original location.  This is useful if a file
+    regularly read by other users is modified.
+
+    See :ref:`file-args` for more information.
+
+    .. versionchanged:: 2.0
+        Added the ``atomic`` parameter.
+    """
+
+    name = "filename"
+    envvar_list_splitter: t.ClassVar[str] = os.path.pathsep
+
+    mode: str
+    encoding: str | None
+    errors: str | None
+    lazy: bool | None
+    atomic: bool
+
+    def __init__(
+        self,
+        mode: str = "r",
+        encoding: str | None = None,
+        errors: str | None = "strict",
+        lazy: bool | None = None,
+        atomic: bool = False,
+    ) -> None:
+        ...
+
+    def to_info_dict(self) -> FileInfoDict:
+        ...
+
+    def resolve_lazy_flag(self, value: str | os.PathLike[str]) -> bool:
+        ...
+
+    def convert(
+        self,
+        value: str | os.PathLike[str] | t.IO[t.Any],
+        param: Parameter | None,
+        ctx: Context | None,
+    ) -> t.IO[t.Any]:
+        ...
+
+    def shell_complete(
+        self, ctx: Context, param: Parameter, incomplete: str
+    ) -> list[CompletionItem]:
+        ...
+
+
+def _is_file_like(value: t.Any) -> te.TypeIs[t.IO[t.Any]]:
+    ...
+
+
+class PathInfoDict(ParamTypeInfoDict):
+    exists: bool
+    file_okay: bool
+    dir_okay: bool
+    writable: bool
+    readable: bool
+    allow_dash: bool
+
+
+class Path(ParamType[_PathT_co, str | os.PathLike[str]], t.Generic[_PathT_co]):
+    """The ``Path`` type is similar to the :class:`File` type, but
+    returns the filename instead of an open file. Various checks can be
+    enabled to validate the type of file and permissions.
+
+    :param exists: The file or directory needs to exist for the value to
+        be valid. If this is not set to ``True``, and the file does not
+        exist, then all further checks are silently skipped.
+    :param file_okay: Allow a file as a value.
+    :param dir_okay: Allow a directory as a value.
+    :param readable: if true, a readable check is performed.
+    :param writable: if true, a writable check is performed.
+    :param executable: if true, an executable check is performed.
+    :param resolve_path: Make the value absolute and resolve any
+        symlinks. A ``~`` is not expanded, as this is supposed to be
+        done by the shell only.
+    :param allow_dash: Allow a single dash as a value, which indicates
+        a standard stream (but does not open it). Use
+        :func:`~click.open_file` to handle opening this value.
+    :param path_type: Convert the incoming path value to this type. If
+        ``None``, keep Python's default, which is ``str``. Useful to
+        convert to :class:`pathlib.Path`.
+
+    .. versionchanged:: 8.5.1
+        Reveal the actual type of the value as converted from raw input.
+
+    .. versionchanged:: 8.1
+        Added the ``executable`` parameter.
+
+    .. versionchanged:: 8.0
+        Allow passing ``path_type=pathlib.Path``.
+
+    .. versionchanged:: 6.0
+        Added the ``allow_dash`` parameter.
+    """
+
+    envvar_list_splitter: t.ClassVar[str] = os.path.pathsep
+
+    exists: bool
+    file_okay: bool
+    dir_okay: bool
+    readable: bool
+    writable: bool
+    executable: bool
+    resolve_path: bool
+    allow_dash: bool
+    name: str
+
+    def __init__(
+        self,
+        exists: bool = False,
+        file_okay: bool = True,
+        dir_okay: bool = True,
+        writable: bool = False,
+        readable: bool = True,
+        resolve_path: bool = False,
+        allow_dash: bool = False,
+        path_type: type[_PathT_co] | None = None,
+        executable: bool = False,
+    ) -> None:
+        ...
+
+    def to_info_dict(self) -> PathInfoDict:
+        ...
+
+    def coerce_path_result(self, value: str | os.PathLike[str]) -> _PathT_co:
+        ...
+
+    def convert(
+        self,
+        value: str | os.PathLike[str],
+        param: Parameter | None,
+        ctx: Context | None,
+    ) -> _PathT_co:
+        ...
+
+    def shell_complete(
+        self, ctx: Context, param: Parameter, incomplete: str
+    ) -> list[CompletionItem]:
+        ...
+
+
+class TupleInfoDict(ParamTypeInfoDict):
+    types: cabc.Sequence[ParamTypeInfoDict]
+
+
+class Tuple(CompositeParamType[tuple[t.Any, ...]]):
+    """The default behavior of Click is to apply a type on a value directly.
+    This works well in most cases, except for when `nargs` is set to a fixed
+    count and different types should be used for different items.  In this
+    case the :class:`Tuple` type can be used.  This type can only be used
+    if `nargs` is set to a fixed number.
+
+    For more information see :ref:`tuple-type`.
+
+    This can be selected by using a Python tuple literal as a type.
+
+    :param types: a list of types that should be used for the tuple items.
+    """
+
+    def __init__(self, types: cabc.Sequence[type[t.Any] | ParamType[t.Any]]) -> None:
+        ...
+
+    def to_info_dict(self) -> TupleInfoDict:
+        ...
+
+    @property
+    def name(self) -> str:  # type: ignore[override]
+        ...
+
+    @property
+    def arity(self) -> int:  # type: ignore[override]
+        ...
+
+    def convert(
+        self, value: t.Any, param: Parameter | None, ctx: Context | None
+    ) -> tuple[t.Any, ...]:
+        ...
+
+
+def _guess_type(
+    ty: type[t.Any] | ParamType[t.Any] | None,
+    default: t.Any | None,
+) -> type[t.Any] | tuple[type[t.Any], ...] | ParamType[t.Any] | None:
+    ...
+
+
+@t.overload
+def convert_type(ty: None, default: None = None) -> StringParamType: ...
+@t.overload
+def convert_type(
+    ty: type | ParamType[t.Any], default: t.Any | None = None
+) -> ParamType[t.Any]: ...
+@t.overload
+def convert_type(
+    ty: t.Any | None, default: t.Any | None = None
+) -> ParamType[t.Any]: ...
+def convert_type(
+    ty: t.Any | None = None, default: t.Any | None = None
+) -> ParamType[t.Any]:
+    ...
+
+
+#: A dummy parameter type that just does nothing.  From a user's
+#: perspective this appears to just be the same as `STRING` but
+#: internally no string conversion takes place if the input was bytes.
+#: This is usually useful when working with file paths as they can
+#: appear in bytes and unicode.
+#:
+#: For path related uses the :class:`Path` type is a better choice but
+#: there are situations where an unprocessed type is useful which is why
+#: it is provided.
+#:
+#: .. versionadded:: 4.0
+UNPROCESSED: t.Final[UnprocessedParamType] = UnprocessedParamType()
+
+#: A unicode string parameter type which is the implicit default.  This
+#: can also be selected by using ``str`` as type.
+STRING: t.Final[StringParamType] = StringParamType()
+
+#: An integer parameter.  This can also be selected by using ``int`` as
+#: type.
+INT: t.Final[IntParamType] = IntParamType()
+
+#: A floating point value parameter.  This can also be selected by using
+#: ``float`` as type.
+FLOAT: t.Final[FloatParamType] = FloatParamType()
+
+#: A boolean parameter.  This is the default for boolean flags.  This can
+#: also be selected by using ``bool`` as a type.
+BOOL: t.Final[BoolParamType] = BoolParamType()
+
+#: A UUID parameter.
+UUID: t.Final[UUIDParameterType] = UUIDParameterType()
+
+
+class OptionHelpExtra(t.TypedDict, total=False):
+    envvars: tuple[str, ...]
+    default: str
+    range: str
+    required: str

@@ -1,0 +1,124 @@
+08b803cf32 Nov 16 2026 Rowlando13: Python 3.11 cleanups (#3921)
+34e513b402 Nov 14 2026 Kevin Deldycke: Drop `Sentinel.__copy__` and `__deepcopy__`, test its `object()` values
+8847720881 Nov 14 2026 Kevin Deldycke: Use `t.Self` and `catch_warnings()` filter arguments
+e38188e9e2 Nov 12 2026 Rowlando13: Drop support for Python 3.10 (#3920)
+8d0cd41bb5 Nov 12 2026 Rowlando13: The parameter receives an open file object, not a path (#3918)
+a46a95c733 Nov 12 2026 Rowlando13: Help pages no longer break a line within a hyphenated word (#3902)
+a2b9b2f295 Nov 12 2026 Kevin Deldycke: Drop support for Python 3.10
+cad975587f Nov 12 2026 Kevin Deldycke: The parameter receives an open file object, not a path
+7996a89c5a Nov 2 2026 Kevin Deldycke: Help pages no longer break a line within a hyphenated word (+1 body lines)
+8abb77a843 Nov 6 2026 Rowlando13: Merge stable into main (#3911)
+2e2fcd59e6 Nov 6 2026 Rowlando13: Document Click UI scope and direction (#3898)
+fdb65f4809 Nov 6 2026 Rowlando13: Add `context_settings` parameter to `CliRunner.invoke` (#3896)
+e57387dc36 Nov 6 2026 Rowlando13: Add Python 3.15 to the test matrix (#3909)
+dd149eb312 Nov 6 2026 Rowlando13: Merge stable into main (#3910)
+831a687bc8 Nov 6 2026 Rowlando13: Merge branch 'main' into stable
+57d9ac6c2c Nov 6 2026 David Lord: Release 8.5.1 (#3908)
+94ad94f33c Oct 29 2026 Kevin Deldycke: Document Click UI scope and give `click-contrib` its own section
+90a2973f85 Oct 26 2026 Kevin Deldycke: Add `context_settings` parameter to `CliRunner.invoke` (+1 body lines)
+40134e1a85 Nov 6 2026 Kevin Deldycke: Add Python 3.15 to the test matrix
+cf19179e8e Nov 5 2026 Eddie Girling: Release version 8.5.1
+1ff766d6a3 Nov 5 2026 Eddie Girling: Remove documentation changelog entry.
+16da191cb1 Nov 5 2026 Rowlando13: Add a standalone application guide for Nuitka (#3897)
+ac0e297ec2 Nov 5 2026 Rowlando13: Print `\x04` and `\x1a` input bytes as `^D` and `^Z` in `CliRunner` (#3878)
+473f65225c Nov 6 2026 Kevin Deldycke: Remove issue and PR references outside the changelog (#3905)
+df7fe0b972 Nov 5 2026 Kevin Deldycke: Remove issue and PR references outside the changelog
+4fd4206320 Nov 5 2026 David Lord: Bump `pypa/gh-action-pypi-publish` to `v1.14.3` (#3906)
+9048ab0c88 Nov 5 2026 Kevin Deldycke: Bump `pypa/gh-action-pypi-publish` to `v1.14.3`
+ff0c3692a0 Oct 27 2026 Kevin Deldycke: Add a standalone application guide for Nuitka (+1 body lines)
+5125851aaa Nov 4 2026 Rowlando13: Stop passing a deprecated command's help text through `gettext` (#3901)
+6d34602f4b Nov 1 2026 Rowlando13: Additional round-trip tests for `unstyle()` (#3899)
+c4dd0cd968 Sep 9 2026 Kevin Deldycke: Stop passing a deprecated command's help text through `gettext`
+5e7cf6b6db Oct 30 2026 Rowlando13: Document `less` interruption behavior (#3900)
+5c1963ae06 Oct 29 2026 Kevin Deldycke: Document `less` interruption behavior (+1 body lines)
+685dadf149 Oct 29 2026 Kevin Deldycke: Add more round-trip tests for `unstyle()` (+1 body lines)
+8c73ff1344 Oct 6 2026 Rowlando13: Fix `show_envvar` output for a sequence or an empty `envvar` (#3884)
+c53d3732b9 Oct 6 2026 Kevin Deldycke: Fix `show_envvar` output for a sequence or an empty `envvar`
+f8c5a8efc1 Sep 23 2026 Kevin Deldycke: Print `\x04` and `\x1a` input bytes as `^D` and `^Z` in `CliRunner`
+2247b35ea1 Oct 4 2026 Rowlando13: Add `Parameter.spec` and deprecate `human_readable_name` (#3877)
+9f0bcdf0d8 Sep 2 2026 Kevin Deldycke: Add `Parameter.spec` and deprecate `human_readable_name`
+06b2a67874 Sep 22 2026 Rowlando13: Deprecate parameter names that are: not a Python identifier, or a Python Keyword, or not lower-cased (#3866)
+b90faad178 Sep 11 2026 Kevin Deldycke: Deprecate a parameter name that Click 9.0 will refuse or lower case (+1 body lines)
+a59f7c624f Sep 22 2026 Kevin Deldycke: Start 8.6.0.
+3cbaa76b60 Sep 21 2026 Rowlando13: Merge stable into main (#3876)
+bb695aaecd Sep 21 2026 Rowlando13: Always list all positional arguments (#3860)
+70689853e3 Sep 11 2026 Rowlando13: Fix short help abbreviation (#3865)
+… 50 lines omitted …
+cbd7a4109d Aug 16 2026 Rowlando13: Run Flask's test suite in the nightly workflow (#3768)
+fc5c7f45da Aug 16 2026 Rowlando13: Fix error reporting on Windows when an error is raised in the pager  (#3764)
+1f9cd54f68 Aug 13 2026 Kevin Deldycke: Close the pager temp file before unlinking it
+… 21 lines omitted …
+333c28d79c Jul 17 2026 Rowlando13: Mark clearly functions private status. Deprecated Python 2 utilities. (#3695)
+… 2 lines omitted …
+7a0a3447f6 Jul 16 2026 Eddie Girling: Mark clearly functions private status. Deprecated Python 2 utilities.
+… 7 lines omitted …
+3495fba163 Jul 7 2026 Kevin Deldycke: Warn when an argument name collide with other parameters (+1 body lines)
+… 15 lines omitted …
+94c191ca6c Jul 7 2026 Rowlando13: Add `@custom_version_option`, freeze `@version_option` (#3581)
+445310365b Jul 7 2026 Kevin Deldycke: Use `click.echo` everywhere in the docs, document exception (+1 body lines)
+9f9b149ea3 May 29 2026 Kevin Deldycke: Add `@custom_version_option`, freeze `@version_option` (+1 body lines)
+… 20 lines omitted …
+09195f6a92 Jun 12 2026 Rowlando13: Fix double-bracketing of choices in synopsis (#3578)
+1557e26522 Jun 13 2026 Kevin Deldycke: Check for warning exception with idiomatic context manager (+1 body lines)
+d9ff13369a Jun 13 2026 Kevin Deldycke: Static typing improvements in `click.shell_completion` (#3460)
+… 27 lines omitted …
+ffcc7494c9 May 28 2026 Rowlando13: Fix pager test flackiness and add stress tests for `echo_via_pager` (#3499)
+567d7e9220 May 28 2026 Rowlando13: Accept ZFS error-message for non-UTF-8 names (#3526)
+63ab153198 May 28 2026 DineshBunny-1: docs: fix typo 'with in' to 'within' in parameters page
+9f9ae4538c May 28 2026 Kevin Deldycke: Accept ZFS error-message for non-UTF-8 names (+1 body lines)
+c48021040a May 28 2026 Kevin Deldycke: Add help parameter to arguments (#3473)
+… 13 lines omitted …
+29bacc773e May 26 2026 Rowlando13: Fix deprecated label formatting (#3509)
+… 10 lines omitted …
+82f377c547 May 23 2026 Kevin Deldycke: Fix deprecated label formatting
+… 14 lines omitted …
+6cb34774f2 May 21 2026 David Lord: fix skip condition
+5ee8e3123d May 21 2026 David Lord: fix I/O operation on closed file error with CliRunner and echo_via_pager (#3482)
+becbde5cf4 May 19 2026 Chris Pappalardo: pager doesn't close std streams
+… 9 lines omitted …
+c6bf75fa74 May 19 2026 plumlariat: Fixes windows specific error regarding spaces in filepaths for open_url.
+7fb117a9ae May 19 2026 Anurag Saxena: fix: update example invocation in Group Help Page documentation
+3c12ce7050 May 18 2026 David Lord: shell autocomplete uses normalize_choice()  (#3471)
+dfb15ee66a May 18 2026 Anurag Saxena: Add example for Group Help Page in documentation
+32ae2acd34 May 18 2026 Keerthana Panyam: choice shell autocompletion to use normalize_choice() (+2 body lines)
+bee3314165 May 18 2026 David Lord: fix: Skip flaky pager test on macOS with free-threaded Python 3.14t (#3470)
+d15f3c23a1 May 18 2026 Jazzcort: fix: Skip flaky pager test on macOS with free-threaded Python 3.14t (+3 body lines)
+e0d1678ebc May 18 2026 David Lord: apply Unix line endings for shell completion output for windows compat (#3466)
+a3321c9ca1 May 18 2026 Ben Falk: Implement Unix line endings for shell completion output to ensure compatibility with Windows (#3277)
+4e869f3a17 May 18 2026 David Lord: start version 8.5.0
+a9a218cd52 May 18 2026 David Lord: Merge branch 'stable'
+b8b9ffeb5d May 18 2026 David Lord: fix version string
+1bd3a87909 May 18 2026 David Lord: Fix indentation on quickstart (#3469)
+18879025d6 May 18 2026 David Lord: Fixed a typo in windows command docs (#3467)
+0ab9d5d79b May 18 2026 Roger Baker: Fixed typo
+c0d16f32f0 May 18 2026 Pamela Fox: Fix indentation
+f49391b9c8 May 17 2026 Rowlando13: Remove index.rst and changes.rst! (#3447)
+8e1eafd71f May 17 2026 Edward Girling: Remove index.rst and changes.rst
+c9e94136b3 May 17 2026 Rowlando13: Fix dev version 8.4.1 (#3446)
+37aa0c6568 May 17 2026 Edward Girling: Fix dev version in 8.4.1
+613cb9a0c0 May 16 2026 Rowlando13: Bump version to 8.4.dev (#3444)
+0c694e006c May 16 2026 Edward G: Bump version to 8.4.dev
+e364f8b362 May 16 2026 Rowlando13: Merge main into stable (#3443)
+c938ac0a96 May 16 2026 Rowlando13: Release 8.4.0 (#3436)
+cd4674a6de May 16 2026 Rowlando13: Merge Main into Stable (#3442)
+41f410fb75 May 16 2026 Edward Girling: Release 8.4.0
+e3e69e3bf8 May 16 2026 Rowlando13: Add type annotations for instance attributes in `utils` (#3422)
+3bb230dcd5 May 16 2026 Rowlando13: WIP: Fix `HelpFormatter.write_usage` producing spurious characters (#3434)
+63274a79d0 May 16 2026 Rowlando13: `click.get_pager_file`: add tests (#1572 followup) (#3405)
+0551bf5358 May 16 2026 Kevin Deldycke: Fix `HelpFormatter.write_usage` producing spurious characters (+1 body lines)
+fc41aa1d0b May 16 2026 Kevin Deldycke: Apply class-body annotations to `KeepOpenFile` for consistency
+b761eda3ba May 11 2026 Kevin Deldycke: Skip some tests on Windows
+98302ac4f4 May 11 2026 Kevin Deldycke: Check `PAGER` usage, color preservation and edge-cases
+dbdae17087 May 11 2026 Kevin Deldycke: Fix documentation
+1aa2d53d63 May 5 2026 Andreas Backx: Redesigned tests and get_pager_file branching to be more clear and not set color (+1 body lines)
+e94e8dc40d May 4 2026 Andreas Backx: Add some unit tests and integration tests for get_pager_file.
+7c99ebe23b May 15 2026 Rowlando13: Make `TextWrapper` ANSI-aware (#3420)
+587e3cc7f4 May 15 2026 Rowlando13: Merge branch 'main' into fix-wrap-text-ansi
+d959898db2 May 15 2026 Rowlando13: Add capture mode to `CliRunner` and revert default `fileno` exposure (#3391)
+d65315cfc3 May 15 2026 Rowlando13: Merge branch 'main' into fix-3384-clirunner-fd-capture
+ba745ac640 May 15 2026 Rowlando13: Cleanup documentation for `8.4.0` (#3393)
+84a42d3582 May 15 2026 Rowlando13: Merge branch 'main' into changelog-3372
+ec8226954e May 15 2026 Rowlando13: Dual-option value arbitration: `first` vs. `last` vs. `most explicit` policy (#3404)
+98cba78d0a May 15 2026 Rowlando13: Merge branch 'main' into dual-flags-competition
+3619563d9b May 15 2026 Rowlando13: Deduplicate deprecated label translation (#3430)
+[ojas: 2089 lines → 123, ≈16.5k → ≈2.5k tokens. Full output: ojas get c15aa1d27438]

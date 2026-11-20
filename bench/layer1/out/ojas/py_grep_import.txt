@@ -1,0 +1,166 @@
+729 matches in 73 files
+src/click/utils.py (26)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import os
+  5: import re
+  6: import sys
+  7: import typing as t
+  8: from functools import update_wrapper
+  9: from gettext import gettext as _
+  … +18 more
+src/click/exceptions.py (14)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import typing as t
+  5: from gettext import gettext as _
+  6: from gettext import ngettext
+  8: from ._compat import get_text_stderr
+  9: from .globals import resolve_color_default
+  10: from .utils import echo
+  … +6 more
+src/click/globals.py (4)
+  1: from __future__ import annotations
+  3: import typing as t
+  4: from threading import local
+  7: from .core import Context
+src/click/decorators.py (25)
+  1: from __future__ import annotations
+  3: import inspect
+  4: import typing as t
+  5: from functools import update_wrapper
+  6: from gettext import gettext as _
+  8: from .core import Argument
+  9: from .core import Command
+  10: from .core import Context
+  … +17 more
+src/click/core.py (68)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import enum
+  5: import errno
+  6: import inspect
+  7: import os
+  8: import sys
+  9: import typing as t
+  … +60 more
+src/click/shell_completion.py (18)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import os
+  5: import re
+  6: import typing as t
+  7: from gettext import gettext as _
+  9: from .core import Argument
+  10: from .core import Command
+  … +10 more
+src/click/_winconsole.py (29)
+  9: from __future__ import annotations
+  11: import collections.abc as cabc
+  12: import io
+  13: import sys
+  14: import time
+  15: import typing as t
+  16: from ctypes import Array
+  17: from ctypes import byref
+  … +21 more
+src/click/termui.py (31)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import inspect
+  5: import io
+  6: import itertools
+  7: import os
+  8: import re
+  9: import sys
+  … +23 more
+src/click/_textwrap.py (5)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import textwrap
+  5: from contextlib import contextmanager
+  7: from ._compat import term_len
+src/click/_utils.py (3)
+  1: from __future__ import annotations
+  3: import enum
+  4: import typing as t
+src/click/_termui_impl.py (40)
+  3: import time of Click down, some infrequently used functionality is
+  4: placed in this module and only imported as needed.
+  7: from __future__ import annotations
+  9: import collections.abc as cabc
+  10: import contextlib
+  11: import math
+  12: import os
+  13: import shlex
+  … +32 more
+src/click/types.py (27)
+  1: from __future__ import annotations
+  3: import abc
+  4: import collections.abc as cabc
+  5: import enum
+  6: import os
+  7: import stat
+  8: import sys
+  9: import typing as t
+  … +19 more
+src/click/parser.py (20)
+  25: from __future__ import annotations
+  27: import collections.abc as cabc
+  28: import typing as t
+  29: from collections import deque
+  30: from gettext import gettext as _
+  31: from gettext import ngettext
+  33: from ._utils import FLAG_NEEDS_VALUE
+  34: from ._utils import UNSET
+  … +12 more
+src/click/formatting.py (8)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: from contextlib import contextmanager
+  5: from gettext import gettext as _
+  7: from ._compat import term_len
+  8: from .parser import _split_opt
+  67: from ._textwrap import TextWrapper
+  146: import shutil
+src/click/_compat.py (14)
+  1: from __future__ import annotations
+  3: import codecs
+  4: import collections.abc as cabc
+  5: import io
+  6: import os
+  7: import re
+  8: import sys
+  9: import typing as t
+  … +6 more
+src/click/__init__.py (74)
+  8: from __future__ import annotations
+  10: from .core import Argument as Argument
+  11: from .core import Command as Command
+  12: from .core import CommandCollection as CommandCollection
+  13: from .core import Context as Context
+  14: from .core import Group as Group
+  15: from .core import Option as Option
+  16: from .core import Parameter as Parameter
+  … +66 more
+src/click/testing.py (20)
+  1: from __future__ import annotations
+  3: import collections.abc as cabc
+  4: import contextlib
+  5: import io
+  6: import os
+  7: import pdb
+  8: import shlex
+  9: import sys
+  … +12 more
+… +303 more matches in 56 more files
+grep: src/click/__pycache__/__init__.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/decorators.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/core.cpython-311.pyc: binary file matches
+grep: src/click/__pycache__/_termui_impl.cpython-311.pyc: binary file matches
+grep: tests/test_types/__pycache__/test_Path.cpython-311-pytest-9.2.0.pyc: binary file matches
+grep: tests/__pycache__/test_basic.cpython-311-pytest-9.2.0.pyc: binary file matches
+grep: tests/__pycache__/test_testing.cpython-311-pytest-9.2.0.pyc: binary file matches
+grep: tests/__pycache__/test_imports.cpython-311-pytest-9.2.0.pyc: binary file matches
+grep: tests/__pycache__/test_deprecations.cpython-311-pytest-9.2.0.pyc: binary file matches
+[ojas: 738 lines → 165, ≈10.5k → ≈1.3k tokens. Full output: ojas get e77d4b892b7e]

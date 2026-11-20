@@ -1,0 +1,47 @@
+/tmp/js_cat_response.js (1050 lines, javascript outline; bodies elided)
+15: var contentDisposition = require('content-disposition');
+16: var createError = require('http-errors')
+17: var deprecate = require('depd')('express');
+18: var encodeUrl = require('encodeurl');
+19: var escapeHtml = require('escape-html');
+20: var http = require('node:http');
+21: var onFinished = require('on-finished');
+22: var mime = require('mime-types')
+23: var path = require('node:path');
+24: var pathIsAbsolute = require('node:path').isAbsolute;
+25: var statuses = require('statuses')
+26: var sign = require('cookie-signature').sign;
+27: var normalizeType = require('./utils').normalizeType;
+28: var normalizeTypes = require('./utils').normalizeTypes;
+29: var setCharset = require('./utils').setCharset;
+30: var cookie = require('cookie');
+31: var send = require('send');
+32: var extname = path.extname;
+33: var resolve = path.resolve;
+34: var basename = path.basename;
+35: var vary = require('vary');
+36: const { Buffer } = require('node:buffer');
+43: var res = Object.create(http.ServerResponse.prototype)
+65: res.status = function status(code) { … 12 lines }
+98: res.links = function(links) { … 13 lines }
+126: res.send = function send(body) { … 96 lines }
+236: res.json = function json(obj) { … 14 lines }
+264: res.jsonp = function jsonp(obj) { … 44 lines }
+325: res.sendStatus = function sendStatus(statusCode) { … 7 lines }
+375: res.sendFile = function sendFile(path, options, callback) { … 42 lines }
+437: res.download = function download (path, filename, options, callback) { … 49 lines }
+507: res.contentType = res.type = function contentType(type) { … 6 lines }
+574: res.format = function(obj){ … 25 lines }
+609: res.attachment = function attachment(filename) { … 9 lines }
+635: res.append = function append(field, val) { … 12 lines }
+670: res.set = res.header = function header(field, val) { … 21 lines }
+702: res.get = function(field){ … 2 lines }
+715: res.clearCookie = function clearCookie(name, options) { … 7 lines }
+748: res.cookie = function (name, value, options) { … 33 lines }
+797: res.location = function location(url) { … 2 lines }
+815: res.redirect = function redirect(url) { … 52 lines }
+878: res.vary = function(field){ … 4 lines }
+897: res.render = function render(view, options, callback) { … 24 lines }
+924: function sendfile(res, file, options, callback) { … 88 lines }
+1026: function stringify (value, replacer, spaces, escape) { … 24 lines }
+[ojas: outline of a 1050-line file, ≈6273 → ≈607 tokens. Bodies: ojas read /tmp/js_cat_response.js --symbol <name>, or --lines START:END. Whole file: --full]

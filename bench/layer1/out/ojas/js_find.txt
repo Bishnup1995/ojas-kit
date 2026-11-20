@@ -1,0 +1,70 @@
+216 paths in 67 directories
+./: History.md, .editorconfig, .gitignore, package.json, LICENSE, .eslintignore, index.js, .npmrc, .eslintrc.yml, Readme.md
+examples/view-constructor/: github-view.js, index.js
+examples/auth/views/: foot.ejs, head.ejs, login.ejs
+examples/auth/: index.js
+examples/cookie-sessions/: index.js
+examples/: README.md
+examples/static-files/: index.js
+examples/static-files/public/css/: style.css
+examples/static-files/public/js/: app.js
+examples/static-files/public/: hello.txt
+examples/multi-router/: index.js
+examples/multi-router/controllers/: api_v1.js, api_v2.js
+examples/view-locals/: user.js, index.js
+examples/view-locals/views/: index.ejs
+examples/mvc/views/: 5xx.ejs, 404.ejs
+examples/mvc/: db.js, index.js
+examples/mvc/lib/: boot.js
+examples/mvc/controllers/user-pet/: index.js
+examples/mvc/controllers/pet/views/: edit.ejs, show.ejs
+examples/mvc/controllers/pet/: index.js
+examples/mvc/controllers/user/views/: list.hbs, edit.hbs, show.hbs
+examples/mvc/controllers/user/: index.js
+examples/mvc/controllers/main/: index.js
+examples/mvc/public/: style.css
+examples/vhost/: index.js
+examples/downloads/: index.js
+examples/downloads/files/notes/: groceries.txt
+examples/downloads/files/: CCTV大赛上海分赛区.txt, amazing.txt
+examples/error-pages/views/: index.ejs, 500.ejs, error_header.ejs, 404.ejs, footer.ejs
+examples/error-pages/: index.js
+examples/markdown/views/: index.md
+examples/markdown/: index.js
+examples/online/: index.js
+examples/route-separation/: user.js, index.js, post.js, site.js
+examples/route-separation/views/: index.ejs, header.ejs, footer.ejs
+examples/route-separation/views/users/: edit.ejs, index.ejs, view.ejs
+examples/route-separation/views/posts/: index.ejs
+examples/route-separation/public/: style.css
+examples/route-middleware/: index.js
+examples/session/: index.js, redis.js
+examples/route-map/: index.js
+examples/web-service/: index.js
+examples/resource/: index.js
+examples/content-negotiation/: db.js, index.js, users.js
+examples/hello-world/: index.js
+examples/error/: index.js
+examples/ejs/views/: users.html, footer.html, header.html
+examples/ejs/: index.js
+examples/ejs/public/stylesheets/: style.css
+examples/params/: index.js
+examples/cookies/: index.js
+examples/search/: index.js
+examples/search/public/: client.js, index.html
+lib/: response.js, express.js, view.js, utils.js, application.js, request.js
+.github/: dependabot.yml
+.github/workflows/: npm-publish.yml, legacy.yml, ci.yml, codeql.yml, scorecard.yml
+test/ (71): req.host.js, req.path.js, app.request.js, req.acceptsCharsets.js, express.text.js, res.type.js, req.is.js, req.signedCookies.js, req.ip.js, res.attachment.js, … +61 more
+test/fixtures/ (13): email.tmpl, user.ejs, .name, user.tmpl, nums.txt, todo.html, % of dogs.txt, todo.txt, user.html, name.tmpl, … +3 more
+test/fixtures/default_layout/: user.tmpl, name.tmpl
+test/fixtures/users/: tobi.txt, index.html
+test/fixtures/local_layout/: user.tmpl
+test/fixtures/snow ☃/: .gitkeep
+test/fixtures/pets/: names.txt
+test/fixtures/blog/post/: index.tmpl
+test/fixtures/blog/: index.html
+test/support/: env.js, tmpl.js, utils.js
+test/acceptance/ (18): cookie-sessions.js, multi-router.js, error.js, error-pages.js, downloads.js, web-service.js, mvc.js, auth.js, route-separation.js, cookies.js, … +8 more
+.git/ … 26 entries hidden
+[ojas: 242 lines → 69, ≈1.7k → ≈832 tokens. Full output: ojas get a2820e3bfea5]
