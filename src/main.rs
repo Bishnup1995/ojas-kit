@@ -1,11 +1,15 @@
 //! tsave: cut the tokens AI coding agents spend on command output.
 
 mod audit;
+mod code;
+mod codecmd;
 mod config;
 mod filters;
 mod hook;
 mod install;
+mod mdcompress;
 mod paths;
+mod repomap;
 mod rewrite;
 mod rules;
 mod runner;
@@ -80,6 +84,40 @@ enum Cmd {
     },
     /// Show how the hook would rewrite a shell command (for debugging)
     Rewrite { command: String },
+    /// Print a source file's outline: imports, declarations, signatures; bodies elided
+    Outline { file: PathBuf },
+    /// Read a source file: outline for large files, full text for small ones
+    Read {
+        file: PathBuf,
+        /// Print only this symbol's full source (`name`, `Type::method` or `Class.method`)
+        #[arg(long)]
+        symbol: Option<String>,
+        /// Print a line range, e.g. 120:180 (1-based, inclusive)
+        #[arg(long)]
+        lines: Option<String>,
+        /// Print the whole file regardless of size
+        #[arg(long)]
+        full: bool,
+    },
+    /// Print a repo map: the most-referenced definitions, cut to a token budget
+    Map {
+        /// Approximate token budget
+        #[arg(long, default_value_t = 1500)]
+        budget: usize,
+        /// Repository root (default: current directory)
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+    },
+    /// Compress a CLAUDE.md / AGENTS.md style file in place (rule-based, validated, backed up)
+    CompressMd {
+        file: PathBuf,
+        /// Only report the token estimate; write nothing
+        #[arg(long)]
+        dry_run: bool,
+        /// Print the compressed text instead of writing the file
+        #[arg(long)]
+        stdout: bool,
+    },
 }
 
 #[derive(Subcommand)]
@@ -145,12 +183,27 @@ fn main() {
             0
         }
         Cmd::Rewrite { command } => {
-            match rewrite::rewrite(&command, &hook::bin_name()) {
+            let cwd = std::env::current_dir().ok();
+            let min = config::load().read_min_lines;
+            match rewrite::rewrite_ctx(&command, &hook::bin_name(), cwd.as_deref(), min) {
                 Some(r) => out(&r),
                 None => out("(unchanged)"),
             }
             0
         }
+        Cmd::Outline { file } => codecmd::outline(&file),
+        Cmd::Read {
+            file,
+            symbol,
+            lines,
+            full,
+        } => codecmd::read(&file, symbol.as_deref(), lines.as_deref(), full),
+        Cmd::Map { budget, root } => codecmd::map(&root, budget),
+        Cmd::CompressMd {
+            file,
+            dry_run,
+            stdout,
+        } => codecmd::compress_md(&file, dry_run, stdout),
     };
     std::process::exit(code);
 }
@@ -231,7 +284,7 @@ fn footer(raw: &str, body: &str, id: &str) -> String {
     )
 }
 
-fn parse_range(spec: &str, len: usize) -> Option<(usize, usize)> {
+pub(crate) fn parse_range(spec: &str, len: usize) -> Option<(usize, usize)> {
     let (a, b) = spec.split_once(':')?;
     let start = if a.trim().is_empty() {
         1

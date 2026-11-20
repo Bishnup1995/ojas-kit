@@ -167,3 +167,144 @@ fn glob_arguments_reach_the_program_unexpanded() {
     assert!(o.status.success());
     assert_eq!(stdout(&o).trim(), "a.toml");
 }
+
+fn big_rust_file(dir: &std::path::Path) -> PathBuf {
+    let mut src =
+        String::from("use std::fmt;\n\npub struct Engine {\n    level: u8,\n}\n\nimpl Engine {\n");
+    for i in 0..60 {
+        src.push_str(&format!(
+            "    pub fn step_{i}(&self, x: u32) -> u32 {{\n        let y = x + {i};\n        let z = y * 2;\n        let w = z - 1;\n        w\n    }}\n\n"
+        ));
+    }
+    src.push_str("}\n");
+    let p = dir.join("engine.rs");
+    std::fs::write(&p, src).unwrap();
+    p
+}
+
+#[test]
+fn outline_and_symbol_read() {
+    let h = home("outline");
+    let file = big_rust_file(&h);
+    let f = file.to_string_lossy().into_owned();
+
+    let o = tsave(&h, &["outline", &f], None);
+    let text = stdout(&o);
+    assert!(text.contains("3: pub struct Engine {"), "{text}");
+    assert!(
+        text.contains("8:   pub fn step_0(&self, x: u32) -> u32 { … 5 lines }"),
+        "{text}"
+    );
+    assert!(!text.contains("let y"));
+
+    // `read` on a large file gives the outline plus a footer; --symbol gives the body.
+    let text = stdout(&tsave(&h, &["read", &f], None));
+    assert!(text.contains("bodies elided"));
+    assert!(text
+        .lines()
+        .last()
+        .unwrap()
+        .starts_with("[tsave: outline of a 428-line file"));
+    let text = stdout(&tsave(
+        &h,
+        &["read", &f, "--symbol", "Engine::step_1"],
+        None,
+    ));
+    assert!(text.starts_with("── Engine::step_1 ("), "{text}");
+    assert!(text.contains("16:         let y = x + 1;"), "{text}");
+    let o = tsave(&h, &["read", &f, "--symbol", "nope"], None);
+    assert_eq!(o.status.code(), Some(1));
+    assert!(String::from_utf8_lossy(&o.stderr).contains("Symbols: Engine"));
+
+    // Small files and --full pass through byte-for-byte.
+    let small = h.join("small.rs");
+    std::fs::write(&small, "fn a() {}\r\n").unwrap();
+    let o = tsave(&h, &["read", &small.to_string_lossy()], None);
+    assert_eq!(o.stdout, b"fn a() {}\r\n");
+    let o = tsave(&h, &["read", &f, "--full"], None);
+    assert_eq!(o.stdout, std::fs::read(&file).unwrap());
+}
+
+#[test]
+fn hook_rewrites_cat_of_large_source_file() {
+    let h = home("hookcat");
+    big_rust_file(&h);
+    let input = serde_json::json!({
+        "tool_name": "Bash",
+        "cwd": h.to_string_lossy(),
+        "tool_input": {"command": "cat engine.rs"}
+    })
+    .to_string();
+    let o = tsave(&h, &["hook", "pre-tool-use"], Some(&input));
+    let v: serde_json::Value = serde_json::from_slice(&o.stdout).unwrap();
+    assert_eq!(
+        v["hookSpecificOutput"]["updatedInput"]["command"],
+        "tsave read engine.rs"
+    );
+}
+
+#[test]
+fn repo_map_command() {
+    let h = home("map");
+    let dir = h.join("proj");
+    std::fs::create_dir_all(&dir).unwrap();
+    big_rust_file(&dir);
+    std::fs::write(
+        dir.join("main.rs"),
+        "fn main() { let e = Engine { level: 1 }; }\n",
+    )
+    .unwrap();
+    let text = stdout(&tsave(&h, &["map", "--root", &dir.to_string_lossy()], None));
+    assert!(
+        text.contains("engine.rs:\n  3: pub struct Engine"),
+        "{text}"
+    );
+    // Second run is served from the cache and is identical.
+    let again = stdout(&tsave(&h, &["map", "--root", &dir.to_string_lossy()], None));
+    assert_eq!(text, again);
+
+    // Opt-in: the SessionStart context includes the map for the session's cwd.
+    let input = serde_json::json!({"cwd": dir.to_string_lossy()}).to_string();
+    let ctx = |h: &PathBuf| {
+        let o = tsave(h, &["hook", "session-start"], Some(&input));
+        let v: serde_json::Value = serde_json::from_slice(&o.stdout).unwrap();
+        v["hookSpecificOutput"]["additionalContext"]
+            .as_str()
+            .unwrap()
+            .to_string()
+    };
+    assert!(!ctx(&h).contains("Repo map"), "off by default");
+    std::fs::write(h.join("config.json"), r#"{"repo_map": true}"#).unwrap();
+    assert!(ctx(&h).contains("Repo map (tsave)"));
+}
+
+#[test]
+fn compress_md_backs_up_and_validates() {
+    let h = home("md");
+    let file = h.join("CLAUDE.md");
+    let src = "# Project\n\nIn order to run the tests, you should basically use `cargo test`.\n\n```sh\njust keep this\n```\n";
+    std::fs::write(&file, src).unwrap();
+    let f = file.to_string_lossy().into_owned();
+
+    let o = tsave(&h, &["compress-md", &f, "--dry-run"], None);
+    assert!(stdout(&o).contains("dry run, nothing written"));
+    assert_eq!(std::fs::read_to_string(&file).unwrap(), src);
+
+    let o = tsave(&h, &["compress-md", &f], None);
+    assert!(o.status.success(), "{}", String::from_utf8_lossy(&o.stderr));
+    assert_eq!(
+        std::fs::read_to_string(&file).unwrap(),
+        "# Project\n\nTo run the tests, you should use `cargo test`.\n\n```sh\njust keep this\n```\n"
+    );
+    let backups: Vec<_> = std::fs::read_dir(h.join("backups")).unwrap().collect();
+    assert_eq!(backups.len(), 1);
+    let saved = std::fs::read_to_string(backups[0].as_ref().unwrap().path()).unwrap();
+    assert_eq!(saved, src);
+
+    let o = tsave(
+        &h,
+        &["compress-md", &h.join("x.rs").to_string_lossy()],
+        None,
+    );
+    assert_eq!(o.status.code(), Some(2));
+}

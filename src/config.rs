@@ -20,6 +20,12 @@ pub struct Config {
     pub diff_max_lines: usize,
     /// Stored originals older than this are deleted.
     pub store_days: u64,
+    /// Add a repo map (most-referenced definitions) to the session context.
+    pub repo_map: bool,
+    /// Token budget for the repo map.
+    pub repo_map_budget: usize,
+    /// `cat` of a source file longer than this is rewritten to `tsave read` (outline).
+    pub read_min_lines: usize,
 }
 
 impl Default for Config {
@@ -32,6 +38,9 @@ impl Default for Config {
             max_lines: 150,
             diff_max_lines: 400,
             store_days: 7,
+            repo_map: false,
+            repo_map_budget: 1500,
+            read_min_lines: 300,
         }
     }
 }

@@ -5,9 +5,10 @@
 //! decision, so Claude Code's normal permission checks still apply.
 
 use serde_json::{json, Value};
-use std::io::Read;
+use std::io::{IsTerminal, Read};
+use std::path::{Path, PathBuf};
 
-use crate::{config, rewrite, rules};
+use crate::{config, repomap, rewrite, rules};
 
 pub fn pre_tool_use() {
     if std::env::var_os("TSAVE_DISABLE").is_some() {
@@ -20,12 +21,13 @@ pub fn pre_tool_use() {
     let Ok(v) = serde_json::from_str::<Value>(&input) else {
         return;
     };
-    if let Some(out) = pre_tool_use_response(&v, &bin_name()) {
+    let min = config::load().read_min_lines;
+    if let Some(out) = pre_tool_use_response(&v, &bin_name(), min) {
         println!("{out}");
     }
 }
 
-pub fn pre_tool_use_response(v: &Value, bin: &str) -> Option<Value> {
+pub fn pre_tool_use_response(v: &Value, bin: &str, read_min_lines: usize) -> Option<Value> {
     if v.get("tool_name")?.as_str()? != "Bash" {
         return None;
     }
@@ -35,7 +37,8 @@ pub fn pre_tool_use_response(v: &Value, bin: &str) -> Option<Value> {
         return None;
     }
     let cmd = input.get("command")?.as_str()?;
-    let new_cmd = rewrite::rewrite(cmd, bin)?;
+    let cwd = v.get("cwd").and_then(Value::as_str).map(Path::new);
+    let new_cmd = rewrite::rewrite_ctx(cmd, bin, cwd, read_min_lines)?;
     let mut updated = input.clone();
     updated.insert("command".into(), Value::String(new_cmd));
     Some(json!({
@@ -51,7 +54,18 @@ pub fn session_start() {
         return;
     }
     let cfg = config::load();
-    let text = rules::session_context(&cfg.style, &bin_name());
+    let mut text = rules::session_context(&cfg.style, &bin_name());
+    if cfg.repo_map {
+        let map = repomap::map(&session_cwd(), cfg.repo_map_budget);
+        if !map.is_empty() {
+            text.push_str(
+                "
+
+",
+            );
+            text.push_str(&map);
+        }
+    }
     println!(
         "{}",
         json!({
@@ -61,6 +75,19 @@ pub fn session_start() {
             }
         })
     );
+}
+
+/// The session's working directory: `cwd` from the hook input, else the current dir.
+fn session_cwd() -> PathBuf {
+    let mut input = String::new();
+    if !std::io::stdin().is_terminal() {
+        let _ = std::io::stdin().read_to_string(&mut input);
+    }
+    serde_json::from_str::<Value>(&input)
+        .ok()
+        .and_then(|v| v.get("cwd").and_then(Value::as_str).map(PathBuf::from))
+        .or_else(|| std::env::current_dir().ok())
+        .unwrap_or_else(|| PathBuf::from("."))
 }
 
 /// How the agent's shell should invoke tsave: `$TSAVE_BIN`, else `tsave` if it is
@@ -107,7 +134,7 @@ mod tests {
             "tool_name": "Bash",
             "tool_input": {"command": "cargo test", "description": "Run tests", "timeout": 60000}
         });
-        let out = pre_tool_use_response(&v, "tsave").unwrap();
+        let out = pre_tool_use_response(&v, "tsave", 300).unwrap();
         let ui = &out["hookSpecificOutput"]["updatedInput"];
         assert_eq!(ui["command"], "tsave run -- cargo test");
         assert_eq!(ui["description"], "Run tests");
@@ -121,11 +148,11 @@ mod tests {
     #[test]
     fn ignores_other_tools_and_background() {
         let read = json!({"tool_name": "Read", "tool_input": {"file_path": "x"}});
-        assert!(pre_tool_use_response(&read, "tsave").is_none());
+        assert!(pre_tool_use_response(&read, "tsave", 300).is_none());
         let bg = json!({"tool_name": "Bash", "tool_input": {"command": "cargo test", "run_in_background": true}});
-        assert!(pre_tool_use_response(&bg, "tsave").is_none());
+        assert!(pre_tool_use_response(&bg, "tsave", 300).is_none());
         let plain = json!({"tool_name": "Bash", "tool_input": {"command": "echo hi"}});
-        assert!(pre_tool_use_response(&plain, "tsave").is_none());
+        assert!(pre_tool_use_response(&plain, "tsave", 300).is_none());
     }
 
     #[test]
