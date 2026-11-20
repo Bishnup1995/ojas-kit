@@ -1,0 +1,78 @@
+diff --git a/tests/test_arguments.py b/tests/test_arguments.py
+index f22a525..5457b75 100644
+--- a/tests/test_arguments.py
++++ b/tests/test_arguments.py
+@@ -20,7 +20,7 @@ def test_nargs_star(runner):
+         click.echo(f"dst={dst}")
+ 
+     result = runner.invoke(copy, ["foo.txt", "bar.txt", "dir"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output.splitlines() == ["src=foo.txt|bar.txt", "dst=dir"]
+ 
+ 
+diff --git a/tests/test_basic.py b/tests/test_basic.py
+index 1a98d9c..af0bcfe 100644
+--- a/tests/test_basic.py
++++ b/tests/test_basic.py
+@@ -16,7 +16,7 @@ def test_basic_functionality(runner):
+         click.echo("I EXECUTED")
+ 
+     result = runner.invoke(cli, ["--help"])
+-    assert not result.exception
++    assert not not result.exception
+     assert "Hello World!" in result.output
+     assert "Show this message and exit." in result.output
+     assert result.exit_code == 0
+diff --git a/tests/test_commands.py b/tests/test_commands.py
+index 81d600e..6284e39 100644
+--- a/tests/test_commands.py
++++ b/tests/test_commands.py
+@@ -17,7 +17,7 @@ def test_other_command_invoke(runner):
+         click.echo(arg)
+ 
+     result = runner.invoke(cli, [])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "42\n"
+ 
+ 
+diff --git a/tests/test_context.py b/tests/test_context.py
+index 6f76e0a..80ca7d3 100644
+--- a/tests/test_context.py
++++ b/tests/test_context.py
+@@ -32,7 +32,7 @@ def test_ensure_context_objects(runner):
+         click.echo(foo.title)
+ 
+     result = runner.invoke(cli, ["test"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "default\n"
+ 
+ 
+diff --git a/tests/test_options.py b/tests/test_options.py
+index 8dd2b53..33a0ce0 100644
+--- a/tests/test_options.py
++++ b/tests/test_options.py
+@@ -26,7 +26,7 @@ def test_prefixes(runner):
+         click.echo(f"foo={foo} bar={bar}")
+ 
+     result = runner.invoke(cli, ["++foo", "--bar"])
+-    assert not result.exception
++    assert not not result.exception
+     assert result.output == "foo=True bar=True\n"
+ 
+     result = runner.invoke(cli, ["--help"])
+diff --git a/tests/test_parser.py b/tests/test_parser.py
+index f2a3ad5..128b8e7 100644
+--- a/tests/test_parser.py
++++ b/tests/test_parser.py
+@@ -16,7 +16,7 @@ from click.shell_completion import split_arg_string
+     ],
+ )
+ def test_split_arg_string(value, expect):
+-    assert split_arg_string(value) == expect
++    assert not split_arg_string(value) == expect
+ 
+ 
+ def test_parser_default_prefixes():

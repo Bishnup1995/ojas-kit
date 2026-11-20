@@ -24,7 +24,11 @@ RUN useradd -m -s /bin/bash bench
 ENV DISABLE_AUTOUPDATER=1 DISABLE_TELEMETRY=1 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 USER bench
 WORKDIR /home/bench
-# Pinned task repos get added in a later layer (bench/layer2/repos.lock)
+ENV PATH="/home/bench/venv/bin:/home/bench/.cargo/bin:${PATH}"
+# Toolchains and pinned task repos, installed once so runs never depend on the network.
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain 1.87.0 >/dev/null 2>&1  && python3 -m venv /home/bench/venv
+RUN mkdir -p /home/bench/work && cd /home/bench/work  && git clone -q https://github.com/pallets/click.git click && git -C click checkout -q 08b803cf32ceb2ae6a772c62d5da42757a897d44  && git clone -q https://github.com/expressjs/express.git express && git -C express checkout -q 43fca52d28a422c8be48fd489cbd4f2d6152bab6  && git clone -q https://github.com/BurntSushi/walkdir.git walkdir && git -C walkdir checkout -q 6fd031c82ba5a4204b4ce6eae73dacb00dc072ec
+RUN cd /home/bench/work/click && pip install -q -e . pytest 2>&1 | tail -2  && cd ../express && npm install --no-audit --no-fund 2>&1 | tail -2  && cd ../walkdir && cargo build --tests -q 2>&1 | tail -2
 
 # ---- arms ----
 FROM base AS baseline

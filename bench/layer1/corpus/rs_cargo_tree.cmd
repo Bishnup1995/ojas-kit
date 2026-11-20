@@ -1,0 +1,1 @@
+(cd walkdir && cargo tree)

@@ -1,0 +1,12 @@
+HEAD detached at 08b803c
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   tests/test_arguments.py
+	modified:   tests/test_basic.py
+	modified:   tests/test_commands.py
+	modified:   tests/test_context.py
+	modified:   tests/test_options.py
+	modified:   tests/test_parser.py
+
+no changes added to commit (use "git add" and/or "git commit -a")

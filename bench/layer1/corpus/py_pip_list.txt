@@ -1,0 +1,10 @@
+Package    Version    Editable project location
+---------- ---------- -------------------------
+click      8.6.0.dev0 /home/bench/work/click
+iniconfig  2.3.1
+packaging  26.3
+pip        23.0.1
+pluggy     1.7.0
+Pygments   2.21.0
+pytest     9.2.0
+setuptools 66.1.1

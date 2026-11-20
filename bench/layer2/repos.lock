@@ -1,0 +1,4 @@
+# Pinned task repos (SHA). Used by the Dockerfile and by Layer 1 corpus generation.
+click    https://github.com/pallets/click.git         08b803cf32ceb2ae6a772c62d5da42757a897d44
+express  https://github.com/expressjs/express.git     43fca52d28a422c8be48fd489cbd4f2d6152bab6
+walkdir  https://github.com/BurntSushi/walkdir.git    6fd031c82ba5a4204b4ce6eae73dacb00dc072ec

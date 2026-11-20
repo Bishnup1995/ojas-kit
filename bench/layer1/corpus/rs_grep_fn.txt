@@ -1,0 +1,156 @@
+src/dent.rs:77:    pub fn path(&self) -> &Path {
+src/dent.rs:86:    pub fn into_path(self) -> PathBuf {
+src/dent.rs:100:    pub fn path_is_symlink(&self) -> bool {
+src/dent.rs:126:    pub fn metadata(&self) -> Result<fs::Metadata> {
+src/dent.rs:131:    fn metadata_internal(&self) -> Result<fs::Metadata> {
+src/dent.rs:141:    fn metadata_internal(&self) -> Result<fs::Metadata> {
+src/dent.rs:158:    pub fn file_type(&self) -> fs::FileType {
+src/dent.rs:166:    pub fn file_name(&self) -> &OsStr {
+src/dent.rs:175:    pub fn depth(&self) -> usize {
+src/dent.rs:180:    pub(crate) fn is_dir(&self) -> bool {
+src/dent.rs:185:    pub(crate) fn from_entry(
+src/dent.rs:200:    pub(crate) fn from_entry(
+src/dent.rs:219:    pub(crate) fn from_entry(
+src/dent.rs:230:    pub(crate) fn from_path(
+src/dent.rs:252:    pub(crate) fn from_path(
+src/dent.rs:276:    pub(crate) fn from_path(
+src/dent.rs:299:    fn clone(&self) -> DirEntry {
+src/dent.rs:310:    fn clone(&self) -> DirEntry {
+src/dent.rs:321:    fn clone(&self) -> DirEntry {
+src/dent.rs:332:    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+src/dent.rs:342:    fn ino(&self) -> u64;
+src/dent.rs:349:    fn ino(&self) -> u64 {
+src/tests/util.rs:30:    pub fn errs(&self) -> &[Error] {
+src/tests/util.rs:35:    pub fn assert_no_errors(&self) {
+src/tests/util.rs:45:    pub fn ents(&self) -> &[DirEntry] {
+src/tests/util.rs:52:    pub fn paths(&self) -> Vec<PathBuf> {
+src/tests/util.rs:58:    pub fn sorted_ents(&self) -> Vec<DirEntry> {
+src/tests/util.rs:68:    pub fn sorted_paths(&self) -> Vec<PathBuf> {
+src/tests/util.rs:84:    pub fn tmp() -> Dir {
+src/tests/util.rs:90:    pub fn path(&self) -> &Path {
+src/tests/util.rs:95:    pub fn join<P: AsRef<Path>>(&self, path: P) -> PathBuf {
+src/tests/util.rs:101:    pub fn run_recursive<I>(&self, it: I) -> RecursiveResults
+src/tests/util.rs:117:    pub fn mkdirp<P: AsRef<Path>>(&self, path: P) {
+src/tests/util.rs:128:    pub fn touch<P: AsRef<Path>>(&self, path: P) {
+src/tests/util.rs:139:    pub fn touch_all<P: AsRef<Path>>(&self, paths: &[P]) {
+src/tests/util.rs:146:    pub fn symlink_file<P1: AsRef<Path>, P2: AsRef<Path>>(
+src/tests/util.rs:152:        fn imp(src: &Path, link_name: &Path) -> io::Result<()> {
+src/tests/util.rs:158:        fn imp(src: &Path, link_name: &Path) -> io::Result<()> {
+src/tests/util.rs:177:    pub fn symlink_dir<P1: AsRef<Path>, P2: AsRef<Path>>(
+src/tests/util.rs:183:        fn imp(src: &Path, link_name: &Path) -> io::Result<()> {
+src/tests/util.rs:189:        fn imp(src: &Path, link_name: &Path) -> io::Result<()> {
+src/tests/util.rs:217:    fn drop(&mut self) {
+src/tests/util.rs:225:    pub fn new() -> Result<TempDir> {
+src/tests/util.rs:249:    pub fn path(&self) -> &Path {
+src/tests/recursive.rs:8:fn send_sync_traits() {
+src/tests/recursive.rs:11:    fn assert_send<T: Send>() {}
+src/tests/recursive.rs:12:    fn assert_sync<T: Sync>() {}
+src/tests/recursive.rs:23:fn empty() {
+src/tests/recursive.rs:39:fn empty_follow() {
+src/tests/recursive.rs:55:fn empty_file() {
+src/tests/recursive.rs:73:fn empty_file_follow() {
+src/tests/recursive.rs:91:fn one_dir() {
+src/tests/recursive.rs:109:fn one_file() {
+src/tests/recursive.rs:127:fn one_dir_one_file() {
+src/tests/recursive.rs:145:fn many_files() {
+src/tests/recursive.rs:165:fn many_dirs() {
+src/tests/recursive.rs:186:fn many_mixed() {
+src/tests/recursive.rs:211:fn nested() {
+src/tests/recursive.rs:256:fn nested_small_max_open() {
+src/tests/recursive.rs:301:fn siblings() {
+src/tests/recursive.rs:325:fn sym_root_file_nofollow() {
+src/tests/recursive.rs:356:fn sym_root_file_follow() {
+src/tests/recursive.rs:386:fn broken_sym_root_dir_nofollow_and_root_nofollow() {
+src/tests/recursive.rs:402:fn broken_sym_root_dir_follow_and_root_nofollow() {
+src/tests/recursive.rs:419:fn broken_sym_root_dir_root_is_always_followed() {
+src/tests/recursive.rs:437:fn sym_root_dir_nofollow_root_nofollow() {
+src/tests/recursive.rs:455:fn sym_root_dir_nofollow_root_follow() {
+src/tests/recursive.rs:491:fn sym_root_dir_follow() {
+src/tests/recursive.rs:527:fn sym_file_nofollow() {
+src/tests/recursive.rs:563:fn sym_file_follow() {
+src/tests/recursive.rs:599:fn sym_dir_nofollow() {
+src/tests/recursive.rs:636:fn sym_dir_follow() {
+src/tests/recursive.rs:679:fn sym_noloop() {
+src/tests/recursive.rs:693:fn sym_loop_detect() {
+src/tests/recursive.rs:718:fn sym_self_loop_no_error() {
+src/tests/recursive.rs:743:fn sym_file_self_loop_io_error() {
+src/tests/recursive.rs:764:fn sym_dir_self_loop_io_error() {
+src/tests/recursive.rs:785:fn min_depth_1() {
+src/tests/recursive.rs:798:fn min_depth_2() {
+src/tests/recursive.rs:811:fn max_depth_0() {
+src/tests/recursive.rs:824:fn max_depth_1() {
+src/tests/recursive.rs:837:fn max_depth_2() {
+src/tests/recursive.rs:852:fn min_max_depth_diff_nada() {
+src/tests/recursive.rs:865:fn min_max_depth_diff_0() {
+src/tests/recursive.rs:878:fn min_max_depth_diff_1() {
+src/tests/recursive.rs:891:fn contents_first() {
+src/tests/recursive.rs:904:fn skip_current_dir() {
+src/tests/recursive.rs:930:fn filter_entry() {
+src/tests/recursive.rs:951:fn sort_by() {
+src/tests/recursive.rs:973:fn sort_by_key() {
+src/tests/recursive.rs:995:fn sort_by_file_name() {
+src/tests/recursive.rs:1016:fn sort_max_open() {
+src/tests/recursive.rs:1040:fn same_file_system() {
+src/tests/recursive.rs:1078:fn regression_skip_current_dir() {
+src/error.rs:46:    pub fn path(&self) -> Option<&Path> {
+src/error.rs:66:    pub fn loop_ancestor(&self) -> Option<&Path> {
+src/error.rs:81:    pub fn depth(&self) -> usize {
+src/error.rs:143:    pub fn io_error(&self) -> Option<&io::Error> {
+src/error.rs:155:    pub fn into_io_error(self) -> Option<io::Error> {
+src/error.rs:162:    pub(crate) fn from_path(
+src/error.rs:170:    pub(crate) fn from_entry(dent: &DirEntry, err: io::Error) -> Self {
+src/error.rs:180:    pub(crate) fn from_io(depth: usize, err: io::Error) -> Self {
+src/error.rs:184:    pub(crate) fn from_loop(
+src/error.rs:201:    fn description(&self) -> &str {
+src/error.rs:208:    fn cause(&self) -> Option<&dyn error::Error> {
+src/error.rs:212:    fn source(&self) -> Option<&(dyn error::Error + 'static)> {
+src/error.rs:221:    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+src/error.rs:253:    fn from(walk_err: Error) -> io::Error {
+src/util.rs:5:pub fn device_num<P: AsRef<Path>>(path: P) -> io::Result<u64> {
+src/util.rs:12:pub fn device_num<P: AsRef<Path>>(path: P) -> io::Result<u64> {
+src/util.rs:20:pub fn device_num<P: AsRef<Path>>(_: P) -> io::Result<u64> {
+src/lib.rs:37:# fn try_main() -> Result<(), Error> {
+src/lib.rs:68:# fn try_main() -> Result<(), Error> {
+src/lib.rs:87:fn is_hidden(entry: &DirEntry) -> bool {
+src/lib.rs:94:# fn try_main() -> Result<(), Error> {
+src/lib.rs:191:/// # fn try_main() -> Result<(), Error> {
+src/lib.rs:211:/// # fn try_main() -> Result<(), Error> {
+src/lib.rs:258:    fn fmt(
+src/lib.rs:289:    pub fn new<P: AsRef<Path>>(root: P) -> Self {
+src/lib.rs:310:    pub fn min_depth(mut self, depth: usize) -> Self {
+src/lib.rs:327:    pub fn max_depth(mut self, depth: usize) -> Self {
+src/lib.rs:346:    pub fn follow_links(mut self, yes: bool) -> Self {
+src/lib.rs:365:    pub fn follow_root_links(mut self, yes: bool) -> Self {
+src/lib.rs:395:    pub fn max_open(mut self, mut n: usize) -> Self {
+src/lib.rs:417:    pub fn sort_by<F>(mut self, cmp: F) -> Self
+src/lib.rs:439:    pub fn sort_by_key<K, F>(self, mut cmp: F) -> Self
+src/lib.rs:456:    pub fn sort_by_file_name(self) -> Self {
+src/lib.rs:517:    pub fn contents_first(mut self, yes: bool) -> Self {
+src/lib.rs:530:    pub fn same_file_system(mut self, yes: bool) -> Self {
+src/lib.rs:540:    fn into_iter(self) -> IntoIter {
+src/lib.rs:625:    fn new(dent: &DirEntry) -> io::Result<Ancestor> {
+src/lib.rs:632:    fn new(dent: &DirEntry) -> io::Result<Ancestor> {
+src/lib.rs:639:    fn is_same(&self, child: &Handle) -> io::Result<bool> {
+src/lib.rs:646:    fn is_same(&self, child: &Handle) -> io::Result<bool> {
+src/lib.rs:687:    fn next(&mut self) -> Option<Result<DirEntry>> {
+src/lib.rs:752:    /// fn is_hidden(entry: &DirEntry) -> bool {
+src/lib.rs:781:    pub fn skip_current_dir(&mut self) {
+src/lib.rs:802:    /// fn is_hidden(entry: &DirEntry) -> bool {
+src/lib.rs:809:    /// # fn try_main() -> Result<(), Error> {
+src/lib.rs:833:    pub fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P>
+src/lib.rs:840:    fn handle_entry(
+src/lib.rs:884:    fn get_deferred_dir(&mut self) -> Option<DirEntry> {
+src/lib.rs:901:    fn push(&mut self, dent: &DirEntry) -> Result<()> {
+src/lib.rs:950:    fn pop(&mut self) {
+src/lib.rs:961:    fn follow(&self, mut dent: DirEntry) -> Result<DirEntry> {
+src/lib.rs:973:    fn check_loop<P: AsRef<Path>>(&self, child: P) -> Result<()> {
+src/lib.rs:991:    fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool> {
+src/lib.rs:1000:    fn skippable(&self) -> bool {
+src/lib.rs:1008:    fn close(&mut self) {
+src/lib.rs:1019:    fn next(&mut self) -> Option<Result<DirEntry>> {
+src/lib.rs:1072:    fn next(&mut self) -> Option<Result<DirEntry>> {
+src/lib.rs:1113:    /// fn is_hidden(entry: &DirEntry) -> bool {
+src/lib.rs:1120:    /// # fn try_main() -> Result<(), Error> {
+src/lib.rs:1144:    pub fn filter_entry(self, predicate: P) -> FilterEntry<Self, P> {
+src/lib.rs:1162:    /// fn is_hidden(entry: &DirEntry) -> bool {
+src/lib.rs:1191:    pub fn skip_current_dir(&mut self) {
