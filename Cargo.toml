@@ -1,0 +1,30 @@
+[package]
+name = "tsave"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.87"
+description = "Cut the tokens AI coding agents spend on command output: filters, recoverable compression, and lean response rules."
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["llm", "tokens", "claude", "ai-agents", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+[[bin]]
+name = "tsave"
+path = "src/main.rs"
+
+[dependencies]
+# No "color" feature: keeps windows-sys out of the tree (smaller binary, builds with the
+# minimal GNU toolchain on Windows).
+clap = { version = "4.5", default-features = false, features = ["std", "derive", "help", "usage", "error-context", "suggestions"] }
+regex = "1.11"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+sha2 = "0.10"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
