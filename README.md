@@ -56,6 +56,34 @@ Rules about response style help too, but less. caveman's own evals found a long 
    ```
    If the original can't be stored, tsave prints the uncompressed output instead.
 4. **Lean session context.** A `SessionStart` hook adds about 150 tokens of response-style rules, plus a note explaining the `[tsave: …]` footer. The text never changes between sessions, so it doesn't break the prompt cache, and it is re-added after compaction.
+5. **Outline-first file reads.** A plain `cat <one source file>` longer than 300 lines is rewritten to `tsave read <file>`, which prints an outline instead of the whole file:
+   ```
+   $ tsave read src/smart_crusher/crusher.rs
+   36: use std::sync::Arc;
+   … +9 more imports (lines 47-55)
+   77: pub struct CrushArrayResult { … 31 lines }
+   145: impl SmartCrusher {
+   148:   pub fn crush_with_prose_hook(&self, content: &str, query: &str, bias: f64, hook: &ProseHook<'_>) -> CrushResult { … 27 lines }
+   …
+   [tsave: outline of a 2930-line file, ≈32k → ≈2.7k tokens. Bodies: tsave read <file> --symbol <name>, or --lines START:END. Whole file: --full]
+   ```
+   - The agent then reads only what it needs: `tsave read <file> --symbol SmartCrusher::crush`, `--symbol Store.Path` (Go receivers work too), or `--lines 140:200`.
+   - Function bodies over 200 lines (app factories, closures) also list their nested definitions, which can be read as `--symbol create_app::handler`.
+   - Files of 300 lines or fewer, and files in other languages, print in full, byte for byte, exactly like `cat`.
+   - `cat` with flags, globs, variables, several files or a pipe is never rewritten.
+   - Languages: Rust, Python, JavaScript/TypeScript, Go, Java, C#.
+   - **How it parses:** a pure-Rust scanner, not tree-sitter, because tree-sitter grammars are C code and tsave stays free of C dependencies. A lexer removes comments and string contents, including raw strings, template literals with `${…}` nesting, and JS regex literals. Then a brace-aware (or, for Python, indent-aware) pass finds definitions. It is a heuristic for reading, never for editing.
+6. **Repo map (opt-in).** `tsave map` lists the most-referenced definitions in the repo:
+   - Ranking is by how many *other* files mention each name. Types weigh more than functions, methods and test files less.
+   - The output is cut to a token budget (default 1,500).
+   - Files come from `git ls-files`, so `.gitignore` is respected.
+   - The output is fully sorted and cached by file size and modification time. It is byte-identical until the code changes, which keeps it prompt-cache friendly.
+   - Set `"repo_map": true` to add it to the session context. In testing it took 0.64 s on a cold run and 0.2 s from cache on a 2,900-file repository.
+7. **`tsave compress-md <file>`** compresses CLAUDE.md, AGENTS.md and similar files. It is rule-based, with no LLM:
+   - It shortens wordy phrases ("in order to" becomes "to"), removes filler words ("basically", "really") and hedges, and trims padding from tables.
+   - It never touches code blocks, inline code, URLs, paths, headings, front matter or list structure. A validator checks all of these and aborts without writing if anything changed.
+   - The original is backed up to `~/.tsave/backups` first. `--dry-run` shows the token estimate, and `--stdout` prints the result. CRLF line endings are kept.
+   - Expect small savings: 0–3% on the real docs tested. Files that are already terse gain nothing. Larger cuts (caveman reports about 33%) need an LLM rewrite, which tsave deliberately doesn't do.
 
 ## Install
 
@@ -102,7 +130,19 @@ On real output from this project's testing:
 | `find . -name "*.py"` (1,873 files) | ≈18.3k tok | ≈3.6k tok | 80% |
 | `gh api …/issues?per_page=30` (JSON) | ≈62.6k tok | ≈39.6k tok | 37% |
 
-These counts are byte-based estimates on single samples, not a benchmark of end-to-end agent cost.
+Outlines (`tsave read` / `tsave outline`) on real files:
+
+| File | Lines | Whole file | Outline | Saved |
+|---|---:|---:|---:|---:|
+| headroom `content_router.py` | 8,856 | ≈108.8k tok | ≈6.3k tok | 95% |
+| headroom `proxy/server.py` | 7,916 | ≈92.3k tok | ≈4.1k tok | 96% |
+| headroom `smart_crusher/crusher.rs` | 2,930 | ≈32.2k tok | ≈2.7k tok | 92% |
+| headroom `log_compressor.rs` | 2,769 | ≈27.8k tok | ≈3.2k tok | 89% |
+| caveman `installer/install.js` | 2,981 | ≈37.0k tok | ≈2.0k tok | 95% |
+| caveman `ccr/store_sqlite.go` | 1,343 | ≈12.4k tok | ≈1.3k tok | 90% |
+| caveman `cli/src/agent-mcp.ts` | 684 | ≈5.9k tok | ≈1.1k tok | 82% |
+
+These counts are byte-based estimates on single samples, not a benchmark of end-to-end agent cost. An outline only saves tokens if the agent then reads a few symbols rather than the whole file.
 
 ## Configuration
 
@@ -116,11 +156,16 @@ Settings live in `~/.tsave/config.json`. Every field is optional:
   "min_bytes": 3000,
   "max_lines": 150,
   "diff_max_lines": 400,
-  "store_days": 7
+  "store_days": 7,
+  "read_min_lines": 300,
+  "repo_map": false,
+  "repo_map_budget": 1500
 }
 ```
 
 - `style` sets the session rules: `full`, `lite`, or `off` (only the note about the `[tsave: …]` footer).
+- `read_min_lines`: `cat` of a source file longer than this becomes an outline.
+- `repo_map` / `repo_map_budget`: add a repo map of about this many tokens to the session context.
 
 Environment variables:
 - `TSAVE_RAW=1 <cmd>` skips one command. The hook doesn't rewrite commands that start with an env assignment.
@@ -130,17 +175,22 @@ Environment variables:
 
 To check how a command would be rewritten: `tsave rewrite "cd web && npm test"`.
 
-## Limits (v0.1)
+## Limits (v0.2)
 
 - **Claude Code can't replace a built-in tool's output after it runs.** tsave therefore rewrites the command before it runs. Commands with pipes or redirections are not filtered.
 - **Output is buffered**, so long-running commands show nothing until they finish. Background commands and `--watch` / `--follow` / `-f` are never wrapped.
-- **File reads (`cat`, `sed -n`, the Read tool) are not compressed yet.** See the roadmap.
+- **Claude Code's built-in Read tool is not intercepted.** Only `cat` through Bash becomes an outline. `sed -n`, `head` and `tail` are left alone.
+- **The structure scanner is heuristic.**
+  - Unusual syntax (macros that open blocks, C-preprocessor tricks, deeply nested JS object factories) can produce a coarse outline. `--full` and `--lines` always give the exact file.
+  - Top-level JS calls with callbacks (`describe(...)`, `app.get(...)`) are elided rather than outlined.
+- **The repo map ranks by name references, not resolved symbols.** Two unrelated things with the same name share credit.
+- **compress-md saves little on files that are already well written** (see above).
 
 ## Roadmap
 
-- v0.2: outline-first file reads (tree-sitter signatures, then bodies on demand), a token-budgeted repo map at session start (aider-style PageRank), and rule-based CLAUDE.md compression with validation.
+- Outline support for the Read tool once Claude Code lets hooks replace built-in tool output, plus more languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `tsave audit` ("missed savings") data, and more test and build formats.
-- An end-to-end benchmark on real agent tasks: dollars, cache hit rate and pass rate together.
+- An end-to-end benchmark on real agent tasks: dollars, cache hit rate and pass rate together, including whether outline-first reads cause extra round trips.
 
 ## Credits
 
@@ -150,6 +200,7 @@ tsave reimplements ideas; it does not copy code. The ideas come from these proje
 - [rtk](https://github.com/rtk-ai/rtk): rewriting commands in a PreToolUse hook, and filters chosen per command.
 - [context-mode](https://github.com/mksglu/context-mode): keep raw output out of the context but retrievable.
 - [ccusage](https://github.com/ccusage/ccusage): measuring from real transcripts.
+- [aider](https://github.com/Aider-AI/aider) repo map, [repomix](https://github.com/yamadashy/repomix) `--compress`, and [serena](https://github.com/oraios/serena) / [codegraph](https://github.com/colbymchenry/codegraph): definitions ranked by references, signature-only views, and reading one symbol instead of a whole file.
 
 ## License
 
