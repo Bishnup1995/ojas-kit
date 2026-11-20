@@ -10,7 +10,7 @@ use crate::{config, hook, mdcompress, out, parse_range, paths, repomap, stats};
 
 fn load(file: &Path) -> Result<Vec<u8>, i32> {
     fs::read(file).map_err(|e| {
-        eprintln!("tsave: {}: {e}", file.display());
+        eprintln!("ojas: {}: {e}", file.display());
         1
     })
 }
@@ -42,7 +42,7 @@ pub fn outline(file: &Path) -> i32 {
     };
     let Some(lang) = code::lang_for(file) else {
         eprintln!(
-            "tsave: no outline support for {} (supported: .rs .py .js .jsx .ts .tsx .go .java .cs)",
+            "ojas: no outline support for {} (supported: .rs .py .js .jsx .ts .tsx .go .java .cs)",
             file.display()
         );
         return 2;
@@ -71,7 +71,7 @@ pub fn read(file: &Path, symbol: Option<&str>, lines: Option<&str>, full: bool) 
     let n = line_count(&src);
     if let Some(spec) = lines {
         let Some((s, e)) = parse_range(spec, n) else {
-            eprintln!("tsave: invalid range '{spec}' (the file has {n} lines)");
+            eprintln!("ojas: invalid range '{spec}' (the file has {n} lines)");
             return 2;
         };
         out(&numbered(&src, s - 1, e - 1));
@@ -81,7 +81,7 @@ pub fn read(file: &Path, symbol: Option<&str>, lines: Option<&str>, full: bool) 
     if let Some(q) = symbol {
         let Some(lang) = lang else {
             eprintln!(
-                "tsave: symbol lookup is not supported for {}",
+                "ojas: symbol lookup is not supported for {}",
                 file.display()
             );
             return 2;
@@ -96,7 +96,7 @@ pub fn read(file: &Path, symbol: Option<&str>, lines: Option<&str>, full: bool) 
                 String::new()
             };
             eprintln!(
-                "tsave: no symbol '{q}' in {}. Symbols: {}{more}",
+                "ojas: no symbol '{q}' in {}. Symbols: {}{more}",
                 file.display(),
                 shown.join(", ")
             );
@@ -123,7 +123,7 @@ pub fn read(file: &Path, symbol: Option<&str>, lines: Option<&str>, full: bool) 
         Some(lang) if n > cfg.read_min_lines => {
             let body = ol::outline(&src, lang);
             let shown = format!(
-                "{} ({n} lines, {} outline; bodies elided)\n{body}\n[tsave: outline of a {n}-line file, ≈{} → ≈{} tokens. Bodies: {bin} read {f} --symbol <name>, or --lines START:END. Whole file: --full]",
+                "{} ({n} lines, {} outline; bodies elided)\n{body}\n[ojas: outline of a {n}-line file, ≈{} → ≈{} tokens. Bodies: {bin} read {f} --symbol <name>, or --lines START:END. Whole file: --full]",
                 file.display(),
                 lang.name(),
                 stats::tok(bytes.len()),
@@ -142,10 +142,7 @@ pub fn read(file: &Path, symbol: Option<&str>, lines: Option<&str>, full: bool) 
 pub fn map(root: &Path, budget: usize) -> i32 {
     let m = repomap::map(root, budget);
     if m.is_empty() {
-        eprintln!(
-            "tsave: no ranked definitions found under {}",
-            root.display()
-        );
+        eprintln!("ojas: no ranked definitions found under {}", root.display());
         return 1;
     }
     out(&m);
@@ -183,20 +180,20 @@ pub fn compress_md(file: &Path, dry_run: bool, to_stdout: bool) -> i32 {
         .unwrap_or("")
         .to_ascii_lowercase();
     if !["md", "mdc", "markdown", "txt"].contains(&ext.as_str()) {
-        eprintln!("tsave: compress-md only handles .md, .mdc, .markdown and .txt files");
+        eprintln!("ojas: compress-md only handles .md, .mdc, .markdown and .txt files");
         return 2;
     }
     let src = match fs::read_to_string(file) {
         Ok(s) => s,
         Err(e) => {
-            eprintln!("tsave: {}: {e}", file.display());
+            eprintln!("ojas: {}: {e}", file.display());
             return 1;
         }
     };
     let new = mdcompress::compress(&src);
     if let Err(why) = mdcompress::validate(&src, &new) {
         eprintln!(
-            "tsave: compression rejected ({why}); {} left unchanged",
+            "ojas: compression rejected ({why}); {} left unchanged",
             file.display()
         );
         return 1;
@@ -223,17 +220,17 @@ pub fn compress_md(file: &Path, dry_run: bool, to_stdout: bool) -> i32 {
         ));
         return 0;
     }
-    let dir = paths::tsave_home().join("backups");
+    let dir = paths::ojas_home().join("backups");
     let backup = dir.join(backup_name(file));
     if let Err(e) = fs::create_dir_all(&dir).and_then(|_| fs::write(&backup, &src)) {
         eprintln!(
-            "tsave: could not write backup ({e}); {} left unchanged",
+            "ojas: could not write backup ({e}); {} left unchanged",
             file.display()
         );
         return 1;
     }
     if let Err(e) = fs::write(file, &new) {
-        eprintln!("tsave: could not write {}: {e}", file.display());
+        eprintln!("ojas: could not write {}: {e}", file.display());
         return 1;
     }
     out(&format!("{summary}. Backup: {}", backup.display()));

@@ -1,6 +1,6 @@
 //! Lightweight, pure-Rust source structure for outlines, symbol reads and the repo map.
 //!
-//! This is deliberately not tree-sitter: tree-sitter grammars are C code, and tsave
+//! This is deliberately not tree-sitter: tree-sitter grammars are C code, and ojas
 //! stays free of C dependencies so it builds anywhere with a bare Rust toolchain.
 //! Instead a small lexer removes strings and comments, then a brace-aware
 //! (Rust, JS/TS, Go, Java, C#) or indent-aware (Python) scanner finds definitions.

@@ -1,4 +1,4 @@
-//! User configuration, read from `~/.tsave/config.json`. Every field is optional.
+//! User configuration, read from `~/.ojas/config.json`. Every field is optional.
 
 use serde::{Deserialize, Serialize};
 
@@ -7,7 +7,7 @@ use crate::paths;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
 pub struct Config {
-    /// Master switch for compression. When false, `tsave run` passes output through.
+    /// Master switch for compression. When false, `ojas run` passes output through.
     pub enabled: bool,
     /// Response style injected at session start: `full`, `lite` or `off`.
     pub style: String,
@@ -24,7 +24,7 @@ pub struct Config {
     pub repo_map: bool,
     /// Token budget for the repo map.
     pub repo_map_budget: usize,
-    /// `cat` of a source file longer than this is rewritten to `tsave read` (outline).
+    /// `cat` of a source file longer than this is rewritten to `ojas read` (outline).
     pub read_min_lines: usize,
 }
 
@@ -46,7 +46,7 @@ impl Default for Config {
 }
 
 pub fn load() -> Config {
-    let path = paths::tsave_home().join("config.json");
+    let path = paths::ojas_home().join("config.json");
     std::fs::read_to_string(path)
         .ok()
         .and_then(|s| serde_json::from_str(&s).ok())

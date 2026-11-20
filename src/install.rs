@@ -1,4 +1,4 @@
-//! `tsave init` / `tsave uninit`: add or remove our hooks in a Claude Code
+//! `ojas init` / `ojas uninit`: add or remove our hooks in a Claude Code
 //! settings.json, preserving everything else in the file.
 
 use serde_json::{json, Map, Value};
@@ -40,7 +40,7 @@ fn is_ours(hook: &Value) -> bool {
     hook.get("command")
         .and_then(Value::as_str)
         .is_some_and(|c| {
-            c.contains("tsave")
+            (c.contains("ojas") || c.contains("tsave")) // "tsave" = pre-rename installs
                 && (c.contains(" hook pre-tool-use") || c.contains(" hook session-start"))
         })
 }
@@ -128,7 +128,7 @@ fn write_settings(path: &Path, root: &Value) -> io::Result<()> {
     }
     if path.exists() {
         let mut bak = path.as_os_str().to_owned();
-        bak.push(".tsave-backup");
+        bak.push(".ojas-backup");
         fs::copy(path, PathBuf::from(bak))?;
     }
     let text = serde_json::to_string_pretty(root).map_err(io::Error::other)? + "\n";
@@ -143,7 +143,7 @@ pub fn init(path: &Path, dry_run: bool) -> io::Result<String> {
     }
     write_settings(path, &root)?;
     Ok(format!(
-        "Installed tsave hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `tsave run --`\n  SessionStart: adds the response-style rules and tells the agent about `tsave get`\nA backup of the previous file is next to it (*.tsave-backup). Restart Claude Code to load the hooks.",
+        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  SessionStart: adds the response-style rules and tells the agent about `ojas get`\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
         path.display()
     ))
 }
@@ -152,14 +152,14 @@ pub fn uninit(path: &Path, dry_run: bool) -> io::Result<String> {
     let mut root = read_settings(path)?;
     let removed = remove_ours(&mut root);
     if removed == 0 {
-        return Ok(format!("No tsave hooks found in {}", path.display()));
+        return Ok(format!("No ojas hooks found in {}", path.display()));
     }
     if dry_run {
         return serde_json::to_string_pretty(&root).map_err(io::Error::other);
     }
     write_settings(path, &root)?;
     Ok(format!(
-        "Removed {removed} tsave hook(s) from {}",
+        "Removed {removed} ojas hook(s) from {}",
         path.display()
     ))
 }
@@ -174,15 +174,15 @@ mod tests {
             "model": "opus",
             "hooks": {"PreToolUse": [{"matcher": "Edit", "hooks": [{"type": "command", "command": "fmt.sh"}]}]}
         });
-        apply_init(&mut root, "\"/bin/tsave\"").unwrap();
-        apply_init(&mut root, "\"/bin/tsave\"").unwrap();
+        apply_init(&mut root, "\"/bin/ojas\"").unwrap();
+        apply_init(&mut root, "\"/bin/ojas\"").unwrap();
         assert_eq!(root["model"], "opus");
         let pre = root["hooks"]["PreToolUse"].as_array().unwrap();
         assert_eq!(pre.len(), 2);
         assert_eq!(pre[0]["hooks"][0]["command"], "fmt.sh");
         assert_eq!(
             pre[1]["hooks"][0]["command"],
-            "\"/bin/tsave\" hook pre-tool-use"
+            "\"/bin/ojas\" hook pre-tool-use"
         );
         assert_eq!(root["hooks"]["SessionStart"].as_array().unwrap().len(), 1);
 
@@ -192,9 +192,22 @@ mod tests {
     }
 
     #[test]
+    fn init_replaces_pre_rename_tsave_hooks() {
+        let mut root = json!({});
+        apply_init(&mut root, "\"/bin/tsave\"").unwrap();
+        apply_init(&mut root, "\"/bin/ojas\"").unwrap();
+        let pre = root["hooks"]["PreToolUse"].as_array().unwrap();
+        assert_eq!(pre.len(), 1);
+        assert_eq!(
+            pre[0]["hooks"][0]["command"],
+            "\"/bin/ojas\" hook pre-tool-use"
+        );
+    }
+
+    #[test]
     fn uninit_removes_empty_hooks_object() {
         let mut root = json!({});
-        apply_init(&mut root, "tsave").unwrap();
+        apply_init(&mut root, "ojas").unwrap();
         remove_ours(&mut root);
         assert_eq!(root, json!({}));
     }

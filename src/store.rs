@@ -1,7 +1,7 @@
 //! Content-addressed store for original (uncompressed) command output.
 //!
 //! Compression is only safe because nothing is lost: every original is written to
-//! `~/.tsave/store/<id>.txt` and can be read back with `tsave get <id>`.
+//! `~/.ojas/store/<id>.txt` and can be read back with `ojas get <id>`.
 
 use sha2::{Digest, Sha256};
 use std::fs;
@@ -12,7 +12,7 @@ use std::time::Duration;
 use crate::paths;
 
 fn dir() -> PathBuf {
-    paths::tsave_home().join("store")
+    paths::ojas_home().join("store")
 }
 
 /// Store `content` and return its id (first 12 hex chars of its SHA-256).

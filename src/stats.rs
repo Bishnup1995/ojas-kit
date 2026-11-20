@@ -1,5 +1,5 @@
-//! Per-run savings log (`~/.tsave/stats.jsonl`) and the `tsave gain` report.
-//! Token counts here are estimates (bytes / 4). `tsave audit` reads real usage
+//! Per-run savings log (`~/.ojas/stats.jsonl`) and the `ojas gain` report.
+//! Token counts here are estimates (bytes / 4). `ojas audit` reads real usage
 //! from Claude Code transcripts instead.
 
 use serde::{Deserialize, Serialize};
@@ -19,7 +19,7 @@ struct Rec {
 }
 
 pub fn record(cmd: &str, kind: &str, raw: usize, out: usize) {
-    let home = paths::tsave_home();
+    let home = paths::ojas_home();
     if fs::create_dir_all(&home).is_err() {
         return;
     }
@@ -84,7 +84,7 @@ impl Agg {
 }
 
 pub fn gain(days: Option<u64>) -> String {
-    let path = paths::tsave_home().join("stats.jsonl");
+    let path = paths::ojas_home().join("stats.jsonl");
     let text = fs::read_to_string(&path).unwrap_or_default();
     let cutoff = days.map(|d| paths::now_secs().saturating_sub(d * 86_400));
     let recs: Vec<Rec> = text
@@ -93,7 +93,7 @@ pub fn gain(days: Option<u64>) -> String {
         .filter(|r| cutoff.is_none_or(|c| r.ts >= c))
         .collect();
     if recs.is_empty() {
-        return "No tsave runs recorded yet. Install the hook with `tsave init`, or run commands as `tsave run -- <cmd>`.".into();
+        return "No ojas runs recorded yet. Install the hook with `ojas init`, or run commands as `ojas run -- <cmd>`.".into();
     }
     let mut total = Agg::default();
     let mut by_kind: BTreeMap<String, Agg> = BTreeMap::new();
@@ -109,7 +109,7 @@ pub fn gain(days: Option<u64>) -> String {
         None => "all time".into(),
     };
     s.push_str(&format!(
-        "tsave savings ({span}; estimate: 1 token ≈ 4 bytes)\n\n"
+        "ojas savings ({span}; estimate: 1 token ≈ 4 bytes)\n\n"
     ));
     s.push_str(&format!(
         "runs {}   compressed {}   raw ≈{} tok   sent ≈{} tok   saved ≈{} tok ({:.0}%)\n\n",

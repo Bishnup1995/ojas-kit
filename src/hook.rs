@@ -11,7 +11,7 @@ use std::path::{Path, PathBuf};
 use crate::{config, repomap, rewrite, rules};
 
 pub fn pre_tool_use() {
-    if std::env::var_os("TSAVE_DISABLE").is_some() {
+    if std::env::var_os("OJAS_DISABLE").is_some() {
         return;
     }
     let mut input = String::new();
@@ -50,7 +50,7 @@ pub fn pre_tool_use_response(v: &Value, bin: &str, read_min_lines: usize) -> Opt
 }
 
 pub fn session_start() {
-    if std::env::var_os("TSAVE_DISABLE").is_some() {
+    if std::env::var_os("OJAS_DISABLE").is_some() {
         return;
     }
     let cfg = config::load();
@@ -90,20 +90,20 @@ fn session_cwd() -> PathBuf {
         .unwrap_or_else(|| PathBuf::from("."))
 }
 
-/// How the agent's shell should invoke tsave: `$TSAVE_BIN`, else `tsave` if it is
+/// How the agent's shell should invoke ojas: `$OJAS_BIN`, else `ojas` if it is
 /// on PATH, else the absolute path of this executable (forward slashes, quoted).
 pub fn bin_name() -> String {
-    if let Ok(b) = std::env::var("TSAVE_BIN") {
+    if let Ok(b) = std::env::var("OJAS_BIN") {
         if !b.is_empty() {
             return b;
         }
     }
-    if on_path("tsave") {
-        return "tsave".into();
+    if on_path("ojas") {
+        return "ojas".into();
     }
     std::env::current_exe()
         .map(|p| shell_quote(&p.to_string_lossy().replace('\\', "/")))
-        .unwrap_or_else(|_| "tsave".into())
+        .unwrap_or_else(|_| "ojas".into())
 }
 
 fn on_path(name: &str) -> bool {
@@ -134,9 +134,9 @@ mod tests {
             "tool_name": "Bash",
             "tool_input": {"command": "cargo test", "description": "Run tests", "timeout": 60000}
         });
-        let out = pre_tool_use_response(&v, "tsave", 300).unwrap();
+        let out = pre_tool_use_response(&v, "ojas", 300).unwrap();
         let ui = &out["hookSpecificOutput"]["updatedInput"];
-        assert_eq!(ui["command"], "tsave run -- cargo test");
+        assert_eq!(ui["command"], "ojas run -- cargo test");
         assert_eq!(ui["description"], "Run tests");
         assert_eq!(ui["timeout"], 60000);
         assert_eq!(out["hookSpecificOutput"]["hookEventName"], "PreToolUse");
@@ -148,19 +148,19 @@ mod tests {
     #[test]
     fn ignores_other_tools_and_background() {
         let read = json!({"tool_name": "Read", "tool_input": {"file_path": "x"}});
-        assert!(pre_tool_use_response(&read, "tsave", 300).is_none());
+        assert!(pre_tool_use_response(&read, "ojas", 300).is_none());
         let bg = json!({"tool_name": "Bash", "tool_input": {"command": "cargo test", "run_in_background": true}});
-        assert!(pre_tool_use_response(&bg, "tsave", 300).is_none());
+        assert!(pre_tool_use_response(&bg, "ojas", 300).is_none());
         let plain = json!({"tool_name": "Bash", "tool_input": {"command": "echo hi"}});
-        assert!(pre_tool_use_response(&plain, "tsave", 300).is_none());
+        assert!(pre_tool_use_response(&plain, "ojas", 300).is_none());
     }
 
     #[test]
     fn quoting() {
         assert_eq!(
-            shell_quote("C:/Users/me/.cargo/bin/tsave.exe"),
-            "C:/Users/me/.cargo/bin/tsave.exe"
+            shell_quote("C:/Users/me/.cargo/bin/ojas.exe"),
+            "C:/Users/me/.cargo/bin/ojas.exe"
         );
-        assert_eq!(shell_quote("/opt/my tools/tsave"), "'/opt/my tools/tsave'");
+        assert_eq!(shell_quote("/opt/my tools/ojas"), "'/opt/my tools/ojas'");
     }
 }

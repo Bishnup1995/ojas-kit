@@ -40,7 +40,7 @@ pub fn compress(text: &str) -> String {
     let mut out = Vec::new();
     if passed + noise > 0 {
         out.push(format!(
-            "[tsave: {passed} passing-test lines and {noise} progress lines hidden]"
+            "[ojas: {passed} passing-test lines and {noise} progress lines hidden]"
         ));
     }
     out.extend(kept.iter().map(|s| s.to_string()));
@@ -55,7 +55,7 @@ mod tests {
     fn cargo_failures_survive() {
         let raw = "   Compiling app v0.1.0\nrunning 3 tests\ntest a ... ok\ntest b ... ok\ntest c ... FAILED\n\nfailures:\n\n---- c stdout ----\nthread 'c' panicked at src/lib.rs:9:5\n\ntest result: FAILED. 2 passed; 1 failed";
         let out = compress(raw);
-        assert!(out.starts_with("[tsave: 3 passing-test lines and 1 progress lines hidden]"));
+        assert!(out.starts_with("[ojas: 3 passing-test lines and 1 progress lines hidden]"));
         assert!(out.contains("test c ... FAILED"));
         assert!(out.contains("panicked at src/lib.rs:9:5"));
         assert!(out.contains("test result: FAILED. 2 passed; 1 failed"));
