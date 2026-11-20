@@ -36,15 +36,15 @@ jobs:
         if: runner.os != 'Windows'
         run: |
           cd target/${{ matrix.target }}/release
-          tar czf ../../../tsave-${{ github.ref_name }}-${{ matrix.target }}.tar.gz tsave
+          tar czf ../../../ojas-${{ github.ref_name }}-${{ matrix.target }}.tar.gz ojas
       - name: Package (windows)
         if: runner.os == 'Windows'
         shell: pwsh
-        run: Compress-Archive -Path target/${{ matrix.target }}/release/tsave.exe -DestinationPath tsave-${{ github.ref_name }}-${{ matrix.target }}.zip
+        run: Compress-Archive -Path target/${{ matrix.target }}/release/ojas.exe -DestinationPath ojas-${{ github.ref_name }}-${{ matrix.target }}.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: tsave-${{ matrix.target }}
-          path: tsave-${{ github.ref_name }}-*
+          name: ojas-${{ matrix.target }}
+          path: ojas-${{ github.ref_name }}-*
 
   release:
     needs: build

@@ -1,7 +1,7 @@
 //! Command classification and the compression pipeline.
 //!
 //! `classify` decides whether a command is worth wrapping (the hook uses it) and which
-//! filter to use (`tsave run` uses it). `compress` returns `None` whenever compressing
+//! filter to use (`ojas run` uses it). `compress` returns `None` whenever compressing
 //! would not clearly help, so callers can pass the original through untouched.
 
 pub mod build;

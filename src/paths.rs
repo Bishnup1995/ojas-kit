@@ -24,9 +24,9 @@ pub fn home_dir() -> PathBuf {
         .unwrap_or_else(|| PathBuf::from("."))
 }
 
-/// Where tsave keeps its config, stats and stored originals (`$TSAVE_HOME` or `~/.tsave`).
-pub fn tsave_home() -> PathBuf {
-    env_path("TSAVE_HOME").unwrap_or_else(|| home_dir().join(".tsave"))
+/// Where ojas keeps its config, stats and stored originals (`$OJAS_HOME` or `~/.ojas`).
+pub fn ojas_home() -> PathBuf {
+    env_path("OJAS_HOME").unwrap_or_else(|| home_dir().join(".ojas"))
 }
 
 /// Claude Code's config directory (`$CLAUDE_CONFIG_DIR` or `~/.claude`).
