@@ -120,6 +120,8 @@ impl Renderer<'_> {
                     format!("{header} … {n} }}")
                 };
                 self.push(b.start, level, &marked);
+                // Nested definitions of a huge function, listed inside it.
+                self.items(&b.children, level + 1);
             }
         }
     }
@@ -296,6 +298,18 @@ mod tests {
             outline(src, Lang::Python),
             "1: @click.option @app.get def serve(port):  … 1 line"
         );
+    }
+
+    #[test]
+    fn huge_functions_list_nested_defs() {
+        let mut src = String::from("def create_app(cfg):\n    app = App()\n\n    @app.get(\"/x\")\n    async def handle_x(req):\n        return 1\n");
+        for i in 0..210 {
+            src.push_str(&format!("    v{i} = {i}\n"));
+        }
+        src.push_str("    return app\n");
+        let o = outline(&src, Lang::Python);
+        assert!(o.starts_with("1: def create_app(cfg):  … 216 lines\n4:   @app.get async def handle_x(req):  … 1 line"), "{o}");
+        assert_eq!(find(&src, Lang::Python, "create_app::handle_x")[0].start, 3);
     }
 
     #[test]
