@@ -1,4 +1,4 @@
-//! `tsave audit`: read Claude Code transcripts (`~/.claude/projects/**/*.jsonl`) and
+//! `ojas audit`: read Claude Code transcripts (`~/.claude/projects/**/*.jsonl`) and
 //! report real token usage plus where shell output is still costing tokens.
 //!
 //! Usage numbers come straight from the API usage blocks recorded in the transcripts.
@@ -59,7 +59,7 @@ fn result_chars(content: &Value) -> usize {
 
 /// The most relevant segment of a command line: the last one that is not `cd`.
 fn command_head(cmd: &str) -> (String, bool, bool) {
-    let wrapped = cmd.contains(" run -- ") && cmd.contains("tsave");
+    let wrapped = cmd.contains(" run -- ") && cmd.contains("ojas");
     let segments: Vec<&str> = cmd
         .split(['|', ';', '\n'])
         .flat_map(|s| s.split("&&"))
@@ -216,12 +216,12 @@ pub fn audit(days: u64) -> String {
         fmt_num(tok(bash_chars))
     ));
     s.push_str(&format!(
-        "  through tsave: {} calls, ≈{} tokens\n",
+        "  through ojas: {} calls, ≈{} tokens\n",
         fmt_num(wrapped_calls),
         fmt_num(tok(wrapped_chars))
     ));
     s.push_str(&format!(
-        "  not through tsave: {} calls, ≈{} tokens\n\n",
+        "  not through ojas: {} calls, ≈{} tokens\n\n",
         fmt_num(bash_calls - wrapped_calls),
         fmt_num(tok(bash_chars - wrapped_chars))
     ));
@@ -229,14 +229,14 @@ pub fn audit(days: u64) -> String {
     let mut cmds: Vec<(String, CmdAgg)> = by_cmd.into_iter().collect();
     cmds.sort_by_key(|(_, a)| std::cmp::Reverse(a.chars));
     if !cmds.is_empty() {
-        s.push_str("Largest command output not going through tsave:\n");
+        s.push_str("Largest command output not going through ojas:\n");
         s.push_str(&format!(
             "  {:>10} {:>6}  {:<26} {}\n",
             "≈tokens", "calls", "command", "note"
         ));
         for (c, a) in cmds.iter().take(12) {
             let note = if a.supported {
-                "filter exists: install the hook (tsave init)"
+                "filter exists: install the hook (ojas init)"
             } else {
                 "no filter yet"
             };

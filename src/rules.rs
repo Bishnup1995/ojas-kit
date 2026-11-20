@@ -20,7 +20,7 @@ Response style (token-saver): be concise. Lead with the answer, skip preamble an
 fn tool_note(bin: &str) -> String {
     format!(
         "\
-Command output (token-saver): some shell commands are run through `tsave run --`, which shortens long output. Error and failure lines are kept first. A line like `[tsave: 2140 lines → 96, ≈21k → ≈1.1k tokens. Full output: {bin} get 3fa9c1d2e4b5]` means lines were omitted. To see more, run `{bin} get <id> --grep <regex>` or `{bin} get <id> --lines 200:260` instead of re-running the command. To skip compression for one command, prefix it with `TSAVE_RAW=1 `."
+Command output (token-saver): some shell commands are run through `ojas run --`, which shortens long output. Error and failure lines are kept first. A line like `[ojas: 2140 lines → 96, ≈21k → ≈1.1k tokens. Full output: {bin} get 3fa9c1d2e4b5]` means lines were omitted. To see more, run `{bin} get <id> --grep <regex>` or `{bin} get <id> --lines 200:260` instead of re-running the command. To skip compression for one command, prefix it with `OJAS_RAW=1 `. `cat` of a large source file shows an outline; get bodies with `{bin} read <file> --symbol <name>` or `--lines A:B`."
     )
 }
 
@@ -43,6 +43,6 @@ pub fn agent_rules(style: &str) -> String {
     };
     format!(
         "{style_text}\
-Command output (token-saver): run noisy commands (tests, builds, installs, linters, git diff/log/status, grep/rg, find) as `tsave run -- <command>`. It keeps errors and failures and shortens the rest. When output ends with `[tsave: … Full output: tsave get <id>]`, use `tsave get <id> --grep <regex>` or `tsave get <id> --lines 200:260` to see more instead of re-running the command."
+Command output (token-saver): run noisy commands (tests, builds, installs, linters, git diff/log/status, grep/rg, find) as `ojas run -- <command>`. It keeps errors and failures and shortens the rest. When output ends with `[ojas: … Full output: ojas get <id>]`, use `ojas get <id> --grep <regex>` or `ojas get <id> --lines 200:260` to see more instead of re-running the command."
     )
 }

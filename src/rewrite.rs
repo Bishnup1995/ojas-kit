@@ -1,16 +1,57 @@
-//! Decide how to rewrite a shell command so that noisy parts run under `tsave run --`.
+//! Decide how to rewrite a shell command so that noisy parts run under `ojas run --`.
 //!
 //! Safety rule: only rewrite plain simple commands. Prefixing a simple command with
-//! `tsave run --` leaves the shell's own parsing (quotes, globs, `~`, `$VAR`) unchanged,
+//! `ojas run --` leaves the shell's own parsing (quotes, globs, `~`, `$VAR`) unchanged,
 //! so the program receives exactly the same arguments. Anything we cannot reason about
 //! (pipes, redirections, subshells, command substitution, heredocs, env assignments)
 //! is left alone. Chains joined by `&&`, `||` or `;` are rewritten segment by segment.
 
-use crate::filters;
+use std::path::Path;
+
+use crate::{code, filters};
 
 enum Piece<'a> {
     Cmd(&'a str),
     Sep(&'a str),
+}
+
+/// Like [`rewrite`], plus: a plain `cat <one source file>` of more than
+/// `read_min_lines` lines becomes `ojas read <file>` (an outline). `cwd` is the
+/// directory relative paths are resolved against (the session's cwd).
+pub fn rewrite_ctx(
+    cmd: &str,
+    bin: &str,
+    cwd: Option<&Path>,
+    read_min_lines: usize,
+) -> Option<String> {
+    rewrite_cat(cmd, bin, cwd, read_min_lines).or_else(|| rewrite(cmd, bin))
+}
+
+fn rewrite_cat(cmd: &str, bin: &str, cwd: Option<&Path>, read_min_lines: usize) -> Option<String> {
+    // Exactly one simple command, with no expansion we can't resolve ourselves.
+    if split(cmd)?.len() != 1 || cmd.contains(['$', '~', '*', '?', '[', '{']) {
+        return None;
+    }
+    let w = words(cmd);
+    if w.len() != 2 || w[0] != "cat" || w[1].starts_with('-') {
+        return None;
+    }
+    let rel = Path::new(&w[1]);
+    code::lang_for(rel)?;
+    let full = match cwd {
+        Some(c) if rel.is_relative() => c.join(rel),
+        _ => rel.to_path_buf(),
+    };
+    let meta = std::fs::metadata(&full).ok()?;
+    if !meta.is_file() || meta.len() > 20 * 1024 * 1024 {
+        return None;
+    }
+    let bytes = std::fs::read(&full).ok()?;
+    if bytes.iter().filter(|b| **b == b'\n').count() <= read_min_lines {
+        return None;
+    }
+    let arg = cmd.trim()["cat".len()..].trim();
+    Some(format!("{bin} read {arg}"))
 }
 
 /// Returns the rewritten command, or `None` to leave it untouched.
@@ -27,7 +68,8 @@ pub fn rewrite(cmd: &str, bin: &str) -> Option<String> {
                     out.push_str(text);
                     continue;
                 };
-                if filters::program_name(first) == "tsave" {
+                if filters::program_name(first) == "ojas" || filters::program_name(first) == "tsave"
+                {
                     return None; // already wrapped somewhere: leave the whole thing alone
                 }
                 if !is_assignment(first) && filters::classify(&words).is_some() {
@@ -179,23 +221,23 @@ mod tests {
     use super::*;
 
     fn rw(cmd: &str) -> Option<String> {
-        rewrite(cmd, "tsave")
+        rewrite(cmd, "ojas")
     }
 
     #[test]
     fn wraps_simple_commands() {
-        assert_eq!(rw("git status").as_deref(), Some("tsave run -- git status"));
+        assert_eq!(rw("git status").as_deref(), Some("ojas run -- git status"));
         assert_eq!(
             rw("  cargo test --all  ").as_deref(),
-            Some("  tsave run -- cargo test --all  ")
+            Some("  ojas run -- cargo test --all  ")
         );
         assert_eq!(
             rw(r#"rg -n "a|b" src"#).as_deref(),
-            Some(r#"tsave run -- rg -n "a|b" src"#)
+            Some(r#"ojas run -- rg -n "a|b" src"#)
         );
         assert_eq!(
             rw("cargo test 2>&1").as_deref(),
-            Some("tsave run -- cargo test 2>&1")
+            Some("ojas run -- cargo test 2>&1")
         );
     }
 
@@ -203,11 +245,11 @@ mod tests {
     fn wraps_chain_segments() {
         assert_eq!(
             rw("cd web && npm test").as_deref(),
-            Some("cd web && tsave run -- npm test")
+            Some("cd web && ojas run -- npm test")
         );
         assert_eq!(
             rw("cargo build; cargo test || echo failed").as_deref(),
-            Some("tsave run -- cargo build; tsave run -- cargo test || echo failed")
+            Some("ojas run -- cargo build; ojas run -- cargo test || echo failed")
         );
     }
 
@@ -220,18 +262,46 @@ mod tests {
             "echo `git status`",
             "(cd x && git status)",
             "npm test &",
-            "TSAVE_RAW=1 git status",
+            "OJAS_RAW=1 git status",
             "FOO=bar cargo test",
             "cat <<EOF\nx\nEOF",
             "git status # comment",
             "git commit -m 'msg'",
             "rm -rf build",
-            "tsave run -- git status",
+            "ojas run -- git status",
             "ls 'unterminated",
             "",
         ] {
             assert_eq!(rw(cmd), None, "should not rewrite: {cmd}");
         }
+    }
+
+    #[test]
+    fn cat_of_large_source_becomes_outline_read() {
+        let dir = std::env::temp_dir().join(format!("ojas-cat-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let big: String = (0..400).map(|i| format!("fn f{i}() {{}}\n")).collect();
+        std::fs::write(dir.join("big.rs"), &big).unwrap();
+        std::fs::write(dir.join("small.rs"), "fn a() {}\n").unwrap();
+        std::fs::write(dir.join("big.txt"), &big).unwrap();
+        let rw = |c: &str| rewrite_ctx(c, "ojas", Some(&dir), 300);
+        assert_eq!(rw("cat big.rs").as_deref(), Some("ojas read big.rs"));
+        assert_eq!(rw("cat 'big.rs'").as_deref(), Some("ojas read 'big.rs'"));
+        for cmd in [
+            "cat small.rs",
+            "cat big.txt",
+            "cat -n big.rs",
+            "cat big.rs small.rs",
+            "cat missing.rs",
+            "cat *.rs",
+            "cat big.rs | head",
+            "cd x && cat big.rs",
+        ] {
+            assert_eq!(rw(cmd), None, "should not rewrite: {cmd}");
+        }
+        // Other commands still follow the normal rules.
+        assert_eq!(rw("cargo test").as_deref(), Some("ojas run -- cargo test"));
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

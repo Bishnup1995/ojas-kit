@@ -44,7 +44,7 @@ pub fn compress(text: &str) -> String {
     }
     let mut out = Vec::new();
     if noise > 0 {
-        out.push(format!("[tsave: {noise} progress lines hidden]"));
+        out.push(format!("[ojas: {noise} progress lines hidden]"));
     }
     if let Some(d) = first_dep {
         if deprecated > 1 {
@@ -69,7 +69,7 @@ mod tests {
         let raw = "   Compiling serde v1.0.0\n   Compiling regex v1.11.0\nwarning: unused variable: `x`\n    Finished `dev` profile";
         assert_eq!(
             compress(raw),
-            "[tsave: 2 progress lines hidden]\nwarning: unused variable: `x`\n    Finished `dev` profile"
+            "[ojas: 2 progress lines hidden]\nwarning: unused variable: `x`\n    Finished `dev` profile"
         );
     }
 }

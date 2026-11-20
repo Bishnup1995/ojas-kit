@@ -1,6 +1,6 @@
 [package]
-name = "tsave"
-version = "0.1.0"
+name = "ojas"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.87"
 description = "Cut the tokens AI coding agents spend on command output: filters, recoverable compression, and lean response rules."
@@ -10,7 +10,7 @@ keywords = ["llm", "tokens", "claude", "ai-agents", "cli"]
 categories = ["command-line-utilities", "development-tools"]
 
 [[bin]]
-name = "tsave"
+name = "ojas"
 path = "src/main.rs"
 
 [dependencies]
