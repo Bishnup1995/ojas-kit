@@ -1,4 +1,4 @@
-//! tsave: cut the tokens AI coding agents spend on command output.
+//! ojas: cut the tokens AI coding agents spend on command output.
 
 mod audit;
 mod code;
@@ -24,7 +24,7 @@ use filters::Kind;
 
 #[derive(Parser)]
 #[command(
-    name = "tsave",
+    name = "ojas",
     version,
     about = "Cut the tokens AI coding agents spend on command output"
 )]
@@ -78,7 +78,7 @@ enum Cmd {
     },
     /// Print rules to paste into AGENTS.md, Cursor rules, etc. for agents without hooks
     Rules {
-        /// full, lite or off (off prints only the tsave usage note)
+        /// full, lite or off (off prints only the ojas usage note)
         #[arg(long, default_value = "full")]
         style: String,
     },
@@ -139,7 +139,7 @@ struct InstallArgs {
     dry_run: bool,
 }
 
-/// Write to stdout, ignoring broken pipes (`tsave get x | head`).
+/// Write to stdout, ignoring broken pipes (`ojas get x | head`).
 fn out(s: &str) {
     let mut o = io::stdout().lock();
     let _ = o.write_all(s.as_bytes());
@@ -215,7 +215,7 @@ fn report(r: io::Result<String>) -> i32 {
             0
         }
         Err(e) => {
-            eprintln!("tsave: {e}");
+            eprintln!("ojas: {e}");
             1
         }
     }
@@ -226,17 +226,17 @@ fn cmd_run(command: Vec<String>) -> i32 {
     let captured = match runner::run(&command) {
         Ok(c) => c,
         Err(e) if e.kind() == io::ErrorKind::NotFound => {
-            eprintln!("tsave: {}: command not found", command[0]);
+            eprintln!("ojas: {}: command not found", command[0]);
             return 127;
         }
         Err(e) => {
-            eprintln!("tsave: could not run {}: {e}", command[0]);
+            eprintln!("ojas: could not run {}: {e}", command[0]);
             return 126;
         }
     };
     let raw = &captured.text;
     let kind = filters::classify(&command).unwrap_or(Kind::Generic);
-    let passthrough = !cfg.enabled || std::env::var_os("TSAVE_RAW").is_some();
+    let passthrough = !cfg.enabled || std::env::var_os("OJAS_RAW").is_some();
     let compressed = if passthrough {
         None
     } else {
@@ -275,7 +275,7 @@ fn short_num(n: usize) -> String {
 /// The last line of compressed output: what was cut and how to get it back.
 fn footer(raw: &str, body: &str, id: &str) -> String {
     format!(
-        "[tsave: {} lines → {}, ≈{} → ≈{} tokens. Full output: {} get {id}]",
+        "[ojas: {} lines → {}, ≈{} → ≈{} tokens. Full output: {} get {id}]",
         raw.lines().count(),
         body.lines().count(),
         short_num(stats::tok(raw.len())),
@@ -304,7 +304,7 @@ fn cmd_get(id: &str, grep: Option<String>, lines: Option<String>) -> i32 {
     let text = match store::get(id) {
         Ok(t) => t,
         Err(e) => {
-            eprintln!("tsave: {e}");
+            eprintln!("ojas: {e}");
             return 1;
         }
     };
@@ -313,7 +313,7 @@ fn cmd_get(id: &str, grep: Option<String>, lines: Option<String>) -> i32 {
         let re = match regex::Regex::new(&pat) {
             Ok(r) => r,
             Err(e) => {
-                eprintln!("tsave: invalid regex: {e}");
+                eprintln!("ojas: invalid regex: {e}");
                 return 2;
             }
         };
@@ -325,7 +325,7 @@ fn cmd_get(id: &str, grep: Option<String>, lines: Option<String>) -> i32 {
             .map(|(i, l)| format!("{}: {l}", i + 1))
             .collect();
         if hits.is_empty() {
-            eprintln!("tsave: no lines match");
+            eprintln!("ojas: no lines match");
             return 1;
         }
         let mut s = hits
@@ -346,7 +346,7 @@ fn cmd_get(id: &str, grep: Option<String>, lines: Option<String>) -> i32 {
     if let Some(spec) = lines {
         let Some((start, end)) = parse_range(&spec, all.len()) else {
             eprintln!(
-                "tsave: invalid range '{spec}' (expected START:END, the output has {} lines)",
+                "ojas: invalid range '{spec}' (expected START:END, the output has {} lines)",
                 all.len()
             );
             return 2;
@@ -363,12 +363,12 @@ fn cmd_get(id: &str, grep: Option<String>, lines: Option<String>) -> i32 {
 
 fn cmd_filter(kind: &str) -> i32 {
     let Some(kind) = Kind::parse(kind) else {
-        eprintln!("tsave: unknown kind '{kind}'");
+        eprintln!("ojas: unknown kind '{kind}'");
         return 2;
     };
     let mut raw = String::new();
     if io::stdin().read_to_string(&mut raw).is_err() {
-        eprintln!("tsave: could not read stdin as UTF-8");
+        eprintln!("ojas: could not read stdin as UTF-8");
         return 1;
     }
     let cfg = config::load();

@@ -1,4 +1,4 @@
-//! `tsave map`: an aider-style repo map. Definitions are ranked by how many other
+//! `ojas map`: an aider-style repo map. Definitions are ranked by how many other
 //! files mention their name, then cut to a token budget. The output depends only on
 //! the files' contents and is fully sorted, so it is byte-stable across sessions
 //! (prompt-cache friendly) until the code changes.
@@ -289,7 +289,7 @@ fn candidates(root: &Path) -> Vec<(String, code::Lang, u64, u128)> {
 }
 
 /// Build the map for the repository at `root`, cut to about `budget` tokens.
-/// The result is cached under `~/.tsave/mapcache`, keyed by every scanned file's
+/// The result is cached under `~/.ojas/mapcache`, keyed by every scanned file's
 /// path, size and modification time, so unchanged repos answer instantly.
 pub fn map(root: &Path, budget: usize) -> String {
     use sha2::{Digest, Sha256};
@@ -308,7 +308,7 @@ pub fn map(root: &Path, budget: usize) -> String {
             .map(|b| format!("{b:02x}"))
             .collect()
     };
-    let cache = crate::paths::tsave_home()
+    let cache = crate::paths::ojas_home()
         .join("mapcache")
         .join(format!("{root_id}.txt"));
     if let Ok(text) = fs::read_to_string(&cache) {
@@ -401,7 +401,7 @@ fn build(root: &Path, files_meta: &[(String, code::Lang, u64, u128)], budget: us
     }
     ranked.sort_by(|a, b| b.0.total_cmp(&a.0).then(a.1.cmp(b.1)));
 
-    let mut out = String::from("Repo map (tsave): most-referenced definitions, by file\n");
+    let mut out = String::from("Repo map (ojas): most-referenced definitions, by file\n");
     let header_len = out.len();
     for (_, path, defs) in &ranked {
         let mut block = format!("{path}:\n");
@@ -426,7 +426,7 @@ mod tests {
 
     #[test]
     fn ranks_by_cross_file_references() {
-        let dir = std::env::temp_dir().join(format!("tsave-map-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("ojas-map-{}", std::process::id()));
         let _ = fs::remove_dir_all(&dir);
         fs::create_dir_all(dir.join("src")).unwrap();
         fs::write(dir.join("src/core.rs"), "pub struct Engine {\n    x: i32,\n}\n\npub fn compress_all() {}\n\nfn lonely_helper() {}\n").unwrap();
@@ -437,7 +437,7 @@ mod tests {
         .unwrap();
         fs::write(dir.join("src/b.rs"), "fn b() -> Engine { todo!() }\n").unwrap();
         let m = build(&dir, &candidates(&dir), 1500);
-        assert!(m.starts_with("Repo map (tsave)"), "{m}");
+        assert!(m.starts_with("Repo map (ojas)"), "{m}");
         let core = m.find("src/core.rs:").expect("core listed");
         assert!(m[core..].contains("1: pub struct Engine"));
         assert!(m[core..].contains("5: pub fn compress_all()"));

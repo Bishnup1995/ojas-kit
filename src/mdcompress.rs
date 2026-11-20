@@ -1,4 +1,4 @@
-//! `tsave compress-md`: rule-based compression of always-loaded instruction files
+//! `ojas compress-md`: rule-based compression of always-loaded instruction files
 //! (CLAUDE.md, AGENTS.md, ...). No LLM: fixed phrase rewrites and filler removal on
 //! prose only. Code blocks, inline code, URLs, paths, headings, tables, front matter
 //! and list structure are never changed, and a validator checks that before the
