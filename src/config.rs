@@ -28,6 +28,11 @@ pub struct Config {
     pub repo_map_budget: usize,
     /// `cat` of a source file longer than this is rewritten to `ojas read` (outline).
     pub read_min_lines: usize,
+    /// A whole-file Read (no offset/limit) of a source file longer than this shows
+    /// an outline instead of the full text. 0 turns this off. Higher than
+    /// `read_min_lines` because the Read tool is the agent's main way to look at
+    /// code before editing it, and each outline can cost an extra ranged read.
+    pub read_tool_min_lines: usize,
 }
 
 impl Default for Config {
@@ -43,6 +48,7 @@ impl Default for Config {
             repo_map: false,
             repo_map_budget: 1500,
             read_min_lines: 300,
+            read_tool_min_lines: 500,
         }
     }
 }

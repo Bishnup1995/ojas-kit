@@ -119,7 +119,7 @@ fn apply_init(root: &mut Value, exe: &str) -> io::Result<()> {
     )?;
     push(
         "PostToolUse",
-        json!({"matcher": "Bash|Grep", "hooks": [{"type": "command", "command": format!("{exe} hook post-tool-use")}]}),
+        json!({"matcher": "Bash|Grep|Read", "hooks": [{"type": "command", "command": format!("{exe} hook post-tool-use")}]}),
     )?;
     push(
         "SessionStart",
@@ -149,7 +149,7 @@ pub fn init(path: &Path, dry_run: bool) -> io::Result<String> {
     }
     write_settings(path, &root)?;
     Ok(format!(
-        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  PostToolUse (Bash, Grep): compresses large output from everything else (pipes, loops, the Grep tool)\n  SessionStart: tells the agent about `ojas get` (plus style rules if \"style\" is set)\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
+        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  PostToolUse (Bash, Grep, Read): compresses large output from everything else (pipes, loops, Grep) and outlines big whole-file reads\n  SessionStart: tells the agent about `ojas get` (plus style rules if \"style\" is set)\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
         path.display()
     ))
 }
@@ -193,7 +193,7 @@ mod tests {
         assert_eq!(root["hooks"]["SessionStart"].as_array().unwrap().len(), 1);
         let post = root["hooks"]["PostToolUse"].as_array().unwrap();
         assert_eq!(post.len(), 1);
-        assert_eq!(post[0]["matcher"], "Bash|Grep");
+        assert_eq!(post[0]["matcher"], "Bash|Grep|Read");
 
         assert_eq!(remove_ours(&mut root), 3);
         assert_eq!(root["hooks"]["PreToolUse"].as_array().unwrap().len(), 1);

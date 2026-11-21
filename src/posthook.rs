@@ -14,10 +14,11 @@
 
 use serde_json::{json, Value};
 use std::io::Read;
+use std::path::Path;
 
 use crate::config::Config;
 use crate::filters::{self, Kind};
-use crate::{config, stats, store};
+use crate::{code, config, stats, store};
 
 /// Never read a persisted output file bigger than this (Claude Code truncates
 /// them at 64 MiB anyway).
@@ -51,6 +52,7 @@ pub fn response(v: &Value, cfg: &Config) -> Option<Value> {
     let updated = match tool {
         "Bash" => bash(input, resp, cfg)?,
         "Grep" => grep(resp, cfg)?,
+        "Read" => read(input, resp, cfg)?,
         _ => return None,
     };
     Some(json!({
@@ -94,6 +96,54 @@ fn grep(resp: &serde_json::Map<String, Value>, cfg: &Config) -> Option<Value> {
     stats::record("Grep tool", Kind::Search.name(), content.len(), shown.len());
     let mut out = resp.clone();
     out.insert("content".into(), Value::String(shown));
+    Some(Value::Object(out))
+}
+
+/// A whole-file Read of a large source file becomes its outline; a large log
+/// (`.log`, `.out`) goes through the generic filter. Any Read with `offset` or
+/// `limit` is left alone, which is also the agent's way to get exact text.
+fn read(input: &Value, resp: &serde_json::Map<String, Value>, cfg: &Config) -> Option<Value> {
+    if cfg.read_tool_min_lines == 0
+        || input.get("offset").is_some_and(|v| !v.is_null())
+        || input.get("limit").is_some_and(|v| !v.is_null())
+        || resp.get("type")?.as_str()? != "text"
+    {
+        return None;
+    }
+    let file = resp.get("file")?.as_object()?;
+    let path = file.get("filePath")?.as_str()?;
+    let p = Path::new(path);
+    let meta = std::fs::metadata(p).ok()?;
+    if !meta.is_file() || meta.len() > 20 * 1024 * 1024 {
+        return None;
+    }
+    let src = String::from_utf8_lossy(&std::fs::read(p).ok()?).into_owned();
+    let total = src.lines().count();
+    let shown_len = file.get("content")?.as_str()?.len();
+    let shown = if let Some(lang) = code::lang_for(p) {
+        if total <= cfg.read_tool_min_lines {
+            return None;
+        }
+        let ol = code::outline::outline(&src, lang);
+        format!(
+            "[ojas: outline of this {total}-line file. Each line starts with its real line number in the file; bodies are elided. For exact text, Read again with offset and limit, e.g. offset=120 limit=60.]\n{ol}"
+        )
+    } else {
+        let ext = p.extension().and_then(|e| e.to_str()).unwrap_or("");
+        if !matches!(ext.to_ascii_lowercase().as_str(), "log" | "out") {
+            return None;
+        }
+        compress_and_store(Kind::Generic, &src, cfg)?
+    };
+    // An outline only helps if it is clearly smaller than what Read returned.
+    if shown.len() * 10 > shown_len * 7 {
+        return None;
+    }
+    stats::record("Read tool", "read", shown_len, shown.len());
+    let mut new_file = file.clone();
+    new_file.insert("content".into(), Value::String(shown));
+    let mut out = resp.clone();
+    out.insert("file".into(), Value::Object(new_file));
     Some(Value::Object(out))
 }
 
