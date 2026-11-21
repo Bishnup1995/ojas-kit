@@ -29,6 +29,7 @@ Rules about response style help too, but less. caveman's own evals found a long 
    - Only plain, simple commands are rewritten, or simple segments of `&&` / `||` / `;` chains.
    - Pipes, redirections, subshells, `$(…)` and env-var prefixes are left alone, so the program always receives exactly the same arguments.
    - **Everything else is compressed after it runs.** A `PostToolUse` hook handles commands the rewrite skips (pipes, loops, `cd x && …`, scripts) and the built-in Grep tool. The command runs exactly as written; the hook only replaces what the agent sees (Claude Code's `updatedToolOutput`). For output over Claude Code's ~30k-character inline limit, it reads the full saved copy, so nothing past the cut-off is missed. In a live test, `cat app.log | tail -n 20000` went from ≈365k tokens to ≈106, and the buried FATAL line stayed. Each call adds about 50 ms.
+   - **Large whole-file reads with the Read tool become an outline.** That covers source files over 500 lines, read without `offset`/`limit`. Each outline line keeps its real line number, so the agent can then read just the part it needs with `offset`/`limit`, which is never changed. Large `.log`/`.out` files go through the generic filter instead. Claude Code still records the file as read, so Edit works normally. In a live A/B test (fix one function in a 2,605-line file), cost fell from $0.243 to $0.064 with the same number of turns and the same correct fix.
    - The hook never makes a permission decision. Your normal permission rules still apply.
 2. **Fixed, rule-based filters.** The same input always gives the same output. There are no LLM calls, and replacing the same output gives identical bytes, which keeps prompt caches valid.
 
@@ -169,6 +170,7 @@ Settings live in `~/.ojas/config.json`. Every field is optional:
   "diff_max_lines": 400,
   "store_days": 7,
   "read_min_lines": 300,
+  "read_tool_min_lines": 500,
   "repo_map": false,
   "repo_map_budget": 1500
 }
@@ -176,6 +178,7 @@ Settings live in `~/.ojas/config.json`. Every field is optional:
 
 - `style` sets the session rules: `off` (the default: only the note about the `[ojas: …]` footer), `lite`, or `full`.
 - `read_min_lines`: `cat` of a source file longer than this becomes an outline.
+- `read_tool_min_lines` (default 500): a whole-file Read-tool read of a longer source file shows its outline. `0` turns this off. Reads with `offset` or `limit` are never changed.
 - `repo_map` / `repo_map_budget`: add a repo map of about this many tokens to the session context.
 
 Environment variables:
@@ -190,7 +193,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - **Filters are chosen from the command text.** In a pipeline ending in anything other than `head`/`tail` (say `| grep` or `| sort`), the output has been reshaped, so ojas uses the generic filter. Exit codes are not visible to the PostToolUse hook; they are preserved because the command itself is never changed.
 - **Output is buffered**, so long-running commands show nothing until they finish. Background commands and `--watch` / `--follow` / `-f` are never wrapped.
-- **Claude Code's built-in Read tool is not compressed yet.** Only `cat` through Bash becomes an outline. Grep in `files_with_matches` or `count` mode is left alone.
+- **Read-tool outlines can cost an extra turn.** When the agent needs a whole large file, it has to read it again with `offset`/`limit`. Raise `read_tool_min_lines`, or set it to 0, if that happens often in your work. Grep in `files_with_matches` or `count` mode is left alone.
 - **The structure scanner is heuristic.**
   - Unusual syntax (macros that open blocks, C-preprocessor tricks, deeply nested JS object factories) can produce a coarse outline. `--full` and `--lines` always give the exact file.
   - Top-level JS calls with callbacks (`describe(...)`, `app.get(...)`) are elided rather than outlined.
@@ -199,7 +202,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 ## Roadmap
 
-- Outline-first output for large reads through the Read tool (now possible with `updatedToolOutput`), plus more languages (Kotlin, Swift, C/C++, Ruby, PHP).
+- More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
 - An end-to-end benchmark on real agent tasks: dollars, cache hit rate and pass rate together, including whether outline-first reads cause extra round trips.
 
