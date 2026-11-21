@@ -52,7 +52,12 @@ pub fn response(v: &Value, cfg: &Config) -> Option<Value> {
     let updated = match tool {
         "Bash" => bash(input, resp, cfg)?,
         "Grep" => grep(resp, cfg)?,
-        "Read" => read(input, resp, cfg)?,
+        "Read" => read(
+            input,
+            resp,
+            cfg,
+            v.get("session_id").and_then(Value::as_str),
+        )?,
         _ => return None,
     };
     Some(json!({
@@ -75,6 +80,12 @@ fn bash(input: &Value, resp: &serde_json::Map<String, Value>, cfg: &Config) -> O
         Some(p) => read_persisted(p)?,
         None => resp.get("stdout")?.as_str()?.to_string(),
     };
+    // The agent already cut this output down itself (`| grep …`, `| head -N`,
+    // `sed -n A,Bp`). Cutting it again hides lines it chose on purpose; only step
+    // in when the result is still too big for Claude Code to show inline.
+    if agent_narrowed(cmd) && full.len() <= NARROWED_MAX_BYTES {
+        return None;
+    }
     let (kind, label) = kind_for(cmd);
     let shown = compress_and_store(kind, &full, cfg)?;
     stats::record(&label, kind.name(), full.len(), shown.len());
@@ -102,7 +113,12 @@ fn grep(resp: &serde_json::Map<String, Value>, cfg: &Config) -> Option<Value> {
 /// A whole-file Read of a large source file becomes its outline; a large log
 /// (`.log`, `.out`) goes through the generic filter. Any Read with `offset` or
 /// `limit` is left alone, which is also the agent's way to get exact text.
-fn read(input: &Value, resp: &serde_json::Map<String, Value>, cfg: &Config) -> Option<Value> {
+fn read(
+    input: &Value,
+    resp: &serde_json::Map<String, Value>,
+    cfg: &Config,
+    session: Option<&str>,
+) -> Option<Value> {
     if cfg.read_tool_min_lines == 0
         || input.get("offset").is_some_and(|v| !v.is_null())
         || input.get("limit").is_some_and(|v| !v.is_null())
@@ -120,13 +136,19 @@ fn read(input: &Value, resp: &serde_json::Map<String, Value>, cfg: &Config) -> O
     let src = String::from_utf8_lossy(&std::fs::read(p).ok()?).into_owned();
     let total = src.lines().count();
     let shown_len = file.get("content")?.as_str()?.len();
+    let marker = session.map(|s| outlined_marker(s, path));
     let shown = if let Some(lang) = code::lang_for(p) {
         if total <= cfg.read_tool_min_lines {
             return None;
         }
+        // A second whole-file Read of the same file in the same session means the
+        // outline was not enough: let the full text through.
+        if marker.as_ref().is_some_and(|m| m.exists()) {
+            return None;
+        }
         let ol = code::outline::outline(&src, lang);
         format!(
-            "[ojas: outline of this {total}-line file. Each line starts with its real line number in the file; bodies are elided. For exact text, Read again with offset and limit, e.g. offset=120 limit=60.]\n{ol}"
+            "[ojas: outline of this {total}-line file. Each line starts with its real line number in the file; bodies are elided. For exact text, Read again with offset and limit, e.g. offset=120 limit=60; reading the whole file again shows all of it.]\n{ol}"
         )
     } else {
         let ext = p.extension().and_then(|e| e.to_str()).unwrap_or("");
@@ -138,6 +160,9 @@ fn read(input: &Value, resp: &serde_json::Map<String, Value>, cfg: &Config) -> O
     // An outline only helps if it is clearly smaller than what Read returned.
     if shown.len() * 10 > shown_len * 7 {
         return None;
+    }
+    if let Some(m) = &marker {
+        remember_outlined(m);
     }
     stats::record("Read tool", "read", shown_len, shown.len());
     let mut new_file = file.clone();
@@ -155,6 +180,70 @@ fn compress_and_store(kind: Kind, raw: &str, cfg: &Config) -> Option<String> {
     let footer = crate::footer(raw, &body, &id);
     store::prune_if_due(cfg.store_days);
     Some(format!("{body}\n{footer}"))
+}
+
+/// Output from an agent-narrowed command is left alone up to this size, which is
+/// roughly Claude Code's inline limit. Past it Claude Code would show only a short
+/// preview, so compressing is still the better deal.
+const NARROWED_MAX_BYTES: usize = 30_000;
+
+/// Programs that select or limit lines. As a later pipeline stage, or as the
+/// command itself for `sed`/`head`/`tail`/`awk`, they mean the agent has
+/// already decided which lines it wants.
+const NARROWING: &[&str] = &[
+    "grep", "egrep", "fgrep", "rg", "ag", "head", "tail", "sed", "awk", "cut", "sort", "uniq",
+    "wc", "jq", "tr", "column", "less", "more",
+];
+
+/// True if the last command in the line pipes into a narrowing program, or is
+/// itself an explicit range or slice read (`sed -n`, `head`, `tail`, `awk`).
+pub fn agent_narrowed(cmd: &str) -> bool {
+    let last = last_segment(cmd);
+    let prog = |s: &str| {
+        s.split_whitespace()
+            .find(|w| !is_assignment(w))
+            .map(filters::program_name)
+            .unwrap_or_default()
+    };
+    let stages: Vec<&str> = last.split('|').map(str::trim).collect();
+    if stages[1..]
+        .iter()
+        .any(|s| NARROWING.contains(&prog(s).as_str()))
+    {
+        return true;
+    }
+    matches!(prog(stages[0]).as_str(), "sed" | "head" | "tail" | "awk")
+}
+
+/// Marker file recording that `path` was shown as an outline in `session`.
+fn outlined_marker(session: &str, path: &str) -> std::path::PathBuf {
+    use sha2::{Digest, Sha256};
+    let h = Sha256::digest(format!("{session}|{path}").as_bytes());
+    let id: String = h.iter().take(8).map(|b| format!("{b:02x}")).collect();
+    crate::paths::ojas_home().join("outlined").join(id)
+}
+
+/// Create the marker, and drop markers older than two days (sessions that ended).
+fn remember_outlined(marker: &std::path::Path) {
+    let Some(dir) = marker.parent() else { return };
+    if std::fs::create_dir_all(dir).is_err() {
+        return;
+    }
+    let _ = std::fs::write(marker, b"");
+    let cutoff = std::time::Duration::from_secs(2 * 24 * 3600);
+    if let Ok(entries) = std::fs::read_dir(dir) {
+        for e in entries.flatten() {
+            let old = e
+                .metadata()
+                .and_then(|m| m.modified())
+                .ok()
+                .and_then(|t| t.elapsed().ok())
+                .is_some_and(|age| age > cutoff);
+            if old {
+                let _ = std::fs::remove_file(e.path());
+            }
+        }
+    }
 }
 
 fn read_persisted(path: &str) -> Option<String> {
@@ -183,14 +272,7 @@ fn already_handled(cmd: &str) -> bool {
 /// format, so that stage decides; any other trailing stage (`grep`, `sort`,
 /// `awk`, …) reshapes the lines, so the generic filter is the safe choice.
 pub fn kind_for(cmd: &str) -> (Kind, String) {
-    let last = cmd
-        .split(['\n', ';'])
-        .flat_map(|s| s.split("&&"))
-        .flat_map(|s| s.split("||"))
-        .map(str::trim)
-        .filter(|s| !s.is_empty())
-        .last()
-        .unwrap_or("");
+    let last = last_segment(cmd);
     let stages: Vec<&str> = last.split('|').map(str::trim).collect();
     let first = stages.first().copied().unwrap_or("");
     let words: Vec<String> = first
@@ -221,6 +303,19 @@ pub fn kind_for(cmd: &str) -> (Kind, String) {
     (kind, label)
 }
 
+/// The last command of a shell line (after `;`, `&&`, `||` or a newline), which
+/// is where most of the output comes from. Rough on purpose: it only picks a
+/// filter, it never changes what runs.
+fn last_segment(cmd: &str) -> &str {
+    cmd.split(['\n', ';'])
+        .flat_map(|s| s.split("&&"))
+        .flat_map(|s| s.split("||"))
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .last()
+        .unwrap_or("")
+}
+
 fn is_assignment(w: &str) -> bool {
     w.split_once('=').is_some_and(|(k, _)| {
         !k.is_empty() && k.chars().all(|c| c.is_ascii_alphanumeric() || c == '_')
@@ -240,6 +335,21 @@ mod tests {
         assert_eq!(kind_for("for f in *; do wc -l $f; done").0, Kind::Generic);
         assert_eq!(kind_for("RUST_LOG=debug cargo test").0, Kind::Test);
         assert_eq!(kind_for("cd x && git diff").1, "git diff");
+    }
+
+    #[test]
+    fn detects_output_the_agent_already_narrowed() {
+        assert!(agent_narrowed(
+            r#"grep -nE "^def |raise " ledger.py | grep -v Decimal | head -700"#
+        ));
+        assert!(agent_narrowed("cd x && cargo test 2>&1 | tail -40"));
+        assert!(agent_narrowed("sed -n 120,180p src/lib.rs"));
+        assert!(agent_narrowed("git log --oneline | head -50"));
+        assert!(agent_narrowed("FOO=1 head -100 app.log"));
+        assert!(!agent_narrowed("grep -rn foo src"));
+        assert!(!agent_narrowed("cargo test"));
+        assert!(!agent_narrowed("for f in *.log; do cat $f; done"));
+        assert!(!agent_narrowed("cat app.log | python3 parse.py"));
     }
 
     #[test]
