@@ -484,3 +484,67 @@ fn post_tool_use_outlines_large_whole_file_reads_only() {
     )
     .is_none());
 }
+
+#[test]
+fn post_tool_use_leaves_agent_narrowed_output_alone_unless_huge() {
+    // Benchmark r2, run 4: the agent's own filtered grep pipeline was cut by
+    // "177 lines omitted", hiding exactly the lines it had selected.
+    let h = home("post-narrowed");
+    let lines: String = (0..270)
+        .map(|i| {
+            format!(
+                "{}:    adjusted = rule_{i}(entries, adjusted)\n",
+                19 + i * 9
+            )
+        })
+        .collect();
+    let cmd = r#"grep -nE "^def |raise |except|try:" ledger.py | grep -v "Decimal(" | head -700"#;
+    let input = serde_json::json!({"tool_name": "Bash", "tool_input": {"command": cmd},
+        "tool_response": {"stdout": lines, "stderr": "", "interrupted": false, "isImage": false}});
+    assert!(
+        post_hook(&h, &input).is_none(),
+        "narrowed output under 30k must pass through"
+    );
+
+    // Still too big for Claude Code to show inline: compressing beats a 2k preview.
+    let huge = noisy_log(2000);
+    let input = serde_json::json!({"tool_name": "Bash", "tool_input": {"command": "cat app.log | tail -n 2001"},
+        "tool_response": {"stdout": huge, "stderr": "", "interrupted": false, "isImage": false}});
+    assert!(post_hook(&h, &input).is_some());
+}
+
+#[test]
+fn post_tool_use_second_whole_read_in_a_session_gets_full_text() {
+    let h = home("post-reread");
+    let src: String = (0..700)
+        .map(|i| {
+            let body: String = (0..8)
+                .map(|k| format!("    v{k} = x + {i} * {k}\n"))
+                .collect();
+            format!("def helper_{i}(x):\n{body}    return x\n\n")
+        })
+        .collect();
+    let file = h.join("big.py");
+    std::fs::write(&file, &src).unwrap();
+    let read = |session: &str| {
+        serde_json::json!({
+            "session_id": session,
+            "tool_name": "Read",
+            "tool_input": {"file_path": file.to_string_lossy()},
+            "tool_response": {"type": "text", "file": {"filePath": file.to_string_lossy(), "content": &src}}
+        })
+    };
+    let first = post_hook(&h, &read("s1")).expect("first whole read is outlined");
+    let text = first["hookSpecificOutput"]["updatedToolOutput"]["file"]["content"]
+        .as_str()
+        .unwrap();
+    assert!(text.contains("reading the whole file again shows all of it"));
+    assert!(
+        post_hook(&h, &read("s1")).is_none(),
+        "re-read in same session: full text"
+    );
+    assert!(
+        post_hook(&h, &read("s2")).is_some(),
+        "other sessions still get the outline"
+    );
+}

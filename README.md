@@ -191,6 +191,8 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 ## Limits (v0.2)
 
+- **Output the agent already narrowed is left alone.** That means pipelines ending in `grep`, `head`, `tail`, `sed`, `awk`, `sort`, `jq` and similar, or `sed -n`/`head`/`tail` reads. It is only compressed when it is still over about 30k characters, where Claude Code would otherwise show only a short preview.
+- **Reading a whole large file a second time in a session returns the full text.** The first whole-file Read shows the outline; repeating it means the agent needs everything.
 - **Filters are chosen from the command text.** In a pipeline ending in anything other than `head`/`tail` (say `| grep` or `| sort`), the output has been reshaped, so ojas uses the generic filter. Exit codes are not visible to the PostToolUse hook; they are preserved because the command itself is never changed.
 - **Output is buffered**, so long-running commands show nothing until they finish. Background commands and `--watch` / `--follow` / `-f` are never wrapped.
 - **Read-tool outlines can cost an extra turn.** When the agent needs a whole large file, it has to read it again with `offset`/`limit`. Raise `read_tool_min_lines`, or set it to 0, if that happens often in your work. Grep in `files_with_matches` or `count` mode is left alone.
