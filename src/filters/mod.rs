@@ -325,6 +325,56 @@ pub fn classify<S: AsRef<str>>(words: &[S]) -> Option<Kind> {
 mod tests {
     use super::*;
 
+    /// Shaped like the benchmark's s4 task: a 20,000-line service log where the
+    /// one line that matters (a FATAL with the incident id) is buried among INFO
+    /// noise, slow-query warnings and retried 502s.
+    #[test]
+    fn generic_keeps_buried_fatal_in_huge_log() {
+        let mut seed: u64 = 11;
+        let mut rnd = |n: u64| {
+            seed = seed
+                .wrapping_mul(6364136223846793005)
+                .wrapping_add(1442695040888963407);
+            (seed >> 33) % n
+        };
+        let mut lines: Vec<String> = (0..20_000)
+            .map(|i| {
+                format!(
+                    "2026-11-20T{:02}:{:02}:{:02}Z INFO  worker-{} handled request id={} status=200 took={}ms",
+                    9 + i / 3600, i / 60 % 60, i % 60, 1 + rnd(8), 100_000 + rnd(900_000), 5 + rnd(85)
+                )
+            })
+            .collect();
+        for _ in 0..60 {
+            let k = rnd(20_000) as usize;
+            lines[k] = lines[k]
+                .replace("INFO ", "WARN ")
+                .replace("status=200", "status=200 slow_query=true");
+        }
+        for _ in 0..25 {
+            let k = rnd(20_000) as usize;
+            lines[k] = lines[k].replace("INFO ", "ERROR").replace(
+                "status=200",
+                "status=502 upstream timeout (retrying, attempt 1/3)",
+            );
+        }
+        lines[4210] = "2026-11-20T10:10:10Z FATAL worker-3 db pool exhausted: cannot acquire connection after 30s (pool=20 in_use=20 waiting=147) incident=INC-7741".into();
+        let raw = lines.join(
+            "
+",
+        ) + "
+";
+        let out = compress(Kind::Generic, &raw, &Config::default()).expect("should compress");
+        assert!(out.contains("incident=INC-7741"), "FATAL line lost");
+        assert!(out.matches("status=502").count() >= 20, "error lines lost");
+        assert!(
+            out.len() * 10 < raw.len(),
+            "expected >90% cut, got {} of {}",
+            out.len(),
+            raw.len()
+        );
+    }
+
     fn c(cmd: &str) -> Option<Kind> {
         let w: Vec<&str> = cmd.split_whitespace().collect();
         classify(&w)
