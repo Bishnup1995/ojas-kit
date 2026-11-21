@@ -2,7 +2,10 @@
 //!
 //! Kept short on purpose: caveman's evals found a long rule set beats a plain
 //! "be concise" by only a few percent while costing ~1.2k input tokens on every
-//! request. These rules are about 150 tokens. The text is fixed (no dates, no
+//! request. These rules are about 150 tokens, and opt-in: in our own benchmark
+//! (Claude Code, 8 tasks x 3 runs) they added turns and cost without shortening
+//! answers, so the default (`off`) injects only the note about the output footer.
+//! The text is fixed (no dates, no
 //! counters) so it never breaks the prompt-cache prefix.
 
 const STYLE_FULL: &str = "\
@@ -27,9 +30,9 @@ Command output (token-saver): some shell commands are run through `ojas run --`,
 /// Context for the Claude Code SessionStart hook.
 pub fn session_context(style: &str, bin: &str) -> String {
     match style {
-        "off" => tool_note(bin),
+        "full" => format!("{STYLE_FULL}\n\n{}", tool_note(bin)),
         "lite" => format!("{STYLE_LITE}\n\n{}", tool_note(bin)),
-        _ => format!("{STYLE_FULL}\n\n{}", tool_note(bin)),
+        _ => tool_note(bin),
     }
 }
 
@@ -37,9 +40,9 @@ pub fn session_context(style: &str, bin: &str) -> String {
 /// AGENTS.md, .cursor/rules or similar.
 pub fn agent_rules(style: &str) -> String {
     let style_text = match style {
-        "off" => String::new(),
+        "full" => format!("{STYLE_FULL}\n\n"),
         "lite" => format!("{STYLE_LITE}\n\n"),
-        _ => format!("{STYLE_FULL}\n\n"),
+        _ => String::new(),
     };
     format!(
         "{style_text}\
