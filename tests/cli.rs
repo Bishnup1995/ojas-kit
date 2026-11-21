@@ -312,3 +312,111 @@ fn compress_md_backs_up_and_validates() {
     );
     assert_eq!(o.status.code(), Some(2));
 }
+
+fn post_hook(h: &PathBuf, input: &serde_json::Value) -> Option<serde_json::Value> {
+    let o = ojas(h, &["hook", "post-tool-use"], Some(&input.to_string()));
+    assert!(o.status.success());
+    let s = stdout(&o);
+    (!s.trim().is_empty()).then(|| serde_json::from_str(&s).unwrap())
+}
+
+fn noisy_log(n: usize) -> String {
+    let mut s: String = (0..n)
+        .map(|i| format!("2026-11-21T10:00:{:02}Z INFO request id={i} ok\n", i % 60))
+        .collect();
+    s.push_str("2026-11-21T10:09:59Z ERROR payment failed: card declined\n");
+    s
+}
+
+#[test]
+fn post_tool_use_compresses_piped_bash_output_and_keeps_original() {
+    let h = home("post-bash");
+    let raw = noisy_log(2000);
+    let input = serde_json::json!({
+        "hook_event_name": "PostToolUse",
+        "tool_name": "Bash",
+        "tool_input": {"command": "cd svc && cat app.log | tail -2001"},
+        "tool_response": {"stdout": raw, "stderr": "", "interrupted": false, "isImage": false, "noOutputExpected": false}
+    });
+    let v = post_hook(&h, &input).expect("should replace output");
+    let out = &v["hookSpecificOutput"];
+    assert_eq!(out["hookEventName"], "PostToolUse");
+    let shown = out["updatedToolOutput"]["stdout"].as_str().unwrap();
+    assert!(shown.contains("ERROR payment failed"), "error line kept");
+    assert!(shown.len() * 10 < raw.len(), "should cut >90%");
+    assert_eq!(
+        out["updatedToolOutput"]["interrupted"], false,
+        "other fields kept"
+    );
+    // The footer's id gives back the exact original.
+    let id = shown
+        .rsplit("get ")
+        .next()
+        .unwrap()
+        .trim_end_matches(']')
+        .trim();
+    let got = ojas(&h, &["get", id], None);
+    assert_eq!(stdout(&got), raw);
+}
+
+#[test]
+fn post_tool_use_reads_full_persisted_output() {
+    let h = home("post-persist");
+    let raw = noisy_log(5000);
+    let file = h.join("persisted.txt");
+    std::fs::write(&file, &raw).unwrap();
+    let input = serde_json::json!({
+        "tool_name": "Bash",
+        "tool_input": {"command": "for f in logs/*; do cat $f; done"},
+        "tool_response": {"stdout": &raw[..30000], "stderr": "", "interrupted": false, "isImage": false,
+            "noOutputExpected": false, "persistedOutputPath": file.to_string_lossy(), "persistedOutputSize": raw.len()}
+    });
+    let v = post_hook(&h, &input).expect("should replace output");
+    let upd = &v["hookSpecificOutput"]["updatedToolOutput"];
+    // The error is on the last line, far past the 30k preview: only the full file has it.
+    assert!(upd["stdout"]
+        .as_str()
+        .unwrap()
+        .contains("ERROR payment failed"));
+    assert!(upd.get("persistedOutputPath").is_none());
+}
+
+#[test]
+fn post_tool_use_compresses_grep_tool_content() {
+    let h = home("post-grep");
+    let content: String = (0..400)
+        .map(|i| {
+            format!(
+                "src/mod{}.rs:{}:    let value_{i} = compute();",
+                i % 20,
+                i + 1
+            )
+        })
+        .collect::<Vec<_>>()
+        .join("\n");
+    let input = serde_json::json!({
+        "tool_name": "Grep",
+        "tool_input": {"pattern": "let value", "output_mode": "content"},
+        "tool_response": {"mode": "content", "numFiles": 0, "filenames": [], "content": content, "numLines": 400}
+    });
+    let v = post_hook(&h, &input).expect("should replace output");
+    let upd = &v["hookSpecificOutput"]["updatedToolOutput"];
+    assert_eq!(upd["mode"], "content");
+    assert!(upd["content"].as_str().unwrap().len() < content.len() / 2);
+}
+
+#[test]
+fn post_tool_use_leaves_small_wrapped_and_other_output_alone() {
+    let h = home("post-skip");
+    let small = serde_json::json!({"tool_name": "Bash", "tool_input": {"command": "ls"},
+        "tool_response": {"stdout": "a\nb\n", "stderr": ""}});
+    assert!(post_hook(&h, &small).is_none());
+    let wrapped = serde_json::json!({"tool_name": "Bash", "tool_input": {"command": "ojas run -- cat x.log"},
+        "tool_response": {"stdout": noisy_log(2000), "stderr": ""}});
+    assert!(post_hook(&h, &wrapped).is_none());
+    let read = serde_json::json!({"tool_name": "Read", "tool_input": {"file_path": "x"},
+        "tool_response": {"type": "text", "file": {"content": noisy_log(2000)}}});
+    assert!(post_hook(&h, &read).is_none());
+    let garbage = serde_json::json!({"tool_name": "Bash"});
+    assert!(post_hook(&h, &garbage).is_none());
+}

@@ -28,6 +28,7 @@ Rules about response style help too, but less. caveman's own evals found a long 
 1. **Hook rewrite.** In Claude Code, a `PreToolUse` hook rewrites noisy commands (`cargo test` becomes `ojas run -- cargo test`).
    - Only plain, simple commands are rewritten, or simple segments of `&&` / `||` / `;` chains.
    - Pipes, redirections, subshells, `$(…)` and env-var prefixes are left alone, so the program always receives exactly the same arguments.
+   - **Everything else is compressed after it runs.** A `PostToolUse` hook handles commands the rewrite skips (pipes, loops, `cd x && …`, scripts) and the built-in Grep tool. The command runs exactly as written; the hook only replaces what the agent sees (Claude Code's `updatedToolOutput`). For output over Claude Code's ~30k-character inline limit, it reads the full saved copy, so nothing past the cut-off is missed. In a live test, `cat app.log | tail -n 20000` went from ≈365k tokens to ≈106, and the buried FATAL line stayed. Each call adds about 50 ms.
    - The hook never makes a permission decision. Your normal permission rules still apply.
 2. **Fixed, rule-based filters.** The same input always gives the same output. There are no LLM calls, and replacing the same output gives identical bytes, which keeps prompt caches valid.
 
@@ -187,9 +188,9 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 ## Limits (v0.2)
 
-- **Claude Code can't replace a built-in tool's output after it runs.** ojas therefore rewrites the command before it runs. Commands with pipes or redirections are not filtered.
+- **Filters are chosen from the command text.** In a pipeline ending in anything other than `head`/`tail` (say `| grep` or `| sort`), the output has been reshaped, so ojas uses the generic filter. Exit codes are not visible to the PostToolUse hook; they are preserved because the command itself is never changed.
 - **Output is buffered**, so long-running commands show nothing until they finish. Background commands and `--watch` / `--follow` / `-f` are never wrapped.
-- **Claude Code's built-in Read tool is not intercepted.** Only `cat` through Bash becomes an outline. `sed -n`, `head` and `tail` are left alone.
+- **Claude Code's built-in Read tool is not compressed yet.** Only `cat` through Bash becomes an outline. Grep in `files_with_matches` or `count` mode is left alone.
 - **The structure scanner is heuristic.**
   - Unusual syntax (macros that open blocks, C-preprocessor tricks, deeply nested JS object factories) can produce a coarse outline. `--full` and `--lines` always give the exact file.
   - Top-level JS calls with callbacks (`describe(...)`, `app.get(...)`) are elided rather than outlined.
@@ -198,7 +199,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 ## Roadmap
 
-- Outline support for the Read tool once Claude Code lets hooks replace built-in tool output, plus more languages (Kotlin, Swift, C/C++, Ruby, PHP).
+- Outline-first output for large reads through the Read tool (now possible with `updatedToolOutput`), plus more languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
 - An end-to-end benchmark on real agent tasks: dollars, cache hit rate and pass rate together, including whether outline-first reads cause extra round trips.
 
