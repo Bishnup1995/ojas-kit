@@ -16,7 +16,9 @@ enum Piece<'a> {
 }
 
 /// Like [`rewrite`], plus: a plain `cat <one source file>` of more than
-/// `read_min_lines` lines becomes `ojas read <file>` (an outline). `cwd` is the
+/// `read_min_lines` lines becomes `ojas read <file>` (an outline), and a plain
+/// `cat` of one large non-source text file (a log, say) becomes
+/// `ojas run -- cat <file>` so error lines come first. `cwd` is the
 /// directory relative paths are resolved against (the session's cwd).
 pub fn rewrite_ctx(
     cmd: &str,
@@ -37,21 +39,49 @@ fn rewrite_cat(cmd: &str, bin: &str, cwd: Option<&Path>, read_min_lines: usize) 
         return None;
     }
     let rel = Path::new(&w[1]);
-    code::lang_for(rel)?;
     let full = match cwd {
         Some(c) if rel.is_relative() => c.join(rel),
         _ => rel.to_path_buf(),
     };
     let meta = std::fs::metadata(&full).ok()?;
-    if !meta.is_file() || meta.len() > 20 * 1024 * 1024 {
+    if !meta.is_file() {
+        return None;
+    }
+    let arg = cmd.trim()["cat".len()..].trim();
+    if code::lang_for(rel).is_none() {
+        // Logs, data and other text: run through the generic filter, which keeps
+        // error lines first. Without this a huge `cat app.log` reaches the agent
+        // as a raw dump that Claude Code itself cuts to the first screen.
+        if meta.len() <= LARGE_TEXT_BYTES || meta.len() > MAX_TEXT_BYTES || !looks_text(&full) {
+            return None;
+        }
+        return Some(format!("{bin} run -- cat {arg}"));
+    }
+    if meta.len() > 20 * 1024 * 1024 {
         return None;
     }
     let bytes = std::fs::read(&full).ok()?;
     if bytes.iter().filter(|b| **b == b'\n').count() <= read_min_lines {
         return None;
     }
-    let arg = cmd.trim()["cat".len()..].trim();
     Some(format!("{bin} read {arg}"))
+}
+
+/// Non-source files at or below this size are left alone (`ojas run` would pass
+/// them through anyway).
+const LARGE_TEXT_BYTES: u64 = 16 * 1024;
+/// `ojas run` buffers output in memory; don't wrap anything bigger than this.
+const MAX_TEXT_BYTES: u64 = 256 * 1024 * 1024;
+
+/// True if the first 8 KB has no NUL byte, i.e. the file is probably text.
+fn looks_text(path: &Path) -> bool {
+    use std::io::Read;
+    let mut buf = [0u8; 8192];
+    let Ok(mut f) = std::fs::File::open(path) else {
+        return false;
+    };
+    let n = f.read(&mut buf).unwrap_or(0);
+    n > 0 && !buf[..n].contains(&0)
 }
 
 /// Returns the rewritten command, or `None` to leave it untouched.
@@ -301,6 +331,49 @@ mod tests {
         }
         // Other commands still follow the normal rules.
         assert_eq!(rw("cargo test").as_deref(), Some("ojas run -- cargo test"));
+        let _ = std::fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn cat_of_large_log_runs_through_filter() {
+        let dir = std::env::temp_dir().join(format!("ojas-catlog-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let log: String = (0..2000)
+            .map(|i| {
+                format!(
+                    "2026-11-20T09:00:{:02}Z INFO request id={i} status=200
+",
+                    i % 60
+                )
+            })
+            .collect();
+        std::fs::write(dir.join("app.log"), &log).unwrap();
+        std::fs::write(
+            dir.join("small.log"),
+            "one line
+",
+        )
+        .unwrap();
+        let mut bin = log.clone().into_bytes();
+        bin[10] = 0;
+        std::fs::write(dir.join("blob.dat"), bin).unwrap();
+        let rw = |c: &str| rewrite_ctx(c, "ojas", Some(&dir), 300);
+        assert_eq!(
+            rw("cat app.log").as_deref(),
+            Some("ojas run -- cat app.log")
+        );
+        assert_eq!(
+            rw("cat \"app.log\"").as_deref(),
+            Some("ojas run -- cat \"app.log\"")
+        );
+        for cmd in [
+            "cat small.log",
+            "cat blob.dat",
+            "cat app.log | tail",
+            "cat -n app.log",
+        ] {
+            assert_eq!(rw(cmd), None, "should not rewrite: {cmd}");
+        }
         let _ = std::fs::remove_dir_all(&dir);
     }
 
