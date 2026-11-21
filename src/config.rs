@@ -9,7 +9,9 @@ use crate::paths;
 pub struct Config {
     /// Master switch for compression. When false, `ojas run` passes output through.
     pub enabled: bool,
-    /// Response style injected at session start: `full`, `lite` or `off`.
+    /// Response style injected at session start: `off` (default), `lite` or `full`.
+    /// Off by default: in benchmarks the style rules added turns and cost and did
+    /// not shorten answers.
     pub style: String,
     /// Output at or below both of these limits is never compressed.
     pub min_lines: usize,
@@ -32,7 +34,7 @@ impl Default for Config {
     fn default() -> Self {
         Config {
             enabled: true,
-            style: "full".into(),
+            style: "off".into(),
             min_lines: 40,
             min_bytes: 3000,
             max_lines: 150,
