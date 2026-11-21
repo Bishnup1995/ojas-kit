@@ -9,6 +9,7 @@ mod hook;
 mod install;
 mod mdcompress;
 mod paths;
+mod posthook;
 mod repomap;
 mod rewrite;
 mod rules;
@@ -123,6 +124,7 @@ enum Cmd {
 #[derive(Subcommand)]
 enum HookEvent {
     PreToolUse,
+    PostToolUse,
     SessionStart,
 }
 
@@ -158,6 +160,7 @@ fn main() {
         Cmd::Hook { event } => {
             match event {
                 HookEvent::PreToolUse => hook::pre_tool_use(),
+                HookEvent::PostToolUse => posthook::post_tool_use(),
                 HookEvent::SessionStart => hook::session_start(),
             }
             0
@@ -273,7 +276,7 @@ fn short_num(n: usize) -> String {
 }
 
 /// The last line of compressed output: what was cut and how to get it back.
-fn footer(raw: &str, body: &str, id: &str) -> String {
+pub(crate) fn footer(raw: &str, body: &str, id: &str) -> String {
     format!(
         "[ojas: {} lines → {}, ≈{} → ≈{} tokens. Full output: {} get {id}]",
         raw.lines().count(),
