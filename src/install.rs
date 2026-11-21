@@ -143,7 +143,7 @@ pub fn init(path: &Path, dry_run: bool) -> io::Result<String> {
     }
     write_settings(path, &root)?;
     Ok(format!(
-        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  SessionStart: adds the response-style rules and tells the agent about `ojas get`\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
+        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  SessionStart: tells the agent about `ojas get` (plus style rules if \"style\" is set)\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
         path.display()
     ))
 }

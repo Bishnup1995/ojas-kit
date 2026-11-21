@@ -78,8 +78,8 @@ enum Cmd {
     },
     /// Print rules to paste into AGENTS.md, Cursor rules, etc. for agents without hooks
     Rules {
-        /// full, lite or off (off prints only the ojas usage note)
-        #[arg(long, default_value = "full")]
+        /// off (default: only the ojas usage note), lite or full
+        #[arg(long, default_value = "off")]
         style: String,
     },
     /// Show how the hook would rewrite a shell command (for debugging)
