@@ -41,7 +41,9 @@ fn is_ours(hook: &Value) -> bool {
         .and_then(Value::as_str)
         .is_some_and(|c| {
             (c.contains("ojas") || c.contains("tsave")) // "tsave" = pre-rename installs
-                && (c.contains(" hook pre-tool-use") || c.contains(" hook session-start"))
+                && (c.contains(" hook pre-tool-use")
+                    || c.contains(" hook post-tool-use")
+                    || c.contains(" hook session-start"))
         })
 }
 
@@ -116,6 +118,10 @@ fn apply_init(root: &mut Value, exe: &str) -> io::Result<()> {
         json!({"matcher": "Bash", "hooks": [{"type": "command", "command": format!("{exe} hook pre-tool-use")}]}),
     )?;
     push(
+        "PostToolUse",
+        json!({"matcher": "Bash|Grep", "hooks": [{"type": "command", "command": format!("{exe} hook post-tool-use")}]}),
+    )?;
+    push(
         "SessionStart",
         json!({"hooks": [{"type": "command", "command": format!("{exe} hook session-start")}]}),
     )?;
@@ -143,7 +149,7 @@ pub fn init(path: &Path, dry_run: bool) -> io::Result<String> {
     }
     write_settings(path, &root)?;
     Ok(format!(
-        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  SessionStart: tells the agent about `ojas get` (plus style rules if \"style\" is set)\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
+        "Installed ojas hooks in {}\n  PreToolUse (Bash): wraps noisy commands in `ojas run --`\n  PostToolUse (Bash, Grep): compresses large output from everything else (pipes, loops, the Grep tool)\n  SessionStart: tells the agent about `ojas get` (plus style rules if \"style\" is set)\nA backup of the previous file is next to it (*.ojas-backup). Restart Claude Code to load the hooks.",
         path.display()
     ))
 }
@@ -185,10 +191,14 @@ mod tests {
             "\"/bin/ojas\" hook pre-tool-use"
         );
         assert_eq!(root["hooks"]["SessionStart"].as_array().unwrap().len(), 1);
+        let post = root["hooks"]["PostToolUse"].as_array().unwrap();
+        assert_eq!(post.len(), 1);
+        assert_eq!(post[0]["matcher"], "Bash|Grep");
 
-        assert_eq!(remove_ours(&mut root), 2);
+        assert_eq!(remove_ours(&mut root), 3);
         assert_eq!(root["hooks"]["PreToolUse"].as_array().unwrap().len(), 1);
         assert!(root["hooks"].get("SessionStart").is_none());
+        assert!(root["hooks"].get("PostToolUse").is_none());
     }
 
     #[test]
