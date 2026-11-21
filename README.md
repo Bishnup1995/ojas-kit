@@ -2,6 +2,10 @@
 
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
 
+<p align="center"><a href="#benchmark-v2"><img src="docs/benchmark-v2.svg" alt="Benchmark v2 highlights: 36/36 big-output tasks passed (no tool 26/37); 5.3x cheaper on a 20k-line log; 10/10 test failures found where no tool found 0/9; 2.1x cheaper bug fix in a 2,726-line file" width="100%"></a></p>
+
+In a pre-registered benchmark against no tool, [headroom](https://github.com/headroomlabs-ai/headroom) and [rtk](https://github.com/rtk-ai/rtk), ojas was **the only setup that passed every big-output task**, at **11% lower cost** and **17% fewer turns** than no tool. [Full results and the tasks where ojas is not ahead →](#benchmark-v2)
+
 ```
 $ ojas run -- grep -rn "def " headroom/proxy
 1779 matches in 133 files
@@ -57,7 +61,7 @@ Rules about response style help too, but less. caveman's own evals found a long 
    ojas get <id> --lines 200:260  # a range
    ```
    If the original can't be stored, ojas prints the uncompressed output instead.
-4. **Lean session context.** A `SessionStart` hook adds only a short note explaining the `[ojas: …]` footer. Response-style rules (about 150 tokens) are opt-in: in our benchmark they added turns and cost without shortening answers (see [Measure it](#measure-it)). The text never changes between sessions, so it doesn't break the prompt cache, and it is re-added after compaction.
+4. **Lean session context.** A `SessionStart` hook adds only a short note explaining the `[ojas: …]` footer. Response-style rules (about 150 tokens) are opt-in: in our benchmark they added turns and cost without shortening answers (see [Benchmark v2](#benchmark-v2)). The text never changes between sessions, so it doesn't break the prompt cache, and it is re-added after compaction.
 5. **Outline-first file reads.** A plain `cat <one source file>` longer than 300 lines is rewritten to `ojas read <file>`, which prints an outline instead of the whole file:
    ```
    $ ojas read src/smart_crusher/crusher.rs
@@ -146,15 +150,48 @@ Outlines (`ojas read` / `ojas outline`) on real files:
 
 These counts are byte-based estimates on single samples, not a benchmark of end-to-end agent cost. An outline only saves tokens if the agent then reads a few symbols rather than the whole file.
 
-**End-to-end agent benchmark** (Claude Code, 8 ordinary coding tasks × 3 runs per setup, each setup in its own Docker image, list-price cost; brackets are 95% intervals):
+## Benchmark v2
+
+> **Interim results** (21 Nov 2026): 263 of 720 runs done. The large-file block is complete and the big-output block is at 143 of 160 runs. Ordinary tasks and long sessions are still running, and this section will be updated when they finish.
+
+**Setup.** Claude Code 2.1.330 on a Claude subscription, each setup in its own Docker image: no tool, ojas 0.3, headroom 0.44.0 and rtk 1.2.1 (each with its default install). There are 18 tasks in 4 blocks and 10 repeats of every task per setup. Tasks, graders, hypotheses and the analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, and the brackets are 95% stratified bootstrap intervals; pass rates use Fisher's exact test.
+
+### Big-output tasks: ojas is cheaper and more correct
+
+Prompts that force large output: a full test suite run once with no piping (click, express), a full read of click's 4,018-line `core.py`, and `cat` of a 20,000-line log with one buried fatal line.
 
 | Setup | Cost vs no tool | Turns | Output tokens | Passed |
 |---|---:|---:|---:|---:|
-| no tool | 1.00x | 5.96 | 817 | 24/24 |
-| ojas, style rules on | 1.04x [0.93, 1.17] | 6.58 | 966 | 24/24 |
-| ojas, style rules off (now the default) | 0.96x [0.85, 1.07] | 5.71 | 767 | 24/24 |
+| no tool | 1.00x | 1.00x | 1.00x | 26/37 |
+| **ojas** | **0.89x [0.80, 0.98]** | **0.83x [0.77, 0.90]** | **0.71x [0.63, 0.80]** | **36/36** (p < 0.001) |
+| headroom | 1.00x [0.89, 1.11] | 1.08x [0.96, 1.20] | 1.01x [0.90, 1.14] | 29/35 |
+| rtk | 1.02x [0.88, 1.15] | 1.27x [1.12, 1.44] | 1.15x [1.02, 1.30] | 24/35 |
 
-The hook itself costs nothing. The style rules made answers *longer* and added turns, so they are now opt-in. None of these tasks produced output big enough to trigger compression. On 4 tasks built around very large output, ojas cost 0.77x [0.61, 0.94] of no tool. With 3 runs per task these are early results, not proof.
+| Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
+|---|---:|---:|---:|---:|
+| click test suite | $0.027 (9/9) | $0.029 (10/10) | $0.037 (7/7) | $0.040 (9/9) |
+| express test suite | $0.028 (**0/9**) | **$0.015 (10/10)** | $0.034 (2/8) | $0.051 (0/7) |
+| full read of click `core.py` | $0.280 (9/9) | $0.305 (9/9) | $0.280 (10/10) | $0.264 (10/10) |
+| `cat` a 20,000-line log | $0.073 (8/10) | **$0.014 (7/7)** | $0.058 (10/10) | $0.060 (5/9) |
+
+Why no tool fails the express task: Claude Code keeps about 30,000 characters of Bash output and drops the middle, which is where the failing test was. One no-tool run reported: *"the tool output was truncated in the middle (about 18,800 characters dropped)… It has no failure marker, no mocha summary."* ojas puts failure lines first, so the agent found the failure every time.
+
+### Large source files: a split result
+
+r1 asks for a boundary-bug fix in a 2,726-line file. r2 asks for every function in a 2,580-line file that can raise an error, by reading only, which needs every function body. r3 is a bug in click's 4,018-line `core.py`.
+
+| Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
+|---|---:|---:|---:|---:|
+| r1 pricing bug | $0.043 (10/10) | **$0.021 (10/10)** | $0.051 (10/10) | $0.037 (10/10) |
+| r2 trace every raise | $0.089 (10/10) | $0.131 (9/10) | $0.111 (10/10) | $0.080 (10/10) |
+| r3 click bug | $0.053 (10/10) | **$0.049 (10/10)** | $0.050 (10/10) | $0.057 (10/10) |
+| **Block, cost vs no tool** | 1.00x | 1.08x [0.85, 1.36] | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] |
+
+Outlines cut cache reads by a third (0.67x [0.60, 0.74]) and halved the cost of r1. When the agent needs every body (r2, and the full-read stress task), it reads the outline and then pays for the full text as well. That makes the block a wash overall. The one failed run came from ojas cutting output the agent had already filtered. Both problems are addressed in the next release: filtered output is left alone, and a repeated whole-file Read returns the full text. Those fixes weren't in the build under test.
+
+**Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 blocks, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
+
+**Benchmark v1** (8 ordinary tasks × 3 runs): the hook itself cost nothing (0.96x [0.85, 1.07] of no tool, 24/24 passed). Response-style rules made answers longer and added turns (1.04x), so they are now off by default.
 
 ## Configuration
 
@@ -206,7 +243,8 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
-- An end-to-end benchmark on real agent tasks: dollars, cache hit rate and pass rate together, including whether outline-first reads cause extra round trips.
+- Finish benchmark v2 (ordinary tasks and 25+ turn sessions), then measure the release that fixes the r2 case.
+- Outlines that keep short function bodies in full, for tasks that need to trace every body.
 
 ## Credits
 

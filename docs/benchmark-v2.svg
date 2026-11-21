@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300" role="img" aria-label="ojas benchmark v2 highlights: 36 of 36 big-output tasks passed; 5.3x cheaper on a 20,000-line log; 10 of 10 test-suite failures found where no tool found 0 of 9; 2.1x cheaper bug fix in a 2,700-line file">
+  <style>
+    .bg{fill:#f6f8fb}.card{fill:#ffffff;stroke:#dfe4ea}.big{fill:#1f6feb}.lab{fill:#17202b}.sub{fill:#5d6b7a}.head{fill:#17202b}.foot{fill:#5d6b7a}
+    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.card{fill:#161b22;stroke:#30363d}.big{fill:#58a6ff}.lab{fill:#e6edf3}.sub{fill:#8b949e}.head{fill:#e6edf3}.foot{fill:#8b949e}}
+    text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+    .big{font-size:46px;font-weight:700}
+    .lab{font-size:13.5px;font-weight:600}
+    .sub{font-size:12.5px}
+    .head{font-size:15px;font-weight:600}
+    .foot{font-size:12px}
+  </style>
+  <rect class="bg" x="0" y="0" width="960" height="300" rx="14"/>
+  <text class="head" x="24" y="36">ojas benchmark v2 · Claude Code in Docker · pre-registered · 4 setups × 10 repeats per task</text>
+
+  <rect class="card" x="24" y="56" width="216" height="196" rx="10"/>
+  <text class="big" x="42" y="118">36/36</text>
+  <text class="lab" x="42" y="148">big-output tasks passed</text>
+  <text class="sub" x="42" y="180">no tool 26/37</text>
+  <text class="sub" x="42" y="198">headroom 29/35</text>
+  <text class="sub" x="42" y="216">rtk 24/35</text>
+
+  <rect class="card" x="256" y="56" width="216" height="196" rx="10"/>
+  <text class="big" x="274" y="118">5.3x</text>
+  <text class="lab" x="274" y="148">cheaper on a 20k-line log</text>
+  <text class="sub" x="274" y="180">$0.014 vs $0.073 per run</text>
+  <text class="sub" x="274" y="198">2 turns instead of 4.6</text>
+  <text class="sub" x="274" y="216">buried FATAL line kept</text>
+
+  <rect class="card" x="488" y="56" width="216" height="196" rx="10"/>
+  <text class="big" x="506" y="118">10/10</text>
+  <text class="lab" x="506" y="148">test failures found</text>
+  <text class="sub" x="506" y="180">express suite, run once</text>
+  <text class="sub" x="506" y="198">no tool 0/9: Claude Code</text>
+  <text class="sub" x="506" y="216">truncated the failure away</text>
+
+  <rect class="card" x="720" y="56" width="216" height="196" rx="10"/>
+  <text class="big" x="738" y="118">2.1x</text>
+  <text class="lab" x="738" y="148">cheaper bug fix</text>
+  <text class="sub" x="738" y="180">in a 2,726-line file</text>
+  <text class="sub" x="738" y="198">$0.021 vs $0.043 per run</text>
+  <text class="sub" x="738" y="216">outline-first Read, 10/10</text>
+
+  <text class="foot" x="24" y="282">Interim (21 Nov 2026, 263 of 720 runs). Big-output block: 0.89x cost [0.80, 0.98]. Large-file block: 1.08x [0.85, 1.36].</text>
+</svg>
