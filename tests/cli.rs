@@ -414,9 +414,73 @@ fn post_tool_use_leaves_small_wrapped_and_other_output_alone() {
     let wrapped = serde_json::json!({"tool_name": "Bash", "tool_input": {"command": "ojas run -- cat x.log"},
         "tool_response": {"stdout": noisy_log(2000), "stderr": ""}});
     assert!(post_hook(&h, &wrapped).is_none());
-    let read = serde_json::json!({"tool_name": "Read", "tool_input": {"file_path": "x"},
-        "tool_response": {"type": "text", "file": {"content": noisy_log(2000)}}});
-    assert!(post_hook(&h, &read).is_none());
+    let glob = serde_json::json!({"tool_name": "Glob", "tool_input": {"pattern": "**"},
+        "tool_response": {"filenames": [], "content": noisy_log(2000)}});
+    assert!(post_hook(&h, &glob).is_none());
     let garbage = serde_json::json!({"tool_name": "Bash"});
     assert!(post_hook(&h, &garbage).is_none());
+}
+
+#[test]
+fn post_tool_use_outlines_large_whole_file_reads_only() {
+    let h = home("post-read");
+    let src: String = (0..700)
+        .map(|i| {
+            let body: String = (0..8)
+                .map(|k| format!("    let v{k} = x + {i} * {k};\n"))
+                .collect();
+            format!("pub fn helper_{i}(x: u32) -> u32 {{\n{body}}}\n\n")
+        })
+        .collect();
+    let file = h.join("big.rs");
+    std::fs::write(&file, &src).unwrap();
+    let read = |input: serde_json::Value| {
+        serde_json::json!({
+            "tool_name": "Read",
+            "tool_input": input,
+            "tool_response": {"type": "text", "file": {"filePath": file.to_string_lossy(),
+                "content": &src, "numLines": 7700, "startLine": 1, "totalLines": 7700}}
+        })
+    };
+    let v = post_hook(
+        &h,
+        &read(serde_json::json!({"file_path": file.to_string_lossy()})),
+    )
+    .expect("whole-file read of a big source file should become an outline");
+    let f = &v["hookSpecificOutput"]["updatedToolOutput"]["file"];
+    let shown = f["content"].as_str().unwrap();
+    assert!(shown.starts_with("[ojas: outline of this 7700-line file."));
+    assert!(
+        shown.contains("12: pub fn helper_1(x: u32) -> u32 {"),
+        "real line numbers"
+    );
+    assert!(shown.len() < src.len() / 2);
+    assert_eq!(f["totalLines"], 7700, "other fields kept");
+
+    // Ranged reads are how the agent gets exact text: never touched.
+    let ranged =
+        read(serde_json::json!({"file_path": file.to_string_lossy(), "offset": 12, "limit": 10}));
+    assert!(post_hook(&h, &ranged).is_none());
+    let limited = read(serde_json::json!({"file_path": file.to_string_lossy(), "limit": 100000}));
+    assert!(post_hook(&h, &limited).is_none());
+
+    // Small source files and non-log text files are left alone.
+    let small = h.join("small.rs");
+    std::fs::write(&small, "fn a() {}\n").unwrap();
+    let v = serde_json::json!({"tool_name": "Read", "tool_input": {"file_path": small.to_string_lossy()},
+        "tool_response": {"type": "text", "file": {"filePath": small.to_string_lossy(), "content": "fn a() {}\n"}}});
+    assert!(post_hook(&h, &v).is_none());
+    let md = h.join("notes.md");
+    std::fs::write(&md, &src).unwrap();
+    let v = serde_json::json!({"tool_name": "Read", "tool_input": {"file_path": md.to_string_lossy()},
+        "tool_response": {"type": "text", "file": {"filePath": md.to_string_lossy(), "content": &src}}});
+    assert!(post_hook(&h, &v).is_none());
+
+    // Turned off with read_tool_min_lines = 0.
+    std::fs::write(h.join("config.json"), r#"{"read_tool_min_lines": 0}"#).unwrap();
+    assert!(post_hook(
+        &h,
+        &read(serde_json::json!({"file_path": file.to_string_lossy()}))
+    )
+    .is_none());
 }
