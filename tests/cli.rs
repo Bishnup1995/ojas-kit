@@ -132,6 +132,14 @@ fn session_start_emits_context() {
         .as_str()
         .unwrap();
     assert!(ctx.contains("ojas get"));
+    assert!(!ctx.contains("Response style"), "style rules are opt-in");
+
+    std::fs::write(h.join("config.json"), r#"{"style": "full"}"#).unwrap();
+    let o = ojas(&h, &["hook", "session-start"], None);
+    let v: serde_json::Value = serde_json::from_slice(&o.stdout).unwrap();
+    let ctx = v["hookSpecificOutput"]["additionalContext"]
+        .as_str()
+        .unwrap();
     assert!(ctx.contains("Lead with the answer"));
 }
 

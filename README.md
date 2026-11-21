@@ -21,7 +21,7 @@ In real agent sessions, most of the bill is **input**: tool output that enters t
 - **97.5% of input tokens were cache reads.** Whatever lands in the context gets paid for again on every turn after it.
 - **About 120k tokens of shell output entered the context**, mostly from `grep`, `ls`, `find`, `cat` and `sed`.
 
-Rules about response style help too, but less. caveman's own evals found a long "talk terse" rule set beats a plain "Answer concisely." by about 3%, while costing about 1.2k input tokens on every request. So ojas's style rules are about 150 tokens, and most of the effort goes into output filtering.
+Rules about response style help too, but less. caveman's own evals found a long "talk terse" rule set beats a plain "Answer concisely." by about 3%, while costing about 1.2k input tokens on every request. So ojas's style rules are about 150 tokens and off by default, and most of the effort goes into output filtering.
 
 ## How it works
 
@@ -55,7 +55,7 @@ Rules about response style help too, but less. caveman's own evals found a long 
    ojas get <id> --lines 200:260  # a range
    ```
    If the original can't be stored, ojas prints the uncompressed output instead.
-4. **Lean session context.** A `SessionStart` hook adds about 150 tokens of response-style rules, plus a note explaining the `[ojas: …]` footer. The text never changes between sessions, so it doesn't break the prompt cache, and it is re-added after compaction.
+4. **Lean session context.** A `SessionStart` hook adds only a short note explaining the `[ojas: …]` footer. Response-style rules (about 150 tokens) are opt-in: in our benchmark they added turns and cost without shortening answers (see [Measure it](#measure-it)). The text never changes between sessions, so it doesn't break the prompt cache, and it is re-added after compaction.
 5. **Outline-first file reads.** A plain `cat <one source file>` longer than 300 lines is rewritten to `ojas read <file>`, which prints an outline instead of the whole file:
    ```
    $ ojas read src/smart_crusher/crusher.rs
@@ -144,6 +144,16 @@ Outlines (`ojas read` / `ojas outline`) on real files:
 
 These counts are byte-based estimates on single samples, not a benchmark of end-to-end agent cost. An outline only saves tokens if the agent then reads a few symbols rather than the whole file.
 
+**End-to-end agent benchmark** (Claude Code, 8 ordinary coding tasks × 3 runs per setup, each setup in its own Docker image, list-price cost; brackets are 95% intervals):
+
+| Setup | Cost vs no tool | Turns | Output tokens | Passed |
+|---|---:|---:|---:|---:|
+| no tool | 1.00x | 5.96 | 817 | 24/24 |
+| ojas, style rules on | 1.04x [0.93, 1.17] | 6.58 | 966 | 24/24 |
+| ojas, style rules off (now the default) | 0.96x [0.85, 1.07] | 5.71 | 767 | 24/24 |
+
+The hook itself costs nothing. The style rules made answers *longer* and added turns, so they are now opt-in. None of these tasks produced output big enough to trigger compression. On 4 tasks built around very large output, ojas cost 0.77x [0.61, 0.94] of no tool. With 3 runs per task these are early results, not proof.
+
 ## Configuration
 
 Settings live in `~/.ojas/config.json`. Every field is optional:
@@ -151,7 +161,7 @@ Settings live in `~/.ojas/config.json`. Every field is optional:
 ```json
 {
   "enabled": true,
-  "style": "full",
+  "style": "off",
   "min_lines": 40,
   "min_bytes": 3000,
   "max_lines": 150,
@@ -163,7 +173,7 @@ Settings live in `~/.ojas/config.json`. Every field is optional:
 }
 ```
 
-- `style` sets the session rules: `full`, `lite`, or `off` (only the note about the `[ojas: …]` footer).
+- `style` sets the session rules: `off` (the default: only the note about the `[ojas: …]` footer), `lite`, or `full`.
 - `read_min_lines`: `cat` of a source file longer than this becomes an outline.
 - `repo_map` / `repo_map_budget`: add a repo map of about this many tokens to the session context.
 
