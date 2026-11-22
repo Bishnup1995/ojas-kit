@@ -169,25 +169,25 @@ Prompts that force large output: a full test suite run once with no piping (clic
 
 | Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
 |---|---:|---:|---:|---:|
-| click test suite | $0.027 (9/9) | $0.029 (10/10) | $0.037 (7/7) | $0.040 (9/9) |
-| express test suite | $0.028 (**0/9**) | **$0.015 (10/10)** | $0.034 (2/8) | $0.051 (0/7) |
-| full read of click `core.py` | $0.280 (9/9) | $0.305 (9/9) | $0.280 (10/10) | $0.264 (10/10) |
-| `cat` a 20,000-line log | $0.073 (8/10) | **$0.014 (7/7)** | $0.058 (10/10) | $0.060 (5/9) |
+| Run click's test suite | $0.027 (9/9) | $0.029 (10/10) | $0.037 (7/7) | $0.040 (9/9) |
+| Run express's test suite | $0.028 (**0/9**) | **$0.015 (10/10)** | $0.034 (2/8) | $0.051 (0/7) |
+| Read all of click's `core.py` | $0.280 (9/9) | $0.305 (9/9) | $0.280 (10/10) | $0.264 (10/10) |
+| Find the error in a 20,000-line log | $0.073 (8/10) | **$0.014 (7/7)** | $0.058 (10/10) | $0.060 (5/9) |
 
 Why no tool fails the express task: Claude Code keeps about 30,000 characters of Bash output and drops the middle, which is where the failing test was. One no-tool run reported: *"the tool output was truncated in the middle (about 18,800 characters dropped)… It has no failure marker, no mocha summary."* ojas puts failure lines first, so the agent found the failure every time.
 
 ### Large source files: a split result
 
-r1 asks for a boundary-bug fix in a 2,726-line file. r2 asks for every function in a 2,580-line file that can raise an error, by reading only, which needs every function body. r3 is a bug in click's 4,018-line `core.py`.
+**Fix a pricing bug**: one boundary bug in a 2,726-line file. **Trace every error**: list every function in a 2,580-line file that can raise an error, by reading only, which needs every function body. **Fix a bug in click**: a bug injected into click's 4,018-line `core.py`.
 
 | Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
 |---|---:|---:|---:|---:|
-| r1 pricing bug | $0.043 (10/10) | **$0.021 (10/10)** | $0.051 (10/10) | $0.037 (10/10) |
-| r2 trace every raise | $0.089 (10/10) | $0.131 (9/10) | $0.111 (10/10) | $0.080 (10/10) |
-| r3 click bug | $0.053 (10/10) | **$0.049 (10/10)** | $0.050 (10/10) | $0.057 (10/10) |
+| Fix a pricing bug | $0.043 (10/10) | **$0.021 (10/10)** | $0.051 (10/10) | $0.037 (10/10) |
+| Trace every error | $0.089 (10/10) | $0.131 (9/10) | $0.111 (10/10) | $0.080 (10/10) |
+| Fix a bug in click | $0.053 (10/10) | **$0.049 (10/10)** | $0.050 (10/10) | $0.057 (10/10) |
 | **Block, cost vs no tool** | 1.00x | 1.08x [0.85, 1.36] | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] |
 
-Outlines cut cache reads by a third (0.67x [0.60, 0.74]) and halved the cost of r1. When the agent needs every body (r2, and the full-read stress task), it reads the outline and then pays for the full text as well. That makes the block a wash overall. The one failed run came from ojas cutting output the agent had already filtered. Both problems are addressed in the next release: filtered output is left alone, and a repeated whole-file Read returns the full text. Those fixes weren't in the build under test.
+Outlines cut cache reads by a third (0.67x [0.60, 0.74]) and halved the cost of the pricing fix. When the agent needs every body (tracing every error, or reading all of `core.py`), it reads the outline and then pays for the full text as well. That makes the block a wash overall. The one failed run came from ojas cutting output the agent had already filtered. Both problems are addressed in the next release: filtered output is left alone, and a repeated whole-file Read returns the full text. Those fixes weren't in the build under test.
 
 **Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 blocks, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
 
@@ -243,7 +243,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
-- Finish benchmark v2 (ordinary tasks and 25+ turn sessions), then measure the release that fixes the r2 case.
+- Finish benchmark v2 (ordinary tasks and 25+ turn sessions), then measure the release that fixes the whole-file case.
 - Outlines that keep short function bodies in full, for tasks that need to trace every body.
 
 ## Credits
