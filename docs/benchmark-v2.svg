@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" width="960" height="300" role="img" aria-label="ojas benchmark v2 highlights: 36 of 36 big-output tasks passed; 5.3x cheaper on a 20,000-line log; 10 of 10 test-suite failures found where no tool found 0 of 9; 2.1x cheaper bug fix in a 2,700-line file">
   <style>
-    .bg{fill:#f6f8fb}.card{fill:#ffffff;stroke:#dfe4ea}.big{fill:#1f6feb}.lab{fill:#17202b}.sub{fill:#5d6b7a}.head{fill:#17202b}.foot{fill:#5d6b7a}
-    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.card{fill:#161b22;stroke:#30363d}.big{fill:#58a6ff}.lab{fill:#e6edf3}.sub{fill:#8b949e}.head{fill:#e6edf3}.foot{fill:#8b949e}}
+    .bg{fill:#f6f8fb}.card{fill:#ffffff;stroke:#dfe4ea}.big{fill:#d9480f}.lab{fill:#17202b}.sub{fill:#5d6b7a}.head{fill:#17202b}.foot{fill:#5d6b7a}
+    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.card{fill:#161b22;stroke:#30363d}.big{fill:#f2a13b}.lab{fill:#e6edf3}.sub{fill:#8b949e}.head{fill:#e6edf3}.foot{fill:#8b949e}}
     text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
     .big{font-size:46px;font-weight:700}
     .lab{font-size:13.5px;font-weight:600}

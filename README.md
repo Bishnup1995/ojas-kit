@@ -1,3 +1,12 @@
+<p align="center"><img src="docs/banner.svg" alt="ojas: cut the noise your coding agent reads, keep every error" width="100%"></p>
+
+<p align="center">
+  <a href="#install"><b>Install</b></a> ·
+  <a href="#benchmark-v2"><b>Benchmark</b></a> ·
+  <a href="https://claude.ai/artifact/42CU4Ke8QmYoX6W8GBQm4Z"><b>Full benchmark report</b></a> ·
+  <a href="https://claude.ai/artifact/A2yW3uNsD5fcEVzCXBqL9H"><b>How we built ojas</b></a>
+</p>
+
 # ojas: token saver for AI coding agents
 
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
@@ -20,6 +29,8 @@ headroom/proxy/audit.py (3)
 
 ## Why command output
 
+<p align="center"><img src="docs/before-after.svg" alt="Tokens the agent reads, without and with ojas: tail of a 20,000-line log 365k to 106; git show of a 28k-line commit 350k to 10.9k; an 8,856-line file read 108.8k to 6.3k as an outline; grep over a Python package 93.7k to 2.8k" width="100%"></p>
+
 In real agent sessions, most of the bill is **input**: tool output that enters the context and is then re-read on every later turn. On one developer's machine, `ojas audit` over 30 days of Claude Code use showed:
 
 - **97.5% of input tokens were cache reads.** Whatever lands in the context gets paid for again on every turn after it.
@@ -28,6 +39,8 @@ In real agent sessions, most of the bill is **input**: tool output that enters t
 Rules about response style help too, but less. caveman's own evals found a long "talk terse" rule set beats a plain "Answer concisely." by about 3%, while costing about 1.2k input tokens on every request. So ojas's style rules are about 150 tokens and off by default, and most of the effort goes into output filtering.
 
 ## How it works
+
+<p align="center"><img src="docs/how-it-works.svg" alt="How ojas works: before a command runs, ojas wraps simple noisy commands; the command runs unchanged; after it runs, ojas shortens large output with errors first; the full output stays in a local store that ojas get reads back" width="100%"></p>
 
 1. **Hook rewrite.** In Claude Code, a `PreToolUse` hook rewrites noisy commands (`cargo test` becomes `ojas run -- cargo test`).
    - Only plain, simple commands are rewritten, or simple segments of `&&` / `||` / `;` chains.
@@ -153,6 +166,10 @@ These counts are byte-based estimates on single samples, not a benchmark of end-
 ## Benchmark v2
 
 > **Interim results** (21 Nov 2026): 263 of 720 runs done. The large-file block is complete and the big-output block is at 143 of 160 runs. Ordinary tasks and long sessions are still running, and this section will be updated when they finish.
+
+> 📊 **[Full benchmark report](https://claude.ai/artifact/42CU4Ke8QmYoX6W8GBQm4Z)**: every table, intervals and caveats on one page.
+>
+> 📖 **[How we built ojas](https://claude.ai/artifact/A2yW3uNsD5fcEVzCXBqL9H)**: the problem, each step we took, and what the benchmarks taught us.
 
 **Setup.** Claude Code 2.1.330 on a Claude subscription, each setup in its own Docker image: no tool, ojas 0.3, headroom 0.44.0 and rtk 1.2.1 (each with its default install). There are 18 tasks in 4 blocks and 10 repeats of every task per setup. Tasks, graders, hypotheses and the analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, and the brackets are 95% stratified bootstrap intervals; pass rates use Fisher's exact test.
 
