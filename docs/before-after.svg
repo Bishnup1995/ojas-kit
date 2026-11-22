@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" width="960" height="250" role="img" aria-label="Tokens the agent reads, without and with ojas: git show of a large commit 350k to 10.9k; grep over a Python package 93.7k to 2.8k; an 8,856-line file read 108.8k to 6.3k as an outline; tail of a 20,000-line log 365k to 106.">
+  <style>
+    text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+    .bg{fill:#f6f8fb}.ink{fill:#17202b}.mut{fill:#5d6b7a}.raw{fill:#c7d0da}.oj{fill:#d9480f}.grid{stroke:#dfe4ea}
+    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.ink{fill:#e6edf3}.mut{fill:#8b949e}.raw{fill:#30363d}.oj{fill:#f2a13b}.grid{stroke:#30363d}}
+  </style>
+  <rect class="bg" width="960" height="250" rx="14"/>
+  <text class="ink" x="24" y="34" font-size="16" font-weight="700">Tokens your agent reads, before and after ojas</text>
+  <rect class="raw" x="560" y="22" width="14" height="14" rx="2"/><text class="mut" x="580" y="34" font-size="13">without ojas</text>
+  <rect class="oj" x="680" y="22" width="14" height="14" rx="2"/><text class="mut" x="700" y="34" font-size="13">with ojas</text>
+
+  <!-- scale: 365k tokens = 560px, bars start at x=300 -->
+  <g font-size="13">
+    <text class="ink" x="24" y="72">tail of a 20,000-line log</text>
+    <rect class="raw" x="300" y="58" width="560" height="12" rx="3"/>
+    <rect class="oj" x="300" y="73" width="2" height="8" rx="1"/>
+    <text class="mut" x="868" y="70" font-size="12">≈365k</text>
+    <text class="oj" x="308" y="82" font-size="12" font-weight="700">≈106 · 99.97% less</text>
+
+    <text class="ink" x="24" y="116">git show, 28k-line commit</text>
+    <rect class="raw" x="300" y="102" width="537" height="12" rx="3"/>
+    <rect class="oj" x="300" y="117" width="17" height="8" rx="1"/>
+    <text class="mut" x="845" y="114" font-size="12">≈350k</text>
+    <text class="oj" x="324" y="126" font-size="12" font-weight="700">≈10.9k · 97% less</text>
+
+    <text class="ink" x="24" y="160">Read an 8,856-line file</text>
+    <rect class="raw" x="300" y="146" width="167" height="12" rx="3"/>
+    <rect class="oj" x="300" y="161" width="10" height="8" rx="1"/>
+    <text class="mut" x="475" y="158" font-size="12">≈108.8k</text>
+    <text class="oj" x="317" y="170" font-size="12" font-weight="700">≈6.3k outline · 95% less</text>
+
+    <text class="ink" x="24" y="204">grep -rn over a Python package</text>
+    <rect class="raw" x="300" y="190" width="144" height="12" rx="3"/>
+    <rect class="oj" x="300" y="205" width="4" height="8" rx="1"/>
+    <text class="mut" x="452" y="202" font-size="12">≈93.7k</text>
+    <text class="oj" x="311" y="214" font-size="12" font-weight="700">≈2.8k · 97% less</text>
+  </g>
+  <text class="mut" x="24" y="238" font-size="11.5">Real output from ojas's own testing. Every cut keeps errors first and points to the full output: ojas get &lt;id&gt;.</text>
+</svg>
