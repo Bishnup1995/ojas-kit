@@ -37,3 +37,7 @@ include = [
     "src/**",
     "build.rs",
 ]
+
+documentation = "https://docs.rs/ojas"
+homepage = "https://github.com/Bishnup1995/ojas-kit"
+repository = "https://github.com/Bishnup1995/ojas-kit"
