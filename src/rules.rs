@@ -23,7 +23,7 @@ Response style (token-saver): be concise. Lead with the answer, skip preamble an
 fn tool_note(bin: &str) -> String {
     format!(
         "\
-Command output (token-saver): some shell commands are run through `ojas run --`, which shortens long output. Error and failure lines are kept first. A line like `[ojas: 2140 lines → 96, ≈21k → ≈1.1k tokens. Full output: {bin} get 3fa9c1d2e4b5]` means lines were omitted. To see more, run `{bin} get <id> --grep <regex>` or `{bin} get <id> --lines 200:260` instead of re-running the command. To skip compression for one command, prefix it with `OJAS_RAW=1 `. `cat` of a large source file shows an outline; get bodies with `{bin} read <file> --symbol <name>` or `--lines A:B`."
+Command output (token-saver): some shell commands are run through `ojas run --`, which shortens long output. Every error and failure line is kept, so the shortened output is enough to see what failed. A line like `[ojas: 2140 lines → 96, ≈21k → ≈1.1k tokens. Full output: {bin} get 3fa9c1d2e4b5]` means lines were omitted. To see more, run `{bin} get <id> --grep <regex>` or `{bin} get <id> --lines 200:260` instead of re-running the command. Don't bypass ojas to see everything: Claude Code itself cuts Bash output over about 30k characters, so the raw output of a big test run can lose the failure. `cat` of a large source file shows an outline; get bodies with `{bin} read <file> --symbol <name>` or `--lines A:B`."
     )
 }
 
