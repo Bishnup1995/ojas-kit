@@ -1,4 +1,11 @@
-<p align="center"><img src="docs/banner.svg" alt="ojas: cut the noise your coding agent reads, keep every error" width="100%"></p>
+<p align="center"><img src="docs/banner.jpg" alt="ojas: Less Noise. More Intelligence. Cut the noise. Keep every error." width="100%"></p>
+
+<p align="center">
+  <a href="https://crates.io/crates/ojas"><img src="https://img.shields.io/crates/v/ojas?color=FF6A2A&style=flat-square" alt="crates.io"></a>
+  <a href="https://github.com/Bishnup1995/ojas-kit/releases"><img src="https://img.shields.io/github/v/release/Bishnup1995/ojas-kit?color=141B25&style=flat-square" alt="Release"></a>
+  <img src="https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-141B25?style=flat-square" alt="License: MIT or Apache-2.0">
+  <a href="#benchmark-v2"><img src="https://img.shields.io/badge/big--output%20tasks-40%2F40%20passed-FFCA4A?style=flat-square" alt="Benchmark: 40/40 big-output tasks passed"></a>
+</p>
 
 <p align="center">
   <a href="#install"><b>Install</b></a> ·
@@ -8,6 +15,13 @@
 </p>
 
 # ojas: token saver for AI coding agents
+
+**Single Rust binary. Cut the noise. Keep every error.**
+
+```sh
+cargo install ojas   # or download a binary from Releases
+ojas init            # installs the Claude Code hooks; nothing else in your workflow changes
+```
 
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
 
@@ -106,14 +120,14 @@ Rules about response style help too, but less. caveman's own evals found a long 
 
 ## Install
 
-Build from source with Rust 1.87 or later:
+From [crates.io](https://crates.io/crates/ojas), with Rust 1.87 or later:
 
 ```sh
-cargo install --path .        # or: cargo install --git <this repo's URL>
+cargo install ojas
 ojas init                     # adds the hooks to ~/.claude/settings.json
 ```
 
-Prebuilt binaries for Linux, macOS and Windows (x86_64 and arm64) are attached to each GitHub release. They are built by `.github/workflows/release.yml` when a `v*` tag is pushed.
+Or download a prebuilt binary for Linux, macOS or Windows (x86_64 and arm64) from [Releases](https://github.com/Bishnup1995/ojas-kit/releases), put it on your `PATH` and run `ojas init`. To build from a checkout: `cargo install --path .`.
 
 `ojas init` merges into your existing settings, keeps your other hooks, and writes a `settings.json.ojas-backup` first. Options:
 - `--project` writes to `./.claude/settings.json`.
@@ -285,6 +299,12 @@ ojas reimplements ideas; it does not copy code. The ideas come from these projec
 - [context-mode](https://github.com/mksglu/context-mode): keep raw output out of the context but retrievable.
 - [ccusage](https://github.com/ccusage/ccusage): measuring from real transcripts.
 - [aider](https://github.com/Aider-AI/aider) repo map, [repomix](https://github.com/yamadashy/repomix) `--compress`, and [serena](https://github.com/oraios/serena) / [codegraph](https://github.com/colbymchenry/codegraph): definitions ranked by references, signature-only views, and reading one symbol instead of a whole file.
+
+## Why "ojas"?
+
+<img src="docs/logo.png" alt="ojas logo" width="96" align="right">
+
+*Ojas* (ओजस्) is Sanskrit for vital energy, the essence that remains when waste is removed. ojas preserves your agent's energy: its context goes to the signal, not the noise. Make every token count.
 
 ## License
 
