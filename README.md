@@ -178,7 +178,7 @@ These counts are byte-based estimates on single samples, not a benchmark of end-
 | Large files (3 tasks) | 1.08x [0.85, 1.36] → **0.93x [0.76, 1.11] in v0.3** | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] | 30 / 29 → **30** / 30 / 30 of 30 |
 | "Long" tasks (3 tasks) | 1.06x [0.97, 1.18] | 1.02x [0.92, 1.13] | 1.06x [0.97, 1.17] | 29 / 30 / 30 / 30 of 30 |
 
-**Setup.** Claude Code 2.1.330 (model Sonnet 5.5) on a Claude subscription, each setup in its own Docker image: no tool, ojas (main before the v0.3 fixes, `abf4776`), headroom 0.44.0 and rtk 1.2.1, each with its default install. There are 18 tasks in 4 groups and 10 repeats of every task per setup. Tasks, graders, hypotheses and analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, brackets are 95% stratified bootstrap intervals, and pass rates use Fisher's exact test.
+**Setup.** Claude Code 2.1.329 (model Sonnet 5.5) on a Claude subscription, each setup in its own Docker image: no tool, ojas (main before the v0.3 fixes, `abf4776`), headroom 0.44.0 and rtk 1.2.1, each with its default install. There are 18 tasks in 4 groups and 10 repeats of every task per setup. Tasks, graders, hypotheses and analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, brackets are 95% stratified bootstrap intervals, and pass rates use Fisher's exact test.
 
 ### Big-output tasks: ojas is cheaper and more correct
 
