@@ -11,9 +11,9 @@
 
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
 
-<p align="center"><a href="#benchmark-v2"><img src="docs/benchmark-v2.svg" alt="Benchmark v2 highlights: 36/36 big-output tasks passed (no tool 26/37); 5.3x cheaper on a 20k-line log; 10/10 test failures found where no tool found 0/9; 2.1x cheaper bug fix in a 2,726-line file" width="100%"></a></p>
+<p align="center"><a href="#benchmark-v2"><img src="docs/benchmark-v2.svg" alt="Benchmark v2 highlights: 40/40 big-output tasks passed (no tool 28/40); 6.3x cheaper on a 20k-line log; 10/10 test failures found where no tool found 0/10; same cost as no tool on everyday tasks, 80/80 passed" width="100%"></a></p>
 
-In a pre-registered benchmark against no tool, [headroom](https://github.com/headroomlabs-ai/headroom) and [rtk](https://github.com/rtk-ai/rtk), ojas was **the only setup that passed every big-output task**, at **11% lower cost** and **17% fewer turns** than no tool. [Full results and the tasks where ojas is not ahead →](#benchmark-v2)
+In a pre-registered, 720-run benchmark against no tool, [headroom](https://github.com/headroomlabs-ai/headroom) and [rtk](https://github.com/rtk-ai/rtk), ojas was **the only setup that passed every big-output task**, at **12% lower cost** and **17% fewer turns** than no tool, with no overhead on everyday tasks. [Full results and the tasks where ojas is not ahead →](#benchmark-v2)
 
 ```
 $ ojas run -- grep -rn "def " headroom/proxy
@@ -165,13 +165,20 @@ These counts are byte-based estimates on single samples, not a benchmark of end-
 
 ## Benchmark v2
 
-> **Interim results** (21 Nov 2026): 263 of 720 runs done. The large-file block is complete and the big-output block is at 143 of 160 runs. Ordinary tasks and long sessions are still running, and this section will be updated when they finish.
-
 > 📊 **[Full benchmark report](https://claude.ai/artifact/42CU4Ke8QmYoX6W8GBQm4Z)**: every table, intervals and caveats on one page.
 >
 > 📖 **[How we built ojas](https://claude.ai/artifact/A2yW3uNsD5fcEVzCXBqL9H)**: the problem, each step we took, and what the benchmarks taught us.
 
-**Setup.** Claude Code 2.1.330 on a Claude subscription, each setup in its own Docker image: no tool, ojas 0.3, headroom 0.44.0 and rtk 1.2.1 (each with its default install). There are 18 tasks in 4 blocks and 10 repeats of every task per setup. Tasks, graders, hypotheses and the analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, and the brackets are 95% stratified bootstrap intervals; pass rates use Fisher's exact test.
+**720 runs, all valid.** ojas is the only tool tested that beat no tool by a clear margin anywhere: on big-output tasks it was **12% cheaper** and **passed every run**, against 28 of 40 for no tool. Everywhere else it cost the same as no tool (no overhead) and lost no runs. The one weak spot, large files where the agent needs every function body, is fixed in v0.3.
+
+| Task group (cost vs no tool) | ojas | headroom | rtk | Passed: no tool / ojas / headroom / rtk |
+|---|---:|---:|---:|---:|
+| **Big output** (4 tasks) | **0.88x [0.79, 0.97]** | 0.99x [0.89, 1.10] | 1.01x [0.88, 1.14] | 28 / **40** / 34 / 26 of 40 |
+| Ordinary coding (8 tasks) | 0.97x [0.89, 1.06] | 0.93x [0.85, 1.03] | 1.05x [0.97, 1.13] | 80 / 80 / 80 / 80 of 80 |
+| Large files (3 tasks) | 1.08x [0.85, 1.36] → **0.93x [0.76, 1.11] in v0.3** | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] | 30 / 29 → **30** / 30 / 30 of 30 |
+| "Long" tasks (3 tasks) | 1.06x [0.97, 1.18] | 1.02x [0.92, 1.13] | 1.06x [0.97, 1.17] | 29 / 30 / 30 / 30 of 30 |
+
+**Setup.** Claude Code 2.1.330 (model Sonnet 5.5) on a Claude subscription, each setup in its own Docker image: no tool, ojas (main before the v0.3 fixes, `abf4776`), headroom 0.44.0 and rtk 1.2.1, each with its default install. There are 18 tasks in 4 groups and 10 repeats of every task per setup. Tasks, graders, hypotheses and analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, brackets are 95% stratified bootstrap intervals, and pass rates use Fisher's exact test.
 
 ### Big-output tasks: ojas is cheaper and more correct
 
@@ -179,34 +186,40 @@ Prompts that force large output: a full test suite run once with no piping (clic
 
 | Setup | Cost vs no tool | Turns | Output tokens | Passed |
 |---|---:|---:|---:|---:|
-| no tool | 1.00x | 1.00x | 1.00x | 26/37 |
-| **ojas** | **0.89x [0.80, 0.98]** | **0.83x [0.77, 0.90]** | **0.71x [0.63, 0.80]** | **36/36** (p < 0.001) |
-| headroom | 1.00x [0.89, 1.11] | 1.08x [0.96, 1.20] | 1.01x [0.90, 1.14] | 29/35 |
-| rtk | 1.02x [0.88, 1.15] | 1.27x [1.12, 1.44] | 1.15x [1.02, 1.30] | 24/35 |
+| no tool | 1.00x | 1.00x | 1.00x | 28/40 |
+| **ojas** | **0.88x [0.79, 0.97]** | **0.83x [0.77, 0.90]** | **0.71x [0.63, 0.79]** | **40/40** (p < 0.001) |
+| headroom | 0.99x [0.89, 1.10] | 1.09x [0.98, 1.22] | 1.02x [0.91, 1.14] | 34/40 |
+| rtk | 1.01x [0.88, 1.14] | 1.29x [1.15, 1.46] | 1.16x [1.04, 1.31] | 26/40 |
 
 | Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
 |---|---:|---:|---:|---:|
-| Run click's test suite | $0.027 (9/9) | $0.029 (10/10) | $0.037 (7/7) | $0.040 (9/9) |
-| Run express's test suite | $0.028 (**0/9**) | **$0.015 (10/10)** | $0.034 (2/8) | $0.051 (0/7) |
-| Read all of click's `core.py` | $0.280 (9/9) | $0.305 (9/9) | $0.280 (10/10) | $0.264 (10/10) |
-| Find the error in a 20,000-line log | $0.073 (8/10) | **$0.014 (7/7)** | $0.058 (10/10) | $0.060 (5/9) |
+| Run click's test suite | $0.027 (10/10) | $0.029 (10/10) | $0.033 (10/10) | $0.040 (10/10) |
+| Run express's test suite | $0.028 (**0/10**) | **$0.015 (10/10)** | $0.034 (4/10) | $0.049 (0/10) |
+| Read all of click's `core.py` | $0.280 (10/10) | $0.303 (10/10) | $0.280 (10/10) | $0.264 (10/10) |
+| Find the error in a 20,000-line log | $0.073 (8/10) | **$0.012 (10/10)** | $0.058 (10/10) | $0.058 (6/10) |
 
 Why no tool fails the express task: Claude Code keeps about 30,000 characters of Bash output and drops the middle, which is where the failing test was. One no-tool run reported: *"the tool output was truncated in the middle (about 18,800 characters dropped)… It has no failure marker, no mocha summary."* ojas puts failure lines first, so the agent found the failure every time.
 
-### Large source files: a split result
+### Large source files: fixed in v0.3
 
 **Fix a pricing bug**: one boundary bug in a 2,726-line file. **Trace every error**: list every function in a 2,580-line file that can raise an error, by reading only, which needs every function body. **Fix a bug in click**: a bug injected into click's 4,018-line `core.py`.
 
-| Task (mean cost per run, passed) | no tool | ojas | headroom | rtk |
-|---|---:|---:|---:|---:|
-| Fix a pricing bug | $0.043 (10/10) | **$0.021 (10/10)** | $0.051 (10/10) | $0.037 (10/10) |
-| Trace every error | $0.089 (10/10) | $0.131 (9/10) | $0.111 (10/10) | $0.080 (10/10) |
-| Fix a bug in click | $0.053 (10/10) | **$0.049 (10/10)** | $0.050 (10/10) | $0.057 (10/10) |
-| **Block, cost vs no tool** | 1.00x | 1.08x [0.85, 1.36] | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] |
+| Task (mean cost per run, passed) | no tool | ojas before v0.3 | **ojas v0.3** | headroom | rtk |
+|---|---:|---:|---:|---:|---:|
+| Fix a pricing bug | $0.043 (10/10) | $0.021 (10/10) | $0.031 (10/10) | $0.051 (10/10) | $0.037 (10/10) |
+| Trace every error | $0.089 (10/10) | $0.131 (9/10) | **$0.089 (10/10)** | $0.111 (10/10) | $0.080 (10/10) |
+| Fix a bug in click | $0.053 (10/10) | $0.049 (10/10) | $0.052 (10/10) | $0.050 (10/10) | $0.057 (10/10) |
+| **Group, cost vs no tool** | 1.00x | 1.08x [0.85, 1.36] | **0.93x [0.76, 1.11]** | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] |
 
-Outlines cut cache reads by a third (0.67x [0.60, 0.74]) and halved the cost of the pricing fix. When the agent needs every body (tracing every error, or reading all of `core.py`), it reads the outline and then pays for the full text as well. That makes the block a wash overall. The one failed run came from ojas cutting output the agent had already filtered. Both problems are addressed in the next release: filtered output is left alone, and a repeated whole-file Read returns the full text. Those fixes weren't in the build under test.
+Outlines cut cache reads by a third (0.69x [0.64, 0.74] in v0.3). Before v0.3, when the agent needed every function body it read the outline and then fetched most of the file again, so "trace every error" cost 48% more and one run failed. v0.3 leaves output the agent already filtered alone and returns the full text on a repeated whole-file Read. With that, the task costs the same as no tool and passes every run.
 
-**Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 blocks, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
+The v0.3 column is an extra arm run after the pre-registered 720 (logged as a deviation). It ran a day later and alone, so prompt-cache warmth differed. The pricing task's higher cost comes from that: v0.3 made exactly the same tool calls as before, and the difference is cache writes.
+
+### Long sessions: not yet tested
+
+The three "long" tasks were meant to take 25+ turns but finished in a median of 5, 6 and 16, so savings couldn't accumulate. ojas cost the same as no tool there and passed every run. A follow-up study with tasks that really take 25+ turns is running (no tool vs ojas v0.3, pre-registered), and its result will be added here.
+
+**Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 groups, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
 
 **Benchmark v1** (8 ordinary tasks × 3 runs): the hook itself cost nothing (0.96x [0.85, 1.07] of no tool, 24/24 passed). Response-style rules made answers longer and added turns (1.04x), so they are now off by default.
 
@@ -243,7 +256,7 @@ Environment variables:
 
 To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
-## Limits (v0.2)
+## Limits (v0.3)
 
 - **Output the agent already narrowed is left alone.** That means pipelines ending in `grep`, `head`, `tail`, `sed`, `awk`, `sort`, `jq` and similar, or `sed -n`/`head`/`tail` reads. It is only compressed when it is still over about 30k characters, where Claude Code would otherwise show only a short preview.
 - **Reading a whole large file a second time in a session returns the full text.** The first whole-file Read shows the outline; repeating it means the agent needs everything.
@@ -260,7 +273,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
-- Finish benchmark v2 (ordinary tasks and 25+ turn sessions), then measure the release that fixes the whole-file case.
+- Long-session benchmark (25+ turn tasks, running now). If repeated test runs turn out to dominate long sessions, show only what changed since the previous run.
 - Outlines that keep short function bodies in full, for tasks that need to trace every body.
 
 ## Credits
