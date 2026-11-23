@@ -237,7 +237,20 @@ The v0.3 column is an extra arm run after the pre-registered 720 (logged as a de
 
 A pre-registered "on-call day" task (one session, three repos, five jobs; no tool vs ojas v0.3, 10 runs) finally produced real long sessions: a median of 50 turns without ojas and 54 with it. ojas cost about the same as no tool (1.07x [0.88, 1.30], not a clear difference) and both passed 5/5. So savings don't visibly build up over a long session: ojas helps when a single command's output is big, not by accumulating small cuts. In those sessions, repeated test runs made up about a quarter of all tool output, which is where the next feature (showing only what changed since the previous run) would help.
 
-**Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 groups, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
+### A smaller model: Haiku 5.5
+
+The same tasks on Haiku 5.5 (no tool vs ojas, 5 runs each, 120 runs). The first run found ojas didn't help: Haiku switched it off with `OJAS_RAW=1` in 18 of 60 runs, because the session note offered that escape, and then lost the failure to Claude Code's 30k cut. v0.3.2 drops that line from the note. Rerun with it:
+
+| Haiku 5.5 | ojas before the fix | ojas v0.3.2 |
+|---|---|---|
+| Big-output tasks, cost vs no tool | 1.07x [0.98, 1.16] | **0.47x [0.42, 0.51]** |
+| Big-output tasks passed (no tool: 15/20) | 16/20 | **19/20** |
+| Find the failing test in express (no tool: 0/5) | 1/5 | **5/5** |
+| Ordinary tasks, cost vs no tool (all 40/40) | 1.17x [1.05, 1.30] | 1.12x [1.05, 1.21] |
+
+On ordinary tasks Haiku still takes a few more turns with ojas (about 12% more cost); Sonnet showed no overhead. The one big-output failure was the one-read-only task on a 4,018-line file, where `cat` gave an outline; v0.3.2 also points the agent to `ojas read --full` for that, and a 10-run check passed 9/10. These reruns are exploratory, logged as deviations.
+
+**Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 groups, so treat single p-values near 0.05 as weak. The main results are one model (Sonnet 5.5) and one harness version. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
 
 **Benchmark v1** (8 ordinary tasks × 3 runs): the hook itself cost nothing (0.96x [0.85, 1.07] of no tool, 24/24 passed). Response-style rules made answers longer and added turns (1.04x), so they are now off by default.
 
