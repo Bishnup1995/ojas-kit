@@ -46,6 +46,6 @@ pub fn agent_rules(style: &str) -> String {
     };
     format!(
         "{style_text}\
-Command output (token-saver): run noisy commands (tests, builds, installs, linters, git diff/log/status, grep/rg, find) as `ojas run -- <command>`. It keeps errors and failures and shortens the rest. When output ends with `[ojas: … Full output: ojas get <id>]`, use `ojas get <id> --grep <regex>` or `ojas get <id> --lines 200:260` to see more instead of re-running the command."
+Command output (token-saver): run noisy commands (tests, builds, installs, linters, git diff/log/status, grep/rg, find, `cat` of large logs) as `ojas run -- <command>`. It keeps errors and failures and shortens the rest. Don't pipe test, build or log output through `head` or `tail` to shorten it, because the failure may be in the part you cut. When output ends with `[ojas: … Full output: ojas get <id>]`, use `ojas get <id> --grep <regex>` or `ojas get <id> --lines 200:260` to see more instead of re-running the command."
     )
 }
