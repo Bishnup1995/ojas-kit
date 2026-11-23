@@ -1,4 +1,11 @@
-<p align="center"><img src="docs/banner.svg" alt="ojas: cut the noise your coding agent reads, keep every error" width="100%"></p>
+<p align="center"><img src="docs/banner.jpg" alt="ojas: Less Noise. More Intelligence. Cut the noise. Keep every error." width="100%"></p>
+
+<p align="center">
+  <a href="https://crates.io/crates/ojas"><img src="https://img.shields.io/crates/v/ojas?color=FF6A2A&style=flat-square" alt="crates.io"></a>
+  <a href="https://github.com/Bishnup1995/ojas-kit/releases"><img src="https://img.shields.io/github/v/release/Bishnup1995/ojas-kit?color=141B25&style=flat-square" alt="Release"></a>
+  <img src="https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-141B25?style=flat-square" alt="License: MIT or Apache-2.0">
+  <a href="#benchmark-v2"><img src="https://img.shields.io/badge/big--output%20tasks-40%2F40%20passed-FFCA4A?style=flat-square" alt="Benchmark: 40/40 big-output tasks passed"></a>
+</p>
 
 <p align="center">
   <a href="#install"><b>Install</b></a> ·
@@ -8,6 +15,13 @@
 </p>
 
 # ojas: token saver for AI coding agents
+
+**Single Rust binary. Cut the noise. Keep every error.**
+
+```sh
+cargo install ojas   # or download a binary from Releases
+ojas init            # installs the Claude Code hooks; nothing else in your workflow changes
+```
 
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
 
@@ -106,14 +120,14 @@ Rules about response style help too, but less. caveman's own evals found a long 
 
 ## Install
 
-Build from source with Rust 1.87 or later:
+From [crates.io](https://crates.io/crates/ojas), with Rust 1.87 or later:
 
 ```sh
-cargo install --path .        # or: cargo install --git <this repo's URL>
+cargo install ojas
 ojas init                     # adds the hooks to ~/.claude/settings.json
 ```
 
-Prebuilt binaries for Linux, macOS and Windows (x86_64 and arm64) are attached to each GitHub release. They are built by `.github/workflows/release.yml` when a `v*` tag is pushed.
+Or download a prebuilt binary for Linux, macOS or Windows (x86_64 and arm64) from [Releases](https://github.com/Bishnup1995/ojas-kit/releases), put it on your `PATH` and run `ojas init`. To build from a checkout: `cargo install --path .`.
 
 `ojas init` merges into your existing settings, keeps your other hooks, and writes a `settings.json.ojas-backup` first. Options:
 - `--project` writes to `./.claude/settings.json`.
@@ -178,7 +192,7 @@ These counts are byte-based estimates on single samples, not a benchmark of end-
 | Large files (3 tasks) | 1.08x [0.85, 1.36] → **0.93x [0.76, 1.11] in v0.3** | 1.15x [0.88, 1.49] | 0.95x [0.76, 1.17] | 30 / 29 → **30** / 30 / 30 of 30 |
 | "Long" tasks (3 tasks) | 1.06x [0.97, 1.18] | 1.02x [0.92, 1.13] | 1.06x [0.97, 1.17] | 29 / 30 / 30 / 30 of 30 |
 
-**Setup.** Claude Code 2.1.330 (model Sonnet 5.5) on a Claude subscription, each setup in its own Docker image: no tool, ojas (main before the v0.3 fixes, `abf4776`), headroom 0.44.0 and rtk 1.2.1, each with its default install. There are 18 tasks in 4 groups and 10 repeats of every task per setup. Tasks, graders, hypotheses and analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, brackets are 95% stratified bootstrap intervals, and pass rates use Fisher's exact test.
+**Setup.** Claude Code 2.1.329 (model Sonnet 5.5) on a Claude subscription, each setup in its own Docker image: no tool, ojas (main before the v0.3 fixes, `abf4776`), headroom 0.44.0 and rtk 1.2.1, each with its default install. There are 18 tasks in 4 groups and 10 repeats of every task per setup. Tasks, graders, hypotheses and analysis were fixed in a pre-registration before the first run, and every run is reported. Graders are deterministic and run outside the agent. Cost is the list price Claude Code reports. Ratios are task-balanced means against no tool, brackets are 95% stratified bootstrap intervals, and pass rates use Fisher's exact test.
 
 ### Big-output tasks: ojas is cheaper and more correct
 
@@ -215,9 +229,9 @@ Outlines cut cache reads by a third (0.69x [0.64, 0.74] in v0.3). Before v0.3, w
 
 The v0.3 column is an extra arm run after the pre-registered 720 (logged as a deviation). It ran a day later and alone, so prompt-cache warmth differed. The pricing task's higher cost comes from that: v0.3 made exactly the same tool calls as before, and the difference is cache writes.
 
-### Long sessions: not yet tested
+### Long sessions: still not tested
 
-The three "long" tasks were meant to take 25+ turns but finished in a median of 5, 6 and 16, so savings couldn't accumulate. ojas cost the same as no tool there and passed every run. A follow-up study with tasks that really take 25+ turns is running (no tool vs ojas v0.3, pre-registered), and its result will be added here.
+The three "long" tasks were meant to take 25+ turns but finished in a median of 5, 6 and 16. A pre-registered follow-up with two chained tasks (no tool vs ojas v0.3, 20 runs) got closer, at a median of 12 to 26 turns, but still missed the 25-turn bar. There, ojas cost the same as no tool (1.02x [0.94, 1.10]) and both passed 10/10. Whether savings grow over long sessions is still open.
 
 **Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 groups, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
 
@@ -273,7 +287,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
-- Long-session benchmark (25+ turn tasks, running now). If repeated test runs turn out to dominate long sessions, show only what changed since the previous run.
+- A long-session benchmark whose tasks really need 25+ turns. If repeated test runs turn out to dominate long sessions, show only what changed since the previous run.
 - Outlines that keep short function bodies in full, for tasks that need to trace every body.
 
 ## Credits
@@ -285,6 +299,12 @@ ojas reimplements ideas; it does not copy code. The ideas come from these projec
 - [context-mode](https://github.com/mksglu/context-mode): keep raw output out of the context but retrievable.
 - [ccusage](https://github.com/ccusage/ccusage): measuring from real transcripts.
 - [aider](https://github.com/Aider-AI/aider) repo map, [repomix](https://github.com/yamadashy/repomix) `--compress`, and [serena](https://github.com/oraios/serena) / [codegraph](https://github.com/colbymchenry/codegraph): definitions ranked by references, signature-only views, and reading one symbol instead of a whole file.
+
+## Why "ojas"?
+
+<img src="docs/logo.png" alt="ojas logo" width="96" align="right">
+
+*Ojas* (ओजस्) is Sanskrit for vital energy, the essence that remains when waste is removed. ojas preserves your agent's energy: its context goes to the signal, not the noise. Make every token count.
 
 ## License
 

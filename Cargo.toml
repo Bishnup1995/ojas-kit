@@ -1,13 +1,24 @@
 [package]
 name = "ojas"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 rust-version = "1.87"
-description = "Cut the tokens AI coding agents spend on command output: filters, recoverable compression, and lean response rules."
+description = "Token saver for AI coding agents. Single Rust binary. Cut the noise, keep every error."
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 keywords = ["llm", "tokens", "claude", "ai-agents", "cli"]
 categories = ["command-line-utilities", "development-tools"]
+repository = "https://github.com/Bishnup1995/ojas-kit"
+documentation = "https://github.com/Bishnup1995/ojas-kit#readme"
+# Only what is needed to build the binary goes into the crate.
+include = [
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/README.md",
+    "/LICENSE-MIT",
+    "/LICENSE-APACHE",
+    "/src/**",
+]
 
 [[bin]]
 name = "ojas"
