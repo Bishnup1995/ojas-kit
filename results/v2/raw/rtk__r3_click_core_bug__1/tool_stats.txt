@@ -1,0 +1,49 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    6
+Input tokens:      4.0K
+Output tokens:     1.5K
+Tokens saved:      2.5K (62.4%)
+Total exec time:   14.2s (avg 2.8s)
+Efficiency meter: ███████████████░░░░░░░░░ 62.4%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    8.8s  ██████████
+ 2.  rtk grep                      3    296   30.5%     5ms  █░░░░░░░░░
+ 3.  rtk pytest tests -x -...      1     58   41.7%    5.4s  ░░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    6
+Input tokens:      4.0K
+Output tokens:     1.5K
+Tokens saved:      2.5K (62.4%)
+Total exec time:   14.2s (avg 2.8s)
+Efficiency meter: ███████████████░░░░░░░░░ 62.4%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    8.8s  ██████████
+ 2.  rtk grep                      3    296   30.5%     5ms  █░░░░░░░░░
+ 3.  rtk pytest tests -x -...      1     58   41.7%    5.4s  ░░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-21 11:26 • rtk:passthrough git di... -0% (0)
+11-21 11:26 ▲ rtk pytest tests -q --... -75% (2.1K)
+11-21 11:26 • rtk grep                  -18% (5)
+11-21 11:26 ■ rtk grep                  -35% (210)
+11-21 11:26 • rtk grep                  -23% (81)
+11-21 11:26 ■ rtk pytest tests -x -q... -42% (58)
+

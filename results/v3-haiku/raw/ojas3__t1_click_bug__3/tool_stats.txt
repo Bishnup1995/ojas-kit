@@ -1,0 +1,11 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 5   compressed 1   raw ≈9,770 tok   sent ≈2,963 tok   saved ≈6,807 tok (70%)
+
+filter         runs compressed      raw tok     sent tok  saved
+search            4          0          865          865     0%
+test              1          1        8,905        2,098    76%
+
+top commands by tokens saved
+  pytest                           1 runs  saved ≈6,807 tok (76%)
+  grep                             4 runs  saved ≈0 tok (0%)

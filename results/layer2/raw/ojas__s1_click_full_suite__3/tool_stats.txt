@@ -1,0 +1,23 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈41,328 tok   sent ≈3,524 tok   saved ≈37,804 tok (91%)
+
+filter         runs compressed      raw tok     sent tok  saved
+test              1          1       41,328        3,524    91%
+
+top commands by tokens saved
+  pytest                           1 runs  saved ≈37,804 tok (91%)
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                 4  (0.0% of input)
+  cache writes                3,882  (9.7%)
+  cache reads                36,042  (90.3%)
+  output                        468
+
+Bash results: 1 calls, ≈2,510 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 1 calls, ≈2,510 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+       2,510      1  pytest                     filter exists: install the hook (ojas init)

@@ -1,0 +1,11 @@
+FAIL answer: The suite exited with code 1, but I could not identify the failing test. The tool output was truncated in the middle of the run, and the failure summary at the end of the output was cut off, so I don't have the test name, expected value, or actual value.
+
+What I can confirm from the visible output:
+- `npm test` ran `mocha --require test/support/env --reporter spec --check-leaks test/ test/acceptance/` (express@5.3.0).
+- Every test I can see passed (✔). The output ends partway through the `express.urlencoded()` section, so the failing test is somewhere in the portion that was cut off or in the tail after it.
+
+I did not rerun the suite, because you asked for a single run with no piping or filtering, and I did not modify any files.
+
+To get the failure details, the simplest option is to rerun `npm test` and save the output to a file outside the repo, for example `npm test > /tmp/express-test.log 2>&1`, then read the failure section at the end of that file. Alternatively, I can run it with the `dot` or `min` reporter, which produces much shorter output, though that breaks the "plain npm test" requirement you specified.
+
+Also, `git status` at the start showed `test/res.send.js` as modified and uncommitted. That may be related to the failure, but I have not verified that.

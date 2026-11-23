@@ -1,0 +1,33 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 3   compressed 0   raw ≈168 tok   sent ≈168 tok   saved ≈0 tok (0%)
+
+filter         runs compressed      raw tok     sent tok  saved
+git-diff          1          0          127          127     0%
+listing           1          0           17           17     0%
+search            1          0           25           25     0%
+
+top commands by tokens saved
+  git diff                         1 runs  saved ≈0 tok (0%)
+  grep                             1 runs  saved ≈0 tok (0%)
+  ls                               1 runs  saved ≈0 tok (0%)
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                24  (0.0% of input)
+  cache writes               13,738  (5.0%)
+  cache reads               260,594  (95.0%)
+  output                      1,586
+
+Bash results: 11 calls, ≈4,438 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 11 calls, ≈4,438 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+       1,030      2  cat                        no filter yet
+         987      1  git status                 filter exists: install the hook (ojas init)
+         706      1  sed                        no filter yet
+         655      1  mocha                      filter exists: install the hook (ojas init)
+         388      3  npm test                   filter exists: install the hook (ojas init)
+         370      2  git diff                   filter exists: install the hook (ojas init)
+         302      1  grep                       filter exists: install the hook (ojas init)

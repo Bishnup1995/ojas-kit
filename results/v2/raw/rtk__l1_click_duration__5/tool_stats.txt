@@ -1,0 +1,43 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    4
+Input tokens:      608
+Output tokens:     424
+Tokens saved:      184 (30.3%)
+Total exec time:   7ms (avg 1ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 30.3%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk ls tests/test_types       1     99   72.3%     2ms  ██████████
+ 2.  rtk grep                      3     85   18.0%     1ms  █████████░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    4
+Input tokens:      608
+Output tokens:     424
+Tokens saved:      184 (30.3%)
+Total exec time:   7ms (avg 1ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 30.3%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk ls tests/test_types       1     99   72.3%     2ms  ██████████
+ 2.  rtk grep                      3     85   18.0%     1ms  █████████░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 17:36 ▲ rtk ls tests/test_types   -72% (99)
+11-22 17:36 • rtk grep                  -25% (57)
+11-22 17:36 • rtk grep                  -0% (0)
+11-22 17:36 • rtk grep                  -26% (28)
+

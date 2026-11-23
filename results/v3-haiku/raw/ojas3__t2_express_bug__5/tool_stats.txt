@@ -1,0 +1,1 @@
+No ojas runs recorded yet. Install the hook with `ojas init`, or run commands as `ojas run -- <cmd>`.

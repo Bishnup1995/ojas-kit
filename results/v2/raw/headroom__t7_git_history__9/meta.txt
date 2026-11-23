@@ -1,0 +1,2 @@
+arm=headroom task=t7_git_history block=main repo=/home/bench/work/click model=claude-sonnet-5-5 max_turns=60 timeout_s=1800
+exit=0 wall_s=32

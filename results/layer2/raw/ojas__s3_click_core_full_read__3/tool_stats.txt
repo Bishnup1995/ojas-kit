@@ -1,0 +1,24 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈39,076 tok   sent ≈4,768 tok   saved ≈34,308 tok (88%)
+
+filter         runs compressed      raw tok     sent tok  saved
+outline           1          1       39,076        4,768    88%
+
+top commands by tokens saved
+  read                             1 runs  saved ≈34,308 tok (88%)
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                 8  (0.0% of input)
+  cache writes               64,971  (39.4%)
+  cache reads                99,737  (60.6%)
+  output                      1,789
+
+Bash results: 2 calls, ≈5,247 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 2 calls, ≈5,247 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+       4,693      1  cat                        no filter yet
+         555      1  ojas_raw=1                 no filter yet

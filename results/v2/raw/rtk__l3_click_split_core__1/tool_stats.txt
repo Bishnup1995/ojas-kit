@@ -1,0 +1,55 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    11
+Input tokens:      2.8K
+Output tokens:     1.9K
+Tokens saved:      803 (29.2%)
+Total exec time:   322ms (avg 32ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 29.2%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      7    774   31.6%    45ms  ██████████
+ 2.  rtk git diff src/clic...      1     27    9.9%     3ms  ░░░░░░░░░░
+ 3.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 4.  rtk:passthrough grep ...      1      0    0.0%       -  ░░░░░░░░░░
+ 5.  rtk read                      1      0    0.0%     0ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    11
+Input tokens:      2.8K
+Output tokens:     1.9K
+Tokens saved:      803 (29.2%)
+Total exec time:   322ms (avg 32ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 29.2%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      7    774   31.6%    45ms  ██████████
+ 2.  rtk git diff src/clic...      1     27    9.9%     3ms  ░░░░░░░░░░
+ 3.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 4.  rtk:passthrough grep ...      1      0    0.0%       -  ░░░░░░░░░░
+ 5.  rtk read                      1      0    0.0%     0ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 17:47 • rtk:passthrough grep -... -0% (0)
+11-22 17:47 ■ rtk grep                  -31% (27)
+11-22 17:46 • rtk git diff src/click... -10% (27)
+11-22 17:46 • rtk grep                  -0% (0)
+11-22 17:46 • rtk grep                  -11% (36)
+11-22 17:46 • rtk read                  -0% (0)
+11-22 17:46 • rtk grep                  -16% (44)
+11-22 17:46 • rtk grep                  -17% (61)
+11-22 17:46 • rtk grep                  -0% (0)
+11-22 17:46 ▲ rtk grep                  -74% (606)
+

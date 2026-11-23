@@ -1,0 +1,25 @@
+[2026-11-23 12:13:22 IST] runner start pid=1366 total=10 raw=../results/v3-long3/raw
+[2026-11-23 12:13:23 IST] start 1/10 block=long3 baseline l6_oncall_day #1
+[2026-11-23 12:21:09 IST] done 1/10 block=long3 baseline l6_oncall_day #1 -> PASS cost=0.6221 turns=47 | valid=1 | last pause: none
+[2026-11-23 12:21:09 IST] start 2/10 block=long3 ojas3 l6_oncall_day #1
+[2026-11-23 12:26:05 IST] done 2/10 block=long3 ojas3 l6_oncall_day #1 -> PASS cost=0.7405 turns=57 | valid=1 | last pause: none
+[2026-11-23 12:26:06 IST] start 3/10 block=long3 ojas3 l6_oncall_day #2
+[2026-11-23 12:31:51 IST] done 3/10 block=long3 ojas3 l6_oncall_day #2 -> PASS cost=0.5295 turns=44 | valid=1 | last pause: none
+[2026-11-23 12:31:52 IST] start 4/10 block=long3 baseline l6_oncall_day #2
+[2026-11-23 12:34:11 IST] PAUSE baseline__l6_oncall_day__2: rate limit: "You've hit your 5-hour limit · resets 8:50am (UTC)" -> sleeping 6529s until 2026-11-23 14:23:00 IST
+[2026-11-23 14:23:01 IST] RESUME baseline__l6_oncall_day__2
+[2026-11-23 14:23:01 IST] start 4/10 block=long3 baseline l6_oncall_day #2
+[2026-11-23 14:28:55 IST] done 4/10 block=long3 baseline l6_oncall_day #2 -> PASS cost=0.7672 turns=50 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:28:56 IST] start 5/10 block=long3 baseline l6_oncall_day #3
+[2026-11-23 14:35:45 IST] done 5/10 block=long3 baseline l6_oncall_day #3 -> PASS cost=0.6423 turns=50 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:35:46 IST] start 6/10 block=long3 ojas3 l6_oncall_day #3
+[2026-11-23 14:42:29 IST] done 6/10 block=long3 ojas3 l6_oncall_day #3 -> PASS cost=0.7149 turns=54 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:42:31 IST] start 7/10 block=long3 ojas3 l6_oncall_day #4
+[2026-11-23 14:49:09 IST] done 7/10 block=long3 ojas3 l6_oncall_day #4 -> PASS cost=0.6351 turns=48 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:49:09 IST] start 8/10 block=long3 baseline l6_oncall_day #4
+[2026-11-23 14:53:46 IST] done 8/10 block=long3 baseline l6_oncall_day #4 -> PASS cost=0.7324 turns=50 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:53:47 IST] start 9/10 block=long3 baseline l6_oncall_day #5
+[2026-11-23 14:58:17 IST] done 9/10 block=long3 baseline l6_oncall_day #5 -> PASS cost=0.5805 turns=47 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 14:58:17 IST] start 10/10 block=long3 ojas3 l6_oncall_day #5
+[2026-11-23 15:03:56 IST] done 10/10 block=long3 ojas3 l6_oncall_day #5 -> PASS cost=0.9503 turns=66 | valid=1 | last pause: 2026-11-23 14:23:00 IST
+[2026-11-23 15:03:56 IST] runner finished: 10/10 complete

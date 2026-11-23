@@ -1,0 +1,1 @@
+style_full_in_transcript=0 hook_note_in_transcript=0

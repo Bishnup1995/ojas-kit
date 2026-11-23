@@ -1,0 +1,48 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    5
+Input tokens:      355
+Output tokens:     270
+Tokens saved:      85 (23.9%)
+Total exec time:   5.5s (avg 1.4s)
+Efficiency meter: ██████░░░░░░░░░░░░░░░░░░ 23.9%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      2     85   27.1%    2.8s  ██████████
+ 2.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 3.  rtk git status --short        1      0    0.0%     4ms  ░░░░░░░░░░
+ 4.  rtk git log --oneline...      1      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    5
+Input tokens:      355
+Output tokens:     270
+Tokens saved:      85 (23.9%)
+Total exec time:   5.5s (avg 1.4s)
+Efficiency meter: ██████░░░░░░░░░░░░░░░░░░ 23.9%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      2     85   27.1%    2.8s  ██████████
+ 2.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 3.  rtk git status --short        1      0    0.0%     4ms  ░░░░░░░░░░
+ 4.  rtk git log --oneline...      1      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 13:01 ■ rtk grep                  -55% (6)
+11-22 13:00 • rtk:passthrough git di... -0% (0)
+11-22 13:00 • rtk git status --short    -0% (0)
+11-22 12:58 • rtk grep                  -26% (79)
+11-22 12:58 • rtk git log --oneline ... -0% (0)
+

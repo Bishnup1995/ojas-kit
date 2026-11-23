@@ -1,0 +1,53 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      4.4K
+Output tokens:     1.7K
+Tokens saved:      2.7K (61.1%)
+Total exec time:   15.1s (avg 2.2s)
+Efficiency meter: ███████████████░░░░░░░░░ 61.1%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    4.9s  ██████████
+ 2.  rtk grep                      4    419   31.9%    1.8s  ██░░░░░░░░
+ 3.  rtk git stash pop             1     88   96.7%     8ms  ░░░░░░░░░░
+ 4.  rtk pytest tests -x -...      1     77   41.4%    2.9s  ░░░░░░░░░░
+ 5.  rtk fallback: git sta...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      4.4K
+Output tokens:     1.7K
+Tokens saved:      2.7K (61.1%)
+Total exec time:   15.1s (avg 2.2s)
+Efficiency meter: ███████████████░░░░░░░░░ 61.1%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    4.9s  ██████████
+ 2.  rtk grep                      4    419   31.9%    1.8s  ██░░░░░░░░
+ 3.  rtk git stash pop             1     88   96.7%     8ms  ░░░░░░░░░░
+ 4.  rtk pytest tests -x -...      1     77   41.4%    2.9s  ░░░░░░░░░░
+ 5.  rtk fallback: git sta...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 13:36 ▲ rtk git stash pop         -97% (88)
+11-22 13:36 • rtk grep                  -21% (5)
+11-22 13:36 • rtk fallback: git stas... -0% (0)
+11-22 13:36 ▲ rtk pytest tests -q --... -75% (2.1K)
+11-22 13:36 ■ rtk grep                  -41% (78)
+11-22 13:36 ■ rtk grep                  -38% (336)
+11-22 13:36 • rtk grep                  -0% (0)
+11-22 13:36 ■ rtk pytest tests -x -q... -41% (77)
+

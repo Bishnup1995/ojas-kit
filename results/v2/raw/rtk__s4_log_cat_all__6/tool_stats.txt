@@ -1,0 +1,43 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      4.9K
+Output tokens:     535
+Tokens saved:      4.3K (89.0%)
+Total exec time:   23ms (avg 23ms)
+Efficiency meter: █████████████████████░░░ 89.0%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      1   4.3K   89.0%    23ms  ██████████
+ 2.  rtk read                      1      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      4.9K
+Output tokens:     535
+Tokens saved:      4.3K (89.0%)
+Total exec time:   23ms (avg 23ms)
+Efficiency meter: █████████████████████░░░ 89.0%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      1   4.3K   89.0%    23ms  ██████████
+ 2.  rtk read                      1      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-21 12:51 ▲ rtk grep                  -89% (4.3K)
+11-21 12:51 • rtk read                  -0% (0)
+

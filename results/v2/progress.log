@@ -1,0 +1,1472 @@
+[2026-11-21 15:53:32 IST] runner start pid=6001 total=4 raw=../results/v2/smoke
+[2026-11-21 15:53:33 IST] start 1/4 block=smoke baseline r1_pricing_policy #1
+[2026-11-21 15:53:49 IST] done 1/4 block=smoke baseline r1_pricing_policy #1 -> PASS cost=0.1632 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:53:50 IST] start 2/4 block=smoke ojas3 r1_pricing_policy #1
+[2026-11-21 15:54:05 IST] done 2/4 block=smoke ojas3 r1_pricing_policy #1 -> PASS cost=0.0674 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:54:06 IST] start 3/4 block=smoke headroom r1_pricing_policy #1
+[2026-11-21 15:55:40 IST] done 3/4 block=smoke headroom r1_pricing_policy #1 -> PASS cost=0.2024 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:55:41 IST] start 4/4 block=smoke rtk r1_pricing_policy #1
+[2026-11-21 15:55:58 IST] done 4/4 block=smoke rtk r1_pricing_policy #1 -> PASS cost=0.1594 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:55:58 IST] runner finished: 4/4 complete
+missing image ojasbench/baseline:2
+[2026-11-21 10:30:46 UTC] missing image ojasbench/baseline:2: 
+[2026-11-21 10:33:30 UTC] missing image ojasbench/baseline:2: 
+[2026-11-21 16:04:50 IST] runner start pid=6847 total=720 raw=../results/v2/raw
+[2026-11-21 16:04:51 IST] start 1/720 block=read headroom r3_click_core_bug #9
+[2026-11-21 16:07:34 IST] done 1/720 block=read headroom r3_click_core_bug #9 -> PASS cost=0.0608 turns=5 | valid=1 | last pause: none
+[2026-11-21 16:07:36 IST] start 2/720 block=read baseline r1_pricing_policy #10
+[2026-11-21 16:07:54 IST] done 2/720 block=read baseline r1_pricing_policy #10 -> PASS cost=0.0425 turns=6 | valid=1 | last pause: none
+[2026-11-21 16:07:55 IST] start 3/720 block=read rtk r1_pricing_policy #3
+[2026-11-21 16:08:04 IST] PAUSE rtk__r1_pricing_policy__3: rate limit: "You've hit your 5-hour limit � resets 11:10am (UTC)" -> sleeping 2096s until 2026-11-21 16:43:00 IST
+[2026-11-21 16:43:00 IST] RESUME rtk__r1_pricing_policy__3
+[2026-11-21 16:43:01 IST] start 3/720 block=read rtk r1_pricing_policy #3
+[2026-11-21 16:43:19 IST] done 3/720 block=read rtk r1_pricing_policy #3 -> PASS cost=0.0374 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:43:20 IST] start 4/720 block=read headroom r1_pricing_policy #6
+[2026-11-21 16:44:47 IST] done 4/720 block=read headroom r1_pricing_policy #6 -> PASS cost=0.0337 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:44:48 IST] start 5/720 block=read ojas3 r1_pricing_policy #4
+[2026-11-21 16:45:04 IST] done 5/720 block=read ojas3 r1_pricing_policy #4 -> PASS cost=0.0174 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:45:05 IST] start 6/720 block=read rtk r1_pricing_policy #9
+[2026-11-21 16:45:20 IST] done 6/720 block=read rtk r1_pricing_policy #9 -> PASS cost=0.0441 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:45:21 IST] start 7/720 block=read rtk r3_click_core_bug #2
+[2026-11-21 16:46:39 IST] done 7/720 block=read rtk r3_click_core_bug #2 -> PASS cost=0.0631 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:46:40 IST] start 8/720 block=read ojas3 r2_ledger_raises #4
+[2026-11-21 16:47:17 IST] done 8/720 block=read ojas3 r2_ledger_raises #4 -> FAIL missing=['open_accrual'] extra=['adjust_payout'] cost=0.1139 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:47:18 IST] start 9/720 block=read rtk r3_click_core_bug #5
+[2026-11-21 16:48:24 IST] done 9/720 block=read rtk r3_click_core_bug #5 -> PASS cost=0.0563 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:48:25 IST] start 10/720 block=read rtk r2_ledger_raises #6
+[2026-11-21 16:48:56 IST] done 10/720 block=read rtk r2_ledger_raises #6 -> PASS cost=0.1792 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:48:57 IST] start 11/720 block=read ojas3 r1_pricing_policy #8
+[2026-11-21 16:49:10 IST] done 11/720 block=read ojas3 r1_pricing_policy #8 -> PASS cost=0.0240 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:49:11 IST] start 12/720 block=read ojas3 r2_ledger_raises #8
+[2026-11-21 16:49:38 IST] done 12/720 block=read ojas3 r2_ledger_raises #8 -> PASS cost=0.2188 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:49:39 IST] start 13/720 block=read headroom r1_pricing_policy #5
+[2026-11-21 16:50:47 IST] done 13/720 block=read headroom r1_pricing_policy #5 -> PASS cost=0.0366 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:50:48 IST] start 14/720 block=read baseline r3_click_core_bug #6
+[2026-11-21 16:52:17 IST] done 14/720 block=read baseline r3_click_core_bug #6 -> PASS cost=0.0448 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:52:18 IST] start 15/720 block=read headroom r3_click_core_bug #1
+[2026-11-21 16:54:22 IST] done 15/720 block=read headroom r3_click_core_bug #1 -> PASS cost=0.0491 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:54:23 IST] start 16/720 block=read baseline r2_ledger_raises #4
+[2026-11-21 16:54:46 IST] done 16/720 block=read baseline r2_ledger_raises #4 -> PASS cost=0.2330 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:54:46 IST] start 17/720 block=read rtk r2_ledger_raises #9
+[2026-11-21 16:55:12 IST] done 17/720 block=read rtk r2_ledger_raises #9 -> PASS cost=0.0590 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:55:12 IST] start 18/720 block=read headroom r1_pricing_policy #7
+[2026-11-21 16:56:02 IST] done 18/720 block=read headroom r1_pricing_policy #7 -> PASS cost=0.0352 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:56:03 IST] start 19/720 block=read rtk r3_click_core_bug #1
+[2026-11-21 16:57:01 IST] done 19/720 block=read rtk r3_click_core_bug #1 -> PASS cost=0.0608 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:57:02 IST] start 20/720 block=read headroom r2_ledger_raises #10
+[2026-11-21 16:58:21 IST] done 20/720 block=read headroom r2_ledger_raises #10 -> PASS cost=0.2491 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:58:22 IST] start 21/720 block=read rtk r1_pricing_policy #4
+[2026-11-21 16:58:36 IST] done 21/720 block=read rtk r1_pricing_policy #4 -> PASS cost=0.0434 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:58:37 IST] start 22/720 block=read baseline r2_ledger_raises #3
+[2026-11-21 16:59:00 IST] done 22/720 block=read baseline r2_ledger_raises #3 -> PASS cost=0.1240 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:59:01 IST] start 23/720 block=read rtk r2_ledger_raises #3
+[2026-11-21 16:59:31 IST] done 23/720 block=read rtk r2_ledger_raises #3 -> PASS cost=0.0704 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 16:59:31 IST] start 24/720 block=read headroom r3_click_core_bug #10
+[2026-11-21 17:00:55 IST] done 24/720 block=read headroom r3_click_core_bug #10 -> PASS cost=0.0466 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:00:56 IST] start 25/720 block=read ojas3 r3_click_core_bug #2
+[2026-11-21 17:01:58 IST] done 25/720 block=read ojas3 r3_click_core_bug #2 -> PASS cost=0.0460 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:01:59 IST] start 26/720 block=read rtk r1_pricing_policy #1
+[2026-11-21 17:02:15 IST] done 26/720 block=read rtk r1_pricing_policy #1 -> PASS cost=0.0497 turns=8 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:02:15 IST] start 27/720 block=read headroom r1_pricing_policy #2
+[2026-11-21 17:03:11 IST] done 27/720 block=read headroom r1_pricing_policy #2 -> PASS cost=0.0448 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:03:12 IST] start 28/720 block=read baseline r3_click_core_bug #8
+[2026-11-21 17:04:13 IST] done 28/720 block=read baseline r3_click_core_bug #8 -> PASS cost=0.0565 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:04:14 IST] start 29/720 block=read rtk r1_pricing_policy #10
+[2026-11-21 17:04:26 IST] done 29/720 block=read rtk r1_pricing_policy #10 -> PASS cost=0.0271 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:04:27 IST] start 30/720 block=read headroom r2_ledger_raises #2
+[2026-11-21 17:05:41 IST] done 30/720 block=read headroom r2_ledger_raises #2 -> PASS cost=0.0938 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:05:41 IST] start 31/720 block=read baseline r1_pricing_policy #9
+[2026-11-21 17:05:54 IST] done 31/720 block=read baseline r1_pricing_policy #9 -> PASS cost=0.0444 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:05:55 IST] start 32/720 block=read ojas3 r3_click_core_bug #5
+[2026-11-21 17:06:53 IST] done 32/720 block=read ojas3 r3_click_core_bug #5 -> PASS cost=0.0480 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:06:54 IST] start 33/720 block=read baseline r3_click_core_bug #3
+[2026-11-21 17:07:55 IST] done 33/720 block=read baseline r3_click_core_bug #3 -> PASS cost=0.0679 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:07:55 IST] start 34/720 block=read ojas3 r2_ledger_raises #2
+[2026-11-21 17:08:17 IST] done 34/720 block=read ojas3 r2_ledger_raises #2 -> PASS cost=0.2183 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:08:18 IST] start 35/720 block=read rtk r2_ledger_raises #10
+[2026-11-21 17:08:49 IST] done 35/720 block=read rtk r2_ledger_raises #10 -> PASS cost=0.0734 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:08:50 IST] start 36/720 block=read headroom r3_click_core_bug #7
+[2026-11-21 17:11:06 IST] done 36/720 block=read headroom r3_click_core_bug #7 -> PASS cost=0.0448 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:11:07 IST] start 37/720 block=read baseline r2_ledger_raises #5
+[2026-11-21 17:11:41 IST] done 37/720 block=read baseline r2_ledger_raises #5 -> PASS cost=0.0697 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:11:42 IST] start 38/720 block=read ojas3 r1_pricing_policy #5
+[2026-11-21 17:11:55 IST] done 38/720 block=read ojas3 r1_pricing_policy #5 -> PASS cost=0.0257 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:11:56 IST] start 39/720 block=read ojas3 r3_click_core_bug #7
+[2026-11-21 17:13:04 IST] done 39/720 block=read ojas3 r3_click_core_bug #7 -> PASS cost=0.0491 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:13:05 IST] start 40/720 block=read baseline r1_pricing_policy #5
+[2026-11-21 17:13:23 IST] done 40/720 block=read baseline r1_pricing_policy #5 -> PASS cost=0.0441 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:13:23 IST] start 41/720 block=read rtk r2_ledger_raises #7
+[2026-11-21 17:13:58 IST] done 41/720 block=read rtk r2_ledger_raises #7 -> PASS cost=0.0648 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:13:59 IST] start 42/720 block=read headroom r2_ledger_raises #1
+[2026-11-21 17:16:14 IST] done 42/720 block=read headroom r2_ledger_raises #1 -> PASS cost=0.0682 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:16:20 IST] start 43/720 block=read baseline r2_ledger_raises #1
+[2026-11-21 17:16:57 IST] done 43/720 block=read baseline r2_ledger_raises #1 -> PASS cost=0.0695 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:16:58 IST] start 44/720 block=read headroom r2_ledger_raises #6
+[2026-11-21 17:18:11 IST] done 44/720 block=read headroom r2_ledger_raises #6 -> PASS cost=0.0516 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:18:12 IST] start 45/720 block=read ojas3 r2_ledger_raises #5
+[2026-11-21 17:18:52 IST] done 45/720 block=read ojas3 r2_ledger_raises #5 -> PASS cost=0.1222 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:18:53 IST] start 46/720 block=read ojas3 r1_pricing_policy #1
+[2026-11-21 17:19:07 IST] done 46/720 block=read ojas3 r1_pricing_policy #1 -> PASS cost=0.0165 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:19:08 IST] start 47/720 block=read baseline r2_ledger_raises #10
+[2026-11-21 17:19:39 IST] done 47/720 block=read baseline r2_ledger_raises #10 -> PASS cost=0.0679 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:19:40 IST] start 48/720 block=read baseline r3_click_core_bug #5
+[2026-11-21 17:20:36 IST] done 48/720 block=read baseline r3_click_core_bug #5 -> PASS cost=0.0437 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:20:37 IST] start 49/720 block=read headroom r2_ledger_raises #5
+[2026-11-21 17:22:08 IST] done 49/720 block=read headroom r2_ledger_raises #5 -> PASS cost=0.0557 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:22:09 IST] start 50/720 block=read headroom r1_pricing_policy #3
+[2026-11-21 17:23:20 IST] done 50/720 block=read headroom r1_pricing_policy #3 -> PASS cost=0.0447 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:23:22 IST] start 51/720 block=read ojas3 r2_ledger_raises #3
+[2026-11-21 17:23:52 IST] done 51/720 block=read ojas3 r2_ledger_raises #3 -> PASS cost=0.0718 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:23:53 IST] start 52/720 block=read baseline r2_ledger_raises #9
+[2026-11-21 17:24:25 IST] done 52/720 block=read baseline r2_ledger_raises #9 -> PASS cost=0.0651 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:24:25 IST] start 53/720 block=read headroom r3_click_core_bug #3
+[2026-11-21 17:26:25 IST] done 53/720 block=read headroom r3_click_core_bug #3 -> PASS cost=0.0455 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:26:26 IST] start 54/720 block=read ojas3 r3_click_core_bug #10
+[2026-11-21 17:27:14 IST] done 54/720 block=read ojas3 r3_click_core_bug #10 -> PASS cost=0.0514 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:27:14 IST] start 55/720 block=read ojas3 r1_pricing_policy #2
+[2026-11-21 17:27:24 IST] done 55/720 block=read ojas3 r1_pricing_policy #2 -> PASS cost=0.0167 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:27:24 IST] start 56/720 block=read baseline r2_ledger_raises #2
+[2026-11-21 17:27:50 IST] done 56/720 block=read baseline r2_ledger_raises #2 -> PASS cost=0.0571 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:27:51 IST] start 57/720 block=read rtk r3_click_core_bug #10
+[2026-11-21 17:28:28 IST] done 57/720 block=read rtk r3_click_core_bug #10 -> PASS cost=0.0583 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:28:28 IST] start 58/720 block=read rtk r3_click_core_bug #8
+[2026-11-21 17:29:01 IST] done 58/720 block=read rtk r3_click_core_bug #8 -> PASS cost=0.0541 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:29:01 IST] start 59/720 block=read rtk r2_ledger_raises #1
+[2026-11-21 17:29:28 IST] done 59/720 block=read rtk r2_ledger_raises #1 -> PASS cost=0.0643 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:29:28 IST] start 60/720 block=read headroom r1_pricing_policy #4
+[2026-11-21 17:30:03 IST] done 60/720 block=read headroom r1_pricing_policy #4 -> PASS cost=0.1492 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:30:04 IST] start 61/720 block=read ojas3 r3_click_core_bug #3
+[2026-11-21 17:30:54 IST] done 61/720 block=read ojas3 r3_click_core_bug #3 -> PASS cost=0.0453 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:30:54 IST] start 62/720 block=read rtk r2_ledger_raises #8
+[2026-11-21 17:31:20 IST] done 62/720 block=read rtk r2_ledger_raises #8 -> PASS cost=0.0633 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:31:21 IST] start 63/720 block=read rtk r2_ledger_raises #4
+[2026-11-21 17:31:50 IST] done 63/720 block=read rtk r2_ledger_raises #4 -> PASS cost=0.0973 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:31:50 IST] start 64/720 block=read rtk r1_pricing_policy #8
+[2026-11-21 17:32:01 IST] done 64/720 block=read rtk r1_pricing_policy #8 -> PASS cost=0.0442 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:32:01 IST] start 65/720 block=read baseline r2_ledger_raises #7
+[2026-11-21 17:32:29 IST] done 65/720 block=read baseline r2_ledger_raises #7 -> PASS cost=0.0658 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:32:30 IST] start 66/720 block=read baseline r3_click_core_bug #7
+[2026-11-21 17:33:07 IST] done 66/720 block=read baseline r3_click_core_bug #7 -> PASS cost=0.0441 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:33:08 IST] start 67/720 block=read baseline r3_click_core_bug #9
+[2026-11-21 17:33:49 IST] done 67/720 block=read baseline r3_click_core_bug #9 -> PASS cost=0.0577 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:33:49 IST] start 68/720 block=read headroom r3_click_core_bug #5
+[2026-11-21 17:35:07 IST] done 68/720 block=read headroom r3_click_core_bug #5 -> PASS cost=0.0493 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:35:08 IST] start 69/720 block=read baseline r1_pricing_policy #2
+[2026-11-21 17:35:19 IST] done 69/720 block=read baseline r1_pricing_policy #2 -> PASS cost=0.0370 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:35:19 IST] start 70/720 block=read headroom r3_click_core_bug #4
+[2026-11-21 17:36:42 IST] done 70/720 block=read headroom r3_click_core_bug #4 -> PASS cost=0.0537 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:36:42 IST] start 71/720 block=read baseline r2_ledger_raises #8
+[2026-11-21 17:37:06 IST] done 71/720 block=read baseline r2_ledger_raises #8 -> PASS cost=0.0528 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:37:06 IST] start 72/720 block=read headroom r3_click_core_bug #8
+[2026-11-21 17:38:22 IST] done 72/720 block=read headroom r3_click_core_bug #8 -> PASS cost=0.0510 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:38:23 IST] start 73/720 block=read rtk r2_ledger_raises #5
+[2026-11-21 17:38:50 IST] done 73/720 block=read rtk r2_ledger_raises #5 -> PASS cost=0.0628 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:38:50 IST] start 74/720 block=read ojas3 r1_pricing_policy #6
+[2026-11-21 17:39:00 IST] done 74/720 block=read ojas3 r1_pricing_policy #6 -> PASS cost=0.0252 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:39:00 IST] start 75/720 block=read rtk r1_pricing_policy #7
+[2026-11-21 17:39:10 IST] done 75/720 block=read rtk r1_pricing_policy #7 -> PASS cost=0.0445 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:39:10 IST] start 76/720 block=read rtk r1_pricing_policy #5
+[2026-11-21 17:39:21 IST] done 76/720 block=read rtk r1_pricing_policy #5 -> PASS cost=0.0274 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:39:21 IST] start 77/720 block=read rtk r1_pricing_policy #2
+[2026-11-21 17:39:31 IST] done 77/720 block=read rtk r1_pricing_policy #2 -> PASS cost=0.0265 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:39:32 IST] start 78/720 block=read rtk r2_ledger_raises #2
+[2026-11-21 17:39:59 IST] done 78/720 block=read rtk r2_ledger_raises #2 -> PASS cost=0.0657 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:40:00 IST] start 79/720 block=read ojas3 r2_ledger_raises #6
+[2026-11-21 17:40:27 IST] done 79/720 block=read ojas3 r2_ledger_raises #6 -> PASS cost=0.0911 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:40:28 IST] start 80/720 block=read ojas3 r1_pricing_policy #7
+[2026-11-21 17:40:38 IST] done 80/720 block=read ojas3 r1_pricing_policy #7 -> PASS cost=0.0170 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:40:38 IST] start 81/720 block=read ojas3 r1_pricing_policy #9
+[2026-11-21 17:40:47 IST] done 81/720 block=read ojas3 r1_pricing_policy #9 -> PASS cost=0.0224 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:40:47 IST] start 82/720 block=read headroom r2_ledger_raises #4
+[2026-11-21 17:42:02 IST] done 82/720 block=read headroom r2_ledger_raises #4 -> PASS cost=0.1777 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:42:03 IST] start 83/720 block=read rtk r1_pricing_policy #6
+[2026-11-21 17:42:14 IST] done 83/720 block=read rtk r1_pricing_policy #6 -> PASS cost=0.0279 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:42:14 IST] start 84/720 block=read baseline r1_pricing_policy #7
+[2026-11-21 17:42:27 IST] done 84/720 block=read baseline r1_pricing_policy #7 -> PASS cost=0.0464 turns=8 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:42:28 IST] start 85/720 block=read rtk r3_click_core_bug #3
+[2026-11-21 17:42:59 IST] done 85/720 block=read rtk r3_click_core_bug #3 -> PASS cost=0.0551 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:42:59 IST] start 86/720 block=read headroom r2_ledger_raises #3
+[2026-11-21 17:44:13 IST] done 86/720 block=read headroom r2_ledger_raises #3 -> PASS cost=0.1316 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:44:14 IST] start 87/720 block=read baseline r1_pricing_policy #3
+[2026-11-21 17:44:26 IST] done 87/720 block=read baseline r1_pricing_policy #3 -> PASS cost=0.0418 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:44:26 IST] start 88/720 block=read headroom r1_pricing_policy #9
+[2026-11-21 17:45:09 IST] done 88/720 block=read headroom r1_pricing_policy #9 -> PASS cost=0.0366 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:45:09 IST] start 89/720 block=read ojas3 r3_click_core_bug #4
+[2026-11-21 17:45:50 IST] done 89/720 block=read ojas3 r3_click_core_bug #4 -> PASS cost=0.0474 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:45:51 IST] start 90/720 block=read baseline r1_pricing_policy #1
+[2026-11-21 17:46:02 IST] done 90/720 block=read baseline r1_pricing_policy #1 -> PASS cost=0.0371 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:46:02 IST] start 91/720 block=read ojas3 r3_click_core_bug #1
+[2026-11-21 17:46:41 IST] done 91/720 block=read ojas3 r3_click_core_bug #1 -> PASS cost=0.0483 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:46:42 IST] start 92/720 block=read rtk r3_click_core_bug #4
+[2026-11-21 17:47:14 IST] done 92/720 block=read rtk r3_click_core_bug #4 -> PASS cost=0.0556 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:47:15 IST] start 93/720 block=read ojas3 r1_pricing_policy #10
+[2026-11-21 17:47:24 IST] done 93/720 block=read ojas3 r1_pricing_policy #10 -> PASS cost=0.0167 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:47:24 IST] start 94/720 block=read ojas3 r2_ledger_raises #7
+[2026-11-21 17:47:59 IST] done 94/720 block=read ojas3 r2_ledger_raises #7 -> PASS cost=0.0820 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:48:00 IST] start 95/720 block=read headroom r2_ledger_raises #7
+[2026-11-21 17:48:51 IST] done 95/720 block=read headroom r2_ledger_raises #7 -> PASS cost=0.0579 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:48:52 IST] start 96/720 block=read rtk r3_click_core_bug #6
+[2026-11-21 17:49:24 IST] done 96/720 block=read rtk r3_click_core_bug #6 -> PASS cost=0.0552 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:49:25 IST] start 97/720 block=read ojas3 r1_pricing_policy #3
+[2026-11-21 17:49:34 IST] done 97/720 block=read ojas3 r1_pricing_policy #3 -> PASS cost=0.0255 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:49:34 IST] start 98/720 block=read headroom r1_pricing_policy #1
+[2026-11-21 17:50:15 IST] done 98/720 block=read headroom r1_pricing_policy #1 -> PASS cost=0.0436 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:50:16 IST] start 99/720 block=read headroom r2_ledger_raises #8
+[2026-11-21 17:51:36 IST] done 99/720 block=read headroom r2_ledger_raises #8 -> PASS cost=0.1654 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:51:36 IST] start 100/720 block=read headroom r1_pricing_policy #8
+[2026-11-21 17:52:20 IST] done 100/720 block=read headroom r1_pricing_policy #8 -> PASS cost=0.0368 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:52:20 IST] start 101/720 block=read ojas3 r3_click_core_bug #9
+[2026-11-21 17:53:01 IST] done 101/720 block=read ojas3 r3_click_core_bug #9 -> PASS cost=0.0524 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:53:02 IST] start 102/720 block=read headroom r1_pricing_policy #10
+[2026-11-21 17:53:49 IST] done 102/720 block=read headroom r1_pricing_policy #10 -> PASS cost=0.0434 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:53:49 IST] start 103/720 block=read baseline r1_pricing_policy #8
+[2026-11-21 17:54:00 IST] done 103/720 block=read baseline r1_pricing_policy #8 -> PASS cost=0.0428 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:54:00 IST] start 104/720 block=read ojas3 r3_click_core_bug #6
+[2026-11-21 17:54:39 IST] done 104/720 block=read ojas3 r3_click_core_bug #6 -> PASS cost=0.0507 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:54:40 IST] start 105/720 block=read ojas3 r2_ledger_raises #1
+[2026-11-21 17:55:14 IST] done 105/720 block=read ojas3 r2_ledger_raises #1 -> PASS cost=0.1707 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:55:14 IST] start 106/720 block=read baseline r3_click_core_bug #1
+[2026-11-21 17:55:44 IST] done 106/720 block=read baseline r3_click_core_bug #1 -> PASS cost=0.0483 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:55:45 IST] start 107/720 block=read baseline r2_ledger_raises #6
+[2026-11-21 17:56:18 IST] done 107/720 block=read baseline r2_ledger_raises #6 -> PASS cost=0.0806 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:56:19 IST] start 108/720 block=read baseline r3_click_core_bug #4
+[2026-11-21 17:57:07 IST] done 108/720 block=read baseline r3_click_core_bug #4 -> PASS cost=0.0579 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:57:08 IST] start 109/720 block=read baseline r3_click_core_bug #2
+[2026-11-21 17:57:41 IST] done 109/720 block=read baseline r3_click_core_bug #2 -> PASS cost=0.0567 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:57:41 IST] start 110/720 block=read baseline r1_pricing_policy #4
+[2026-11-21 17:57:52 IST] done 110/720 block=read baseline r1_pricing_policy #4 -> PASS cost=0.0518 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:57:52 IST] start 111/720 block=read headroom r3_click_core_bug #2
+[2026-11-21 17:59:16 IST] done 111/720 block=read headroom r3_click_core_bug #2 -> PASS cost=0.0529 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:59:16 IST] start 112/720 block=read baseline r1_pricing_policy #6
+[2026-11-21 17:59:28 IST] done 112/720 block=read baseline r1_pricing_policy #6 -> PASS cost=0.0376 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 17:59:28 IST] start 113/720 block=read rtk r3_click_core_bug #7
+[2026-11-21 18:00:00 IST] done 113/720 block=read rtk r3_click_core_bug #7 -> PASS cost=0.0566 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:00:00 IST] start 114/720 block=read rtk r3_click_core_bug #9
+[2026-11-21 18:00:40 IST] done 114/720 block=read rtk r3_click_core_bug #9 -> PASS cost=0.0584 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:00:41 IST] start 115/720 block=read baseline r3_click_core_bug #10
+[2026-11-21 18:01:21 IST] done 115/720 block=read baseline r3_click_core_bug #10 -> PASS cost=0.0569 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:01:22 IST] start 116/720 block=read ojas3 r2_ledger_raises #9
+[2026-11-21 18:01:52 IST] done 116/720 block=read ojas3 r2_ledger_raises #9 -> PASS cost=0.1317 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:01:52 IST] start 117/720 block=read headroom r2_ledger_raises #9
+[2026-11-21 18:03:06 IST] done 117/720 block=read headroom r2_ledger_raises #9 -> PASS cost=0.0618 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:03:07 IST] start 118/720 block=read headroom r3_click_core_bug #6
+[2026-11-21 18:04:23 IST] done 118/720 block=read headroom r3_click_core_bug #6 -> PASS cost=0.0505 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:04:24 IST] start 119/720 block=read ojas3 r3_click_core_bug #8
+[2026-11-21 18:05:04 IST] done 119/720 block=read ojas3 r3_click_core_bug #8 -> PASS cost=0.0464 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:05:04 IST] start 120/720 block=read ojas3 r2_ledger_raises #10
+[2026-11-21 18:05:37 IST] done 120/720 block=read ojas3 r2_ledger_raises #10 -> PASS cost=0.0893 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:05:37 IST] start 121/720 block=stress baseline s2_express_full_suite #3
+[2026-11-21 18:05:49 IST] done 121/720 block=stress baseline s2_express_full_suite #3 -> Which one should I use? cost=0.0457 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:05:50 IST] start 122/720 block=stress ojas3 s2_express_full_suite #5
+[2026-11-21 18:05:59 IST] done 122/720 block=stress ojas3 s2_express_full_suite #5 -> PASS cost=0.0258 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:05:59 IST] start 123/720 block=stress rtk s2_express_full_suite #3
+[2026-11-21 18:06:18 IST] done 123/720 block=stress rtk s2_express_full_suite #3 -> Both leave the repo's files untouched. Do you want me to use cost=0.0622 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:06:18 IST] start 124/720 block=stress baseline s4_log_cat_all #7
+[2026-11-21 18:06:30 IST] done 124/720 block=stress baseline s4_log_cat_all #7 -> PASS cost=0.0550 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:06:30 IST] start 125/720 block=stress headroom s1_click_full_suite #3
+[2026-11-21 18:07:24 IST] done 125/720 block=stress headroom s1_click_full_suite #3 -> PASS cost=0.0393 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:07:24 IST] start 126/720 block=stress baseline s2_express_full_suite #9
+[2026-11-21 18:07:38 IST] done 126/720 block=stress baseline s2_express_full_suite #9 -> Which would you like? cost=0.0247 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:07:39 IST] start 127/720 block=stress ojas3 s3_click_core_full_read #7
+[2026-11-21 18:07:55 IST] done 127/720 block=stress ojas3 s3_click_core_full_read #7 -> PASS cost=0.3372 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:07:55 IST] start 128/720 block=stress headroom s1_click_full_suite #8
+[2026-11-21 18:08:51 IST] done 128/720 block=stress headroom s1_click_full_suite #8 -> PASS cost=0.0256 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:08:51 IST] start 129/720 block=stress rtk s2_express_full_suite #2
+[2026-11-21 18:09:11 IST] done 129/720 block=stress rtk s2_express_full_suite #2 -> Which would you prefer? cost=0.0458 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:09:11 IST] start 130/720 block=stress rtk s1_click_full_suite #6
+[2026-11-21 18:09:42 IST] done 130/720 block=stress rtk s1_click_full_suite #6 -> PASS cost=0.0596 turns=8 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:09:42 IST] start 131/720 block=stress rtk s2_express_full_suite #7
+[2026-11-21 18:10:00 IST] done 131/720 block=stress rtk s2_express_full_suite #7 -> To get the failure details, I'd need to deviate from plain ` cost=0.0456 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:10:01 IST] start 132/720 block=stress rtk s4_log_cat_all #2
+[2026-11-21 18:10:22 IST] done 132/720 block=stress rtk s4_log_cat_all #2 -> The incident is somewhere in the unread middle, and reading  cost=0.1405 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:10:22 IST] start 133/720 block=stress ojas3 s1_click_full_suite #3
+[2026-11-21 18:10:44 IST] done 133/720 block=stress ojas3 s1_click_full_suite #3 -> PASS cost=0.0419 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:10:44 IST] start 134/720 block=stress headroom s4_log_cat_all #3
+[2026-11-21 18:11:33 IST] done 134/720 block=stress headroom s4_log_cat_all #3 -> PASS cost=0.0660 turns=5 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:11:34 IST] start 135/720 block=stress headroom s1_click_full_suite #6
+[2026-11-21 18:12:34 IST] done 135/720 block=stress headroom s1_click_full_suite #6 -> PASS cost=0.0238 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:12:34 IST] start 136/720 block=stress headroom s2_express_full_suite #3
+[2026-11-21 18:13:31 IST] done 136/720 block=stress headroom s2_express_full_suite #3 -> PASS cost=0.0598 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:13:31 IST] start 137/720 block=stress headroom s2_express_full_suite #1
+[2026-11-21 18:14:18 IST] done 137/720 block=stress headroom s2_express_full_suite #1 -> Which do you want? I'd suggest option 1. cost=0.0251 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:14:19 IST] start 138/720 block=stress headroom s2_express_full_suite #7
+[2026-11-21 18:15:05 IST] done 138/720 block=stress headroom s2_express_full_suite #7 -> I could rerun the suite with the output saved to a file, for cost=0.0233 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:15:06 IST] start 139/720 block=stress ojas3 s3_click_core_full_read #1
+[2026-11-21 18:15:21 IST] done 139/720 block=stress ojas3 s3_click_core_full_read #1 -> PASS cost=0.3177 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:15:22 IST] start 140/720 block=stress baseline s4_log_cat_all #4
+[2026-11-21 18:15:34 IST] done 140/720 block=stress baseline s4_log_cat_all #4 -> PASS cost=0.0378 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:15:34 IST] start 141/720 block=stress baseline s1_click_full_suite #7
+[2026-11-21 18:15:55 IST] done 141/720 block=stress baseline s1_click_full_suite #7 -> PASS cost=0.0349 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:15:55 IST] start 142/720 block=stress rtk s3_click_core_full_read #4
+[2026-11-21 18:16:08 IST] done 142/720 block=stress rtk s3_click_core_full_read #4 -> PASS cost=0.2920 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:16:08 IST] start 143/720 block=stress headroom s4_log_cat_all #7
+[2026-11-21 18:16:58 IST] done 143/720 block=stress headroom s4_log_cat_all #7 -> PASS cost=0.1452 turns=7 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:16:58 IST] start 144/720 block=stress ojas3 s3_click_core_full_read #8
+[2026-11-21 18:17:14 IST] done 144/720 block=stress ojas3 s3_click_core_full_read #8 -> PASS cost=0.2840 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:17:14 IST] start 145/720 block=stress ojas3 s1_click_full_suite #2
+[2026-11-21 18:17:34 IST] done 145/720 block=stress ojas3 s1_click_full_suite #2 -> PASS cost=0.0246 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:17:34 IST] start 146/720 block=stress rtk s3_click_core_full_read #2
+[2026-11-21 18:17:47 IST] done 146/720 block=stress rtk s3_click_core_full_read #2 -> PASS cost=0.2752 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:17:47 IST] start 147/720 block=stress rtk s3_click_core_full_read #5
+[2026-11-21 18:18:00 IST] done 147/720 block=stress rtk s3_click_core_full_read #5 -> PASS cost=0.2755 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:18:00 IST] start 148/720 block=stress baseline s2_express_full_suite #6
+[2026-11-21 18:18:12 IST] done 148/720 block=stress baseline s2_express_full_suite #6 -> I'd like to rerun with the output saved to a file outside th cost=0.0240 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:18:13 IST] start 149/720 block=stress baseline s3_click_core_full_read #3
+[2026-11-21 18:18:25 IST] done 149/720 block=stress baseline s3_click_core_full_read #3 -> PASS cost=0.2903 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:18:26 IST] start 150/720 block=stress ojas3 s1_click_full_suite #10
+[2026-11-21 18:18:45 IST] done 150/720 block=stress ojas3 s1_click_full_suite #10 -> PASS cost=0.0254 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:18:45 IST] start 151/720 block=stress ojas3 s3_click_core_full_read #3
+[2026-11-21 18:19:01 IST] done 151/720 block=stress ojas3 s3_click_core_full_read #3 -> PASS cost=0.2849 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:19:02 IST] start 152/720 block=stress ojas3 s2_express_full_suite #8
+[2026-11-21 18:19:10 IST] done 152/720 block=stress ojas3 s2_express_full_suite #8 -> PASS cost=0.0116 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:19:11 IST] start 153/720 block=stress rtk s1_click_full_suite #7
+[2026-11-21 18:19:32 IST] done 153/720 block=stress rtk s1_click_full_suite #7 -> PASS cost=0.0349 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:19:32 IST] start 154/720 block=stress rtk s3_click_core_full_read #1
+[2026-11-21 18:19:45 IST] done 154/720 block=stress rtk s3_click_core_full_read #1 -> PASS cost=0.2757 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:19:46 IST] start 155/720 block=stress baseline s3_click_core_full_read #4
+[2026-11-21 18:19:58 IST] done 155/720 block=stress baseline s3_click_core_full_read #4 -> PASS cost=0.2747 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:19:58 IST] start 156/720 block=stress ojas3 s2_express_full_suite #1
+[2026-11-21 18:20:07 IST] done 156/720 block=stress ojas3 s2_express_full_suite #1 -> PASS cost=0.0113 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:20:07 IST] start 157/720 block=stress baseline s3_click_core_full_read #1
+[2026-11-21 18:20:19 IST] done 157/720 block=stress baseline s3_click_core_full_read #1 -> PASS cost=0.2753 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:20:19 IST] start 158/720 block=stress rtk s4_log_cat_all #4
+[2026-11-21 18:20:32 IST] done 158/720 block=stress rtk s4_log_cat_all #4 -> Which would you like? cost=0.0227 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:20:33 IST] start 159/720 block=stress ojas3 s1_click_full_suite #4
+[2026-11-21 18:20:51 IST] done 159/720 block=stress ojas3 s1_click_full_suite #4 -> PASS cost=0.0251 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:20:51 IST] start 160/720 block=stress baseline s4_log_cat_all #10
+[2026-11-21 18:21:02 IST] done 160/720 block=stress baseline s4_log_cat_all #10 -> PASS cost=0.0390 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:21:03 IST] start 161/720 block=stress rtk s4_log_cat_all #6
+[2026-11-21 18:21:15 IST] done 161/720 block=stress rtk s4_log_cat_all #6 -> PASS cost=0.0288 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:21:15 IST] start 162/720 block=stress rtk s2_express_full_suite #1
+[2026-11-21 18:21:33 IST] done 162/720 block=stress rtk s2_express_full_suite #1 -> To get the failure details, I could re-run with output redir cost=0.0456 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:21:33 IST] start 163/720 block=stress ojas3 s2_express_full_suite #7
+[2026-11-21 18:21:42 IST] done 163/720 block=stress ojas3 s2_express_full_suite #7 -> PASS cost=0.0116 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:21:42 IST] start 164/720 block=stress headroom s2_express_full_suite #8
+[2026-11-21 18:22:27 IST] done 164/720 block=stress headroom s2_express_full_suite #8 -> Do you want me to re-run it with the output redirected to a  cost=0.0247 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:22:28 IST] start 165/720 block=stress baseline s1_click_full_suite #5
+[2026-11-21 18:22:51 IST] done 165/720 block=stress baseline s1_click_full_suite #5 -> PASS cost=0.0229 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:22:51 IST] start 166/720 block=stress baseline s4_log_cat_all #2
+[2026-11-21 18:23:01 IST] done 166/720 block=stress baseline s4_log_cat_all #2 -> PASS cost=0.0314 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:23:01 IST] start 167/720 block=stress baseline s2_express_full_suite #5
+[2026-11-21 18:23:13 IST] done 167/720 block=stress baseline s2_express_full_suite #5 -> `git status` also shows `test/res.send.js` was already modif cost=0.0244 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:23:14 IST] start 168/720 block=stress headroom s1_click_full_suite #4
+[2026-11-21 18:24:09 IST] done 168/720 block=stress headroom s1_click_full_suite #4 -> PASS cost=0.0242 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:24:10 IST] start 169/720 block=stress rtk s4_log_cat_all #7
+[2026-11-21 18:24:23 IST] done 169/720 block=stress rtk s4_log_cat_all #7 -> PASS cost=0.0290 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:24:24 IST] start 170/720 block=stress headroom s2_express_full_suite #2
+[2026-11-21 18:25:15 IST] done 170/720 block=stress headroom s2_express_full_suite #2 -> To get the failure message, I could rerun `npm test` with th cost=0.0314 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:25:15 IST] start 171/720 block=stress headroom s4_log_cat_all #4
+[2026-11-21 18:26:01 IST] done 171/720 block=stress headroom s4_log_cat_all #4 -> PASS cost=0.0365 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:26:01 IST] start 172/720 block=stress baseline s1_click_full_suite #10
+[2026-11-21 18:26:25 IST] done 172/720 block=stress baseline s1_click_full_suite #10 -> PASS cost=0.0277 turns=3 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:26:26 IST] start 173/720 block=stress headroom s3_click_core_full_read #4
+[2026-11-21 18:27:10 IST] done 173/720 block=stress headroom s3_click_core_full_read #4 -> PASS cost=0.2968 turns=4 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:27:10 IST] start 174/720 block=stress ojas3 s2_express_full_suite #3
+[2026-11-21 18:27:20 IST] done 174/720 block=stress ojas3 s2_express_full_suite #3 -> PASS cost=0.0115 turns=2 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:27:21 IST] start 175/720 block=stress rtk s1_click_full_suite #2
+[2026-11-21 18:27:49 IST] done 175/720 block=stress rtk s1_click_full_suite #2 -> PASS cost=0.0350 turns=6 | valid=1 | last pause: 2026-11-21 16:43:00 IST
+[2026-11-21 18:27:49 IST] start 176/720 block=stress ojas3 s1_click_full_suite #5
+[2026-11-21 18:27:59 IST] PAUSE ojas3__s1_click_full_suite__5: rate limit: "You've hit your 5-hour limit � resets 4:10pm (UTC)" -> sleeping 11701s until 2026-11-21 21:43:00 IST
+[2026-11-21 21:43:01 IST] RESUME ojas3__s1_click_full_suite__5
+[2026-11-21 21:43:02 IST] start 176/720 block=stress ojas3 s1_click_full_suite #5
+[2026-11-21 21:43:24 IST] done 176/720 block=stress ojas3 s1_click_full_suite #5 -> PASS cost=0.0485 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:43:24 IST] start 177/720 block=stress baseline s3_click_core_full_read #2
+[2026-11-21 21:43:38 IST] done 177/720 block=stress baseline s3_click_core_full_read #2 -> PASS cost=0.2927 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:43:38 IST] start 178/720 block=stress baseline s3_click_core_full_read #9
+[2026-11-21 21:43:54 IST] done 178/720 block=stress baseline s3_click_core_full_read #9 -> PASS cost=0.2798 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:43:54 IST] start 179/720 block=stress rtk s4_log_cat_all #5
+[2026-11-21 21:44:07 IST] done 179/720 block=stress rtk s4_log_cat_all #5 -> The simplest fix is to let me filter out the routine lines,  cost=0.0447 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:44:07 IST] start 180/720 block=stress headroom s1_click_full_suite #1
+[2026-11-21 21:44:53 IST] done 180/720 block=stress headroom s1_click_full_suite #1 -> PASS cost=0.0924 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:44:53 IST] start 181/720 block=stress ojas3 s3_click_core_full_read #4
+[2026-11-21 21:45:14 IST] done 181/720 block=stress ojas3 s3_click_core_full_read #4 -> PASS cost=0.3395 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:45:14 IST] start 182/720 block=stress ojas3 s2_express_full_suite #10
+[2026-11-21 21:45:24 IST] done 182/720 block=stress ojas3 s2_express_full_suite #10 -> PASS cost=0.0343 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:45:24 IST] start 183/720 block=stress baseline s4_log_cat_all #1
+[2026-11-21 21:45:45 IST] done 183/720 block=stress baseline s4_log_cat_all #1 -> If I can run `grep -nE 'ERROR|FATAL|INC-' /home/bench/work/l cost=0.0888 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:45:45 IST] start 184/720 block=stress headroom s4_log_cat_all #6
+[2026-11-21 21:46:19 IST] done 184/720 block=stress headroom s4_log_cat_all #6 -> PASS cost=0.0561 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:46:19 IST] start 185/720 block=stress baseline s2_express_full_suite #1
+[2026-11-21 21:46:32 IST] done 185/720 block=stress baseline s2_express_full_suite #1 -> To get the failure details, I'd need to run it again with th cost=0.0371 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:46:32 IST] start 186/720 block=stress headroom s3_click_core_full_read #10
+[2026-11-21 21:47:13 IST] done 186/720 block=stress headroom s3_click_core_full_read #10 -> PASS cost=0.2910 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:47:13 IST] start 187/720 block=stress baseline s4_log_cat_all #6
+[2026-11-21 21:47:23 IST] done 187/720 block=stress baseline s4_log_cat_all #6 -> PASS cost=0.0311 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:47:23 IST] start 188/720 block=stress rtk s2_express_full_suite #6
+[2026-11-21 21:47:42 IST] done 188/720 block=stress rtk s2_express_full_suite #6 -> To get the real failure, I'd need to run the suite different cost=0.0627 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:47:43 IST] start 189/720 block=stress baseline s1_click_full_suite #1
+[2026-11-21 21:48:04 IST] done 189/720 block=stress baseline s1_click_full_suite #1 -> PASS cost=0.0365 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:48:04 IST] start 190/720 block=stress baseline s4_log_cat_all #5
+[2026-11-21 21:48:23 IST] done 190/720 block=stress baseline s4_log_cat_all #5 -> PASS cost=0.1154 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:48:24 IST] start 191/720 block=stress ojas3 s3_click_core_full_read #6
+[2026-11-21 21:48:44 IST] done 191/720 block=stress ojas3 s3_click_core_full_read #6 -> PASS cost=0.2915 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:48:44 IST] start 192/720 block=stress baseline s3_click_core_full_read #8
+[2026-11-21 21:48:57 IST] done 192/720 block=stress baseline s3_click_core_full_read #8 -> PASS cost=0.2754 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:48:57 IST] start 193/720 block=stress baseline s2_express_full_suite #7
+[2026-11-21 21:49:08 IST] done 193/720 block=stress baseline s2_express_full_suite #7 -> You asked for a single plain run, so I haven't rerun it. To  cost=0.0237 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:49:09 IST] start 194/720 block=stress ojas3 s4_log_cat_all #7
+[2026-11-21 21:49:14 IST] done 194/720 block=stress ojas3 s4_log_cat_all #7 -> PASS cost=0.0565 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:49:15 IST] start 195/720 block=stress headroom s4_log_cat_all #8
+[2026-11-21 21:49:55 IST] done 195/720 block=stress headroom s4_log_cat_all #8 -> PASS cost=0.0574 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:49:56 IST] start 196/720 block=stress baseline s3_click_core_full_read #6
+[2026-11-21 21:50:09 IST] done 196/720 block=stress baseline s3_click_core_full_read #6 -> PASS cost=0.2747 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:50:10 IST] start 197/720 block=stress rtk s3_click_core_full_read #7
+[2026-11-21 21:50:21 IST] done 197/720 block=stress rtk s3_click_core_full_read #7 -> PASS cost=0.2913 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:50:22 IST] start 198/720 block=stress headroom s3_click_core_full_read #7
+[2026-11-21 21:50:57 IST] done 198/720 block=stress headroom s3_click_core_full_read #7 -> PASS cost=0.2747 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:50:57 IST] start 199/720 block=stress headroom s3_click_core_full_read #2
+[2026-11-21 21:51:36 IST] done 199/720 block=stress headroom s3_click_core_full_read #2 -> PASS cost=0.2755 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:51:36 IST] start 200/720 block=stress baseline s1_click_full_suite #4
+[2026-11-21 21:51:59 IST] done 200/720 block=stress baseline s1_click_full_suite #4 -> PASS cost=0.0245 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:51:59 IST] start 201/720 block=stress rtk s4_log_cat_all #10
+[2026-11-21 21:52:18 IST] done 201/720 block=stress rtk s4_log_cat_all #10 -> PASS cost=0.1154 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:52:18 IST] start 202/720 block=stress ojas3 s2_express_full_suite #4
+[2026-11-21 21:52:27 IST] done 202/720 block=stress ojas3 s2_express_full_suite #4 -> PASS cost=0.0115 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:52:28 IST] start 203/720 block=stress ojas3 s2_express_full_suite #6
+[2026-11-21 21:52:37 IST] done 203/720 block=stress ojas3 s2_express_full_suite #6 -> PASS cost=0.0116 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:52:38 IST] start 204/720 block=stress rtk s3_click_core_full_read #3
+[2026-11-21 21:52:51 IST] done 204/720 block=stress rtk s3_click_core_full_read #3 -> PASS cost=0.1230 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:52:52 IST] start 205/720 block=stress ojas3 s4_log_cat_all #4
+[2026-11-21 21:52:57 IST] done 205/720 block=stress ojas3 s4_log_cat_all #4 -> PASS cost=0.0065 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:52:57 IST] start 206/720 block=stress baseline s1_click_full_suite #8
+[2026-11-21 21:53:17 IST] done 206/720 block=stress baseline s1_click_full_suite #8 -> PASS cost=0.0217 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:53:17 IST] start 207/720 block=stress ojas3 s3_click_core_full_read #5
+[2026-11-21 21:53:34 IST] done 207/720 block=stress ojas3 s3_click_core_full_read #5 -> PASS cost=0.2852 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:53:35 IST] start 208/720 block=stress rtk s1_click_full_suite #5
+[2026-11-21 21:53:55 IST] done 208/720 block=stress rtk s1_click_full_suite #5 -> PASS cost=0.0519 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:53:55 IST] start 209/720 block=stress baseline s4_log_cat_all #9
+[2026-11-21 21:54:15 IST] done 209/720 block=stress baseline s4_log_cat_all #9 -> PASS cost=0.0679 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:54:16 IST] start 210/720 block=stress ojas3 s3_click_core_full_read #10
+[2026-11-21 21:54:31 IST] done 210/720 block=stress ojas3 s3_click_core_full_read #10 -> PASS cost=0.2841 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:54:32 IST] start 211/720 block=stress rtk s1_click_full_suite #4
+[2026-11-21 21:55:05 IST] done 211/720 block=stress rtk s1_click_full_suite #4 -> PASS cost=0.0369 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:55:06 IST] start 212/720 block=stress baseline s4_log_cat_all #8
+[2026-11-21 21:55:18 IST] done 212/720 block=stress baseline s4_log_cat_all #8 -> PASS cost=0.0368 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:55:19 IST] start 213/720 block=stress ojas3 s1_click_full_suite #6
+[2026-11-21 21:55:38 IST] done 213/720 block=stress ojas3 s1_click_full_suite #6 -> PASS cost=0.0255 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:55:38 IST] start 214/720 block=stress headroom s4_log_cat_all #1
+[2026-11-21 21:56:16 IST] done 214/720 block=stress headroom s4_log_cat_all #1 -> PASS cost=0.0327 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:56:17 IST] start 215/720 block=stress baseline s4_log_cat_all #3
+[2026-11-21 21:56:45 IST] done 215/720 block=stress baseline s4_log_cat_all #3 -> Can I run `grep -vE 'INFO.*status=200'` or `grep -n 'INC-'`  cost=0.2275 turns=6 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:56:45 IST] start 216/720 block=stress rtk s3_click_core_full_read #8
+[2026-11-21 21:56:58 IST] done 216/720 block=stress rtk s3_click_core_full_read #8 -> PASS cost=0.2761 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:56:58 IST] start 217/720 block=stress rtk s1_click_full_suite #9
+[2026-11-21 21:57:24 IST] done 217/720 block=stress rtk s1_click_full_suite #9 -> PASS cost=0.0320 turns=6 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:57:25 IST] start 218/720 block=stress headroom s4_log_cat_all #9
+[2026-11-21 21:58:04 IST] done 218/720 block=stress headroom s4_log_cat_all #9 -> PASS cost=0.0426 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:58:04 IST] start 219/720 block=stress baseline s2_express_full_suite #8
+[2026-11-21 21:58:19 IST] done 219/720 block=stress baseline s2_express_full_suite #8 -> Which would you prefer, or should I go ahead with option 1? cost=0.0248 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:58:19 IST] start 220/720 block=stress ojas3 s4_log_cat_all #2
+[2026-11-21 21:58:25 IST] done 220/720 block=stress ojas3 s4_log_cat_all #2 -> PASS cost=0.0068 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:58:25 IST] start 221/720 block=stress headroom s2_express_full_suite #10
+[2026-11-21 21:59:06 IST] done 221/720 block=stress headroom s2_express_full_suite #10 -> You said to run it once, plain, without piping, so I haven't cost=0.0489 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:59:06 IST] start 222/720 block=stress headroom s4_log_cat_all #5
+[2026-11-21 21:59:46 IST] done 222/720 block=stress headroom s4_log_cat_all #5 -> PASS cost=0.0408 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 21:59:47 IST] start 223/720 block=stress ojas3 s1_click_full_suite #7
+[2026-11-21 22:00:09 IST] done 223/720 block=stress ojas3 s1_click_full_suite #7 -> PASS cost=0.0265 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:00:09 IST] start 224/720 block=stress ojas3 s4_log_cat_all #1
+[2026-11-21 22:00:15 IST] done 224/720 block=stress ojas3 s4_log_cat_all #1 -> PASS cost=0.0066 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:00:15 IST] start 225/720 block=stress baseline s1_click_full_suite #3
+[2026-11-21 22:00:36 IST] done 225/720 block=stress baseline s1_click_full_suite #3 -> PASS cost=0.0258 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:00:37 IST] start 226/720 block=stress ojas3 s1_click_full_suite #8
+[2026-11-21 22:00:58 IST] done 226/720 block=stress ojas3 s1_click_full_suite #8 -> PASS cost=0.0258 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:00:58 IST] start 227/720 block=stress ojas3 s2_express_full_suite #9
+[2026-11-21 22:01:09 IST] done 227/720 block=stress ojas3 s2_express_full_suite #9 -> PASS cost=0.0114 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:01:09 IST] start 228/720 block=stress ojas3 s3_click_core_full_read #2
+[2026-11-21 22:01:26 IST] done 228/720 block=stress ojas3 s3_click_core_full_read #2 -> PASS cost=0.3204 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:01:26 IST] start 229/720 block=stress headroom s2_express_full_suite #6
+[2026-11-21 22:02:03 IST] done 229/720 block=stress headroom s2_express_full_suite #6 -> You asked me to run it only once, with no piping or truncati cost=0.0245 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:02:04 IST] start 230/720 block=stress headroom s1_click_full_suite #10
+[2026-11-21 22:02:54 IST] done 230/720 block=stress headroom s1_click_full_suite #10 -> PASS cost=0.0262 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:02:55 IST] start 231/720 block=stress baseline s1_click_full_suite #2
+[2026-11-21 22:03:18 IST] done 231/720 block=stress baseline s1_click_full_suite #2 -> PASS cost=0.0273 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:03:18 IST] start 232/720 block=stress baseline s1_click_full_suite #6
+[2026-11-21 22:03:39 IST] done 232/720 block=stress baseline s1_click_full_suite #6 -> PASS cost=0.0216 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:03:39 IST] start 233/720 block=stress ojas3 s2_express_full_suite #2
+[2026-11-21 22:03:49 IST] done 233/720 block=stress ojas3 s2_express_full_suite #2 -> PASS cost=0.0115 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:03:49 IST] start 234/720 block=stress ojas3 s4_log_cat_all #5
+[2026-11-21 22:03:55 IST] done 234/720 block=stress ojas3 s4_log_cat_all #5 -> PASS cost=0.0067 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:03:55 IST] start 235/720 block=stress rtk s2_express_full_suite #4
+[2026-11-21 22:04:14 IST] done 235/720 block=stress rtk s2_express_full_suite #4 -> To get the failure, I'd need to write the full output to a f cost=0.0462 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:04:15 IST] start 236/720 block=stress rtk s1_click_full_suite #3
+[2026-11-21 22:04:36 IST] done 236/720 block=stress rtk s1_click_full_suite #3 -> PASS cost=0.0370 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:04:36 IST] start 237/720 block=stress headroom s3_click_core_full_read #8
+[2026-11-21 22:05:15 IST] done 237/720 block=stress headroom s3_click_core_full_read #8 -> PASS cost=0.2750 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:05:15 IST] start 238/720 block=stress rtk s3_click_core_full_read #6
+[2026-11-21 22:05:29 IST] done 238/720 block=stress rtk s3_click_core_full_read #6 -> PASS cost=0.2749 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:05:29 IST] start 239/720 block=stress headroom s3_click_core_full_read #1
+[2026-11-21 22:06:04 IST] done 239/720 block=stress headroom s3_click_core_full_read #1 -> PASS cost=0.2752 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:06:04 IST] start 240/720 block=stress headroom s4_log_cat_all #10
+[2026-11-21 22:06:42 IST] done 240/720 block=stress headroom s4_log_cat_all #10 -> PASS cost=0.0560 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:06:43 IST] start 241/720 block=stress baseline s3_click_core_full_read #7
+[2026-11-21 22:06:56 IST] done 241/720 block=stress baseline s3_click_core_full_read #7 -> PASS cost=0.2762 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:06:57 IST] start 242/720 block=stress ojas3 s4_log_cat_all #3
+[2026-11-21 22:07:02 IST] done 242/720 block=stress ojas3 s4_log_cat_all #3 -> PASS cost=0.0064 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:07:02 IST] start 243/720 block=stress headroom s3_click_core_full_read #5
+[2026-11-21 22:07:44 IST] done 243/720 block=stress headroom s3_click_core_full_read #5 -> PASS cost=0.2843 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:07:44 IST] start 244/720 block=stress rtk s1_click_full_suite #10
+[2026-11-21 22:08:16 IST] done 244/720 block=stress rtk s1_click_full_suite #10 -> PASS cost=0.0425 turns=8 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:08:16 IST] start 245/720 block=stress rtk s1_click_full_suite #1
+[2026-11-21 22:08:37 IST] done 245/720 block=stress rtk s1_click_full_suite #1 -> PASS cost=0.0342 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:08:38 IST] start 246/720 block=stress baseline s3_click_core_full_read #5
+[2026-11-21 22:08:54 IST] done 246/720 block=stress baseline s3_click_core_full_read #5 -> PASS cost=0.2841 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:08:55 IST] start 247/720 block=stress headroom s3_click_core_full_read #9
+[2026-11-21 22:09:31 IST] done 247/720 block=stress headroom s3_click_core_full_read #9 -> PASS cost=0.2743 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:09:31 IST] start 248/720 block=stress headroom s4_log_cat_all #2
+[2026-11-21 22:10:14 IST] done 248/720 block=stress headroom s4_log_cat_all #2 -> PASS cost=0.0443 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:10:14 IST] start 249/720 block=stress rtk s3_click_core_full_read #10
+[2026-11-21 22:10:28 IST] done 249/720 block=stress rtk s3_click_core_full_read #10 -> PASS cost=0.2759 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:10:29 IST] start 250/720 block=stress rtk s4_log_cat_all #8
+[2026-11-21 22:10:44 IST] done 250/720 block=stress rtk s4_log_cat_all #8 -> PASS cost=0.0444 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:10:44 IST] start 251/720 block=stress baseline s2_express_full_suite #10
+[2026-11-21 22:10:56 IST] done 251/720 block=stress baseline s2_express_full_suite #10 -> Which would you like? I'd recommend option 1. cost=0.0242 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:10:56 IST] start 252/720 block=stress headroom s3_click_core_full_read #3
+[2026-11-21 22:11:32 IST] done 252/720 block=stress headroom s3_click_core_full_read #3 -> PASS cost=0.2749 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:11:32 IST] start 253/720 block=stress headroom s3_click_core_full_read #6
+[2026-11-21 22:12:11 IST] done 253/720 block=stress headroom s3_click_core_full_read #6 -> PASS cost=0.2748 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:12:11 IST] start 254/720 block=stress headroom s1_click_full_suite #9
+[2026-11-21 22:13:05 IST] done 254/720 block=stress headroom s1_click_full_suite #9 -> PASS cost=0.0283 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:13:05 IST] start 255/720 block=stress ojas3 s4_log_cat_all #6
+[2026-11-21 22:13:11 IST] done 255/720 block=stress ojas3 s4_log_cat_all #6 -> PASS cost=0.0067 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:13:11 IST] start 256/720 block=stress headroom s2_express_full_suite #9
+[2026-11-21 22:14:01 IST] done 256/720 block=stress headroom s2_express_full_suite #9 -> PASS cost=0.0349 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:14:01 IST] start 257/720 block=stress ojas3 s1_click_full_suite #9
+[2026-11-21 22:14:22 IST] done 257/720 block=stress ojas3 s1_click_full_suite #9 -> PASS cost=0.0244 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:14:22 IST] start 258/720 block=stress rtk s4_log_cat_all #1
+[2026-11-21 22:14:35 IST] done 258/720 block=stress rtk s4_log_cat_all #1 -> PASS cost=0.0284 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:14:35 IST] start 259/720 block=stress rtk s3_click_core_full_read #9
+[2026-11-21 22:14:48 IST] done 259/720 block=stress rtk s3_click_core_full_read #9 -> PASS cost=0.2754 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:14:48 IST] start 260/720 block=stress rtk s4_log_cat_all #3
+[2026-11-21 22:15:06 IST] done 260/720 block=stress rtk s4_log_cat_all #3 -> Can I search the saved output for `ERROR`, `FATAL` or `INC-` cost=0.0876 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:15:06 IST] start 261/720 block=stress ojas3 s1_click_full_suite #1
+[2026-11-21 22:15:26 IST] done 261/720 block=stress ojas3 s1_click_full_suite #1 -> PASS cost=0.0257 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:15:26 IST] start 262/720 block=stress rtk s2_express_full_suite #10
+[2026-11-21 22:15:47 IST] done 262/720 block=stress rtk s2_express_full_suite #10 -> I haven't modified any files. Tell me which option you want  cost=0.0459 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:15:47 IST] start 263/720 block=stress baseline s2_express_full_suite #4
+[2026-11-21 22:15:59 IST] done 263/720 block=stress baseline s2_express_full_suite #4 -> To get the details, I can re-run with the output redirected  cost=0.0236 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:15:59 IST] start 264/720 block=stress baseline s1_click_full_suite #9
+[2026-11-21 22:16:43 IST] done 264/720 block=stress baseline s1_click_full_suite #9 -> PASS cost=0.0238 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:16:44 IST] start 265/720 block=stress headroom s1_click_full_suite #2
+[2026-11-21 22:18:05 IST] done 265/720 block=stress headroom s1_click_full_suite #2 -> PASS cost=0.0277 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:18:06 IST] start 266/720 block=stress ojas3 s4_log_cat_all #10
+[2026-11-21 22:18:14 IST] done 266/720 block=stress ojas3 s4_log_cat_all #10 -> PASS cost=0.0064 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:18:14 IST] start 267/720 block=stress headroom s1_click_full_suite #7
+[2026-11-21 22:19:20 IST] done 267/720 block=stress headroom s1_click_full_suite #7 -> PASS cost=0.0234 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:19:20 IST] start 268/720 block=stress rtk s2_express_full_suite #9
+[2026-11-21 22:19:45 IST] done 268/720 block=stress rtk s2_express_full_suite #9 -> To get the failure message I'd need to run the suite once mo cost=0.0469 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:19:46 IST] start 269/720 block=stress ojas3 s4_log_cat_all #9
+[2026-11-21 22:19:51 IST] done 269/720 block=stress ojas3 s4_log_cat_all #9 -> PASS cost=0.0067 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:19:51 IST] start 270/720 block=stress baseline s2_express_full_suite #2
+[2026-11-21 22:20:04 IST] done 270/720 block=stress baseline s2_express_full_suite #2 -> Which would you like? cost=0.0242 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:20:05 IST] start 271/720 block=stress ojas3 s4_log_cat_all #8
+[2026-11-21 22:20:10 IST] done 271/720 block=stress ojas3 s4_log_cat_all #8 -> PASS cost=0.0066 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:20:10 IST] start 272/720 block=stress rtk s2_express_full_suite #8
+[2026-11-21 22:20:29 IST] done 272/720 block=stress rtk s2_express_full_suite #8 -> `test/res.send.js` already showed as modified in `git status cost=0.0459 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:20:30 IST] start 273/720 block=stress rtk s4_log_cat_all #9
+[2026-11-21 22:20:44 IST] done 273/720 block=stress rtk s4_log_cat_all #9 -> PASS cost=0.0351 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:20:44 IST] start 274/720 block=stress rtk s2_express_full_suite #5
+[2026-11-21 22:21:03 IST] done 274/720 block=stress rtk s2_express_full_suite #5 -> To get the details I'd need to run something other than plai cost=0.0456 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:21:04 IST] start 275/720 block=stress headroom s2_express_full_suite #5
+[2026-11-21 22:21:50 IST] done 275/720 block=stress headroom s2_express_full_suite #5 -> PASS cost=0.0358 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:21:51 IST] start 276/720 block=stress baseline s3_click_core_full_read #10
+[2026-11-21 22:22:04 IST] done 276/720 block=stress baseline s3_click_core_full_read #10 -> PASS cost=0.2754 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:22:04 IST] start 277/720 block=stress headroom s2_express_full_suite #4
+[2026-11-21 22:22:56 IST] done 277/720 block=stress headroom s2_express_full_suite #4 -> PASS cost=0.0309 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:22:57 IST] start 278/720 block=stress ojas3 s3_click_core_full_read #9
+[2026-11-21 22:23:14 IST] done 278/720 block=stress ojas3 s3_click_core_full_read #9 -> PASS cost=0.2851 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:23:14 IST] start 279/720 block=stress rtk s1_click_full_suite #8
+[2026-11-21 22:23:43 IST] done 279/720 block=stress rtk s1_click_full_suite #8 -> PASS cost=0.0365 turns=6 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:23:43 IST] start 280/720 block=stress headroom s1_click_full_suite #5
+[2026-11-21 22:24:37 IST] done 280/720 block=stress headroom s1_click_full_suite #5 -> PASS cost=0.0236 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:24:38 IST] start 281/720 block=main rtk t2_express_bug #5
+[2026-11-21 22:25:10 IST] done 281/720 block=main rtk t2_express_bug #5 -> PASS cost=0.0513 turns=9 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:25:10 IST] start 282/720 block=main headroom t8_control_edit #7
+[2026-11-21 22:25:41 IST] done 282/720 block=main headroom t8_control_edit #7 -> PASS cost=0.0264 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:25:41 IST] start 283/720 block=main rtk t5_click_qa #8
+[2026-11-21 22:25:49 IST] done 283/720 block=main rtk t5_click_qa #8 -> PASS cost=0.0309 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:25:50 IST] start 284/720 block=main ojas3 t7_git_history #2
+[2026-11-21 22:25:57 IST] done 284/720 block=main ojas3 t7_git_history #2 -> PASS cost=0.0237 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:25:57 IST] start 285/720 block=main rtk t8_control_edit #10
+[2026-11-21 22:26:04 IST] done 285/720 block=main rtk t8_control_edit #10 -> PASS cost=0.0265 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:26:04 IST] start 286/720 block=main headroom t1_click_bug #10
+[2026-11-21 22:27:19 IST] done 286/720 block=main headroom t1_click_bug #10 -> PASS cost=0.0505 turns=6 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:27:20 IST] start 287/720 block=main ojas3 t3_walkdir_bug #8
+[2026-11-21 22:27:54 IST] done 287/720 block=main ojas3 t3_walkdir_bug #8 -> PASS cost=0.0988 turns=12 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:27:54 IST] start 288/720 block=main rtk t8_control_edit #8
+[2026-11-21 22:28:04 IST] done 288/720 block=main rtk t8_control_edit #8 -> PASS cost=0.0100 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:28:04 IST] start 289/720 block=main rtk t6_log_rootcause #3
+[2026-11-21 22:28:12 IST] done 289/720 block=main rtk t6_log_rootcause #3 -> PASS cost=0.0452 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:28:12 IST] start 290/720 block=main baseline t1_click_bug #9
+[2026-11-21 22:29:02 IST] done 290/720 block=main baseline t1_click_bug #9 -> PASS cost=0.0622 turns=8 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:29:03 IST] start 291/720 block=main rtk t3_walkdir_bug #9
+[2026-11-21 22:29:32 IST] done 291/720 block=main rtk t3_walkdir_bug #9 -> PASS cost=0.1310 turns=14 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:29:33 IST] start 292/720 block=main rtk t3_walkdir_bug #4
+[2026-11-21 22:30:10 IST] done 292/720 block=main rtk t3_walkdir_bug #4 -> PASS cost=0.1461 turns=16 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:30:10 IST] start 293/720 block=main rtk t1_click_bug #9
+[2026-11-21 22:30:58 IST] done 293/720 block=main rtk t1_click_bug #9 -> PASS cost=0.0640 turns=9 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:30:58 IST] start 294/720 block=main rtk t2_express_bug #3
+[2026-11-21 22:31:27 IST] done 294/720 block=main rtk t2_express_bug #3 -> PASS cost=0.0491 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:31:28 IST] start 295/720 block=main headroom t2_express_bug #8
+[2026-11-21 22:33:36 IST] done 295/720 block=main headroom t2_express_bug #8 -> PASS cost=0.0436 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:33:37 IST] start 296/720 block=main baseline t6_log_rootcause #8
+[2026-11-21 22:33:55 IST] done 296/720 block=main baseline t6_log_rootcause #8 -> PASS cost=0.0502 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:33:57 IST] start 297/720 block=main rtk t8_control_edit #2
+[2026-11-21 22:34:14 IST] done 297/720 block=main rtk t8_control_edit #2 -> PASS cost=0.0104 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:34:15 IST] start 298/720 block=main ojas3 t4_click_rename #4
+[2026-11-21 22:34:44 IST] done 298/720 block=main ojas3 t4_click_rename #4 -> PASS cost=0.0286 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:34:44 IST] start 299/720 block=main baseline t7_git_history #10
+[2026-11-21 22:34:53 IST] done 299/720 block=main baseline t7_git_history #10 -> PASS cost=0.0267 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:34:53 IST] start 300/720 block=main headroom t3_walkdir_bug #1
+[2026-11-21 22:36:05 IST] done 300/720 block=main headroom t3_walkdir_bug #1 -> PASS cost=0.1006 turns=10 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:36:06 IST] start 301/720 block=main headroom t2_express_bug #3
+[2026-11-21 22:38:37 IST] done 301/720 block=main headroom t2_express_bug #3 -> PASS cost=0.0433 turns=6 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:38:39 IST] start 302/720 block=main baseline t7_git_history #7
+[2026-11-21 22:38:47 IST] done 302/720 block=main baseline t7_git_history #7 -> PASS cost=0.0222 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:38:48 IST] start 303/720 block=main headroom t7_git_history #6
+[2026-11-21 22:39:39 IST] done 303/720 block=main headroom t7_git_history #6 -> PASS cost=0.0274 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:39:40 IST] start 304/720 block=main ojas3 t5_click_qa #6
+[2026-11-21 22:39:57 IST] done 304/720 block=main ojas3 t5_click_qa #6 -> PASS cost=0.0313 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:39:59 IST] start 305/720 block=main ojas3 t3_walkdir_bug #6
+[2026-11-21 22:40:57 IST] done 305/720 block=main ojas3 t3_walkdir_bug #6 -> PASS cost=0.1573 turns=19 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:40:57 IST] start 306/720 block=main baseline t2_express_bug #1
+[2026-11-21 22:53:25 IST] done 306/720 block=main baseline t2_express_bug #1 -> PASS cost=0.0745 turns=1 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:53:26 IST] start 307/720 block=main ojas3 t7_git_history #10
+[2026-11-21 22:53:35 IST] done 307/720 block=main ojas3 t7_git_history #10 -> PASS cost=0.0239 turns=2 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:53:36 IST] start 308/720 block=main rtk t4_click_rename #4
+[2026-11-21 22:54:01 IST] done 308/720 block=main rtk t4_click_rename #4 -> PASS cost=0.0307 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:54:02 IST] start 309/720 block=main baseline t6_log_rootcause #7
+[2026-11-21 22:54:13 IST] done 309/720 block=main baseline t6_log_rootcause #7 -> PASS cost=0.0267 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:54:13 IST] start 310/720 block=main baseline t6_log_rootcause #6
+[2026-11-21 22:54:26 IST] done 310/720 block=main baseline t6_log_rootcause #6 -> PASS cost=0.0376 turns=4 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:54:27 IST] start 311/720 block=main ojas3 t8_control_edit #10
+[2026-11-21 22:54:36 IST] done 311/720 block=main ojas3 t8_control_edit #10 -> PASS cost=0.0267 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:54:37 IST] start 312/720 block=main headroom t4_click_rename #1
+[2026-11-21 22:55:37 IST] done 312/720 block=main headroom t4_click_rename #1 -> PASS cost=0.0296 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:55:37 IST] start 313/720 block=main headroom t4_click_rename #10
+[2026-11-21 22:56:29 IST] done 313/720 block=main headroom t4_click_rename #10 -> PASS cost=0.0327 turns=5 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:56:30 IST] start 314/720 block=main rtk t6_log_rootcause #8
+[2026-11-21 22:56:39 IST] done 314/720 block=main rtk t6_log_rootcause #8 -> PASS cost=0.0267 turns=3 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:56:39 IST] start 315/720 block=main ojas3 t1_click_bug #6
+[2026-11-21 22:57:36 IST] done 315/720 block=main ojas3 t1_click_bug #6 -> PASS cost=0.0625 turns=7 | valid=1 | last pause: 2026-11-21 21:43:00 IST
+[2026-11-21 22:57:36 IST] start 316/720 block=main headroom t5_click_qa #8
+[2026-11-21 22:58:17 IST] PAUSE headroom__t5_click_qa__8: rate limit: "You've hit your 5-hour limit � resets 9:10pm (UTC)" -> sleeping 13483s until 2026-11-22 02:43:00 IST
+[2026-11-22 17:47:05 IST] stale lock (pid 6847) removed
+[2026-11-22 17:47:09 IST] runner start pid=531 total=720 raw=../results/v2/raw
+[2026-11-22 17:47:10 IST] start 316/720 block=main headroom t5_click_qa #8
+[2026-11-22 17:48:21 IST] TRANSIENT headroom__t5_click_qa__8 (#1): TRANSIENT no result: empty stderr -> retry in 5 min
+[2026-11-22 17:53:37 IST] start 316/720 block=main headroom t5_click_qa #8
+[2026-11-22 17:55:09 IST] done 316/720 block=main headroom t5_click_qa #8 -> PASS cost=0.0819 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 17:55:18 IST] start 317/720 block=main headroom t5_click_qa #3
+[2026-11-22 17:58:00 IST] done 317/720 block=main headroom t5_click_qa #3 -> PASS cost=0.0119 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 17:58:08 IST] start 318/720 block=main headroom t4_click_rename #6
+[2026-11-22 17:59:40 IST] TRANSIENT headroom__t4_click_rename__6 (#1): TRANSIENT no result: empty stderr -> retry in 5 min
+[2026-11-22 18:04:46 IST] start 318/720 block=main headroom t4_click_rename #6
+[2026-11-22 18:06:02 IST] done 318/720 block=main headroom t4_click_rename #6 -> PASS cost=0.0353 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:06:03 IST] start 319/720 block=main rtk t1_click_bug #6
+[2026-11-22 18:06:47 IST] done 319/720 block=main rtk t1_click_bug #6 -> PASS cost=0.0775 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:06:48 IST] start 320/720 block=main baseline t3_walkdir_bug #6
+[2026-11-22 18:07:34 IST] done 320/720 block=main baseline t3_walkdir_bug #6 -> PASS cost=0.1692 turns=19 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:07:35 IST] start 321/720 block=main ojas3 t5_click_qa #9
+[2026-11-22 18:07:44 IST] done 321/720 block=main ojas3 t5_click_qa #9 -> PASS cost=0.0323 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:07:45 IST] start 322/720 block=main ojas3 t4_click_rename #9
+[2026-11-22 18:08:02 IST] done 322/720 block=main ojas3 t4_click_rename #9 -> PASS cost=0.0294 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:08:02 IST] start 323/720 block=main headroom t5_click_qa #7
+[2026-11-22 18:08:48 IST] done 323/720 block=main headroom t5_click_qa #7 -> PASS cost=0.0132 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:08:49 IST] start 324/720 block=main baseline t2_express_bug #8
+[2026-11-22 18:21:08 IST] done 324/720 block=main baseline t2_express_bug #8 -> PASS cost=0.0705 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:21:09 IST] start 325/720 block=main ojas3 t1_click_bug #4
+[2026-11-22 18:21:52 IST] done 325/720 block=main ojas3 t1_click_bug #4 -> PASS cost=0.0545 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:21:52 IST] start 326/720 block=main baseline t1_click_bug #6
+[2026-11-22 18:22:39 IST] done 326/720 block=main baseline t1_click_bug #6 -> PASS cost=0.0626 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:22:39 IST] start 327/720 block=main rtk t4_click_rename #8
+[2026-11-22 18:22:57 IST] done 327/720 block=main rtk t4_click_rename #8 -> PASS cost=0.0349 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:22:57 IST] start 328/720 block=main rtk t4_click_rename #6
+[2026-11-22 18:23:14 IST] done 328/720 block=main rtk t4_click_rename #6 -> PASS cost=0.0166 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:23:15 IST] start 329/720 block=main rtk t5_click_qa #9
+[2026-11-22 18:23:21 IST] done 329/720 block=main rtk t5_click_qa #9 -> PASS cost=0.0277 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:23:22 IST] start 330/720 block=main baseline t2_express_bug #6
+[2026-11-22 18:23:47 IST] done 330/720 block=main baseline t2_express_bug #6 -> PASS cost=0.0514 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:23:48 IST] start 331/720 block=main ojas3 t4_click_rename #6
+[2026-11-22 18:24:03 IST] done 331/720 block=main ojas3 t4_click_rename #6 -> PASS cost=0.0112 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:24:03 IST] start 332/720 block=main headroom t3_walkdir_bug #4
+[2026-11-22 18:25:21 IST] done 332/720 block=main headroom t3_walkdir_bug #4 -> PASS cost=0.1282 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:25:22 IST] start 333/720 block=main rtk t3_walkdir_bug #5
+[2026-11-22 18:25:51 IST] done 333/720 block=main rtk t3_walkdir_bug #5 -> PASS cost=0.1030 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:25:51 IST] start 334/720 block=main ojas3 t7_git_history #3
+[2026-11-22 18:25:57 IST] done 334/720 block=main ojas3 t7_git_history #3 -> PASS cost=0.0236 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:25:57 IST] start 335/720 block=main ojas3 t7_git_history #9
+[2026-11-22 18:26:04 IST] done 335/720 block=main ojas3 t7_git_history #9 -> PASS cost=0.0238 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:26:04 IST] start 336/720 block=main baseline t2_express_bug #2
+[2026-11-22 18:26:33 IST] done 336/720 block=main baseline t2_express_bug #2 -> PASS cost=0.0643 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:26:34 IST] start 337/720 block=main headroom t7_git_history #1
+[2026-11-22 18:27:17 IST] done 337/720 block=main headroom t7_git_history #1 -> PASS cost=0.0236 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:27:17 IST] start 338/720 block=main rtk t1_click_bug #5
+[2026-11-22 18:27:58 IST] done 338/720 block=main rtk t1_click_bug #5 -> PASS cost=0.0670 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:27:59 IST] start 339/720 block=main rtk t6_log_rootcause #5
+[2026-11-22 18:28:07 IST] done 339/720 block=main rtk t6_log_rootcause #5 -> PASS cost=0.0487 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:28:07 IST] start 340/720 block=main rtk t2_express_bug #2
+[2026-11-22 18:40:34 IST] done 340/720 block=main rtk t2_express_bug #2 -> PASS cost=0.1070 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:40:34 IST] start 341/720 block=main baseline t8_control_edit #7
+[2026-11-22 18:40:40 IST] done 341/720 block=main baseline t8_control_edit #7 -> PASS cost=0.0253 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:40:41 IST] start 342/720 block=main headroom t8_control_edit #6
+[2026-11-22 18:41:33 IST] done 342/720 block=main headroom t8_control_edit #6 -> PASS cost=0.0368 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:41:34 IST] start 343/720 block=main ojas3 t5_click_qa #3
+[2026-11-22 18:41:44 IST] done 343/720 block=main ojas3 t5_click_qa #3 -> PASS cost=0.0136 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:41:44 IST] start 344/720 block=main baseline t5_click_qa #3
+[2026-11-22 18:41:52 IST] done 344/720 block=main baseline t5_click_qa #3 -> PASS cost=0.0274 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:41:52 IST] start 345/720 block=main headroom t6_log_rootcause #1
+[2026-11-22 18:42:37 IST] done 345/720 block=main headroom t6_log_rootcause #1 -> PASS cost=0.0514 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:42:37 IST] start 346/720 block=main baseline t4_click_rename #2
+[2026-11-22 18:42:54 IST] done 346/720 block=main baseline t4_click_rename #2 -> PASS cost=0.0279 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:42:55 IST] start 347/720 block=main headroom t1_click_bug #8
+[2026-11-22 18:44:19 IST] done 347/720 block=main headroom t1_click_bug #8 -> PASS cost=0.0668 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:44:19 IST] start 348/720 block=main headroom t1_click_bug #9
+[2026-11-22 18:45:55 IST] done 348/720 block=main headroom t1_click_bug #9 -> PASS cost=0.0694 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:45:55 IST] start 349/720 block=main baseline t8_control_edit #2
+[2026-11-22 18:46:03 IST] done 349/720 block=main baseline t8_control_edit #2 -> PASS cost=0.0086 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:46:03 IST] start 350/720 block=main rtk t2_express_bug #6
+[2026-11-22 18:46:41 IST] done 350/720 block=main rtk t2_express_bug #6 -> PASS cost=0.0754 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:46:41 IST] start 351/720 block=main headroom t1_click_bug #7
+[2026-11-22 18:48:12 IST] done 351/720 block=main headroom t1_click_bug #7 -> PASS cost=0.0597 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:48:13 IST] start 352/720 block=main headroom t5_click_qa #10
+[2026-11-22 18:48:56 IST] done 352/720 block=main headroom t5_click_qa #10 -> PASS cost=0.0243 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:48:57 IST] start 353/720 block=main baseline t6_log_rootcause #4
+[2026-11-22 18:49:05 IST] done 353/720 block=main baseline t6_log_rootcause #4 -> PASS cost=0.0435 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:49:05 IST] start 354/720 block=main headroom t2_express_bug #1
+[2026-11-22 18:50:11 IST] done 354/720 block=main headroom t2_express_bug #1 -> PASS cost=0.0466 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:50:11 IST] start 355/720 block=main baseline t1_click_bug #1
+[2026-11-22 18:50:49 IST] done 355/720 block=main baseline t1_click_bug #1 -> PASS cost=0.0573 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:50:50 IST] start 356/720 block=main headroom t5_click_qa #6
+[2026-11-22 18:51:32 IST] done 356/720 block=main headroom t5_click_qa #6 -> PASS cost=0.0106 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:51:32 IST] start 357/720 block=main baseline t6_log_rootcause #9
+[2026-11-22 18:51:42 IST] done 357/720 block=main baseline t6_log_rootcause #9 -> PASS cost=0.0354 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:51:42 IST] start 358/720 block=main ojas3 t7_git_history #6
+[2026-11-22 18:51:48 IST] done 358/720 block=main ojas3 t7_git_history #6 -> PASS cost=0.0239 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:51:49 IST] start 359/720 block=main headroom t2_express_bug #2
+[2026-11-22 18:52:59 IST] done 359/720 block=main headroom t2_express_bug #2 -> PASS cost=0.0451 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:53:00 IST] start 360/720 block=main ojas3 t7_git_history #4
+[2026-11-22 18:53:07 IST] done 360/720 block=main ojas3 t7_git_history #4 -> PASS cost=0.0242 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:53:08 IST] start 361/720 block=main baseline t8_control_edit #5
+[2026-11-22 18:53:15 IST] done 361/720 block=main baseline t8_control_edit #5 -> PASS cost=0.0089 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:53:15 IST] start 362/720 block=main baseline t3_walkdir_bug #4
+[2026-11-22 18:53:52 IST] done 362/720 block=main baseline t3_walkdir_bug #4 -> PASS cost=0.1263 turns=16 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:53:52 IST] start 363/720 block=main baseline t4_click_rename #10
+[2026-11-22 18:54:09 IST] done 363/720 block=main baseline t4_click_rename #10 -> PASS cost=0.0186 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:54:10 IST] start 364/720 block=main headroom t5_click_qa #9
+[2026-11-22 18:54:55 IST] done 364/720 block=main headroom t5_click_qa #9 -> PASS cost=0.0135 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:54:55 IST] start 365/720 block=main ojas3 t2_express_bug #2
+[2026-11-22 18:55:39 IST] done 365/720 block=main ojas3 t2_express_bug #2 -> PASS cost=0.1014 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:55:40 IST] start 366/720 block=main rtk t4_click_rename #2
+[2026-11-22 18:55:57 IST] done 366/720 block=main rtk t4_click_rename #2 -> PASS cost=0.0156 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:55:57 IST] start 367/720 block=main rtk t3_walkdir_bug #8
+[2026-11-22 18:56:49 IST] done 367/720 block=main rtk t3_walkdir_bug #8 -> PASS cost=0.1851 turns=22 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:56:50 IST] start 368/720 block=main ojas3 t3_walkdir_bug #3
+[2026-11-22 18:57:12 IST] done 368/720 block=main ojas3 t3_walkdir_bug #3 -> PASS cost=0.0872 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:57:12 IST] start 369/720 block=main ojas3 t8_control_edit #6
+[2026-11-22 18:57:19 IST] done 369/720 block=main ojas3 t8_control_edit #6 -> PASS cost=0.0253 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:57:20 IST] start 370/720 block=main headroom t4_click_rename #2
+[2026-11-22 18:58:18 IST] done 370/720 block=main headroom t4_click_rename #2 -> PASS cost=0.0353 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:58:19 IST] start 371/720 block=main headroom t8_control_edit #10
+[2026-11-22 18:59:02 IST] done 371/720 block=main headroom t8_control_edit #10 -> PASS cost=0.0229 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:59:03 IST] start 372/720 block=main ojas3 t4_click_rename #8
+[2026-11-22 18:59:33 IST] done 372/720 block=main ojas3 t4_click_rename #8 -> PASS cost=0.0159 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 18:59:34 IST] start 373/720 block=main rtk t1_click_bug #10
+[2026-11-22 19:00:17 IST] done 373/720 block=main rtk t1_click_bug #10 -> PASS cost=0.0648 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:00:18 IST] start 374/720 block=main ojas3 t4_click_rename #5
+[2026-11-22 19:00:33 IST] done 374/720 block=main ojas3 t4_click_rename #5 -> PASS cost=0.0105 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:00:33 IST] start 375/720 block=main baseline t4_click_rename #5
+[2026-11-22 19:00:50 IST] done 375/720 block=main baseline t4_click_rename #5 -> PASS cost=0.0151 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:00:51 IST] start 376/720 block=main baseline t4_click_rename #3
+[2026-11-22 19:01:08 IST] done 376/720 block=main baseline t4_click_rename #3 -> PASS cost=0.0173 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:01:08 IST] start 377/720 block=main rtk t8_control_edit #6
+[2026-11-22 19:01:16 IST] done 377/720 block=main rtk t8_control_edit #6 -> PASS cost=0.0274 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:01:17 IST] start 378/720 block=main rtk t3_walkdir_bug #6
+[2026-11-22 19:02:03 IST] done 378/720 block=main rtk t3_walkdir_bug #6 -> PASS cost=0.1677 turns=20 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:02:03 IST] start 379/720 block=main rtk t6_log_rootcause #4
+[2026-11-22 19:02:12 IST] done 379/720 block=main rtk t6_log_rootcause #4 -> PASS cost=0.0370 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:02:13 IST] start 380/720 block=main ojas3 t6_log_rootcause #2
+[2026-11-22 19:02:20 IST] done 380/720 block=main ojas3 t6_log_rootcause #2 -> PASS cost=0.0333 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:02:20 IST] start 381/720 block=main rtk t1_click_bug #4
+[2026-11-22 19:02:57 IST] done 381/720 block=main rtk t1_click_bug #4 -> PASS cost=0.0676 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:02:57 IST] start 382/720 block=main baseline t6_log_rootcause #1
+[2026-11-22 19:03:05 IST] done 382/720 block=main baseline t6_log_rootcause #1 -> PASS cost=0.0298 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:03:05 IST] start 383/720 block=main baseline t7_git_history #4
+[2026-11-22 19:03:13 IST] done 383/720 block=main baseline t7_git_history #4 -> PASS cost=0.0270 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:03:13 IST] start 384/720 block=main baseline t5_click_qa #8
+[2026-11-22 19:03:20 IST] done 384/720 block=main baseline t5_click_qa #8 -> PASS cost=0.0105 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:03:20 IST] start 385/720 block=main baseline t1_click_bug #4
+[2026-11-22 19:04:09 IST] done 385/720 block=main baseline t1_click_bug #4 -> PASS cost=0.0665 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:04:09 IST] start 386/720 block=main headroom t6_log_rootcause #8
+[2026-11-22 19:04:47 IST] done 386/720 block=main headroom t6_log_rootcause #8 -> PASS cost=0.0305 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:04:47 IST] start 387/720 block=main ojas3 t5_click_qa #5
+[2026-11-22 19:04:57 IST] done 387/720 block=main ojas3 t5_click_qa #5 -> PASS cost=0.0113 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:04:58 IST] start 388/720 block=main baseline t3_walkdir_bug #5
+[2026-11-22 19:05:44 IST] done 388/720 block=main baseline t3_walkdir_bug #5 -> PASS cost=0.1624 turns=20 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:05:44 IST] start 389/720 block=main baseline t3_walkdir_bug #9
+[2026-11-22 19:06:14 IST] done 389/720 block=main baseline t3_walkdir_bug #9 -> PASS cost=0.1140 turns=13 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:06:14 IST] start 390/720 block=main rtk t1_click_bug #7
+[2026-11-22 19:07:02 IST] done 390/720 block=main rtk t1_click_bug #7 -> PASS cost=0.0611 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:07:02 IST] start 391/720 block=main headroom t6_log_rootcause #10
+[2026-11-22 19:07:38 IST] done 391/720 block=main headroom t6_log_rootcause #10 -> PASS cost=0.0306 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:07:39 IST] start 392/720 block=main ojas3 t8_control_edit #9
+[2026-11-22 19:07:47 IST] done 392/720 block=main ojas3 t8_control_edit #9 -> PASS cost=0.0104 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:07:47 IST] start 393/720 block=main headroom t6_log_rootcause #6
+[2026-11-22 19:08:22 IST] done 393/720 block=main headroom t6_log_rootcause #6 -> PASS cost=0.0149 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:08:23 IST] start 394/720 block=main rtk t6_log_rootcause #2
+[2026-11-22 19:08:32 IST] done 394/720 block=main rtk t6_log_rootcause #2 -> PASS cost=0.0293 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:08:32 IST] start 395/720 block=main ojas3 t1_click_bug #2
+[2026-11-22 19:09:14 IST] done 395/720 block=main ojas3 t1_click_bug #2 -> PASS cost=0.0601 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:09:14 IST] start 396/720 block=main rtk t7_git_history #8
+[2026-11-22 19:09:21 IST] done 396/720 block=main rtk t7_git_history #8 -> PASS cost=0.0234 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:09:21 IST] start 397/720 block=main headroom t6_log_rootcause #3
+[2026-11-22 19:09:57 IST] done 397/720 block=main headroom t6_log_rootcause #3 -> PASS cost=0.0239 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:09:58 IST] start 398/720 block=main ojas3 t3_walkdir_bug #10
+[2026-11-22 19:10:32 IST] done 398/720 block=main ojas3 t3_walkdir_bug #10 -> PASS cost=0.1247 turns=15 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:10:32 IST] start 399/720 block=main ojas3 t8_control_edit #4
+[2026-11-22 19:10:39 IST] done 399/720 block=main ojas3 t8_control_edit #4 -> PASS cost=0.0097 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:10:39 IST] start 400/720 block=main baseline t1_click_bug #7
+[2026-11-22 19:11:13 IST] done 400/720 block=main baseline t1_click_bug #7 -> PASS cost=0.0557 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:11:14 IST] start 401/720 block=main ojas3 t1_click_bug #3
+[2026-11-22 19:11:56 IST] done 401/720 block=main ojas3 t1_click_bug #3 -> PASS cost=0.0604 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:11:56 IST] start 402/720 block=main ojas3 t3_walkdir_bug #7
+[2026-11-22 19:12:48 IST] done 402/720 block=main ojas3 t3_walkdir_bug #7 -> PASS cost=0.1749 turns=20 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:12:49 IST] start 403/720 block=main ojas3 t8_control_edit #3
+[2026-11-22 19:12:56 IST] done 403/720 block=main ojas3 t8_control_edit #3 -> PASS cost=0.0097 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:12:56 IST] start 404/720 block=main rtk t4_click_rename #5
+[2026-11-22 19:13:11 IST] done 404/720 block=main rtk t4_click_rename #5 -> PASS cost=0.0125 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:13:11 IST] start 405/720 block=main rtk t4_click_rename #10
+[2026-11-22 19:13:29 IST] done 405/720 block=main rtk t4_click_rename #10 -> PASS cost=0.0180 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:13:30 IST] start 406/720 block=main baseline t5_click_qa #7
+[2026-11-22 19:13:38 IST] done 406/720 block=main baseline t5_click_qa #7 -> PASS cost=0.0134 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:13:39 IST] start 407/720 block=main rtk t6_log_rootcause #10
+[2026-11-22 19:13:48 IST] done 407/720 block=main rtk t6_log_rootcause #10 -> PASS cost=0.0276 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:13:48 IST] start 408/720 block=main rtk t7_git_history #10
+[2026-11-22 19:13:57 IST] done 408/720 block=main rtk t7_git_history #10 -> PASS cost=0.0289 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:13:57 IST] start 409/720 block=main headroom t3_walkdir_bug #2
+[2026-11-22 19:14:51 IST] done 409/720 block=main headroom t3_walkdir_bug #2 -> PASS cost=0.0932 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:14:52 IST] start 410/720 block=main ojas3 t2_express_bug #6
+[2026-11-22 19:15:32 IST] done 410/720 block=main ojas3 t2_express_bug #6 -> PASS cost=0.0734 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:15:33 IST] start 411/720 block=main headroom t7_git_history #4
+[2026-11-22 19:16:08 IST] done 411/720 block=main headroom t7_git_history #4 -> PASS cost=0.0226 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:16:08 IST] start 412/720 block=main baseline t8_control_edit #10
+[2026-11-22 19:16:16 IST] done 412/720 block=main baseline t8_control_edit #10 -> PASS cost=0.0095 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:16:16 IST] start 413/720 block=main ojas3 t8_control_edit #2
+[2026-11-22 19:16:24 IST] done 413/720 block=main ojas3 t8_control_edit #2 -> PASS cost=0.0110 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:16:24 IST] start 414/720 block=main ojas3 t1_click_bug #1
+[2026-11-22 19:17:15 IST] done 414/720 block=main ojas3 t1_click_bug #1 -> PASS cost=0.0706 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:17:16 IST] start 415/720 block=main ojas3 t1_click_bug #10
+[2026-11-22 19:18:03 IST] done 415/720 block=main ojas3 t1_click_bug #10 -> PASS cost=0.0590 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:18:03 IST] start 416/720 block=main headroom t5_click_qa #1
+[2026-11-22 19:18:39 IST] done 416/720 block=main headroom t5_click_qa #1 -> PASS cost=0.0107 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:18:40 IST] start 417/720 block=main headroom t5_click_qa #4
+[2026-11-22 19:19:18 IST] done 417/720 block=main headroom t5_click_qa #4 -> PASS cost=0.0110 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:19:18 IST] start 418/720 block=main baseline t4_click_rename #4
+[2026-11-22 19:19:34 IST] done 418/720 block=main baseline t4_click_rename #4 -> PASS cost=0.0144 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:19:35 IST] start 419/720 block=main headroom t7_git_history #2
+[2026-11-22 19:20:07 IST] done 419/720 block=main headroom t7_git_history #2 -> PASS cost=0.0224 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:20:08 IST] start 420/720 block=main baseline t5_click_qa #5
+[2026-11-22 19:20:16 IST] done 420/720 block=main baseline t5_click_qa #5 -> PASS cost=0.0134 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:20:17 IST] start 421/720 block=main ojas3 t6_log_rootcause #10
+[2026-11-22 19:20:25 IST] done 421/720 block=main ojas3 t6_log_rootcause #10 -> PASS cost=0.0268 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:20:26 IST] start 422/720 block=main baseline t3_walkdir_bug #8
+[2026-11-22 19:21:04 IST] done 422/720 block=main baseline t3_walkdir_bug #8 -> PASS cost=0.1469 turns=18 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:21:04 IST] start 423/720 block=main rtk t2_express_bug #10
+[2026-11-22 19:21:28 IST] done 423/720 block=main rtk t2_express_bug #10 -> PASS cost=0.0508 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:21:28 IST] start 424/720 block=main headroom t3_walkdir_bug #3
+[2026-11-22 19:22:23 IST] done 424/720 block=main headroom t3_walkdir_bug #3 -> PASS cost=0.0939 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:22:23 IST] start 425/720 block=main baseline t4_click_rename #1
+[2026-11-22 19:22:40 IST] done 425/720 block=main baseline t4_click_rename #1 -> PASS cost=0.0131 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:22:40 IST] start 426/720 block=main baseline t1_click_bug #3
+[2026-11-22 19:23:17 IST] done 426/720 block=main baseline t1_click_bug #3 -> PASS cost=0.0548 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:23:17 IST] start 427/720 block=main baseline t6_log_rootcause #3
+[2026-11-22 19:23:25 IST] done 427/720 block=main baseline t6_log_rootcause #3 -> PASS cost=0.0272 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:23:25 IST] start 428/720 block=main ojas3 t6_log_rootcause #5
+[2026-11-22 19:23:33 IST] done 428/720 block=main ojas3 t6_log_rootcause #5 -> PASS cost=0.0121 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:23:33 IST] start 429/720 block=main ojas3 t2_express_bug #4
+[2026-11-22 19:23:59 IST] done 429/720 block=main ojas3 t2_express_bug #4 -> PASS cost=0.0569 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:24:00 IST] start 430/720 block=main ojas3 t6_log_rootcause #3
+[2026-11-22 19:24:09 IST] done 430/720 block=main ojas3 t6_log_rootcause #3 -> PASS cost=0.0266 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:24:09 IST] start 431/720 block=main ojas3 t6_log_rootcause #8
+[2026-11-22 19:24:16 IST] done 431/720 block=main ojas3 t6_log_rootcause #8 -> PASS cost=0.0120 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:24:16 IST] start 432/720 block=main ojas3 t8_control_edit #1
+[2026-11-22 19:24:25 IST] done 432/720 block=main ojas3 t8_control_edit #1 -> PASS cost=0.0109 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:24:25 IST] start 433/720 block=main headroom t1_click_bug #3
+[2026-11-22 19:25:57 IST] done 433/720 block=main headroom t1_click_bug #3 -> PASS cost=0.0668 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:25:58 IST] start 434/720 block=main ojas3 t6_log_rootcause #9
+[2026-11-22 19:26:06 IST] done 434/720 block=main ojas3 t6_log_rootcause #9 -> PASS cost=0.0191 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:26:06 IST] start 435/720 block=main baseline t2_express_bug #4
+[2026-11-22 19:38:25 IST] done 435/720 block=main baseline t2_express_bug #4 -> PASS cost=0.0537 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:38:25 IST] start 436/720 block=main ojas3 t7_git_history #8
+[2026-11-22 19:38:32 IST] done 436/720 block=main ojas3 t7_git_history #8 -> PASS cost=0.0240 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:38:32 IST] start 437/720 block=main ojas3 t4_click_rename #3
+[2026-11-22 19:39:01 IST] done 437/720 block=main ojas3 t4_click_rename #3 -> PASS cost=0.0141 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:39:01 IST] start 438/720 block=main ojas3 t3_walkdir_bug #5
+[2026-11-22 19:39:31 IST] done 438/720 block=main ojas3 t3_walkdir_bug #5 -> PASS cost=0.1124 turns=13 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:39:31 IST] start 439/720 block=main baseline t5_click_qa #4
+[2026-11-22 19:39:39 IST] done 439/720 block=main baseline t5_click_qa #4 -> PASS cost=0.0113 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:39:40 IST] start 440/720 block=main headroom t4_click_rename #7
+[2026-11-22 19:40:33 IST] done 440/720 block=main headroom t4_click_rename #7 -> PASS cost=0.0147 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:40:34 IST] start 441/720 block=main baseline t4_click_rename #9
+[2026-11-22 19:40:51 IST] done 441/720 block=main baseline t4_click_rename #9 -> PASS cost=0.0163 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:40:51 IST] start 442/720 block=main ojas3 t3_walkdir_bug #9
+[2026-11-22 19:41:34 IST] done 442/720 block=main ojas3 t3_walkdir_bug #9 -> PASS cost=0.1543 turns=18 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:41:35 IST] start 443/720 block=main baseline t8_control_edit #9
+[2026-11-22 19:41:41 IST] done 443/720 block=main baseline t8_control_edit #9 -> PASS cost=0.0089 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:41:42 IST] start 444/720 block=main rtk t7_git_history #3
+[2026-11-22 19:41:47 IST] done 444/720 block=main rtk t7_git_history #3 -> PASS cost=0.0238 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:41:48 IST] start 445/720 block=main rtk t7_git_history #9
+[2026-11-22 19:41:54 IST] done 445/720 block=main rtk t7_git_history #9 -> PASS cost=0.0248 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:41:55 IST] start 446/720 block=main rtk t7_git_history #5
+[2026-11-22 19:42:01 IST] done 446/720 block=main rtk t7_git_history #5 -> PASS cost=0.0243 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:42:02 IST] start 447/720 block=main ojas3 t6_log_rootcause #4
+[2026-11-22 19:42:10 IST] done 447/720 block=main ojas3 t6_log_rootcause #4 -> PASS cost=0.0119 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:42:10 IST] start 448/720 block=main baseline t1_click_bug #10
+[2026-11-22 19:42:39 IST] done 448/720 block=main baseline t1_click_bug #10 -> PASS cost=0.0571 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:42:40 IST] start 449/720 block=main rtk t5_click_qa #5
+[2026-11-22 19:42:47 IST] done 449/720 block=main rtk t5_click_qa #5 -> PASS cost=0.0310 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:42:48 IST] start 450/720 block=main headroom t6_log_rootcause #4
+[2026-11-22 19:43:22 IST] done 450/720 block=main headroom t6_log_rootcause #4 -> PASS cost=0.0204 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:43:22 IST] start 451/720 block=main rtk t1_click_bug #1
+[2026-11-22 19:44:12 IST] done 451/720 block=main rtk t1_click_bug #1 -> PASS cost=0.0739 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:44:13 IST] start 452/720 block=main baseline t7_git_history #3
+[2026-11-22 19:44:20 IST] done 452/720 block=main baseline t7_git_history #3 -> PASS cost=0.0230 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:44:20 IST] start 453/720 block=main baseline t7_git_history #2
+[2026-11-22 19:44:26 IST] done 453/720 block=main baseline t7_git_history #2 -> PASS cost=0.0224 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:44:26 IST] start 454/720 block=main headroom t3_walkdir_bug #9
+[2026-11-22 19:45:23 IST] done 454/720 block=main headroom t3_walkdir_bug #9 -> PASS cost=0.1077 turns=13 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:45:24 IST] start 455/720 block=main headroom t6_log_rootcause #5
+[2026-11-22 19:45:59 IST] done 455/720 block=main headroom t6_log_rootcause #5 -> PASS cost=0.0146 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:45:59 IST] start 456/720 block=main rtk t1_click_bug #2
+[2026-11-22 19:46:40 IST] done 456/720 block=main rtk t1_click_bug #2 -> PASS cost=0.0701 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:46:40 IST] start 457/720 block=main rtk t3_walkdir_bug #1
+[2026-11-22 19:47:02 IST] done 457/720 block=main rtk t3_walkdir_bug #1 -> PASS cost=0.1018 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:47:02 IST] start 458/720 block=main headroom t3_walkdir_bug #5
+[2026-11-22 19:48:01 IST] done 458/720 block=main headroom t3_walkdir_bug #5 -> PASS cost=0.1151 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:48:02 IST] start 459/720 block=main headroom t1_click_bug #4
+[2026-11-22 19:49:13 IST] done 459/720 block=main headroom t1_click_bug #4 -> PASS cost=0.0620 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:49:14 IST] start 460/720 block=main baseline t5_click_qa #9
+[2026-11-22 19:49:21 IST] done 460/720 block=main baseline t5_click_qa #9 -> PASS cost=0.0099 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:49:22 IST] start 461/720 block=main rtk t7_git_history #2
+[2026-11-22 19:49:30 IST] done 461/720 block=main rtk t7_git_history #2 -> PASS cost=0.0285 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:49:30 IST] start 462/720 block=main ojas3 t6_log_rootcause #1
+[2026-11-22 19:49:38 IST] done 462/720 block=main ojas3 t6_log_rootcause #1 -> PASS cost=0.0190 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:49:38 IST] start 463/720 block=main baseline t1_click_bug #2
+[2026-11-22 19:50:15 IST] done 463/720 block=main baseline t1_click_bug #2 -> PASS cost=0.0556 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:50:15 IST] start 464/720 block=main rtk t1_click_bug #3
+[2026-11-22 19:50:57 IST] done 464/720 block=main rtk t1_click_bug #3 -> PASS cost=0.0799 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:50:58 IST] start 465/720 block=main rtk t5_click_qa #10
+[2026-11-22 19:51:05 IST] done 465/720 block=main rtk t5_click_qa #10 -> PASS cost=0.0105 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:51:05 IST] start 466/720 block=main headroom t8_control_edit #9
+[2026-11-22 19:51:37 IST] done 466/720 block=main headroom t8_control_edit #9 -> PASS cost=0.0096 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:51:38 IST] start 467/720 block=main baseline t6_log_rootcause #2
+[2026-11-22 19:51:48 IST] done 467/720 block=main baseline t6_log_rootcause #2 -> PASS cost=0.0362 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:51:48 IST] start 468/720 block=main baseline t1_click_bug #8
+[2026-11-22 19:52:23 IST] done 468/720 block=main baseline t1_click_bug #8 -> PASS cost=0.0657 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:52:24 IST] start 469/720 block=main rtk t2_express_bug #4
+[2026-11-22 19:54:54 IST] done 469/720 block=main rtk t2_express_bug #4 -> PASS cost=0.0695 turns=10 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:54:54 IST] start 470/720 block=main ojas3 t5_click_qa #2
+[2026-11-22 19:55:03 IST] done 470/720 block=main ojas3 t5_click_qa #2 -> PASS cost=0.0174 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:55:04 IST] start 471/720 block=main ojas3 t8_control_edit #7
+[2026-11-22 19:55:13 IST] done 471/720 block=main ojas3 t8_control_edit #7 -> PASS cost=0.0113 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:55:13 IST] start 472/720 block=main ojas3 t2_express_bug #7
+[2026-11-22 19:55:39 IST] done 472/720 block=main ojas3 t2_express_bug #7 -> PASS cost=0.0447 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:55:40 IST] start 473/720 block=main rtk t5_click_qa #4
+[2026-11-22 19:55:47 IST] done 473/720 block=main rtk t5_click_qa #4 -> PASS cost=0.0138 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:55:48 IST] start 474/720 block=main baseline t6_log_rootcause #5
+[2026-11-22 19:55:55 IST] done 474/720 block=main baseline t6_log_rootcause #5 -> PASS cost=0.0214 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:55:55 IST] start 475/720 block=main headroom t4_click_rename #9
+[2026-11-22 19:56:43 IST] done 475/720 block=main headroom t4_click_rename #9 -> PASS cost=0.0151 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:56:43 IST] start 476/720 block=main headroom t4_click_rename #4
+[2026-11-22 19:57:31 IST] done 476/720 block=main headroom t4_click_rename #4 -> PASS cost=0.0169 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 19:57:31 IST] start 477/720 block=main ojas3 t2_express_bug #5
+[2026-11-22 20:09:53 IST] done 477/720 block=main ojas3 t2_express_bug #5 -> PASS cost=0.0501 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:09:53 IST] start 478/720 block=main headroom t1_click_bug #2
+[2026-11-22 20:11:20 IST] done 478/720 block=main headroom t1_click_bug #2 -> PASS cost=0.0520 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:11:20 IST] start 479/720 block=main headroom t4_click_rename #3
+[2026-11-22 20:12:18 IST] done 479/720 block=main headroom t4_click_rename #3 -> PASS cost=0.0182 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:12:19 IST] start 480/720 block=main baseline t4_click_rename #7
+[2026-11-22 20:12:36 IST] done 480/720 block=main baseline t4_click_rename #7 -> PASS cost=0.0135 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:12:37 IST] start 481/720 block=main ojas3 t6_log_rootcause #6
+[2026-11-22 20:12:45 IST] done 481/720 block=main ojas3 t6_log_rootcause #6 -> PASS cost=0.0126 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:12:45 IST] start 482/720 block=main headroom t7_git_history #9
+[2026-11-22 20:13:30 IST] done 482/720 block=main headroom t7_git_history #9 -> PASS cost=0.0285 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:13:31 IST] start 483/720 block=main baseline t2_express_bug #3
+[2026-11-22 20:25:48 IST] done 483/720 block=main baseline t2_express_bug #3 -> PASS cost=0.0542 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:25:48 IST] start 484/720 block=main rtk t8_control_edit #5
+[2026-11-22 20:25:57 IST] done 484/720 block=main rtk t8_control_edit #5 -> PASS cost=0.0282 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:25:57 IST] start 485/720 block=main rtk t8_control_edit #4
+[2026-11-22 20:26:06 IST] done 485/720 block=main rtk t8_control_edit #4 -> PASS cost=0.0115 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:26:06 IST] start 486/720 block=main rtk t2_express_bug #8
+[2026-11-22 20:26:30 IST] done 486/720 block=main rtk t2_express_bug #8 -> PASS cost=0.0464 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:26:31 IST] start 487/720 block=main rtk t3_walkdir_bug #7
+[2026-11-22 20:27:10 IST] done 487/720 block=main rtk t3_walkdir_bug #7 -> PASS cost=0.1477 turns=16 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:27:10 IST] start 488/720 block=main baseline t8_control_edit #4
+[2026-11-22 20:27:16 IST] done 488/720 block=main baseline t8_control_edit #4 -> PASS cost=0.0090 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:27:17 IST] start 489/720 block=main headroom t2_express_bug #5
+[2026-11-22 20:28:41 IST] done 489/720 block=main headroom t2_express_bug #5 -> PASS cost=0.0482 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:28:42 IST] start 490/720 block=main ojas3 t1_click_bug #5
+[2026-11-22 20:29:26 IST] done 490/720 block=main ojas3 t1_click_bug #5 -> PASS cost=0.0595 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:29:26 IST] start 491/720 block=main baseline t7_git_history #9
+[2026-11-22 20:29:33 IST] done 491/720 block=main baseline t7_git_history #9 -> PASS cost=0.0227 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:29:33 IST] start 492/720 block=main rtk t8_control_edit #7
+[2026-11-22 20:29:41 IST] done 492/720 block=main rtk t8_control_edit #7 -> PASS cost=0.0107 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:29:41 IST] start 493/720 block=main baseline t5_click_qa #1
+[2026-11-22 20:29:47 IST] done 493/720 block=main baseline t5_click_qa #1 -> PASS cost=0.0109 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:29:48 IST] start 494/720 block=main baseline t3_walkdir_bug #2
+[2026-11-22 20:30:36 IST] done 494/720 block=main baseline t3_walkdir_bug #2 -> PASS cost=0.1560 turns=18 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:30:37 IST] start 495/720 block=main ojas3 t4_click_rename #2
+[2026-11-22 20:30:50 IST] done 495/720 block=main ojas3 t4_click_rename #2 -> PASS cost=0.0113 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:30:51 IST] start 496/720 block=main ojas3 t5_click_qa #8
+[2026-11-22 20:31:00 IST] done 496/720 block=main ojas3 t5_click_qa #8 -> PASS cost=0.0137 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:31:00 IST] start 497/720 block=main rtk t6_log_rootcause #7
+[2026-11-22 20:31:07 IST] done 497/720 block=main rtk t6_log_rootcause #7 -> PASS cost=0.0442 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:31:07 IST] start 498/720 block=main ojas3 t3_walkdir_bug #4
+[2026-11-22 20:31:44 IST] done 498/720 block=main ojas3 t3_walkdir_bug #4 -> PASS cost=0.1372 turns=16 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:31:44 IST] start 499/720 block=main baseline t2_express_bug #5
+[2026-11-22 20:32:12 IST] done 499/720 block=main baseline t2_express_bug #5 -> PASS cost=0.0615 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:32:13 IST] start 500/720 block=main baseline t3_walkdir_bug #7
+[2026-11-22 20:32:41 IST] done 500/720 block=main baseline t3_walkdir_bug #7 -> PASS cost=0.0989 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:32:42 IST] start 501/720 block=main headroom t2_express_bug #7
+[2026-11-22 20:35:44 IST] done 501/720 block=main headroom t2_express_bug #7 -> PASS cost=0.0539 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:35:45 IST] start 502/720 block=main rtk t7_git_history #7
+[2026-11-22 20:35:54 IST] done 502/720 block=main rtk t7_git_history #7 -> PASS cost=0.0285 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:35:54 IST] start 503/720 block=main baseline t3_walkdir_bug #3
+[2026-11-22 20:36:38 IST] done 503/720 block=main baseline t3_walkdir_bug #3 -> PASS cost=0.1622 turns=20 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:36:38 IST] start 504/720 block=main headroom t8_control_edit #5
+[2026-11-22 20:37:18 IST] done 504/720 block=main headroom t8_control_edit #5 -> PASS cost=0.0091 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:37:19 IST] start 505/720 block=main rtk t5_click_qa #3
+[2026-11-22 20:37:28 IST] done 505/720 block=main rtk t5_click_qa #3 -> PASS cost=0.0114 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:37:28 IST] start 506/720 block=main rtk t5_click_qa #1
+[2026-11-22 20:37:35 IST] done 506/720 block=main rtk t5_click_qa #1 -> PASS cost=0.0139 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:37:36 IST] start 507/720 block=main baseline t7_git_history #5
+[2026-11-22 20:37:43 IST] done 507/720 block=main baseline t7_git_history #5 -> PASS cost=0.0236 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:37:43 IST] start 508/720 block=main rtk t4_click_rename #9
+[2026-11-22 20:38:02 IST] done 508/720 block=main rtk t4_click_rename #9 -> PASS cost=0.0345 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:38:02 IST] start 509/720 block=main headroom t2_express_bug #10
+[2026-11-22 20:39:07 IST] done 509/720 block=main headroom t2_express_bug #10 -> PASS cost=0.0528 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:39:07 IST] start 510/720 block=main headroom t8_control_edit #1
+[2026-11-22 20:39:50 IST] done 510/720 block=main headroom t8_control_edit #1 -> PASS cost=0.0097 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:39:50 IST] start 511/720 block=main ojas3 t2_express_bug #3
+[2026-11-22 20:40:23 IST] done 511/720 block=main ojas3 t2_express_bug #3 -> PASS cost=0.0586 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:40:24 IST] start 512/720 block=main headroom t8_control_edit #4
+[2026-11-22 20:41:07 IST] done 512/720 block=main headroom t8_control_edit #4 -> PASS cost=0.0103 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:41:07 IST] start 513/720 block=main ojas3 t3_walkdir_bug #1
+[2026-11-22 20:41:49 IST] done 513/720 block=main ojas3 t3_walkdir_bug #1 -> PASS cost=0.1449 turns=17 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:41:50 IST] start 514/720 block=main headroom t3_walkdir_bug #7
+[2026-11-22 20:42:42 IST] done 514/720 block=main headroom t3_walkdir_bug #7 -> PASS cost=0.0677 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:42:42 IST] start 515/720 block=main rtk t5_click_qa #6
+[2026-11-22 20:42:51 IST] done 515/720 block=main rtk t5_click_qa #6 -> PASS cost=0.0113 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:42:51 IST] start 516/720 block=main headroom t3_walkdir_bug #10
+[2026-11-22 20:44:25 IST] done 516/720 block=main headroom t3_walkdir_bug #10 -> PASS cost=0.2143 turns=25 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:44:25 IST] start 517/720 block=main headroom t6_log_rootcause #9
+[2026-11-22 20:45:01 IST] done 517/720 block=main headroom t6_log_rootcause #9 -> PASS cost=0.0211 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:45:02 IST] start 518/720 block=main baseline t5_click_qa #6
+[2026-11-22 20:45:09 IST] done 518/720 block=main baseline t5_click_qa #6 -> PASS cost=0.0098 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:45:09 IST] start 519/720 block=main rtk t8_control_edit #3
+[2026-11-22 20:45:17 IST] done 519/720 block=main rtk t8_control_edit #3 -> PASS cost=0.0107 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:45:18 IST] start 520/720 block=main rtk t2_express_bug #9
+[2026-11-22 20:45:45 IST] done 520/720 block=main rtk t2_express_bug #9 -> PASS cost=0.0461 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:45:45 IST] start 521/720 block=main rtk t8_control_edit #9
+[2026-11-22 20:45:54 IST] done 521/720 block=main rtk t8_control_edit #9 -> PASS cost=0.0116 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:45:54 IST] start 522/720 block=main headroom t7_git_history #8
+[2026-11-22 20:46:26 IST] done 522/720 block=main headroom t7_git_history #8 -> PASS cost=0.0222 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:46:27 IST] start 523/720 block=main baseline t2_express_bug #7
+[2026-11-22 20:46:55 IST] done 523/720 block=main baseline t2_express_bug #7 -> PASS cost=0.0563 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:46:56 IST] start 524/720 block=main baseline t4_click_rename #6
+[2026-11-22 20:47:13 IST] done 524/720 block=main baseline t4_click_rename #6 -> PASS cost=0.0173 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:47:14 IST] start 525/720 block=main rtk t7_git_history #6
+[2026-11-22 20:47:23 IST] done 525/720 block=main rtk t7_git_history #6 -> PASS cost=0.0293 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:47:23 IST] start 526/720 block=main baseline t1_click_bug #5
+[2026-11-22 20:48:02 IST] done 526/720 block=main baseline t1_click_bug #5 -> PASS cost=0.0787 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:48:03 IST] start 527/720 block=main rtk t3_walkdir_bug #10
+[2026-11-22 20:48:28 IST] done 527/720 block=main rtk t3_walkdir_bug #10 -> PASS cost=0.0990 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:48:29 IST] start 528/720 block=main ojas3 t4_click_rename #10
+[2026-11-22 20:48:50 IST] done 528/720 block=main ojas3 t4_click_rename #10 -> PASS cost=0.0140 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 20:48:50 IST] start 529/720 block=main headroom t2_express_bug #9
+[2026-11-22 21:01:37 IST] done 529/720 block=main headroom t2_express_bug #9 -> PASS cost=0.0533 turns=1 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:01:37 IST] start 530/720 block=main rtk t6_log_rootcause #1
+[2026-11-22 21:01:47 IST] done 530/720 block=main rtk t6_log_rootcause #1 -> PASS cost=0.0287 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:01:48 IST] start 531/720 block=main headroom t7_git_history #3
+[2026-11-22 21:02:24 IST] done 531/720 block=main headroom t7_git_history #3 -> PASS cost=0.0224 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:02:24 IST] start 532/720 block=main headroom t1_click_bug #5
+[2026-11-22 21:03:46 IST] done 532/720 block=main headroom t1_click_bug #5 -> PASS cost=0.0599 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:03:46 IST] start 533/720 block=main headroom t6_log_rootcause #7
+[2026-11-22 21:04:24 IST] done 533/720 block=main headroom t6_log_rootcause #7 -> PASS cost=0.0304 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:04:25 IST] start 534/720 block=main headroom t7_git_history #5
+[2026-11-22 21:04:59 IST] done 534/720 block=main headroom t7_git_history #5 -> PASS cost=0.0232 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:04:59 IST] start 535/720 block=main rtk t1_click_bug #8
+[2026-11-22 21:05:53 IST] done 535/720 block=main rtk t1_click_bug #8 -> PASS cost=0.0892 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:05:53 IST] start 536/720 block=main ojas3 t3_walkdir_bug #2
+[2026-11-22 21:06:25 IST] done 536/720 block=main ojas3 t3_walkdir_bug #2 -> PASS cost=0.1176 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:06:25 IST] start 537/720 block=main ojas3 t5_click_qa #10
+[2026-11-22 21:06:34 IST] done 537/720 block=main ojas3 t5_click_qa #10 -> PASS cost=0.0157 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:06:35 IST] start 538/720 block=main rtk t3_walkdir_bug #3
+[2026-11-22 21:07:04 IST] done 538/720 block=main rtk t3_walkdir_bug #3 -> PASS cost=0.1220 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:07:05 IST] start 539/720 block=main ojas3 t5_click_qa #1
+[2026-11-22 21:07:13 IST] done 539/720 block=main ojas3 t5_click_qa #1 -> PASS cost=0.0130 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:07:13 IST] start 540/720 block=main baseline t8_control_edit #6
+[2026-11-22 21:07:20 IST] done 540/720 block=main baseline t8_control_edit #6 -> PASS cost=0.0091 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:07:20 IST] start 541/720 block=main headroom t8_control_edit #2
+[2026-11-22 21:07:57 IST] done 541/720 block=main headroom t8_control_edit #2 -> PASS cost=0.0115 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:07:57 IST] start 542/720 block=main rtk t7_git_history #1
+[2026-11-22 21:08:05 IST] done 542/720 block=main rtk t7_git_history #1 -> PASS cost=0.0240 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:08:05 IST] start 543/720 block=main baseline t5_click_qa #10
+[2026-11-22 21:08:12 IST] done 543/720 block=main baseline t5_click_qa #10 -> PASS cost=0.0110 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:08:12 IST] start 544/720 block=main ojas3 t1_click_bug #7
+[2026-11-22 21:08:53 IST] done 544/720 block=main ojas3 t1_click_bug #7 -> PASS cost=0.0617 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:08:54 IST] start 545/720 block=main headroom t7_git_history #7
+[2026-11-22 21:09:28 IST] done 545/720 block=main headroom t7_git_history #7 -> PASS cost=0.0269 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:09:28 IST] start 546/720 block=main baseline t5_click_qa #2
+[2026-11-22 21:09:37 IST] done 546/720 block=main baseline t5_click_qa #2 -> PASS cost=0.0139 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:09:37 IST] start 547/720 block=main baseline t7_git_history #8
+[2026-11-22 21:09:43 IST] done 547/720 block=main baseline t7_git_history #8 -> PASS cost=0.0222 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:09:43 IST] start 548/720 block=main headroom t4_click_rename #5
+[2026-11-22 21:10:32 IST] done 548/720 block=main headroom t4_click_rename #5 -> PASS cost=0.0159 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:10:32 IST] start 549/720 block=main ojas3 t1_click_bug #8
+[2026-11-22 21:11:16 IST] done 549/720 block=main ojas3 t1_click_bug #8 -> PASS cost=0.0665 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:11:17 IST] start 550/720 block=main rtk t4_click_rename #1
+[2026-11-22 21:11:34 IST] done 550/720 block=main rtk t4_click_rename #1 -> PASS cost=0.0171 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:11:34 IST] start 551/720 block=main ojas3 t7_git_history #7
+[2026-11-22 21:11:43 IST] done 551/720 block=main ojas3 t7_git_history #7 -> PASS cost=0.0281 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:11:43 IST] start 552/720 block=main headroom t3_walkdir_bug #8
+[2026-11-22 21:12:41 IST] done 552/720 block=main headroom t3_walkdir_bug #8 -> PASS cost=0.1066 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:12:41 IST] start 553/720 block=main ojas3 t8_control_edit #8
+[2026-11-22 21:12:50 IST] done 553/720 block=main ojas3 t8_control_edit #8 -> PASS cost=0.0251 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:12:50 IST] start 554/720 block=main ojas3 t5_click_qa #4
+[2026-11-22 21:12:59 IST] done 554/720 block=main ojas3 t5_click_qa #4 -> PASS cost=0.0139 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:13:00 IST] start 555/720 block=main baseline t8_control_edit #8
+[2026-11-22 21:13:06 IST] done 555/720 block=main baseline t8_control_edit #8 -> PASS cost=0.0089 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:13:06 IST] start 556/720 block=main headroom t3_walkdir_bug #6
+[2026-11-22 21:14:07 IST] done 556/720 block=main headroom t3_walkdir_bug #6 -> PASS cost=0.1244 turns=15 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:14:08 IST] start 557/720 block=main baseline t8_control_edit #3
+[2026-11-22 21:14:15 IST] done 557/720 block=main baseline t8_control_edit #3 -> PASS cost=0.0089 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:14:16 IST] start 558/720 block=main headroom t8_control_edit #8
+[2026-11-22 21:14:52 IST] done 558/720 block=main headroom t8_control_edit #8 -> PASS cost=0.0092 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:14:52 IST] start 559/720 block=main headroom t4_click_rename #8
+[2026-11-22 21:15:34 IST] done 559/720 block=main headroom t4_click_rename #8 -> PASS cost=0.0058 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:15:35 IST] start 560/720 block=main ojas3 t8_control_edit #5
+[2026-11-22 21:15:43 IST] done 560/720 block=main ojas3 t8_control_edit #5 -> PASS cost=0.0099 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:15:43 IST] start 561/720 block=main headroom t1_click_bug #1
+[2026-11-22 21:17:22 IST] done 561/720 block=main headroom t1_click_bug #1 -> PASS cost=0.0817 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:17:22 IST] start 562/720 block=main ojas3 t1_click_bug #9
+[2026-11-22 21:17:58 IST] done 562/720 block=main ojas3 t1_click_bug #9 -> PASS cost=0.0567 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:17:58 IST] start 563/720 block=main baseline t7_git_history #6
+[2026-11-22 21:18:04 IST] done 563/720 block=main baseline t7_git_history #6 -> PASS cost=0.0222 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:18:05 IST] start 564/720 block=main ojas3 t7_git_history #1
+[2026-11-22 21:18:13 IST] done 564/720 block=main ojas3 t7_git_history #1 -> PASS cost=0.0284 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:18:14 IST] start 565/720 block=main rtk t2_express_bug #7
+[2026-11-22 21:18:36 IST] done 565/720 block=main rtk t2_express_bug #7 -> PASS cost=0.0489 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:18:37 IST] start 566/720 block=main ojas3 t2_express_bug #8
+[2026-11-22 21:21:22 IST] done 566/720 block=main ojas3 t2_express_bug #8 -> PASS cost=0.0966 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:21:22 IST] start 567/720 block=main ojas3 t7_git_history #5
+[2026-11-22 21:21:28 IST] done 567/720 block=main ojas3 t7_git_history #5 -> PASS cost=0.0233 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:21:29 IST] start 568/720 block=main rtk t4_click_rename #7
+[2026-11-22 21:21:47 IST] done 568/720 block=main rtk t4_click_rename #7 -> PASS cost=0.0209 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:21:47 IST] start 569/720 block=main rtk t5_click_qa #2
+[2026-11-22 21:21:56 IST] done 569/720 block=main rtk t5_click_qa #2 -> PASS cost=0.0118 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:21:56 IST] start 570/720 block=main rtk t8_control_edit #1
+[2026-11-22 21:22:04 IST] done 570/720 block=main rtk t8_control_edit #1 -> PASS cost=0.0105 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:22:04 IST] start 571/720 block=main ojas3 t2_express_bug #9
+[2026-11-22 21:22:28 IST] done 571/720 block=main ojas3 t2_express_bug #9 -> PASS cost=0.0475 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:22:29 IST] start 572/720 block=main baseline t6_log_rootcause #10
+[2026-11-22 21:22:37 IST] done 572/720 block=main baseline t6_log_rootcause #10 -> PASS cost=0.0438 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:22:37 IST] start 573/720 block=main ojas3 t4_click_rename #1
+[2026-11-22 21:22:52 IST] done 573/720 block=main ojas3 t4_click_rename #1 -> PASS cost=0.0127 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:22:52 IST] start 574/720 block=main baseline t3_walkdir_bug #1
+[2026-11-22 21:23:43 IST] done 574/720 block=main baseline t3_walkdir_bug #1 -> PASS cost=0.1748 turns=21 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:23:43 IST] start 575/720 block=main baseline t8_control_edit #1
+[2026-11-22 21:23:50 IST] done 575/720 block=main baseline t8_control_edit #1 -> PASS cost=0.0089 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:23:50 IST] start 576/720 block=main baseline t3_walkdir_bug #10
+[2026-11-22 21:24:19 IST] done 576/720 block=main baseline t3_walkdir_bug #10 -> PASS cost=0.1124 turns=12 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:24:20 IST] start 577/720 block=main rtk t4_click_rename #3
+[2026-11-22 21:24:42 IST] done 577/720 block=main rtk t4_click_rename #3 -> PASS cost=0.0198 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:24:42 IST] start 578/720 block=main ojas3 t6_log_rootcause #7
+[2026-11-22 21:24:53 IST] done 578/720 block=main ojas3 t6_log_rootcause #7 -> PASS cost=0.0414 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:24:54 IST] start 579/720 block=main baseline t2_express_bug #9
+[2026-11-22 21:25:24 IST] done 579/720 block=main baseline t2_express_bug #9 -> PASS cost=0.0449 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:25:25 IST] start 580/720 block=main headroom t5_click_qa #2
+[2026-11-22 21:26:03 IST] done 580/720 block=main headroom t5_click_qa #2 -> PASS cost=0.0260 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:26:04 IST] start 581/720 block=main headroom t2_express_bug #6
+[2026-11-22 21:27:13 IST] done 581/720 block=main headroom t2_express_bug #6 -> PASS cost=0.0636 turns=9 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:27:14 IST] start 582/720 block=main headroom t6_log_rootcause #2
+[2026-11-22 21:27:51 IST] done 582/720 block=main headroom t6_log_rootcause #2 -> PASS cost=0.0206 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:27:51 IST] start 583/720 block=main rtk t3_walkdir_bug #2
+[2026-11-22 21:28:24 IST] done 583/720 block=main rtk t3_walkdir_bug #2 -> PASS cost=0.1259 turns=14 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:28:24 IST] start 584/720 block=main baseline t2_express_bug #10
+[2026-11-22 21:28:56 IST] done 584/720 block=main baseline t2_express_bug #10 -> PASS cost=0.0705 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:28:56 IST] start 585/720 block=main rtk t5_click_qa #7
+[2026-11-22 21:29:03 IST] done 585/720 block=main rtk t5_click_qa #7 -> PASS cost=0.0102 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:29:03 IST] start 586/720 block=main baseline t4_click_rename #8
+[2026-11-22 21:29:20 IST] done 586/720 block=main baseline t4_click_rename #8 -> PASS cost=0.0155 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:29:20 IST] start 587/720 block=main rtk t6_log_rootcause #9
+[2026-11-22 21:29:28 IST] done 587/720 block=main rtk t6_log_rootcause #9 -> PASS cost=0.0268 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:29:29 IST] start 588/720 block=main headroom t5_click_qa #5
+[2026-11-22 21:30:03 IST] done 588/720 block=main headroom t5_click_qa #5 -> PASS cost=0.0131 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:30:04 IST] start 589/720 block=main headroom t8_control_edit #3
+[2026-11-22 21:30:38 IST] done 589/720 block=main headroom t8_control_edit #3 -> PASS cost=0.0094 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:30:39 IST] start 590/720 block=main headroom t2_express_bug #4
+[2026-11-22 21:31:38 IST] done 590/720 block=main headroom t2_express_bug #4 -> PASS cost=0.0540 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:31:38 IST] start 591/720 block=main headroom t7_git_history #10
+[2026-11-22 21:32:13 IST] done 591/720 block=main headroom t7_git_history #10 -> PASS cost=0.0227 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:32:14 IST] start 592/720 block=main rtk t7_git_history #4
+[2026-11-22 21:32:20 IST] done 592/720 block=main rtk t7_git_history #4 -> PASS cost=0.0234 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:32:20 IST] start 593/720 block=main ojas3 t4_click_rename #7
+[2026-11-22 21:32:36 IST] done 593/720 block=main ojas3 t4_click_rename #7 -> PASS cost=0.0106 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:32:36 IST] start 594/720 block=main headroom t1_click_bug #6
+[2026-11-22 21:33:56 IST] done 594/720 block=main headroom t1_click_bug #6 -> PASS cost=0.0673 turns=8 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:33:57 IST] start 595/720 block=main ojas3 t2_express_bug #10
+[2026-11-22 21:34:21 IST] done 595/720 block=main ojas3 t2_express_bug #10 -> PASS cost=0.0447 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:34:22 IST] start 596/720 block=main rtk t2_express_bug #1
+[2026-11-22 21:34:52 IST] done 596/720 block=main rtk t2_express_bug #1 -> PASS cost=0.0531 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:34:53 IST] start 597/720 block=main ojas3 t5_click_qa #7
+[2026-11-22 21:35:02 IST] done 597/720 block=main ojas3 t5_click_qa #7 -> PASS cost=0.0147 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:35:03 IST] start 598/720 block=main rtk t6_log_rootcause #6
+[2026-11-22 21:35:10 IST] done 598/720 block=main rtk t6_log_rootcause #6 -> PASS cost=0.0318 turns=3 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:35:10 IST] start 599/720 block=main baseline t7_git_history #1
+[2026-11-22 21:35:17 IST] done 599/720 block=main baseline t7_git_history #1 -> PASS cost=0.0223 turns=2 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:35:17 IST] start 600/720 block=main ojas3 t2_express_bug #1
+[2026-11-22 21:35:58 IST] done 600/720 block=main ojas3 t2_express_bug #1 -> PASS cost=0.0904 turns=13 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:35:58 IST] start 601/720 block=long rtk l1_click_duration #9
+[2026-11-22 21:36:32 IST] done 601/720 block=long rtk l1_click_duration #9 -> PASS cost=0.0865 turns=4 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:36:32 IST] start 602/720 block=long headroom l1_click_duration #9
+[2026-11-22 21:37:40 IST] done 602/720 block=long headroom l1_click_duration #9 -> PASS cost=0.0922 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:37:40 IST] start 603/720 block=long ojas3 l1_click_duration #2
+[2026-11-22 21:38:37 IST] done 603/720 block=long ojas3 l1_click_duration #2 -> PASS cost=0.1347 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:38:37 IST] start 604/720 block=long ojas3 l1_click_duration #9
+[2026-11-22 21:39:17 IST] done 604/720 block=long ojas3 l1_click_duration #9 -> PASS cost=0.0659 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:39:17 IST] start 605/720 block=long rtk l1_click_duration #10
+[2026-11-22 21:39:57 IST] done 605/720 block=long rtk l1_click_duration #10 -> PASS cost=0.0732 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:39:57 IST] start 606/720 block=long ojas3 l3_click_split_core #4
+[2026-11-22 21:41:11 IST] done 606/720 block=long ojas3 l3_click_split_core #4 -> PASS cost=0.1795 turns=17 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:41:11 IST] start 607/720 block=long baseline l3_click_split_core #5
+[2026-11-22 21:42:23 IST] done 607/720 block=long baseline l3_click_split_core #5 -> PASS cost=0.1759 turns=16 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:42:24 IST] start 608/720 block=long baseline l3_click_split_core #1
+[2026-11-22 21:43:16 IST] done 608/720 block=long baseline l3_click_split_core #1 -> PASS cost=0.0902 turns=11 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:43:17 IST] start 609/720 block=long baseline l2_express_ci #5
+[2026-11-22 21:43:42 IST] done 609/720 block=long baseline l2_express_ci #5 -> PASS cost=0.0784 turns=7 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:43:43 IST] start 610/720 block=long headroom l1_click_duration #10
+[2026-11-22 21:44:53 IST] done 610/720 block=long headroom l1_click_duration #10 -> PASS cost=0.0683 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:44:54 IST] start 611/720 block=long baseline l1_click_duration #7
+[2026-11-22 21:45:35 IST] done 611/720 block=long baseline l1_click_duration #7 -> PASS cost=0.0807 turns=5 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:45:36 IST] start 612/720 block=long headroom l1_click_duration #5
+[2026-11-22 21:46:50 IST] done 612/720 block=long headroom l1_click_duration #5 -> PASS cost=0.0820 turns=6 | valid=1 | last pause: 2026-11-22 02:43:00 IST
+[2026-11-22 21:46:51 IST] start 613/720 block=long baseline l3_click_split_core #6
+[2026-11-22 21:47:10 IST] PAUSE baseline__l3_click_split_core__6: rate limit: "You've hit your 5-hour limit � resets 5pm (UTC)" -> sleeping 2750s until 2026-11-22 22:33:00 IST
+[2026-11-22 22:33:01 IST] RESUME baseline__l3_click_split_core__6
+[2026-11-22 22:33:01 IST] start 613/720 block=long baseline l3_click_split_core #6
+[2026-11-22 22:34:21 IST] done 613/720 block=long baseline l3_click_split_core #6 -> PASS cost=0.1429 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:34:21 IST] start 614/720 block=long ojas3 l2_express_ci #4
+[2026-11-22 22:34:47 IST] done 614/720 block=long ojas3 l2_express_ci #4 -> PASS cost=0.0734 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:34:47 IST] start 615/720 block=long ojas3 l2_express_ci #7
+[2026-11-22 22:35:13 IST] done 615/720 block=long ojas3 l2_express_ci #7 -> PASS cost=0.0774 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:35:13 IST] start 616/720 block=long headroom l2_express_ci #7
+[2026-11-22 22:36:24 IST] done 616/720 block=long headroom l2_express_ci #7 -> PASS cost=0.0847 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:36:25 IST] start 617/720 block=long rtk l2_express_ci #7
+[2026-11-22 22:36:53 IST] done 617/720 block=long rtk l2_express_ci #7 -> PASS cost=0.0610 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:36:53 IST] start 618/720 block=long rtk l2_express_ci #3
+[2026-11-22 22:37:18 IST] done 618/720 block=long rtk l2_express_ci #3 -> PASS cost=0.0542 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:37:19 IST] start 619/720 block=long headroom l3_click_split_core #10
+[2026-11-22 22:39:24 IST] done 619/720 block=long headroom l3_click_split_core #10 -> PASS cost=0.1925 turns=16 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:39:25 IST] start 620/720 block=long rtk l2_express_ci #9
+[2026-11-22 22:39:58 IST] done 620/720 block=long rtk l2_express_ci #9 -> PASS cost=0.0665 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:39:59 IST] start 621/720 block=long baseline l1_click_duration #3
+[2026-11-22 22:40:41 IST] done 621/720 block=long baseline l1_click_duration #3 -> PASS cost=0.0706 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:40:42 IST] start 622/720 block=long headroom l3_click_split_core #7
+[2026-11-22 22:42:21 IST] done 622/720 block=long headroom l3_click_split_core #7 -> PASS cost=0.1484 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:42:21 IST] start 623/720 block=long headroom l3_click_split_core #1
+[2026-11-22 22:43:56 IST] done 623/720 block=long headroom l3_click_split_core #1 -> PASS cost=0.1403 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:43:56 IST] start 624/720 block=long baseline l1_click_duration #9
+[2026-11-22 22:44:40 IST] done 624/720 block=long baseline l1_click_duration #9 -> PASS cost=0.0801 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:44:40 IST] start 625/720 block=long baseline l2_express_ci #9
+[2026-11-22 22:45:24 IST] done 625/720 block=long baseline l2_express_ci #9 -> PASS cost=0.0995 turns=11 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:45:24 IST] start 626/720 block=long headroom l1_click_duration #8
+[2026-11-22 22:46:29 IST] done 626/720 block=long headroom l1_click_duration #8 -> PASS cost=0.0729 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:46:30 IST] start 627/720 block=long rtk l1_click_duration #2
+[2026-11-22 22:47:13 IST] done 627/720 block=long rtk l1_click_duration #2 -> PASS cost=0.0949 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:47:13 IST] start 628/720 block=long baseline l1_click_duration #5
+[2026-11-22 22:47:45 IST] done 628/720 block=long baseline l1_click_duration #5 -> PASS cost=0.0618 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:47:46 IST] start 629/720 block=long rtk l2_express_ci #5
+[2026-11-22 22:48:11 IST] done 629/720 block=long rtk l2_express_ci #5 -> PASS cost=0.0579 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:48:11 IST] start 630/720 block=long rtk l3_click_split_core #6
+[2026-11-22 22:49:44 IST] done 630/720 block=long rtk l3_click_split_core #6 -> PASS cost=0.2188 turns=18 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:49:45 IST] start 631/720 block=long headroom l2_express_ci #2
+[2026-11-22 22:50:44 IST] done 631/720 block=long headroom l2_express_ci #2 -> PASS cost=0.0770 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:50:45 IST] start 632/720 block=long baseline l3_click_split_core #8
+[2026-11-22 22:52:02 IST] done 632/720 block=long baseline l3_click_split_core #8 -> PASS cost=0.1432 turns=16 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:52:03 IST] start 633/720 block=long baseline l2_express_ci #1
+[2026-11-22 22:52:27 IST] done 633/720 block=long baseline l2_express_ci #1 -> PASS cost=0.0695 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:52:28 IST] start 634/720 block=long rtk l1_click_duration #3
+[2026-11-22 22:53:01 IST] done 634/720 block=long rtk l1_click_duration #3 -> PASS cost=0.0705 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:53:01 IST] start 635/720 block=long headroom l1_click_duration #4
+[2026-11-22 22:54:06 IST] done 635/720 block=long headroom l1_click_duration #4 -> PASS cost=0.0762 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:54:07 IST] start 636/720 block=long ojas3 l2_express_ci #6
+[2026-11-22 22:54:32 IST] done 636/720 block=long ojas3 l2_express_ci #6 -> PASS cost=0.0730 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:54:33 IST] start 637/720 block=long baseline l2_express_ci #6
+[2026-11-22 22:54:59 IST] done 637/720 block=long baseline l2_express_ci #6 -> PASS cost=0.0746 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:54:59 IST] start 638/720 block=long headroom l3_click_split_core #8
+[2026-11-22 22:57:40 IST] done 638/720 block=long headroom l3_click_split_core #8 -> PASS cost=0.1672 turns=16 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:57:40 IST] start 639/720 block=long ojas3 l3_click_split_core #7
+[2026-11-22 22:58:50 IST] done 639/720 block=long ojas3 l3_click_split_core #7 -> PASS cost=0.1518 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 22:58:50 IST] start 640/720 block=long rtk l3_click_split_core #8
+[2026-11-22 23:00:14 IST] done 640/720 block=long rtk l3_click_split_core #8 -> PASS cost=0.1637 turns=16 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:00:15 IST] start 641/720 block=long baseline l1_click_duration #6
+[2026-11-22 23:00:49 IST] done 641/720 block=long baseline l1_click_duration #6 -> PASS cost=0.0775 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:00:49 IST] start 642/720 block=long rtk l2_express_ci #10
+[2026-11-22 23:01:16 IST] done 642/720 block=long rtk l2_express_ci #10 -> PASS cost=0.0671 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:01:17 IST] start 643/720 block=long headroom l1_click_duration #6
+[2026-11-22 23:02:29 IST] done 643/720 block=long headroom l1_click_duration #6 -> PASS cost=0.1061 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:02:30 IST] start 644/720 block=long headroom l2_express_ci #6
+[2026-11-22 23:03:40 IST] done 644/720 block=long headroom l2_express_ci #6 -> PASS cost=0.0713 turns=9 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:03:41 IST] start 645/720 block=long rtk l2_express_ci #8
+[2026-11-22 23:04:07 IST] done 645/720 block=long rtk l2_express_ci #8 -> PASS cost=0.0597 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:04:08 IST] start 646/720 block=long ojas3 l3_click_split_core #9
+[2026-11-22 23:05:09 IST] done 646/720 block=long ojas3 l3_click_split_core #9 -> PASS cost=0.1406 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:05:10 IST] start 647/720 block=long headroom l1_click_duration #1
+[2026-11-22 23:06:15 IST] done 647/720 block=long headroom l1_click_duration #1 -> PASS cost=0.0662 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:06:15 IST] start 648/720 block=long rtk l1_click_duration #5
+[2026-11-22 23:06:49 IST] done 648/720 block=long rtk l1_click_duration #5 -> PASS cost=0.0721 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:06:50 IST] start 649/720 block=long baseline l2_express_ci #10
+[2026-11-22 23:07:19 IST] done 649/720 block=long baseline l2_express_ci #10 -> PASS cost=0.0846 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:07:19 IST] start 650/720 block=long baseline l1_click_duration #1
+[2026-11-22 23:07:55 IST] done 650/720 block=long baseline l1_click_duration #1 -> FAIL CHANGES.md not updated cost=0.0745 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:07:56 IST] start 651/720 block=long baseline l2_express_ci #7
+[2026-11-22 23:08:37 IST] done 651/720 block=long baseline l2_express_ci #7 -> PASS cost=0.0835 turns=8 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:08:38 IST] start 652/720 block=long baseline l3_click_split_core #10
+[2026-11-22 23:10:00 IST] done 652/720 block=long baseline l3_click_split_core #10 -> PASS cost=0.1490 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:10:00 IST] start 653/720 block=long rtk l1_click_duration #1
+[2026-11-22 23:10:36 IST] done 653/720 block=long rtk l1_click_duration #1 -> PASS cost=0.0695 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:10:36 IST] start 654/720 block=long rtk l1_click_duration #6
+[2026-11-22 23:11:10 IST] done 654/720 block=long rtk l1_click_duration #6 -> PASS cost=0.0682 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:11:11 IST] start 655/720 block=long baseline l1_click_duration #10
+[2026-11-22 23:11:51 IST] done 655/720 block=long baseline l1_click_duration #10 -> PASS cost=0.0632 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:11:52 IST] start 656/720 block=long rtk l3_click_split_core #9
+[2026-11-22 23:13:31 IST] done 656/720 block=long rtk l3_click_split_core #9 -> PASS cost=0.1743 turns=19 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:13:31 IST] start 657/720 block=long rtk l3_click_split_core #5
+[2026-11-22 23:15:06 IST] done 657/720 block=long rtk l3_click_split_core #5 -> PASS cost=0.1970 turns=20 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:15:06 IST] start 658/720 block=long ojas3 l2_express_ci #10
+[2026-11-22 23:15:35 IST] done 658/720 block=long ojas3 l2_express_ci #10 -> PASS cost=0.0904 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:15:35 IST] start 659/720 block=long rtk l2_express_ci #2
+[2026-11-22 23:16:07 IST] done 659/720 block=long rtk l2_express_ci #2 -> PASS cost=0.0667 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:16:07 IST] start 660/720 block=long rtk l3_click_split_core #1
+[2026-11-22 23:17:28 IST] done 660/720 block=long rtk l3_click_split_core #1 -> PASS cost=0.1612 turns=17 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:17:28 IST] start 661/720 block=long headroom l3_click_split_core #4
+[2026-11-22 23:19:27 IST] done 661/720 block=long headroom l3_click_split_core #4 -> PASS cost=0.1803 turns=19 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:19:27 IST] start 662/720 block=long ojas3 l3_click_split_core #2
+[2026-11-22 23:21:37 IST] done 662/720 block=long ojas3 l3_click_split_core #2 -> PASS cost=0.1225 turns=11 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:21:38 IST] start 663/720 block=long ojas3 l2_express_ci #8
+[2026-11-22 23:22:02 IST] done 663/720 block=long ojas3 l2_express_ci #8 -> PASS cost=0.0627 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:22:02 IST] start 664/720 block=long baseline l1_click_duration #8
+[2026-11-22 23:22:34 IST] done 664/720 block=long baseline l1_click_duration #8 -> PASS cost=0.0614 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:22:35 IST] start 665/720 block=long ojas3 l1_click_duration #6
+[2026-11-22 23:23:10 IST] done 665/720 block=long ojas3 l1_click_duration #6 -> PASS cost=0.0875 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:23:10 IST] start 666/720 block=long ojas3 l1_click_duration #5
+[2026-11-22 23:23:51 IST] done 666/720 block=long ojas3 l1_click_duration #5 -> PASS cost=0.0817 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:23:52 IST] start 667/720 block=long headroom l1_click_duration #3
+[2026-11-22 23:25:06 IST] done 667/720 block=long headroom l1_click_duration #3 -> PASS cost=0.0719 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:25:07 IST] start 668/720 block=long baseline l1_click_duration #4
+[2026-11-22 23:26:08 IST] done 668/720 block=long baseline l1_click_duration #4 -> PASS cost=0.0804 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:26:09 IST] start 669/720 block=long headroom l1_click_duration #7
+[2026-11-22 23:27:20 IST] done 669/720 block=long headroom l1_click_duration #7 -> PASS cost=0.0682 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:27:20 IST] start 670/720 block=long ojas3 l2_express_ci #2
+[2026-11-22 23:27:50 IST] done 670/720 block=long ojas3 l2_express_ci #2 -> PASS cost=0.0624 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:27:51 IST] start 671/720 block=long rtk l2_express_ci #4
+[2026-11-22 23:28:20 IST] done 671/720 block=long rtk l2_express_ci #4 -> PASS cost=0.0572 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:28:20 IST] start 672/720 block=long rtk l1_click_duration #7
+[2026-11-22 23:28:52 IST] done 672/720 block=long rtk l1_click_duration #7 -> PASS cost=0.0636 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:28:52 IST] start 673/720 block=long headroom l3_click_split_core #3
+[2026-11-22 23:30:23 IST] done 673/720 block=long headroom l3_click_split_core #3 -> PASS cost=0.0870 turns=10 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:30:24 IST] start 674/720 block=long baseline l1_click_duration #2
+[2026-11-22 23:30:57 IST] done 674/720 block=long baseline l1_click_duration #2 -> PASS cost=0.0636 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:30:57 IST] start 675/720 block=long ojas3 l2_express_ci #3
+[2026-11-22 23:31:27 IST] done 675/720 block=long ojas3 l2_express_ci #3 -> PASS cost=0.0557 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:31:27 IST] start 676/720 block=long headroom l3_click_split_core #6
+[2026-11-22 23:33:08 IST] done 676/720 block=long headroom l3_click_split_core #6 -> PASS cost=0.1423 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:33:09 IST] start 677/720 block=long ojas3 l3_click_split_core #10
+[2026-11-22 23:34:21 IST] done 677/720 block=long ojas3 l3_click_split_core #10 -> PASS cost=0.1231 turns=11 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:34:22 IST] start 678/720 block=long baseline l2_express_ci #8
+[2026-11-22 23:34:45 IST] done 678/720 block=long baseline l2_express_ci #8 -> PASS cost=0.0687 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:34:46 IST] start 679/720 block=long ojas3 l1_click_duration #4
+[2026-11-22 23:35:21 IST] done 679/720 block=long ojas3 l1_click_duration #4 -> PASS cost=0.0708 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:35:21 IST] start 680/720 block=long baseline l3_click_split_core #4
+[2026-11-22 23:36:21 IST] done 680/720 block=long baseline l3_click_split_core #4 -> PASS cost=0.1288 turns=13 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:36:21 IST] start 681/720 block=long ojas3 l1_click_duration #8
+[2026-11-22 23:37:03 IST] done 681/720 block=long ojas3 l1_click_duration #8 -> PASS cost=0.0716 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:37:03 IST] start 682/720 block=long rtk l3_click_split_core #4
+[2026-11-22 23:38:40 IST] done 682/720 block=long rtk l3_click_split_core #4 -> PASS cost=0.1769 turns=16 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:38:40 IST] start 683/720 block=long baseline l3_click_split_core #3
+[2026-11-22 23:40:07 IST] done 683/720 block=long baseline l3_click_split_core #3 -> PASS cost=0.1607 turns=17 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:40:08 IST] start 684/720 block=long ojas3 l3_click_split_core #3
+[2026-11-22 23:41:21 IST] done 684/720 block=long ojas3 l3_click_split_core #3 -> PASS cost=0.1606 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:41:22 IST] start 685/720 block=long rtk l3_click_split_core #7
+[2026-11-22 23:43:10 IST] done 685/720 block=long rtk l3_click_split_core #7 -> PASS cost=0.2455 turns=23 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:43:11 IST] start 686/720 block=long baseline l3_click_split_core #7
+[2026-11-22 23:44:33 IST] done 686/720 block=long baseline l3_click_split_core #7 -> PASS cost=0.1849 turns=18 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:44:34 IST] start 687/720 block=long ojas3 l3_click_split_core #1
+[2026-11-22 23:46:00 IST] done 687/720 block=long ojas3 l3_click_split_core #1 -> PASS cost=0.1978 turns=20 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:46:00 IST] start 688/720 block=long rtk l2_express_ci #6
+[2026-11-22 23:46:26 IST] done 688/720 block=long rtk l2_express_ci #6 -> PASS cost=0.0602 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:46:26 IST] start 689/720 block=long rtk l3_click_split_core #3
+[2026-11-22 23:47:46 IST] done 689/720 block=long rtk l3_click_split_core #3 -> PASS cost=0.1985 turns=18 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:47:47 IST] start 690/720 block=long rtk l2_express_ci #1
+[2026-11-22 23:48:12 IST] done 690/720 block=long rtk l2_express_ci #1 -> PASS cost=0.0560 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:48:13 IST] start 691/720 block=long ojas3 l1_click_duration #10
+[2026-11-22 23:49:09 IST] done 691/720 block=long ojas3 l1_click_duration #10 -> PASS cost=0.1238 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:49:10 IST] start 692/720 block=long ojas3 l1_click_duration #7
+[2026-11-22 23:49:45 IST] done 692/720 block=long ojas3 l1_click_duration #7 -> PASS cost=0.0715 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:49:45 IST] start 693/720 block=long headroom l3_click_split_core #5
+[2026-11-22 23:52:21 IST] done 693/720 block=long headroom l3_click_split_core #5 -> PASS cost=0.2053 turns=22 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:52:22 IST] start 694/720 block=long headroom l2_express_ci #10
+[2026-11-22 23:53:59 IST] done 694/720 block=long headroom l2_express_ci #10 -> PASS cost=0.0641 turns=8 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:53:59 IST] start 695/720 block=long headroom l3_click_split_core #9
+[2026-11-22 23:55:39 IST] done 695/720 block=long headroom l3_click_split_core #9 -> PASS cost=0.1239 turns=11 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:55:40 IST] start 696/720 block=long baseline l3_click_split_core #2
+[2026-11-22 23:57:08 IST] done 696/720 block=long baseline l3_click_split_core #2 -> PASS cost=0.1974 turns=18 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:57:08 IST] start 697/720 block=long ojas3 l1_click_duration #1
+[2026-11-22 23:57:53 IST] done 697/720 block=long ojas3 l1_click_duration #1 -> PASS cost=0.0823 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:57:53 IST] start 698/720 block=long baseline l2_express_ci #3
+[2026-11-22 23:58:23 IST] done 698/720 block=long baseline l2_express_ci #3 -> PASS cost=0.0483 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:58:24 IST] start 699/720 block=long ojas3 l3_click_split_core #6
+[2026-11-22 23:59:33 IST] done 699/720 block=long ojas3 l3_click_split_core #6 -> PASS cost=0.1560 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-22 23:59:33 IST] start 700/720 block=long headroom l2_express_ci #3
+[2026-11-23 00:00:29 IST] done 700/720 block=long headroom l2_express_ci #3 -> PASS cost=0.0721 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:00:29 IST] start 701/720 block=long rtk l3_click_split_core #10
+[2026-11-23 00:02:07 IST] done 701/720 block=long rtk l3_click_split_core #10 -> PASS cost=0.1510 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:02:08 IST] start 702/720 block=long ojas3 l2_express_ci #5
+[2026-11-23 00:02:46 IST] done 702/720 block=long ojas3 l2_express_ci #5 -> PASS cost=0.0853 turns=8 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:02:46 IST] start 703/720 block=long headroom l2_express_ci #9
+[2026-11-23 00:03:46 IST] done 703/720 block=long headroom l2_express_ci #9 -> PASS cost=0.0846 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:03:46 IST] start 704/720 block=long baseline l3_click_split_core #9
+[2026-11-23 00:05:00 IST] done 704/720 block=long baseline l3_click_split_core #9 -> PASS cost=0.1724 turns=18 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:05:01 IST] start 705/720 block=long headroom l2_express_ci #5
+[2026-11-23 00:05:58 IST] done 705/720 block=long headroom l2_express_ci #5 -> PASS cost=0.0689 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:05:58 IST] start 706/720 block=long baseline l2_express_ci #4
+[2026-11-23 00:06:26 IST] done 706/720 block=long baseline l2_express_ci #4 -> PASS cost=0.0616 turns=6 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:06:26 IST] start 707/720 block=long rtk l1_click_duration #4
+[2026-11-23 00:07:02 IST] done 707/720 block=long rtk l1_click_duration #4 -> PASS cost=0.0788 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:07:03 IST] start 708/720 block=long headroom l2_express_ci #8
+[2026-11-23 00:08:31 IST] done 708/720 block=long headroom l2_express_ci #8 -> PASS cost=0.0670 turns=7 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:08:32 IST] start 709/720 block=long headroom l2_express_ci #1
+[2026-11-23 00:09:36 IST] done 709/720 block=long headroom l2_express_ci #1 -> PASS cost=0.0612 turns=8 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:09:36 IST] start 710/720 block=long ojas3 l3_click_split_core #5
+[2026-11-23 00:10:50 IST] done 710/720 block=long ojas3 l3_click_split_core #5 -> PASS cost=0.1692 turns=15 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:10:50 IST] start 711/720 block=long ojas3 l2_express_ci #1
+[2026-11-23 00:11:14 IST] done 711/720 block=long ojas3 l2_express_ci #1 -> PASS cost=0.0624 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:11:14 IST] start 712/720 block=long ojas3 l1_click_duration #3
+[2026-11-23 00:11:47 IST] done 712/720 block=long ojas3 l1_click_duration #3 -> PASS cost=0.0686 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:11:47 IST] start 713/720 block=long baseline l2_express_ci #2
+[2026-11-23 00:12:12 IST] done 713/720 block=long baseline l2_express_ci #2 -> PASS cost=0.0662 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:12:12 IST] start 714/720 block=long headroom l3_click_split_core #2
+[2026-11-23 00:13:59 IST] done 714/720 block=long headroom l3_click_split_core #2 -> PASS cost=0.1722 turns=17 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:14:00 IST] start 715/720 block=long ojas3 l2_express_ci #9
+[2026-11-23 00:14:25 IST] done 715/720 block=long ojas3 l2_express_ci #9 -> PASS cost=0.0720 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:14:26 IST] start 716/720 block=long ojas3 l3_click_split_core #8
+[2026-11-23 00:18:02 IST] done 716/720 block=long ojas3 l3_click_split_core #8 -> PASS cost=0.2144 turns=20 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:18:02 IST] start 717/720 block=long headroom l1_click_duration #2
+[2026-11-23 00:19:16 IST] done 717/720 block=long headroom l1_click_duration #2 -> PASS cost=0.0637 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:19:16 IST] start 718/720 block=long rtk l3_click_split_core #2
+[2026-11-23 00:20:11 IST] done 718/720 block=long rtk l3_click_split_core #2 -> PASS cost=0.1395 turns=14 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:20:11 IST] start 719/720 block=long headroom l2_express_ci #4
+[2026-11-23 00:21:08 IST] done 719/720 block=long headroom l2_express_ci #4 -> PASS cost=0.0716 turns=5 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:21:08 IST] start 720/720 block=long rtk l1_click_duration #8
+[2026-11-23 00:21:43 IST] done 720/720 block=long rtk l1_click_duration #8 -> PASS cost=0.0704 turns=4 | valid=1 | last pause: 2026-11-22 22:33:00 IST
+[2026-11-23 00:21:44 IST] runner finished: 720/720 complete

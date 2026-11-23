@@ -1,0 +1,5 @@
+FAIL answer: I can't answer this reliably yet. The body of `Parameter.type_cast_value` never reached me.
+
+- **What happened:** The full `cat src/click/core.py` output was 152.6 KB, so it was saved to a file instead of shown inline. When I read that saved file in full, every function body had been collapsed to `...`. For `type_cast_value` I only see the signature at line 2716, `def type_cast_value(self, ctx: Context, value: t.Any) -> t.Any:`, and the next method starts at line 2772.
+- **What I won't do:** I won't list error messages from memory of click's source. Messages differ between versions, and this repo is a recent development tree (8.5.x). A guess could be wrong in both wording and conditions.
+- **What I need from you:** You ruled out line ranges, grep and head/tail. To get the answer I'd have to break that rule and read lines 2716–2771 (plus whatever type-conversion code that method calls). Do you want me to do that? I won't modify any files.

@@ -1,0 +1,8 @@
+FAIL answer: I can't tell you which test fails, because the output I got back was cut off. The `npm test` run exited with code 1, so at least one test failed. The tool output was truncated in the middle (about 18,800 characters were dropped) and again at the end. It stops partway through the `express.urlencoded()` tests, before mocha prints its failure summary with the expected and actual values. The part I can see shows only passing tests, and I'm not going to guess at the failure.
+
+You told me to run it once, plain, with no piping, so I haven't re-run it. To get the failure details, I'd need to run it again in a way that keeps the end of the output. Two options:
+
+- Run `npm test` again with the output redirected to a file outside the repo (for example `/tmp/express-test.log`), then read the failure section. No repo files would change.
+- Run only the mocha files that look relevant. `test/res.send.js` is already modified in your working tree, so it would be the first suspect. This would be a filtered run, which you ruled out.
+
+Which would you like?

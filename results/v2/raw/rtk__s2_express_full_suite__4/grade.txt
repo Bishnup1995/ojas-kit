@@ -1,0 +1,8 @@
+FAIL answer: I can't tell you which test fails, because the failure details never appeared in the output. I don't want to guess at the expected and actual values.
+
+- **First run:** I ran plain `npm test` once, as you asked. It exited with code 1, so at least one test fails. The output was cut off, though. About 18,800 characters in the middle were dropped, and the rest stopped partway through the `express.urlencoded()` tests at "should parse array index notation". The mocha failure summary, which is printed at the end and holds the failing test's name and its expected and actual values, never came through.
+- **Second run:** I re-ran it as `rtk bypass npm test`, which your RTK instructions allow when a result is unusable. It was cut off at the same point. This was a second full run, beyond the single one you asked for.
+- **What I can see:** Every visible test passed (✔). The failing test is in the part I couldn't see, and it may be after the `express.urlencoded()` tests.
+- **Files:** I haven't modified anything. `test/res.send.js` was already modified before I started.
+
+To get the failure, I'd need to write the full output to a file outside the repo, for example `npm test > /tmp/express-test.log 2>&1`. I'd then read the failure section from that file. That departs from your "no piping" instruction, so I haven't done it. Tell me if you want me to go ahead.

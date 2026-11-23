@@ -1,0 +1,7 @@
+FAIL answer: I can't give you the root cause or the incident id yet. `cat` printed only the first 2KB of the 1.6MB file (20,000 lines), and I haven't seen the rest.
+
+The file runs from 09:00:00Z to 14:33:19Z on 2026-11-20. I read the saved copy at four points (lines 5000, 10000, 15000 and 19900 to 20000). All of that was routine `INFO` request lines, plus a few `WARN slow_query=true` entries that look like background noise. None of it showed the outage or an `INC-####` id.
+
+Reading all 20,000 lines would cost roughly 500k tokens, and you ruled out grep, head and tail. Sampling could easily miss a short burst of errors.
+
+If I can run `grep -nE 'ERROR|FATAL|INC-' /home/bench/work/logs/app.log`, I can find the outage and give you both answers in two sentences. It only reads the file, so nothing gets modified. Or I can read the log in sequential chunks if you'd rather I stay within your original constraints.

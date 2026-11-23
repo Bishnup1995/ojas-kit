@@ -1,0 +1,13 @@
+# v2 arm "ojas3": ojas built from the ojas repo's main branch (exported with `git archive main`
+# into bench/v2/build/ojas-src by build_v2.sh; the commit is in OJAS_COMMIT). Same base image as
+# every other arm (ojasbench/baseline:2), installed with the documented `ojas init`, default config.
+FROM rust:1.87-slim-bookworm AS ojas-build
+COPY ojas-src /src
+RUN cd /src && cargo build --release --locked && cp target/release/ojas /ojas
+
+FROM ojasbench/baseline:2
+ENV ARM=ojas3
+COPY --from=ojas-build /ojas /usr/local/bin/ojas
+COPY ojas-src/OJAS_COMMIT /usr/local/share/ojas_commit
+RUN ojas init && ojas --version && cat ~/.claude/settings.json \
+ && echo '{}' | ojas hook session-start | grep -vq "Response style" && echo "default style: no Response style text"

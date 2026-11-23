@@ -1,0 +1,43 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      31
+Output tokens:     2
+Tokens saved:      29 (93.5%)
+Total exec time:   4ms (avg 4ms)
+Efficiency meter: ██████████████████████░░ 93.5%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk wc -l /home/bench...      1     29   93.5%     4ms  ██████████
+ 2.  rtk read                      1      0    0.0%     3ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      31
+Output tokens:     2
+Tokens saved:      29 (93.5%)
+Total exec time:   4ms (avg 4ms)
+Efficiency meter: ██████████████████████░░ 93.5%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk wc -l /home/bench...      1     29   93.5%     4ms  ██████████
+ 2.  rtk read                      1      0    0.0%     3ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-21 16:14 ▲ rtk wc -l /home/bench/... -94% (29)
+11-21 16:13 • rtk read                  -0% (0)
+

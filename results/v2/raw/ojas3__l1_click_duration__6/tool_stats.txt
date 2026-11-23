@@ -1,0 +1,9 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈801 tok   sent ≈491 tok   saved ≈310 tok (39%)
+
+filter         runs compressed      raw tok     sent tok  saved
+search            1          1          801          491    39%
+
+top commands by tokens saved
+  grep                             1 runs  saved ≈310 tok (39%)

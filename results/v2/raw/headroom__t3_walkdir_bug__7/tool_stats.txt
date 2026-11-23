@@ -1,0 +1,40 @@
+15:12:38 - LiteLLM:WARNING: get_model_cost_map.py:395 - LiteLLM: model cost map fetch attempt 1/3 failed (ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1035)); retrying in 2.9s
+15:12:38 - LiteLLM:WARNING: get_model_cost_map.py:794 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: ConnectError fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1035). Falling back to local backup.
+Headroom Performance Report
+============================================================
+Window: last 168h (actual data: 2026-11-22 15:12:12 → 2026-11-22 15:12:30)
+
+Requests:     7
+Tokens:       90,340 -> 87,701 (2.9% messages)
+Tokens saved: 2,639 (2.9% reduction)
+
+Savings Audit
+----------------------------------------
+  Raw prompt reduction: 2,639 tokens (2.9%)
+  Logged savings:       2,639 tokens (2.9%)
+  Accounting delta:     +0 tokens
+
+Per-Model Breakdown
+----------------------------------------
+  claude-sonnet-5-5: 7 reqs, 2,639 tokens saved (3%), list price $2.00/MTok  ~$0.01 at list price
+  * Actual bill savings depend on provider caching behavior
+
+Cache Performance
+----------------------------------------
+  Cache read:    135,043 tokens
+  Cache write:   11,055 tokens
+  Hit rate:      92.4%
+
+Optimization Overhead
+----------------------------------------
+  Average:     871ms
+  p50/p95/p99: 22 / 4149 / 5527ms
+  Max:         5871ms
+  >500ms:      1 requests (14.3%)
+  Slowest stages:
+    total_pre_upstream: total 6372ms, p95 4319ms, max 6111ms
+    compression_first_stage: total 5429ms, p95 5429ms, max 5429ms
+    read_request_json: total 9ms, p95 2ms, max 2ms
+
+Throughput
+----------------------------------------

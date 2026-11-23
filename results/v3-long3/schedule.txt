@@ -1,0 +1,10 @@
+long3 baseline l6_oncall_day 1 ojasbench/baseline:2
+long3 ojas3 l6_oncall_day 1 ojasbench/ojas3fix:2
+long3 ojas3 l6_oncall_day 2 ojasbench/ojas3fix:2
+long3 baseline l6_oncall_day 2 ojasbench/baseline:2
+long3 baseline l6_oncall_day 3 ojasbench/baseline:2
+long3 ojas3 l6_oncall_day 3 ojasbench/ojas3fix:2
+long3 ojas3 l6_oncall_day 4 ojasbench/ojas3fix:2
+long3 baseline l6_oncall_day 4 ojasbench/baseline:2
+long3 baseline l6_oncall_day 5 ojasbench/baseline:2
+long3 ojas3 l6_oncall_day 5 ojasbench/ojas3fix:2

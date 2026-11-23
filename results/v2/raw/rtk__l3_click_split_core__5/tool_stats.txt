@@ -1,0 +1,59 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    14
+Input tokens:      10.5K
+Output tokens:     3.3K
+Tokens saved:      7.2K (68.5%)
+Total exec time:   15.8s (avg 1.2s)
+Efficiency meter: ████████████████░░░░░░░░ 68.5%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest -q --ignor...      3   5.8K   75.5%    3.7s  ██████████
+ 2.  rtk grep                      6    795   39.0%     5ms  █░░░░░░░░░
+ 3.  rtk pytest -q --ignor...      1    593   94.4%    4.8s  █░░░░░░░░░
+ 4.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 5.  rtk git status --short        1      1    2.0%    12ms  ░░░░░░░░░░
+ 6.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 7.  rtk mypy src                  1      0    0.0%    14ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    14
+Input tokens:      10.5K
+Output tokens:     3.3K
+Tokens saved:      7.2K (68.5%)
+Total exec time:   15.8s (avg 1.2s)
+Efficiency meter: ████████████████░░░░░░░░ 68.5%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest -q --ignor...      3   5.8K   75.5%    3.7s  ██████████
+ 2.  rtk grep                      6    795   39.0%     5ms  █░░░░░░░░░
+ 3.  rtk pytest -q --ignor...      1    593   94.4%    4.8s  █░░░░░░░░░
+ 4.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 5.  rtk git status --short        1      1    2.0%    12ms  ░░░░░░░░░░
+ 6.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 7.  rtk mypy src                  1      0    0.0%    14ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 17:44 ▲ rtk pytest -q --ignore... -94% (593)
+11-22 17:44 • rtk git status --short    -2% (1)
+11-22 17:44 ▲ rtk pytest -q --ignore... -75% (2.1K)
+11-22 17:44 • rtk grep                  -0% (0)
+11-22 17:44 ▲ rtk pytest -q --ignore... -79% (3.7K)
+11-22 17:44 • rtk mypy src              -0% (0)
+11-22 17:44 • rtk pytest -q --ignore... -0% (0)
+11-22 17:44 • rtk:passthrough git di... -0% (0)
+11-22 17:43 • rtk grep                  -0% (0)
+11-22 17:43 • rtk grep                  -26% (93)
+

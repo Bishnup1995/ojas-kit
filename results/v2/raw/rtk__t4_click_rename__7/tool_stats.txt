@@ -1,0 +1,46 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    7
+Input tokens:      273
+Output tokens:     195
+Tokens saved:      78 (28.6%)
+Total exec time:   31ms (avg 4ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 28.6%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      5     78   34.1%     4ms  ██████████
+ 2.  rtk git status --short        2      0    0.0%     5ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    7
+Input tokens:      273
+Output tokens:     195
+Tokens saved:      78 (28.6%)
+Total exec time:   31ms (avg 4ms)
+Efficiency meter: ███████░░░░░░░░░░░░░░░░░ 28.6%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      5     78   34.1%     4ms  ██████████
+ 2.  rtk git status --short        2      0    0.0%     5ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 15:51 • rtk git status --short    -0% (0)
+11-22 15:51 • rtk grep                  -0% (0)
+11-22 15:51 • rtk grep                  -0% (0)
+11-22 15:51 ■ rtk grep                  -35% (29)
+11-22 15:51 ■ rtk grep                  -40% (49)
+11-22 15:51 • rtk git status --short    -0% (0)
+11-22 15:51 • rtk grep                  -0% (0)
+

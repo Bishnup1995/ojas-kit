@@ -1,0 +1,9 @@
+[2026-11-21 16:08:04 IST] PAUSE rtk__r1_pricing_policy__3: rate limit: "You've hit your 5-hour limit · resets 11:10am (UTC)" -> sleeping 2096s until 2026-11-21 16:43:00 IST
+[2026-11-21 16:43:00 IST] RESUME rtk__r1_pricing_policy__3
+[2026-11-21 18:27:59 IST] PAUSE ojas3__s1_click_full_suite__5: rate limit: "You've hit your 5-hour limit · resets 4:10pm (UTC)" -> sleeping 11701s until 2026-11-21 21:43:00 IST
+[2026-11-21 21:43:01 IST] RESUME ojas3__s1_click_full_suite__5
+[2026-11-21 22:58:17 IST] PAUSE headroom__t5_click_qa__8: rate limit: "You've hit your 5-hour limit · resets 9:10pm (UTC)" -> sleeping 13483s until 2026-11-22 02:43:00 IST
+[2026-11-22 17:48:21 IST] TRANSIENT headroom__t5_click_qa__8 (#1): TRANSIENT no result: empty stderr -> retry in 5 min
+[2026-11-22 17:59:40 IST] TRANSIENT headroom__t4_click_rename__6 (#1): TRANSIENT no result: empty stderr -> retry in 5 min
+[2026-11-22 21:47:10 IST] PAUSE baseline__l3_click_split_core__6: rate limit: "You've hit your 5-hour limit · resets 5pm (UTC)" -> sleeping 2750s until 2026-11-22 22:33:00 IST
+[2026-11-22 22:33:01 IST] RESUME baseline__l3_click_split_core__6

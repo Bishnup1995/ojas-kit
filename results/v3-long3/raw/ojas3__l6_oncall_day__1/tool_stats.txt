@@ -1,0 +1,13 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 16   compressed 1   raw ≈3,021 tok   sent ≈2,963 tok   saved ≈58 tok (2%)
+
+filter         runs compressed      raw tok     sent tok  saved
+build             1          0           13           13     0%
+generic           1          1          420          362    14%
+search           14          0        2,589        2,589     0%
+
+top commands by tokens saved
+  python                           1 runs  saved ≈58 tok (14%)
+  grep                            14 runs  saved ≈0 tok (0%)
+  ruff                             1 runs  saved ≈0 tok (0%)

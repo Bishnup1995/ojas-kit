@@ -1,0 +1,12 @@
+FAIL answer: The suite exited with code 1, but I can't tell you which test failed. The tool output was truncated in the middle, and the visible tail ends partway through a line (`should parse array index not`) without mocha's `N passing / M failing` summary or any failure details.
+
+What I can confirm from the visible output:
+- The run covered the `test/` and `test/acceptance/` specs under mocha with `--check-leaks`.
+- Every test I could see passed. The middle section, where a failure would most likely appear, is missing.
+- The working tree already had `test/res.send.js` modified before I started. That file is a plausible place to look, but I haven't verified it's related.
+
+I haven't modified any files. To get the failing test name and its expected and actual values, I need to see the failure block. Options:
+1. Rerun `npm test` and capture the output to a file (for example, `npm test > /tmp/express-test.log 2>&1`), then read the `failing` section. This breaks your "no piping" constraint, so I'm asking first.
+2. Run `npm test` again with the output as-is and check whether the failure block shows up this time. This doesn't change anything, but it may just truncate in the same place.
+
+Which do you want?

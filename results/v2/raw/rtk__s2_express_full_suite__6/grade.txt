@@ -1,0 +1,10 @@
+FAIL answer: I can't tell you which test fails, because the output I got never included the failure details.
+
+- `npm test` exited with code 1, so at least one test fails.
+- The output is cut off in the middle. It drops about 18,800 characters partway through, and the end is cut off again during `express.urlencoded()` ("should parse array index notation"). The mocha failure summary, which has the test name and the expected and actual values, comes after that point, so I never saw it.
+- I ran the suite twice. After the first run came back truncated, I re-ran it with `rtk bypass npm test`, which my instructions allow when a result is unusable. The second run was cut off in the same places.
+- Every test visible in the output passed. The failing test is somewhere in the cut-off portion.
+
+I'm not going to guess from `test/res.send.js`, the one file with uncommitted changes. I haven't confirmed it is related.
+
+To get the real failure, I'd need to run the suite differently, for example redirecting the output to a file outside the repo and reading it, or running with a reporter that only prints failures. Either one goes against your "no piping, no truncation" instruction, so tell me which you'd like. I haven't modified any files.

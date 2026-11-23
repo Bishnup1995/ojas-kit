@@ -1,0 +1,9 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 0   raw ≈27 tok   sent ≈27 tok   saved ≈0 tok (0%)
+
+filter         runs compressed      raw tok     sent tok  saved
+git-diff          1          0           27           27     0%
+
+top commands by tokens saved
+  git diff                         1 runs  saved ≈0 tok (0%)

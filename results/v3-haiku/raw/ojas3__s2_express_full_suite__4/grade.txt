@@ -1,0 +1,11 @@
+FAIL answer: I ran `npm test` once and it exited with code 1, so at least one test failed. I can't yet name the failing test or its expected and actual values, because the output was cut off before the failure summary.
+
+The Bash tool truncated the middle of the output ("[18822 characters truncated]"), and the stream ended partway through the `express.urlencoded()` section. Mocha prints its `N failing` summary and error details at the end, so those lines weren't captured. The visible passing lines showed no failure markers, but the failure is in the part I didn't see.
+
+Options to get the details, without changing any files:
+
+1. **Rerun without `OJAS_RAW=1`.** The session hook says the compressor keeps error and failure lines first and returns an ID for the full output, which I can search with `ojas get <id> --grep`. This is a second run, so I'm checking before doing it since you asked for one run.
+2. **Rerun with the output redirected to a file outside the repo**, then read the tail. This goes against your "no piping" instruction, so only if you're fine with it.
+3. **Run only the failing file once you know it.** This is a filtered run, which you ruled out for the main run.
+
+I'd go with option 1. Should I do it?

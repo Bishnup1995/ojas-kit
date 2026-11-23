@@ -1,0 +1,8 @@
+FAIL answer: I can't report the failing test yet. The `npm test` run exited with code 1, so at least one test failed. The tool output was truncated in the middle and again at the end, though, so I never saw the failure details. The log stops at `express.urlencoded()` … `should parse array index not`, and the failure summary that mocha prints after the run is missing. The portion I saw has no `✗` or numbered failure marker. I haven't guessed at a test name or at expected and actual values.
+
+You asked for exactly one plain run with no piping or filtering, so I haven't rerun it. To get the failure, I'd need to do one of these:
+
+1. Rerun `npm test` with the output redirected to a file, such as `npm test > /tmp/test.log 2>&1`, and read the failure section from it. This breaks your "no piping" rule but changes no repo files.
+2. Rerun plain `npm test` and hope the output isn't truncated this time.
+
+Which do you want? I'd suggest option 1.

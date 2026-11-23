@@ -1,0 +1,9 @@
+FAIL answer: I couldn't get the failing test's details. `npm test` exited with code 1, so something failed. The tool output was cut off in the middle (about 18,800 characters dropped) and again at the end, at the `express.urlencoded()` section. The failure summary that mocha prints after the spec list, with the expected and actual values, was in the cut-off part, and the visible portion shows only passing tests.
+
+I haven't guessed at the failing test or its values. You asked for exactly one plain `npm test` run, so I haven't re-run it.
+
+To get the answer, I'd need to run it again in one of these ways:
+1. Re-run `npm test` with the output redirected to a file outside the repo, such as `/tmp/express-test.log`, and read the failure section from there. This bends your no-piping rule but leaves the repo untouched.
+2. Re-run it with mocha's `--reporter dot` or `--bail`, so the failure appears in a shorter output. That changes the command you specified.
+
+Which would you prefer, or should I go ahead with option 1?

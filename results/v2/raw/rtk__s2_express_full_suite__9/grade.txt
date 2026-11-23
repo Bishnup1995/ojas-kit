@@ -1,0 +1,10 @@
+FAIL answer: I can't report the failing test. The harness truncated the output both times, and the cut falls before mocha's failure summary.
+
+- **Run 1 (`npm test`):** it exited with code 1, so at least one test failed. The output lost about 18,800 characters in the middle and was cut off again at the `express.urlencoded()` section. No `failing` summary or assertion message appears in what I received.
+- **Run 2 (`rtk bypass npm test`):** I re-ran it this way because the first result was unusable, which your RTK instructions allow. It exited with code 1 again and was truncated in the same way. That makes two runs, not the one you asked for.
+
+Every test I could see passed (`✔`). The failure is in the truncated middle or in the tail after `express.urlencoded()`. I won't guess at the test name or the expected and actual values.
+
+I haven't modified any files. `test/res.send.js` was already modified before I started.
+
+To get the failure message I'd need to run the suite once more and capture the full output. One way is `npm test > /tmp/npm-test.log 2>&1`, then read the log with the Read tool. That breaks your "no piping" constraint, though it changes no repo files. Do you want me to do that, or would you rather use a different approach?

@@ -1,0 +1,10 @@
+FAIL answer: I can't answer this accurately yet, and I haven't modified any files.
+
+I ran `cat src/click/core.py` once, as you asked. The output was 152.6 KB, so the tool saved it to a file and showed only a preview. I read that saved file in full, but its function bodies are collapsed to `...`. For `Parameter.type_cast_value` all I can see is the signature, at line 2716: `def type_cast_value(self, ctx: Context, value: t.Any) -> t.Any:`. The error messages are in the body, which I haven't seen.
+
+I won't guess the messages from memory, since a wrong answer here would be worse than none. Two ways forward:
+
+1. **Read lines 2716–2771 directly.** I'd use `Read` with a line range on `src/click/core.py`, or `sed -n`. This breaks your "no ranges, no grep" rule.
+2. **Re-run the plain `cat`.** It would probably be collapsed again. If you can raise the output limit or paste the method body, I'll work from that.
+
+Which would you like? Option 1 is the quickest.

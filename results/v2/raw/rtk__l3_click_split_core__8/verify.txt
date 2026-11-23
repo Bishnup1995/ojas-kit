@@ -1,0 +1,1 @@
+apiKeySource=none model=claude-sonnet-5-5 cc_version=2.1.329 ojas_hooks=0 ojas_session_note=0 response_style_text=0 rtk_hook=1 rtk_commands=13 rtk_tokens_saved=874 valid=1

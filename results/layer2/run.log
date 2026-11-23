@@ -1,0 +1,177 @@
+[20:32:31] baseline t1_click_bug #2 (attempt 1)
+  throttled; sleeping 15 min
+[20:48:11] baseline t1_click_bug #2 (attempt 2)
+  -> PASS  cost=0.0604 turns=8
+[20:48:54] baseline t8_control_edit #2 (attempt 1)
+  throttled; sleeping 15 min
+[21:04:01] baseline t8_control_edit #2 (attempt 2)
+  -> PASS  cost=0.0105 turns=3
+[21:04:08] baseline t6_log_rootcause #3 (attempt 1)
+  -> PASS  cost=0.0499 turns=3
+[21:04:14] ojas t6_log_rootcause #1 (attempt 1)
+  -> PASS  cost=0.0420 turns=3
+[21:04:21] headroom t2_express_bug #1 (attempt 1)
+  -> PASS  cost=0.0645 turns=10
+[21:05:23] caveman t8_control_edit #2 (attempt 1)
+  -> PASS  cost=0.0154 turns=4
+[21:05:39] caveman t6_log_rootcause #3 (attempt 1)
+  -> PASS  cost=0.0549 turns=3
+[21:05:53] ojas t7_git_history #2 (attempt 1)
+  -> PASS  cost=0.0254 turns=2
+[21:05:58] caveman t7_git_history #2 (attempt 1)
+  -> PASS  cost=0.0333 turns=2
+[21:06:10] baseline t4_click_rename #1 (attempt 1)
+  -> PASS  cost=0.0296 turns=3
+[21:06:23] ojas t3_walkdir_bug #2 (attempt 1)
+  -> PASS  cost=0.1296 turns=15
+[21:06:52] headroom t8_control_edit #3 (attempt 1)
+  -> PASS  cost=0.0099 turns=3
+[21:07:24] headroom t3_walkdir_bug #2 (attempt 1)
+  -> PASS  cost=0.1166 turns=13
+[21:08:23] ojas t4_click_rename #3 (attempt 1)
+  -> PASS  cost=0.0360 turns=5
+[21:08:48] baseline t7_git_history #3 (attempt 1)
+  -> PASS  cost=0.0265 turns=3
+[21:08:57] caveman t1_click_bug #2 (attempt 1)
+  -> PASS  cost=0.0816 turns=11
+[21:09:42] baseline t3_walkdir_bug #1 (attempt 1)
+  -> PASS  cost=0.0941 turns=11
+[21:10:06] ojas t5_click_qa #3 (attempt 1)
+  throttled; sleeping 15 min
+[21:25:12] ojas t5_click_qa #3 (attempt 2)
+  -> PASS  cost=0.0142 turns=4
+[21:25:20] headroom t8_control_edit #2 (attempt 1)
+  -> PASS  cost=0.0097 turns=3
+[21:26:02] ojas t3_walkdir_bug #3 (attempt 1)
+  -> PASS  cost=0.1334 turns=16
+[21:26:37] headroom t1_click_bug #3 (attempt 1)
+  -> PASS  cost=0.0658 turns=7
+[21:27:49] headroom t6_log_rootcause #2 (attempt 1)
+  -> PASS  cost=0.0448 turns=3
+[21:28:35] ojas t3_walkdir_bug #1 (attempt 1)
+  -> PASS  cost=0.0993 turns=12
+[21:29:07] caveman t3_walkdir_bug #1 (attempt 1)
+  -> PASS  cost=0.1504 turns=15
+[21:29:52] baseline t2_express_bug #1 (attempt 1)
+  -> PASS  cost=0.0389 turns=4
+[21:30:11] ojas t8_control_edit #2 (attempt 1)
+  -> PASS  cost=0.0249 turns=3
+[21:30:17] baseline t6_log_rootcause #2 (attempt 1)
+  -> PASS  cost=0.0218 turns=3
+[21:30:24] headroom t4_click_rename #3 (attempt 1)
+  -> PASS  cost=0.0296 turns=3
+[21:31:13] ojas t2_express_bug #1 (attempt 1)
+  -> PASS  cost=0.0820 turns=11
+[21:31:54] caveman t5_click_qa #1 (attempt 1)
+  -> PASS  cost=0.0382 turns=3
+[21:32:06] headroom t6_log_rootcause #3 (attempt 1)
+  throttled; sleeping 15 min
+[21:47:51] headroom t6_log_rootcause #3 (attempt 2)
+  -> PASS  cost=0.0451 turns=4
+[21:48:36] baseline t3_walkdir_bug #3 (attempt 1)
+  -> PASS  cost=0.0861 turns=10
+[21:48:58] headroom t5_click_qa #1 (attempt 1)
+  -> PASS  cost=0.0271 turns=3
+[21:49:37] baseline t1_click_bug #3 (attempt 1)
+  throttled; sleeping 15 min
+[22:05:03] baseline t1_click_bug #3 (attempt 2)
+  -> PASS  cost=0.0640 turns=9
+[22:05:36] ojas t2_express_bug #3 (attempt 1)
+/run_one.sh: line 15: /out/run.raw: No such file or directory
+grep: /out/run.raw: No such file or directory
+  -> FAIL npm test:   662 passing (4s)   628 failing   
+[22:05:43] ojas t7_git_history #1 (attempt 1)
+  -> PASS  cost=0.0242 turns=2grep: /out/run.raw: No such file or directory
+1)
+  throttled; sleeping 15 min
+[22:20:54] ojas t6_log_rootcause #3 (attempt 2)
+  -> PASS  cost=0.0290 turns=3
+[22:21:01] headroom t2_express_bug #3 (attempt 1)
+/run_one.sh: line 15: /out/run.raw: No such file or directory
+grep: /out/run.raw: No such file or directory
+  -> FAIL npm test:   662 passing (2s)   628 failing   
+[22:21:11] caveman t6_log_rootcause #1 (attempt 1)
+  -> PASS  cost=0.0598 turns=4
+[22:21:26] headroom t4_click_rename #1 (attempt 1)
+  -> PASS  cost=0.0169 turns=4
+[22:22:06] headroom t7_git_history #3 (attempt 1)
+  -> PASS  cost=0.0228 turns=2
+[22:22:38] headroom t1_click_bug #2 (attempt 1)
+  -> PASS  cost=0.0568 turns=7
+[22:23:49] baseline t8_control_edit #3 (attempt 1)
+  -> PASS  cost=0.0230 turns=3
+[22:23:56] ojas t1_click_bug #1 (attempt 1)
+  -> PASS  cost=0.0920 turns=13
+[22:24:38] baseline t2_express_bug #3 (attempt 1)
+ick_bug #1 (attempt 1)
+  -> PASS  cost=0.0566 turns=8
+[22:12:58] caveman t5_click_qa #3 (attempt 1)
+  -> PASS  cost=0.0108 turns=3
+[22:13:10] headroom t2_express_bug #3 (attempt 1)
+grep: /out/run.raw: No such file or directory
+[22:27:17] ojas t2_express_bug #3 (attempt 1)
+  -> PASS  cost=0.0770 turns=11
+[22:27:46] headroom t2_express_bug #3 (attempt 1)
+  -> PASS  cost=0.0499 turns=6
+[22:28:41] caveman t4_click_rename #2 (attempt 1)
+  -> PASS  cost=0.0247 turns=5
+[22:29:16] baseline t5_click_qa #2 (attempt 1)
+  -> PASS  cost=0.0278 turns=4
+[22:29:24] baseline t3_walkdir_bug #2 (attempt 1)
+  -> PASS  cost=0.1645 turns=19
+[22:30:10] baseline t5_click_qa #3 (attempt 1)
+  -> PASS  cost=0.0151 turns=4
+[22:30:19] headroom t5_click_qa #2 (attempt 1)
+  -> PASS  cost=0.0113 turns=3
+[22:30:44] baseline t4_click_rename #2 (attempt 1)
+  -> PASS  cost=0.0163 turns=4
+[22:30:59] caveman t4_click_rename #1 (attempt 1)
+  -> PASS  cost=0.0195 turns=4
+[22:31:20] caveman t2_express_bug #1 (attempt 1)
+  -> PASS  cost=0.0651 turns=1
+[22:43:39] headroom t3_walkdir_bug #3 (attempt 1)
+  -> PASS  cost=0.1297 turns=13
+[22:44:34] headroom t3_walkdir_bug #1 (attempt 1)
+  -> PASS  cost=0.1143 turns=14
+[22:45:32] caveman t2_express_bug #2 (attempt 1)
+  -> PASS  cost=0.0665 turns=8
+[22:46:00] caveman t2_express_bug #3 (attempt 1)
+  -> PASS  cost=0.0629 turns=8
+[22:48:32] caveman t8_control_edit #3 (attempt 1)
+  -> PASS  cost=0.0365 turns=3
+[22:48:44] baseline t6_log_rootcause #1 (attempt 1)
+  -> PASS  cost=0.0423 turns=3
+[22:48:51] caveman t3_walkdir_bug #2 (attempt 1)
+  -> PASS  cost=0.1060 turns=9
+[22:49:19] headroom t4_click_rename #2 (attempt 1)
+  -> PASS  cost=0.0149 turns=4
+[22:49:59] headroom t7_git_history #2 (attempt 1)
+  -> PASS  cost=0.0229 turns=2
+[22:50:33] caveman t7_git_history #3 (attempt 1)
+  -> PASS  cost=0.0334 turns=2
+[22:50:44] headroom t2_express_bug #2 (attempt 1)
+  -> PASS  cost=0.0458 turns=6
+[22:51:33] baseline t5_click_qa #1 (attempt 1)
+  -> PASS  cost=0.0138 turns=4
+[22:51:41] ojas t7_git_history #3 (attempt 1)
+  -> PASS  cost=0.0234 turns=2
+[22:51:45] caveman t6_log_rootcause #2 (attempt 1)
+  -> PASS  cost=0.0545 turns=3
+[22:51:57] ojas t4_click_rename #1 (attempt 1)
+  -> PASS  cost=0.0139 turns=3
+[22:52:11] ojas t6_log_rootcause #2 (attempt 1)
+  -> PASS  cost=0.0267 turns=3
+[22:52:17] ojas t5_click_qa #1 (attempt 1)
+  -> PASS  cost=0.0303 turns=4
+[22:52:25] headroom t7_git_history #1 (attempt 1)
+  -> PASS  cost=0.0227 turns=2
+[22:52:52] ojas t2_express_bug #2 (attempt 1)
+  -> PASS  cost=0.0878 turns=1
+[23:05:20] ojas t5_click_qa #2 (attempt 1)
+  -> PASS  cost=0.0130 turns=4
+[23:05:26] caveman t1_click_bug #3 (attempt 1)
+  -> PASS  cost=0.0824 turns=9
+[23:06:07] caveman t3_walkdir_bug #3 (attempt 1)
+  -> PASS  cost=0.1219 turns=14
+[23:06:46] baseline t7_git_history #2 (attempt 1)
+  -> PASS  cost=0.0269 turns=3

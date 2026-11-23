@@ -1,0 +1,9 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈535 tok   sent ≈94 tok   saved ≈442 tok (83%)
+
+filter         runs compressed      raw tok     sent tok  saved
+test              1          1          535           94    83%
+
+top commands by tokens saved
+  npm test                         1 runs  saved ≈442 tok (83%)

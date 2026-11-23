@@ -1,0 +1,6 @@
+FAIL answer: I could not identify the failing test. `npm test` exited with code 1, but the failure details are not in the output I received.
+
+- **What I saw:** Mocha's spec output is long, and the harness cut the middle out (`... [18822 characters truncated] ...`). The visible tail ends mid-run in the `express.urlencoded()` section, at `should parse array index notation`, with a partial character at the end. The `N failing` summary and the failure messages with expected and actual values were not in what came back.
+- **What I did not do:** I did not re-run the suite with output redirected to a file or filtered with grep. You asked for one unfiltered run, and redirecting would change how the run was captured. I also did not modify any files.
+
+To get the failure details, I can run `npm test > /tmp/express-test.log 2>&1` once and read the failing section of the log. Redirecting to a file is a change from your "no piping" instruction, so I'll wait for your go-ahead before doing it. Alternatively, you can run `npm test` yourself and paste the `failing` section here.

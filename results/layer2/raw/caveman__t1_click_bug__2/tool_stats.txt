@@ -1,0 +1,32 @@
+caveman status
+                   claude
+  on  output       wired
+  on  input        wired      today: ~138 tokens kept out of context (inferred)
+  on  waste-fixes  wired
+  on  routing      —          sign in to turn on routing · caveman login
+  on  scripts      wired
+  on  browse       ✓
+agent traffic: local runtime
+next: caveman login
+Caveman Stats
+Last 30 days · UTC · local estimates
+
+Input reduction estimate   708 tokens (0.4%)
+Compared request tokens    158,806 original / 158,098 delivered
+API input cost estimate    unavailable reduction · 0 priced requests
+Subscription equivalent    $0.000123 at API rates · 10 priced requests
+API spend estimate         unavailable · 0 priced requests
+
+Requests                   10 total / 10 successful / 0 failed
+Provider usage             229,146 input / 1,326 output
+Cache usage                217,490 read / 11,636 written
+Usage coverage             10 complete / 0 partial or unavailable
+Comparison coverage        10 measured / 0 unavailable
+
+By provider
+  anthropic: 10 requests · 708 tokens · API unavailable · subscription equivalent $0.000123
+
+API estimates assume the observed cache mix. Subscription equivalents do not reduce your bill.
+
+Dashboard: /home/bench/.caveman/reports/caveman-stats.html
+Full breakdown: caveman stats --json

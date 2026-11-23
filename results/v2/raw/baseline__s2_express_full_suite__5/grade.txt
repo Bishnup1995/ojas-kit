@@ -1,0 +1,9 @@
+FAIL answer: I ran `npm test` once, but I can't tell you which test failed. The tool truncated the output, and the part that was cut off is where the failure would be.
+
+- **Exit code:** 1, so at least one test failed.
+- **What I could see:** the first and last parts of the spec output. Everything visible passed, including Route, Router, `app.*`, `res.sendFile`, `express.text()` and the start of `express.urlencoded()`. The output also ends abruptly in the middle of the `express.urlencoded()` section.
+- **What I couldn't see:** about 18,800 characters in the middle, and the end of the run, which is where mocha prints the failure summary with the expected and actual values.
+
+I'd rather not guess at a test name or values. You asked for a single plain run, so I haven't rerun it. To get the failure details I could rerun with `npm test > /tmp/test-output.txt 2>&1` and read the file. That writes only to `/tmp`, not the repo, but it does break your "no piping" and "once" constraints. Do you want me to do that?
+
+`git status` also shows `test/res.send.js` was already modified before I started. That may be related to the failure, but I haven't checked.

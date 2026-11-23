@@ -1,0 +1,53 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    10
+Input tokens:      5.1K
+Output tokens:     2.2K
+Tokens saved:      2.9K (57.1%)
+Total exec time:   11.8s (avg 1.2s)
+Efficiency meter: ██████████████░░░░░░░░░░ 57.1%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest -q                 1   2.1K   74.8%    5.7s  ██████████
+ 2.  rtk grep                      7    808   36.0%   871ms  ████░░░░░░
+ 3.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 4.  rtk git status --short        1      1    2.0%     9ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    10
+Input tokens:      5.1K
+Output tokens:     2.2K
+Tokens saved:      2.9K (57.1%)
+Total exec time:   11.8s (avg 1.2s)
+Efficiency meter: ██████████████░░░░░░░░░░ 57.1%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest -q                 1   2.1K   74.8%    5.7s  ██████████
+ 2.  rtk grep                      7    808   36.0%   871ms  ████░░░░░░
+ 3.  rtk wc -l core.py             1      2   50.0%     1ms  ░░░░░░░░░░
+ 4.  rtk git status --short        1      1    2.0%     9ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 17:43 • rtk grep                  -21% (5)
+11-22 17:43 • rtk git status --short    -2% (1)
+11-22 17:43 ▲ rtk pytest -q             -75% (2.1K)
+11-22 17:42 • rtk grep                  -10% (10)
+11-22 17:42 • rtk grep                  -10% (26)
+11-22 17:42 • rtk grep                  -16% (39)
+11-22 17:41 • rtk grep                  -11% (46)
+11-22 17:41 • rtk grep                  -17% (61)
+11-22 17:41 ▲ rtk grep                  -75% (621)
+11-22 17:41 ■ rtk wc -l core.py         -50% (2)
+

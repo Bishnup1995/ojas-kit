@@ -1,0 +1,15 @@
+# v2 arm "rtk": rtk (https://github.com/rtk-ai/rtk) release binary, installed per its README
+# (`rtk init -g`, non-interactive with --auto-patch). Same base image as every other arm.
+ARG RTK_TAG=v1.2.1
+FROM ojasbench/baseline:2
+ARG RTK_TAG
+ENV ARM=rtk
+USER root
+RUN cd /tmp && curl -fsSLO "https://github.com/rtk-ai/rtk/releases/download/${RTK_TAG}/rtk-x86_64-unknown-linux-musl.tar.gz" \
+ && curl -fsSLO "https://github.com/rtk-ai/rtk/releases/download/${RTK_TAG}/checksums.txt" \
+ && grep "rtk-x86_64-unknown-linux-musl.tar.gz" checksums.txt | sha256sum -c - \
+ && tar -xzf rtk-x86_64-unknown-linux-musl.tar.gz && find /tmp -maxdepth 2 -name rtk -type f -exec install -m 755 {} /usr/local/bin/rtk \; \
+ && rm -rf /tmp/rtk* /tmp/checksums.txt && echo "${RTK_TAG}" > /usr/local/share/rtk_tag
+USER bench
+RUN rtk --version && (rtk init -g --auto-patch </dev/null 2>&1 | tee /tmp/rtk-init.log) \
+ && rtk init --show 2>&1 | tee -a /tmp/rtk-init.log && cat ~/.claude/settings.json

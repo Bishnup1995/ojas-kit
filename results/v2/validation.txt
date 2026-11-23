@@ -1,0 +1,44 @@
+# Grader validation, 2026-11-21 (fresh baseline container per line; start/bad must FAIL, good must PASS)
+r1_pricing_policy start: FAIL 45 mismatches, e.g. ['quote(bolts-north,100,0,north)', 'quote(bolts-north,100,0,alpine)', 'quote(bolts-north,100,0,coastal)']
+r1_pricing_policy good: PASS
+r1_pricing_policy bad: FAIL 45 mismatches, e.g. ['quote(bolts-north,100,0,north)', 'quote(bolts-north,100,0,alpine)', 'quote(bolts-north,100,0,coastal)']
+r2_ledger_raises start: FAIL missing=['accrue_accrual', 'accrue_journal', 'adjust_fee', 'allocate_rebate', 'book_voucher', 'clear_period', 'defer_credit', 'net_debit', 'open_accrual', 'revalue_advance', 'revalue_batch', 'rev
+r2_ledger_raises good: PASS
+r2_ledger_raises bad: FAIL missing=['accrue_accrual'] extra=['reverse_credit']
+r3_click_core_bug start: FAIL pytest: 51 failed, 2003 passed, 24 skipped, 30000 deselected, 1 xfailed in 73.67s (0:01:13)
+r3_click_core_bug good: PASS
+r3_click_core_bug bad: FAIL pytest: 50 failed, 2004 passed, 24 skipped, 30000 deselected, 1 xfailed in 59.31s
+l1_click_duration start: FAIL CHANGES.md not updated
+l1_click_duration good: PASS
+l1_click_duration bad: FAIL hidden tests: 1 failed, 22 passed in 0.75s
+# (l1 good/bad re-run after moving the agent's test file to tests/test_types/test_Duration.py, before any run; first attempt failed because tests/test_types.py does not exist in this snapshot)
+l2_express_ci start: FAIL npm test:   1212 passing (7s)   78 failing 
+l2_express_ci good: PASS
+l2_express_ci bad: FAIL npm test:   1247 passing (8s)   43 failing 
+l3_click_split_core start: FAIL no src/click/params.py
+l3_click_split_core good: PASS
+l3_click_split_core bad: FAIL import check: ImportError: cannot import name 'Argument' from 'click.core' (/home/bench/work/click/src/click/core.py)
+s1_click_full_suite start: FAIL missing test_arguments.py
+s1_click_full_suite good: PASS
+s2_express_full_suite start: FAIL answer: 
+s2_express_full_suite good: PASS
+s3_click_core_full_read start: FAIL answer: 
+s3_click_core_full_read good: PASS
+s4_log_cat_all start: FAIL answer: 
+s4_log_cat_all good: PASS
+t1_click_bug start: FAIL pytest: 21 failed, 2033 passed, 24 skipped, 30000 deselected, 1 xfailed in 19.04s
+t1_click_bug good: PASS
+t2_express_bug start: FAIL npm test:   662 passing (10s)   628 failing 
+t2_express_bug good: PASS
+t3_walkdir_bug start: FAIL cargo test: test result: FAILED. 32 passed; 16 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s 
+t3_walkdir_bug good: PASS
+t4_click_rename start: FAIL make_str still in 3 places
+t4_click_rename good: PASS
+t5_click_qa start: FAIL answer: 
+t5_click_qa good: PASS
+t6_log_rootcause start: FAIL answer: 
+t6_log_rootcause good: PASS
+t7_git_history start: FAIL expected 7996a89c5a4ce1c451e2e1c9c5a00eb0c844d4ce
+t7_git_history good: PASS
+t8_control_edit start: FAIL edit check
+t8_control_edit good: PASS

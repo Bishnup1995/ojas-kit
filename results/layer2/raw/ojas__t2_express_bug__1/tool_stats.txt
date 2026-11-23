@@ -1,0 +1,21 @@
+No ojas runs recorded yet. Install the hook with `ojas init`, or run commands as `ojas run -- <cmd>`.
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                22  (0.0% of input)
+  cache writes               10,808  (4.6%)
+  cache reads               222,401  (95.4%)
+  output                      1,650
+
+Bash results: 10 calls, ≈3,039 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 10 calls, ≈3,039 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+         861      2  sed                        no filter yet
+         709      2  mocha                      filter exists: install the hook (ojas init)
+         579      1  grep                       filter exists: install the hook (ojas init)
+         392      1  git diff                   filter exists: install the hook (ojas init)
+         335      2  npm test                   filter exists: install the hook (ojas init)
+         140      1  ls                         filter exists: install the hook (ojas init)
+          25      1  git log                    filter exists: install the hook (ojas init)

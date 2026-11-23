@@ -1,0 +1,2 @@
+arm=headroom task=t6_log_rootcause block=main repo=/home/bench/work/logs model=claude-sonnet-5-5 max_turns=60 timeout_s=1800
+exit=0 wall_s=26

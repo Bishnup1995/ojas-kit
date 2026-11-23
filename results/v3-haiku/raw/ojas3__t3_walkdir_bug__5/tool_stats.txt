@@ -1,0 +1,13 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 4   compressed 1   raw ≈911 tok   sent ≈722 tok   saved ≈189 tok (21%)
+
+filter         runs compressed      raw tok     sent tok  saved
+git-diff          1          1          405          216    47%
+git-log           1          0           32           32     0%
+search            2          0          475          475     0%
+
+top commands by tokens saved
+  git show                         1 runs  saved ≈189 tok (47%)
+  git log                          1 runs  saved ≈0 tok (0%)
+  grep                             2 runs  saved ≈0 tok (0%)

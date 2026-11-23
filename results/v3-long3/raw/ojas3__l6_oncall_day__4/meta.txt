@@ -1,0 +1,2 @@
+arm=ojas3 task=l6_oncall_day block=long3 repo=/home/bench/work model=claude-sonnet-5-5 max_turns=150 timeout_s=7200
+exit=0 wall_s=365

@@ -1,0 +1,59 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    23
+Input tokens:      6.6K
+Output tokens:     4.4K
+Tokens saved:      2.1K (32.7%)
+Total exec time:   1.4s (avg 65ms)
+Efficiency meter: ████████░░░░░░░░░░░░░░░░ 32.7%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                     16   1.2K   28.7%    49ms  ██████████
+ 2.  rtk cargo test                1    833   50.0%   604ms  ███████░░░
+ 3.  rtk cargo test empty_...      1    102   42.5%    33ms  █░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 5.  rtk git status --short        1      0    0.0%     2ms  ░░░░░░░░░░
+ 6.  rtk git log --oneline         1      0    0.0%     2ms  ░░░░░░░░░░
+ 7.  rtk git checkout src/...      2      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    23
+Input tokens:      6.6K
+Output tokens:     4.4K
+Tokens saved:      2.1K (32.7%)
+Total exec time:   1.4s (avg 65ms)
+Efficiency meter: ████████░░░░░░░░░░░░░░░░ 32.7%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                     16   1.2K   28.7%    49ms  ██████████
+ 2.  rtk cargo test                1    833   50.0%   604ms  ███████░░░
+ 3.  rtk cargo test empty_...      1    102   42.5%    33ms  █░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+ 5.  rtk git status --short        1      0    0.0%     2ms  ░░░░░░░░░░
+ 6.  rtk git log --oneline         1      0    0.0%     2ms  ░░░░░░░░░░
+ 7.  rtk git checkout src/...      2      0    0.0%     2ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 13:32 • rtk grep                  -17% (10)
+11-22 13:31 • rtk grep                  -22% (21)
+11-22 13:31 • rtk git checkout src/l... -0% (0)
+11-22 13:31 • rtk grep                  -21% (11)
+11-22 13:31 • rtk grep                  -29% (22)
+11-22 13:31 ■ rtk cargo test empty_file -42% (102)
+11-22 13:31 • rtk git status --short    -0% (0)
+11-22 13:31 ■ rtk grep                  -31% (56)
+11-22 13:31 • rtk grep                  -28% (79)
+11-22 13:31 • rtk grep                  -25% (52)
+

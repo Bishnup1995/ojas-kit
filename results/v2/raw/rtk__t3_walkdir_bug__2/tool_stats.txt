@@ -1,0 +1,53 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    14
+Input tokens:      6.5K
+Output tokens:     4.0K
+Tokens saved:      2.5K (39.0%)
+Total exec time:   1.2s (avg 92ms)
+Efficiency meter: █████████░░░░░░░░░░░░░░░ 39.0%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                     11   1.6K   34.7%    41ms  ██████████
+ 2.  rtk cargo test                1    833   50.0%   715ms  █████░░░░░
+ 3.  rtk cargo test sym_ro...      1     84   46.7%    30ms  █░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    14
+Input tokens:      6.5K
+Output tokens:     4.0K
+Tokens saved:      2.5K (39.0%)
+Total exec time:   1.2s (avg 92ms)
+Efficiency meter: █████████░░░░░░░░░░░░░░░ 39.0%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                     11   1.6K   34.7%    41ms  ██████████
+ 2.  rtk cargo test                1    833   50.0%   715ms  █████░░░░░
+ 3.  rtk cargo test sym_ro...      1     84   46.7%    30ms  █░░░░░░░░░
+ 4.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 15:58 • rtk grep                  -17% (10)
+11-22 15:58 • rtk grep                  -0% (0)
+11-22 15:58 ■ rtk grep                  -33% (58)
+11-22 15:58 • rtk grep                  -22% (47)
+11-22 15:58 • rtk:passthrough git di... -0% (0)
+11-22 15:58 ■ rtk cargo test sym_roo... -47% (84)
+11-22 15:58 • rtk grep                  -23% (72)
+11-22 15:58 • rtk grep                  -18% (17)
+11-22 15:58 • rtk grep                  -28% (231)
+11-22 15:58 • rtk grep                  -16% (127)
+

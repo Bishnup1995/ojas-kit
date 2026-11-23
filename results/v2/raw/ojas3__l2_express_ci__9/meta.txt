@@ -1,0 +1,2 @@
+arm=ojas3 task=l2_express_ci block=long repo=/home/bench/work/express model=claude-sonnet-5-5 max_turns=60 timeout_s=3600
+exit=0 wall_s=13

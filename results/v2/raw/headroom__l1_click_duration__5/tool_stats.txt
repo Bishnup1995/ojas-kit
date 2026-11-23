@@ -1,0 +1,40 @@
+Headroom Performance Report
+============================================================
+Window: last 168h (actual data: 2026-11-22 16:15:56 → 2026-11-22 16:16:39)
+
+Requests:     6
+Tokens:       79,884 -> 77,622 (2.8% messages)
+Tokens saved: 2,262 (2.8% reduction)
+
+Savings Audit
+----------------------------------------
+  Raw prompt reduction: 2,262 tokens (2.8%)
+  Logged savings:       2,262 tokens (2.8%)
+  Accounting delta:     +0 tokens
+
+Per-Model Breakdown
+----------------------------------------
+  claude-sonnet-5-5: 6 reqs, 2,262 tokens saved (3%), list price $2.00/MTok  ~$0.00 at list price
+  * Actual bill savings depend on provider caching behavior
+
+Cache Performance
+----------------------------------------
+  Cache read:    120,596 tokens
+  Cache write:   7,963 tokens
+  Hit rate:      93.8%
+
+Optimization Overhead
+----------------------------------------
+  Average:     1088ms
+  p50/p95/p99: 24 / 4792 / 6044ms
+  Max:         6357ms
+  >500ms:      1 requests (16.7%)
+  Slowest stages:
+    total_pre_upstream: total 6579ms, p95 4815ms, max 6386ms
+    compression_first_stage: total 5833ms, p95 5833ms, max 5833ms
+    read_request_json: total 6ms, p95 1ms, max 1ms
+
+Throughput
+----------------------------------------
+  Input (wall-clock):   1988.2 tok/s (current: 1988.2 tok/s)
+  Input (active p50/95): 6635.4 / 12014.4 tok/s (current: 6635.4 / 12014.4 tok/s)

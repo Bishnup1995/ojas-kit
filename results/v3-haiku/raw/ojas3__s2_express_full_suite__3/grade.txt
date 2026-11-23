@@ -1,0 +1,12 @@
+FAIL answer: I could not identify the failing test. `npm test` exited with code 1, but the failure summary is missing from the output I received.
+
+- **What I saw:** the run started normally (`mocha --require test/support/env --reporter spec --check-leaks test/ test/acceptance/`). The visible passing lines in Route, Router, app, HEAD, OPTIONS, and the body-parser and serve-static sections show no `✗` marks.
+- **Why it's missing:** the tool output was cut in the middle ("... [18822 characters truncated] ...") and the tail, where mocha prints the failure list and the expected/actual values, ends in a garbled character. The tail is where I needed to look.
+- **What I didn't do:** I didn't re-run the suite, since you asked for a single run, and I didn't modify any files.
+
+I can get the failure details in one of two ways, and I need your call because both go against your constraints:
+
+1. Re-run `npm test` with its output written to a file outside the repo (for example `/tmp`) so I can read the failure section. This needs a redirect, which you ruled out, and it's a second run.
+2. Re-run only the test file that failed, once I know which one it is. That's a filtered run, which you also ruled out.
+
+If you'd rather keep the single run, the failure block is at the bottom of the terminal output from that run. Searching it for `failing` or `AssertionError` will show the test name and the expected and actual values.

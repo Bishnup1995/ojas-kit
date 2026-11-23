@@ -1,0 +1,49 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      1.4K
+Output tokens:     1.0K
+Tokens saved:      324 (23.8%)
+Total exec time:   6ms (avg 0ms)
+Efficiency meter: ██████░░░░░░░░░░░░░░░░░░ 23.8%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      5    225   28.3%     1ms  ██████████
+ 2.  rtk ls tests/test_types       1     99   72.3%     1ms  ████░░░░░░
+ 3.  rtk read                      2      0    0.0%     0ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      1.4K
+Output tokens:     1.0K
+Tokens saved:      324 (23.8%)
+Total exec time:   6ms (avg 0ms)
+Efficiency meter: ██████░░░░░░░░░░░░░░░░░░ 23.8%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk grep                      5    225   28.3%     1ms  ██████████
+ 2.  rtk ls tests/test_types       1     99   72.3%     1ms  ████░░░░░░
+ 3.  rtk read                      2      0    0.0%     0ms  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 17:40 • rtk grep                  -0% (0)
+11-22 17:40 ■ rtk grep                  -37% (86)
+11-22 17:40 • rtk read                  -0% (0)
+11-22 17:40 • rtk grep                  -24% (30)
+11-22 17:40 ▲ rtk ls tests/test_types   -72% (99)
+11-22 17:40 • rtk read                  -0% (0)
+11-22 17:40 • rtk grep                  -0% (0)
+11-22 17:40 ■ rtk grep                  -37% (109)
+

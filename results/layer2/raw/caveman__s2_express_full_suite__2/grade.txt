@@ -1,0 +1,7 @@
+FAIL answer: I can't report the failure yet. The `npm test` output was cut off before the failure summary, so I never saw it.
+
+- **What came back:** the first part of the run, then an 18,822-character gap, then output that stops partway through the `express.urlencoded()` tests.
+- **What I saw:** every test in the visible parts passed. The run exited with code 1, so at least one test failed, but the failing test and its expected and actual values were in the part I didn't get.
+- **Why I stopped:** you asked for a single plain `npm test` run with no piping or truncation. Running it again would break that instruction, and the tool's output limit would likely cut it off again.
+
+Can I rerun it with the output redirected to a file, such as `npm test > /tmp/express-test.log 2>&1`? Then I'd read the failure section from the file. This changes no repo files, and `test/res.send.js` already had uncommitted changes before I started. Or you can run it yourself and paste the failure block.

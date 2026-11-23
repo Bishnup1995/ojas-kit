@@ -1,0 +1,62 @@
+[2026-11-23 09:24:30 IST] runner start pid=507 total=30 raw=../results/v2-extra/raw
+[2026-11-23 09:24:31 IST] start 1/30 block=read ojas3 r1_pricing_policy #1
+[2026-11-23 09:24:48 IST] done 1/30 block=read ojas3 r1_pricing_policy #1 -> PASS cost=0.0780 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:24:50 IST] start 2/30 block=read ojas3 r2_ledger_raises #1
+[2026-11-23 09:25:26 IST] done 2/30 block=read ojas3 r2_ledger_raises #1 -> PASS cost=0.1309 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:25:28 IST] start 3/30 block=read ojas3 r3_click_core_bug #1
+[2026-11-23 09:26:53 IST] done 3/30 block=read ojas3 r3_click_core_bug #1 -> PASS cost=0.0591 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:26:54 IST] start 4/30 block=read ojas3 r1_pricing_policy #2
+[2026-11-23 09:27:05 IST] done 4/30 block=read ojas3 r1_pricing_policy #2 -> PASS cost=0.0285 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:27:05 IST] start 5/30 block=read ojas3 r2_ledger_raises #2
+[2026-11-23 09:27:36 IST] done 5/30 block=read ojas3 r2_ledger_raises #2 -> PASS cost=0.0748 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:27:36 IST] start 6/30 block=read ojas3 r3_click_core_bug #2
+[2026-11-23 09:28:25 IST] done 6/30 block=read ojas3 r3_click_core_bug #2 -> PASS cost=0.0530 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:28:25 IST] start 7/30 block=read ojas3 r1_pricing_policy #3
+[2026-11-23 09:28:37 IST] done 7/30 block=read ojas3 r1_pricing_policy #3 -> PASS cost=0.0300 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:28:37 IST] start 8/30 block=read ojas3 r2_ledger_raises #3
+[2026-11-23 09:29:05 IST] done 8/30 block=read ojas3 r2_ledger_raises #3 -> PASS cost=0.0731 turns=4 | valid=1 | last pause: none
+[2026-11-23 09:29:05 IST] start 9/30 block=read ojas3 r3_click_core_bug #3
+[2026-11-23 09:29:52 IST] done 9/30 block=read ojas3 r3_click_core_bug #3 -> PASS cost=0.0512 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:29:52 IST] start 10/30 block=read ojas3 r1_pricing_policy #4
+[2026-11-23 09:30:02 IST] done 10/30 block=read ojas3 r1_pricing_policy #4 -> PASS cost=0.0276 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:30:03 IST] start 11/30 block=read ojas3 r2_ledger_raises #4
+[2026-11-23 09:30:39 IST] done 11/30 block=read ojas3 r2_ledger_raises #4 -> PASS cost=0.0815 turns=4 | valid=1 | last pause: none
+[2026-11-23 09:30:40 IST] start 12/30 block=read ojas3 r3_click_core_bug #4
+[2026-11-23 09:31:49 IST] done 12/30 block=read ojas3 r3_click_core_bug #4 -> PASS cost=0.0507 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:31:50 IST] start 13/30 block=read ojas3 r1_pricing_policy #5
+[2026-11-23 09:32:01 IST] done 13/30 block=read ojas3 r1_pricing_policy #5 -> PASS cost=0.0262 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:32:01 IST] start 14/30 block=read ojas3 r2_ledger_raises #5
+[2026-11-23 09:32:37 IST] done 14/30 block=read ojas3 r2_ledger_raises #5 -> PASS cost=0.0850 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:32:38 IST] start 15/30 block=read ojas3 r3_click_core_bug #5
+[2026-11-23 09:33:23 IST] done 15/30 block=read ojas3 r3_click_core_bug #5 -> PASS cost=0.0506 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:33:23 IST] start 16/30 block=read ojas3 r1_pricing_policy #6
+[2026-11-23 09:33:34 IST] done 16/30 block=read ojas3 r1_pricing_policy #6 -> PASS cost=0.0288 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:33:34 IST] start 17/30 block=read ojas3 r2_ledger_raises #6
+[2026-11-23 09:34:00 IST] done 17/30 block=read ojas3 r2_ledger_raises #6 -> PASS cost=0.0724 turns=4 | valid=1 | last pause: none
+[2026-11-23 09:34:00 IST] start 18/30 block=read ojas3 r3_click_core_bug #6
+[2026-11-23 09:34:47 IST] done 18/30 block=read ojas3 r3_click_core_bug #6 -> PASS cost=0.0602 turns=7 | valid=1 | last pause: none
+[2026-11-23 09:34:48 IST] start 19/30 block=read ojas3 r1_pricing_policy #7
+[2026-11-23 09:34:59 IST] done 19/30 block=read ojas3 r1_pricing_policy #7 -> PASS cost=0.0285 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:34:59 IST] start 20/30 block=read ojas3 r2_ledger_raises #7
+[2026-11-23 09:35:35 IST] done 20/30 block=read ojas3 r2_ledger_raises #7 -> PASS cost=0.0966 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:35:36 IST] start 21/30 block=read ojas3 r3_click_core_bug #7
+[2026-11-23 09:36:20 IST] done 21/30 block=read ojas3 r3_click_core_bug #7 -> PASS cost=0.0481 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:36:20 IST] start 22/30 block=read ojas3 r1_pricing_policy #8
+[2026-11-23 09:36:31 IST] done 22/30 block=read ojas3 r1_pricing_policy #8 -> PASS cost=0.0177 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:36:31 IST] start 23/30 block=read ojas3 r2_ledger_raises #8
+[2026-11-23 09:36:57 IST] done 23/30 block=read ojas3 r2_ledger_raises #8 -> PASS cost=0.0903 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:36:57 IST] start 24/30 block=read ojas3 r3_click_core_bug #8
+[2026-11-23 09:37:41 IST] done 24/30 block=read ojas3 r3_click_core_bug #8 -> PASS cost=0.0491 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:37:41 IST] start 25/30 block=read ojas3 r1_pricing_policy #9
+[2026-11-23 09:37:51 IST] done 25/30 block=read ojas3 r1_pricing_policy #9 -> PASS cost=0.0274 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:37:52 IST] start 26/30 block=read ojas3 r2_ledger_raises #9
+[2026-11-23 09:38:26 IST] done 26/30 block=read ojas3 r2_ledger_raises #9 -> PASS cost=0.0897 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:38:26 IST] start 27/30 block=read ojas3 r3_click_core_bug #9
+[2026-11-23 09:39:11 IST] done 27/30 block=read ojas3 r3_click_core_bug #9 -> PASS cost=0.0518 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:39:12 IST] start 28/30 block=read ojas3 r1_pricing_policy #10
+[2026-11-23 09:39:23 IST] done 28/30 block=read ojas3 r1_pricing_policy #10 -> PASS cost=0.0172 turns=6 | valid=1 | last pause: none
+[2026-11-23 09:39:23 IST] start 29/30 block=read ojas3 r2_ledger_raises #10
+[2026-11-23 09:39:54 IST] done 29/30 block=read ojas3 r2_ledger_raises #10 -> PASS cost=0.0984 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:39:54 IST] start 30/30 block=read ojas3 r3_click_core_bug #10
+[2026-11-23 09:40:41 IST] done 30/30 block=read ojas3 r3_click_core_bug #10 -> PASS cost=0.0458 turns=5 | valid=1 | last pause: none
+[2026-11-23 09:40:41 IST] runner finished: 30/30 complete

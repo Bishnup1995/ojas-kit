@@ -1,0 +1,7 @@
+FAIL answer: I can't report the failing test, because the output I got back from `npm test` was cut off and doesn't show it.
+
+- **Truncated output:** the tool dropped about 18,800 characters from the middle, and the output stops partway through the `express.urlencoded()` tests. It never reached mocha's summary, so I didn't see the pass/fail counts or any failure block with expected and actual values.
+- **Exit code:** it was 1, so at least one test did fail.
+- **Visible part:** every test I could see passed. The failure is either in the dropped middle section or in the part after the cut-off.
+
+You asked me to run it only once, with no piping or truncation, so I haven't re-run it or guessed at the failure. To get the failure message, I'd need to re-run with the output saved to a file (for example `npm test > /tmp/test.log 2>&1`) and read the failure section from there. That doesn't change any repo files, but it does mean a second run and a redirect. Do you want me to do that?

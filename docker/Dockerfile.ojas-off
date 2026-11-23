@@ -1,0 +1,6 @@
+# Follow-up experiment (layer2_styleoff): the ojas arm image, unchanged, plus one config file that turns
+# the SessionStart response-style rules off. Everything else (binary, hooks, thresholds) is identical.
+FROM ojasbench/ojas:2
+ENV ARM=ojas-off
+RUN mkdir -p /home/bench/.ojas && echo '{"style": "off"}' > /home/bench/.ojas/config.json \
+ && echo '{}' | ojas hook session-start | grep -vq "Response style" && echo "style off verified"

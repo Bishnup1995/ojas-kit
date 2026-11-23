@@ -1,0 +1,8 @@
+FAIL answer: I can't yet tell you which test fails. The run exited with code 1, but the tool output was truncated in the middle (about 18,800 characters dropped) and again at the end. The failure summary that mocha prints after the spec list is missing, so I can't report the test name or its expected and actual values. The visible portion shows only passing tests.
+
+You asked for a single plain `npm test` run with no piping, so I haven't run it again. I also didn't want to guess at a failure I never saw. Two options:
+
+1. I rerun `npm test` with the output redirected to a file outside the repo, for example `/tmp`, then read the failure section from it. This is a second run and uses redirection, so it breaks your "once, no piping" rule, but it doesn't modify any repo files.
+2. I run only the likely suspect, `test/res.send.js`, which already has uncommitted changes. That is a filtered run, which you ruled out.
+
+Which would you like? I'd recommend option 1.

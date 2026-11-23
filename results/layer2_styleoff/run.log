@@ -1,0 +1,145 @@
+[11:52:54] baseline t8_control_edit #3 (attempt 1, spent $0.0000)
+  -> PASS  cost=0.0331 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:53:28] baseline t7_git_history #3 (attempt 1, spent $0.0331)
+  -> PASS  cost=0.0332 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:53:55] baseline t1_click_bug #3 (attempt 1, spent $0.0663)
+  -> PASS  cost=0.0526 turns=6  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:56:15] ojas-off t1_click_bug #1 (attempt 1, spent $0.1189)
+  -> PASS  cost=0.0621 turns=8  style_full_in_transcript=0 hook_note_in_transcript=1
+[11:57:56] ojas t4_click_rename #3 (attempt 1, spent $0.1810)
+  -> PASS  cost=0.0327 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[11:58:27] ojas-off t6_log_rootcause #1 (attempt 1, spent $0.2137)
+  -> PASS  cost=0.0499 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[11:58:45] ojas t6_log_rootcause #2 (attempt 1, spent $0.2637)
+  -> PASS  cost=0.0429 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[11:59:00] baseline t8_control_edit #2 (attempt 1, spent $0.3065)
+  -> PASS  cost=0.0115 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:59:14] baseline t3_walkdir_bug #1 (attempt 1, spent $0.3181)
+  -> PASS  cost=0.1126 turns=13  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:59:46] baseline t5_click_qa #2 (attempt 1, spent $0.4306)
+  -> PASS  cost=0.0272 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[11:59:56] baseline t8_control_edit #1 (attempt 1, spent $0.4578)
+  -> PASS  cost=0.0089 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:00:07] ojas-off t1_click_bug #3 (attempt 1, spent $0.4667)
+  -> PASS  cost=0.0607 turns=7  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:01:40] baseline t2_express_bug #1 (attempt 1, spent $0.5274)
+  -> PASS  cost=0.0980 turns=14  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:05:15] baseline t1_click_bug #2 (attempt 1, spent $0.6254)
+  -> PASS  cost=0.0524 turns=7  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:05:58] ojas-off t7_git_history #3 (attempt 1, spent $0.6778)
+  -> PASS  cost=0.0238 turns=2  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:06:05] baseline t2_express_bug #3 (attempt 1, spent $0.7016)
+  -> PASS  cost=0.1262 turns=18  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:07:03] baseline t6_log_rootcause #2 (attempt 1, spent $0.8277)
+  -> PASS  cost=0.0420 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:07:13] ojas t6_log_rootcause #1 (attempt 1, spent $0.8698)
+  -> PASS  cost=0.0267 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:07:22] ojas-off t8_control_edit #2 (attempt 1, spent $0.8964)
+  -> PASS  cost=0.0243 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:07:31] ojas t2_express_bug #2 (attempt 1, spent $0.9207)
+  -> PASS  cost=0.1042 turns=14  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:10:25] baseline t7_git_history #2 (attempt 1, spent $1.0250)
+  -> PASS  cost=0.0222 turns=2  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:10:32] baseline t7_git_history #1 (attempt 1, spent $1.0472)
+  -> PASS  cost=0.0226 turns=2  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:10:39] ojas t4_click_rename #2 (attempt 1, spent $1.0698)
+  -> PASS  cost=0.0145 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:10:53] ojas t5_click_qa #2 (attempt 1, spent $1.0843)
+  -> PASS  cost=0.0282 turns=4  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:11:00] ojas t3_walkdir_bug #3 (attempt 1, spent $1.1125)
+  -> PASS  cost=0.1653 turns=19  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:11:43] ojas-off t3_walkdir_bug #2 (attempt 1, spent $1.2778)
+  -> PASS  cost=0.1143 turns=13  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:12:10] ojas-off t2_express_bug #2 (attempt 1, spent $1.3921)
+  -> PASS  cost=0.0577 turns=8  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:12:59] ojas t1_click_bug #3 (attempt 1, spent $1.4498)
+  -> PASS  cost=0.0570 turns=7  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:13:33] ojas t2_express_bug #3 (attempt 1, spent $1.5068)
+  -> PASS  cost=0.0969 turns=12  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:16:13] ojas t7_git_history #1 (attempt 1, spent $1.6037)
+  -> PASS  cost=0.0247 turns=2  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:16:19] ojas t3_walkdir_bug #2 (attempt 1, spent $1.6284)
+  -> PASS  cost=0.1325 turns=16  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:16:52] ojas-off t3_walkdir_bug #1 (attempt 1, spent $1.7609)
+  -> PASS  cost=0.1184 turns=13  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:17:20] ojas-off t4_click_rename #1 (attempt 1, spent $1.8793)
+  -> PASS  cost=0.0261 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:17:33] baseline t5_click_qa #1 (attempt 1, spent $1.9054)
+  -> PASS  cost=0.0110 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:17:39] ojas-off t6_log_rootcause #2 (attempt 1, spent $1.9164)
+  -> PASS  cost=0.0276 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:17:46] ojas t1_click_bug #1 (attempt 1, spent $1.9439)
+  -> PASS  cost=0.0581 turns=7  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:18:21] baseline t2_express_bug #2 (attempt 1, spent $2.0020)
+  -> PASS  cost=0.0611 turns=9  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:18:47] baseline t4_click_rename #2 (attempt 1, spent $2.0631)
+  -> PASS  cost=0.0290 turns=4  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:19:05] ojas-off t2_express_bug #3 (attempt 1, spent $2.0921)
+  -> PASS  cost=0.0463 turns=6  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:20:09] ojas t6_log_rootcause #3 (attempt 1, spent $2.1383)
+  -> PASS  cost=0.0268 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:20:18] ojas-off t3_walkdir_bug #3 (attempt 1, spent $2.1651)
+  -> PASS  cost=0.1193 turns=14  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:20:52] ojas t5_click_qa #1 (attempt 1, spent $2.2844)
+  -> PASS  cost=0.0140 turns=4  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:20:59] ojas-off t5_click_qa #1 (attempt 1, spent $2.2984)
+  -> PASS  cost=0.0279 turns=4  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:21:10] ojas t8_control_edit #2 (attempt 1, spent $2.3263)
+  -> PASS  cost=0.0250 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:21:20] ojas-off t6_log_rootcause #3 (attempt 1, spent $2.3513)
+  -> PASS  cost=0.0280 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:21:32] ojas-off t7_git_history #1 (attempt 1, spent $2.3793)
+  -> PASS  cost=0.0282 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:21:41] ojas-off t2_express_bug #1 (attempt 1, spent $2.4075)
+  -> PASS  cost=0.1118 turns=15  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:22:43] baseline t3_walkdir_bug #2 (attempt 1, spent $2.5193)
+  -> PASS  cost=0.1169 turns=14  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:23:14] ojas t2_express_bug #1 (attempt 1, spent $2.6361)
+  -> PASS  cost=0.0933 turns=12  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:26:14] ojas-off t1_click_bug #2 (attempt 1, spent $2.7294)
+  -> PASS  cost=0.0709 turns=8  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:26:57] baseline t6_log_rootcause #1 (attempt 1, spent $2.8003)
+  -> PASS  cost=0.0352 turns=4  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:27:07] ojas t3_walkdir_bug #1 (attempt 1, spent $2.8355)
+  -> PASS  cost=0.1454 turns=17  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:27:46] baseline t4_click_rename #3 (attempt 1, spent $2.9809)
+  -> PASS  cost=0.0159 turns=4  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:28:14] baseline t3_walkdir_bug #3 (attempt 1, spent $2.9967)
+  -> PASS  cost=0.0742 turns=8  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:28:37] baseline t5_click_qa #3 (attempt 1, spent $3.0709)
+  -> PASS  cost=0.0113 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:28:46] ojas t1_click_bug #2 (attempt 1, spent $3.0823)
+  -> PASS  cost=0.0652 turns=9  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:29:32] ojas t5_click_qa #3 (attempt 1, spent $3.1474)
+  -> PASS  cost=0.0100 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:29:40] ojas-off t5_click_qa #2 (attempt 1, spent $3.1575)
+  -> PASS  cost=0.0151 turns=4  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:29:51] ojas-off t4_click_rename #3 (attempt 1, spent $3.1726)
+  -> PASS  cost=0.0113 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:30:11] ojas-off t5_click_qa #3 (attempt 1, spent $3.1839)
+  -> PASS  cost=0.0107 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:30:20] ojas t8_control_edit #3 (attempt 1, spent $3.1946)
+  -> PASS  cost=0.0096 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:30:28] baseline t6_log_rootcause #3 (attempt 1, spent $3.2042)
+  -> PASS  cost=0.0292 turns=3  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:30:36] ojas-off t8_control_edit #3 (attempt 1, spent $3.2334)
+  -> PASS  cost=0.0096 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:30:43] ojas-off t8_control_edit #1 (attempt 1, spent $3.2430)
+  -> PASS  cost=0.0108 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:30:53] baseline t1_click_bug #1 (attempt 1, spent $3.2538)
+  -> PASS  cost=0.0603 turns=6  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:32:30] baseline t4_click_rename #1 (attempt 1, spent $3.3141)
+  -> PASS  cost=0.0201 turns=5  style_full_in_transcript=0 hook_note_in_transcript=0
+[12:33:07] ojas t7_git_history #2 (attempt 1, spent $3.3343)
+  -> PASS  cost=0.0240 turns=2  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:33:18] ojas t4_click_rename #1 (attempt 1, spent $3.3583)
+  -> PASS  cost=0.0178 turns=4  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:33:47] ojas-off t7_git_history #2 (attempt 1, spent $3.3761)
+  -> PASS  cost=0.0238 turns=2  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:33:55] ojas-off t4_click_rename #2 (attempt 1, spent $3.3999)
+  -> PASS  cost=0.0106 turns=3  style_full_in_transcript=0 hook_note_in_transcript=1
+[12:34:08] ojas t8_control_edit #1 (attempt 1, spent $3.4105)
+  -> PASS  cost=0.0094 turns=3  style_full_in_transcript=1 hook_note_in_transcript=1
+[12:34:14] ojas t7_git_history #3 (attempt 1, spent $3.4199)
+  -> PASS  cost=0.0250 turns=2  style_full_in_transcript=1 hook_note_in_transcript=1
+TOTAL spent $3.4449

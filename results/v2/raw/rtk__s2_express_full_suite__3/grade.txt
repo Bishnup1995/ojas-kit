@@ -1,0 +1,11 @@
+FAIL answer: I can't tell you which test fails, because the output of `npm test` cuts off before the failure summary. I ran it twice, the second time as `rtk bypass npm test`, and both runs were cut off in the same place.
+
+- **What I can see:** the run exits with code 1. Every test visible passes, up to the `express.urlencoded()` → "should parse array index notation" block.
+- **What's missing:** about 18 KB in the middle was dropped, and the output ends mid-line inside `express.urlencoded()`. The mocha failure summary, which has the failing test's name and its expected and actual values, falls after that cut.
+- **A guess I'm not making:** `test/res.send.js` has uncommitted changes, so it may be involved. I have no evidence for that, so I'm not reporting it as the failure.
+
+To get the details I'd have to deviate from "plain `npm test`, no filtering, no piping". Either of these would work:
+1. Re-run `npm test` with its output redirected to a file outside the repo (e.g. `/tmp/express-test.log`), then read the failure section from that file.
+2. Re-run with a more compact mocha reporter, such as `npx mocha --require test/support/env --reporter dot --check-leaks test/ test/acceptance/`.
+
+Both leave the repo's files untouched. Do you want me to use one of them?

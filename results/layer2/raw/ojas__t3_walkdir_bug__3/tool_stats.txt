@@ -1,0 +1,25 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 5   compressed 0   raw ≈1,272 tok   sent ≈1,272 tok   saved ≈0 tok (0%)
+
+filter         runs compressed      raw tok     sent tok  saved
+search            5          0        1,272        1,272     0%
+
+top commands by tokens saved
+  grep                             5 runs  saved ≈0 tok (0%)
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                32  (0.0% of input)
+  cache writes               17,263  (4.2%)
+  cache reads               389,003  (95.7%)
+  output                      2,541
+
+Bash results: 15 calls, ≈6,404 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 15 calls, ≈6,404 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+       2,979      7  grep                       filter exists: install the hook (ojas init)
+       2,014      4  cargo test                 filter exists: install the hook (ojas init)
+       1,411      4  sed                        no filter yet

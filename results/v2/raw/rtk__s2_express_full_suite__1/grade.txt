@@ -1,0 +1,8 @@
+FAIL answer: I can't tell you which test fails, because the output I got back was cut off before the failure section. I don't have the expected or actual values and won't guess them.
+
+- **What I ran:** plain `npm test` (mocha, `test/` and `test/acceptance/`). It exited with code 1, so at least one test fails.
+- **What I saw:** about 18,800 characters from the middle of the output were dropped, and the stream ended partway through the `express.urlencoded()` tests. The failure summary mocha prints at the end never reached me.
+- **The re-run:** I ran it a second time as `rtk bypass npm test`, which the setup allows when output is unusable. It was cut off the same way. That makes two runs, not the one you asked for.
+- **Modified files:** none. `test/res.send.js` was already modified before I started.
+
+To get the failure details, I could re-run with output redirected to a file, for example `npm test > /tmp/test.log 2>&1`, and then read the failing section. That breaks your "no piping" constraint, so I haven't done it. Do you want me to?

@@ -1,0 +1,7 @@
+FAIL answer: I can't report the failing test yet. The output I got back was cut off by the tool, and the failure summary isn't in it.
+
+- **Run result:** `npm test` exited with code 1, so at least one test failed.
+- **What I saw:** the spec output up to the `express.urlencoded()` tests, with about 18,800 characters cut from the middle. The visible part had no failure markers, but the failure is probably in the cut section or after the point where the output ends. The end of the output, where mocha prints the "N failing" summary with expected and actual values, was also lost.
+- **Why I stopped:** you asked for one plain run with no piping, and getting the details would take a second run. I haven't made one and haven't changed any files. The working tree still has only the `test/res.send.js` modification that was there at the start.
+
+I'd like to rerun with the output saved to a file outside the repo, for example `npm test > /tmp/express-test.log 2>&1`, then read the failure from the log. Is that OK, or do you want a different approach?

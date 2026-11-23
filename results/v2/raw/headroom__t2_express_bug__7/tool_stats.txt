@@ -1,0 +1,40 @@
+15:05:41 - LiteLLM:WARNING: get_model_cost_map.py:395 - LiteLLM: model cost map fetch attempt 1/3 failed (ConnectTimeout fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: _ssl.c:1018: The handshake operation timed out); retrying in 2.9s
+15:05:41 - LiteLLM:WARNING: get_model_cost_map.py:794 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: ConnectTimeout fetching https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: _ssl.c:1018: The handshake operation timed out. Falling back to local backup.
+Headroom Performance Report
+============================================================
+Window: last 168h (actual data: 2026-11-22 15:03:05 → 2026-11-22 15:05:31)
+
+Requests:     8
+Tokens:       92,237 -> 89,065 (3.4% messages)
+Tokens saved: 3,172 (3.4% reduction)
+
+Savings Audit
+----------------------------------------
+  Raw prompt reduction: 3,172 tokens (3.4%)
+  Logged savings:       3,172 tokens (3.4%)
+  Accounting delta:     +0 tokens
+
+Per-Model Breakdown
+----------------------------------------
+  claude-sonnet-5-5: 8 reqs, 3,172 tokens saved (3%), list price $2.00/MTok  ~$0.01 at list price
+  * Actual bill savings depend on provider caching behavior
+
+Cache Performance
+----------------------------------------
+  Cache read:    143,539 tokens
+  Cache write:   7,149 tokens
+  Hit rate:      95.3%
+
+Optimization Overhead
+----------------------------------------
+  Average:     811ms
+  p50/p95/p99: 11 / 4163 / 5935ms
+  Max:         6378ms
+  >500ms:      1 requests (12.5%)
+  Slowest stages:
+    total_pre_upstream: total 6770ms, p95 4331ms, max 6635ms
+    compression_first_stage: total 5858ms, p95 5858ms, max 5858ms
+    read_request_json: total 6ms, p95 1ms, max 1ms
+
+Throughput
+----------------------------------------

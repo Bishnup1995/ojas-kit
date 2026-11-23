@@ -1,0 +1,43 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      3.5K
+Output tokens:     552
+Tokens saved:      2.9K (84.2%)
+Total exec time:   5.4s (avg 5.4s)
+Efficiency meter: ████████████████████░░░░ 84.2%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest                    1   2.9K   84.2%    5.4s  ██████████
+ 2.  rtk bypass python -m ...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      3.5K
+Output tokens:     552
+Tokens saved:      2.9K (84.2%)
+Total exec time:   5.4s (avg 5.4s)
+Efficiency meter: ████████████████████░░░░ 84.2%
+Excluded:          1 oversized outputs (input past the ~30k-char agent cap)
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest                    1   2.9K   84.2%    5.4s  ██████████
+ 2.  rtk bypass python -m ...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-21 16:24 • rtk bypass python -m p... -0% (0)
+11-21 16:24 ▲ rtk pytest                -84% (2.9K)
+

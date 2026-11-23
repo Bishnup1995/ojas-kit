@@ -1,0 +1,55 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      5.0K
+Output tokens:     1.8K
+Tokens saved:      3.3K (64.9%)
+Total exec time:   14.0s (avg 2.0s)
+Efficiency meter: ████████████████░░░░░░░░ 64.9%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    5.0s  ██████████
+ 2.  rtk pytest tests -q -...      1    593   94.4%    5.2s  ███░░░░░░░
+ 3.  rtk grep                      3    432   35.6%     6ms  ██░░░░░░░░
+ 4.  rtk pytest tests -x -...      1     77   41.4%    3.4s  ░░░░░░░░░░
+ 5.  rtk pytest tests/test...      1     42   28.0%   274ms  ░░░░░░░░░░
+ 6.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    8
+Input tokens:      5.0K
+Output tokens:     1.8K
+Tokens saved:      3.3K (64.9%)
+Total exec time:   14.0s (avg 2.0s)
+Efficiency meter: ████████████████░░░░░░░░ 64.9%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk pytest tests -q -...      1   2.1K   74.8%    5.0s  ██████████
+ 2.  rtk pytest tests -q -...      1    593   94.4%    5.2s  ███░░░░░░░
+ 3.  rtk grep                      3    432   35.6%     6ms  ██░░░░░░░░
+ 4.  rtk pytest tests -x -...      1     77   41.4%    3.4s  ░░░░░░░░░░
+ 5.  rtk pytest tests/test...      1     42   28.0%   274ms  ░░░░░░░░░░
+ 6.  rtk:passthrough git d...      1      0    0.0%       -  ░░░░░░░░░░
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 13:30 ▲ rtk pytest tests -q --... -94% (593)
+11-22 13:30 • rtk:passthrough git di... -0% (0)
+11-22 13:29 ▲ rtk pytest tests -q --... -75% (2.1K)
+11-22 13:29 • rtk pytest tests/test_... -28% (42)
+11-22 13:29 ■ rtk grep                  -42% (156)
+11-22 13:29 ■ rtk grep                  -37% (276)
+11-22 13:29 • rtk grep                  -0% (0)
+11-22 13:29 ■ rtk pytest tests -x -q... -41% (77)
+

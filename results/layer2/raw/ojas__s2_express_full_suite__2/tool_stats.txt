@@ -1,0 +1,23 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈17,932 tok   sent ≈695 tok   saved ≈17,237 tok (96%)
+
+filter         runs compressed      raw tok     sent tok  saved
+test              1          1       17,932          695    96%
+
+top commands by tokens saved
+  npm test                         1 runs  saved ≈17,237 tok (96%)
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                 4  (0.0% of input)
+  cache writes                1,195  (3.2%)
+  cache reads                35,970  (96.8%)
+  output                        256
+
+Bash results: 1 calls, ≈685 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 1 calls, ≈685 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+         685      1  npm test                   filter exists: install the hook (ojas init)

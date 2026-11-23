@@ -1,0 +1,7 @@
+FAIL answer: I ran `npm test` once, but I can't tell you which test failed. The tool output was truncated in the middle and again at the end, so the failure details never reached me. The run exited with code 1, so at least one test failed.
+
+- **What I can see:** the visible part of the log shows only passing tests. It cuts off partway through the `express.urlencoded()` section.
+- **What's missing:** about 18,800 characters in the middle, and everything after that point. That includes mocha's closing "failing" summary, which is where the test name and its expected and actual values would be.
+- **Why I'm not guessing:** the one modified file, `test/res.send.js`, might be related, but I haven't seen evidence of that. I'd rather not name a test I haven't seen fail.
+
+You asked for a single plain run, so I haven't rerun it. To get the answer, I'd rerun `npm test` with the output redirected to a file, for example `npm test > /tmp/test-out.txt 2>&1`, and read the failure section from there. That doesn't modify any repo files, but it does break your "no piping" instruction, so tell me if you're fine with it. Alternatively, you can run `npm test` yourself and paste the "failing" section.

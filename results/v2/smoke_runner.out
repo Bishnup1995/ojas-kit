@@ -1,0 +1,10 @@
+[2026-11-21 15:53:32 IST] runner start pid=6001 total=4 raw=../results/v2/smoke
+[2026-11-21 15:53:33 IST] start 1/4 block=smoke baseline r1_pricing_policy #1
+[2026-11-21 15:53:49 IST] done 1/4 block=smoke baseline r1_pricing_policy #1 -> PASS cost=0.1632 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:53:50 IST] start 2/4 block=smoke ojas3 r1_pricing_policy #1
+[2026-11-21 15:54:05 IST] done 2/4 block=smoke ojas3 r1_pricing_policy #1 -> PASS cost=0.0674 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:54:06 IST] start 3/4 block=smoke headroom r1_pricing_policy #1
+[2026-11-21 15:55:40 IST] done 3/4 block=smoke headroom r1_pricing_policy #1 -> PASS cost=0.2024 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:55:41 IST] start 4/4 block=smoke rtk r1_pricing_policy #1
+[2026-11-21 15:55:58 IST] done 4/4 block=smoke rtk r1_pricing_policy #1 -> PASS cost=0.1594 turns=6 | valid=1 | last pause: none
+[2026-11-21 15:55:58 IST] runner finished: 4/4 complete

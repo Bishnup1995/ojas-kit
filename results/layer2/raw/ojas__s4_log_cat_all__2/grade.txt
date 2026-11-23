@@ -1,0 +1,3 @@
+FAIL answer: I can't answer yet. The file is 20,000 lines (about 1.6 MB), so `cat` output was cut off at roughly line 23 and saved to a side file. I read the last 500 lines of that saved copy (14:24–14:33), and they show only routine INFO requests plus a few `slow_query` warnings. I found no outage and no incident id there.
+
+Reading all 20,000 lines would take several hundred thousand tokens. The practical way to find the outage is to filter for non-INFO lines (ERROR, FATAL, `INC-`), which means using `grep`, and you told me not to. May I run a `grep` on the log, or would you rather I page through it in chunks?

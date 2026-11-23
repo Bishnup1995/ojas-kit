@@ -1,0 +1,9 @@
+FAIL answer: I could not identify the failing test. `npm test` exited with code 1, but the tool output was cut off before the failure summary, so I don't have the test name, expected value, or actual value.
+
+What I can see:
+
+- **Command:** `mocha --require test/support/env --reporter spec --check-leaks test/ test/acceptance/` (express@5.3.0)
+- **Visible output:** every test shown has a check mark. The output runs from the Route and Router suites through `express.urlencoded()`, and the final visible line is `should parse array index not`.
+- **Hidden output:** the tool reported `[18822 characters truncated]` in the middle of the run. The tail ends inside the error block, so the failure list that mocha prints at the end is also missing.
+
+I did not re-run the suite, because you asked for a single run. Re-running with the full output written to a file would show the failure, but that is a second run, so I need your go-ahead first. No files were modified.

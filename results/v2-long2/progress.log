@@ -1,0 +1,42 @@
+[2026-11-23 09:56:04 IST] runner start pid=654 total=20 raw=../results/v2-long2/raw
+[2026-11-23 09:56:05 IST] start 1/20 block=long2 baseline l4_click_sprint #1
+[2026-11-23 09:58:50 IST] done 1/20 block=long2 baseline l4_click_sprint #1 -> PASS cost=0.3741 turns=25 | valid=1 | last pause: none
+[2026-11-23 09:58:50 IST] start 2/20 block=long2 ojas3 l4_click_sprint #1
+[2026-11-23 10:01:48 IST] done 2/20 block=long2 ojas3 l4_click_sprint #1 -> PASS cost=0.3435 turns=24 | valid=1 | last pause: none
+[2026-11-23 10:01:48 IST] start 3/20 block=long2 baseline l5_express_ci_plus #1
+[2026-11-23 10:02:56 IST] done 3/20 block=long2 baseline l5_express_ci_plus #1 -> PASS cost=0.1156 turns=12 | valid=1 | last pause: none
+[2026-11-23 10:02:57 IST] start 4/20 block=long2 ojas3 l5_express_ci_plus #1
+[2026-11-23 10:04:02 IST] done 4/20 block=long2 ojas3 l5_express_ci_plus #1 -> PASS cost=0.0821 turns=10 | valid=1 | last pause: none
+[2026-11-23 10:04:03 IST] start 5/20 block=long2 ojas3 l4_click_sprint #2
+[2026-11-23 10:06:54 IST] done 5/20 block=long2 ojas3 l4_click_sprint #2 -> PASS cost=0.3755 turns=26 | valid=1 | last pause: none
+[2026-11-23 10:06:55 IST] start 6/20 block=long2 baseline l4_click_sprint #2
+[2026-11-23 10:09:43 IST] done 6/20 block=long2 baseline l4_click_sprint #2 -> PASS cost=0.4014 turns=25 | valid=1 | last pause: none
+[2026-11-23 10:09:44 IST] start 7/20 block=long2 ojas3 l5_express_ci_plus #2
+[2026-11-23 10:12:44 IST] done 7/20 block=long2 ojas3 l5_express_ci_plus #2 -> PASS cost=0.0957 turns=11 | valid=1 | last pause: none
+[2026-11-23 10:12:44 IST] start 8/20 block=long2 baseline l5_express_ci_plus #2
+[2026-11-23 10:13:45 IST] done 8/20 block=long2 baseline l5_express_ci_plus #2 -> PASS cost=0.1022 turns=11 | valid=1 | last pause: none
+[2026-11-23 10:13:45 IST] start 9/20 block=long2 baseline l4_click_sprint #3
+[2026-11-23 10:16:12 IST] done 9/20 block=long2 baseline l4_click_sprint #3 -> PASS cost=0.3679 turns=24 | valid=1 | last pause: none
+[2026-11-23 10:16:12 IST] start 10/20 block=long2 ojas3 l4_click_sprint #3
+[2026-11-23 10:18:52 IST] done 10/20 block=long2 ojas3 l4_click_sprint #3 -> PASS cost=0.4048 turns=26 | valid=1 | last pause: none
+[2026-11-23 10:18:53 IST] start 11/20 block=long2 baseline l5_express_ci_plus #3
+[2026-11-23 10:19:55 IST] done 11/20 block=long2 baseline l5_express_ci_plus #3 -> PASS cost=0.0819 turns=11 | valid=1 | last pause: none
+[2026-11-23 10:19:56 IST] start 12/20 block=long2 ojas3 l5_express_ci_plus #3
+[2026-11-23 10:32:26 IST] done 12/20 block=long2 ojas3 l5_express_ci_plus #3 -> PASS cost=0.1041 turns=1 | valid=1 | last pause: none
+[2026-11-23 10:32:27 IST] start 13/20 block=long2 ojas3 l4_click_sprint #4
+[2026-11-23 10:34:51 IST] done 13/20 block=long2 ojas3 l4_click_sprint #4 -> PASS cost=0.3506 turns=25 | valid=1 | last pause: none
+[2026-11-23 10:34:51 IST] start 14/20 block=long2 baseline l4_click_sprint #4
+[2026-11-23 10:37:17 IST] done 14/20 block=long2 baseline l4_click_sprint #4 -> PASS cost=0.3210 turns=24 | valid=1 | last pause: none
+[2026-11-23 10:37:18 IST] start 15/20 block=long2 ojas3 l5_express_ci_plus #4
+[2026-11-23 10:49:49 IST] done 15/20 block=long2 ojas3 l5_express_ci_plus #4 -> PASS cost=0.1247 turns=1 | valid=1 | last pause: none
+[2026-11-23 10:49:50 IST] start 16/20 block=long2 baseline l5_express_ci_plus #4
+[2026-11-23 10:50:56 IST] done 16/20 block=long2 baseline l5_express_ci_plus #4 -> PASS cost=0.1176 turns=12 | valid=1 | last pause: none
+[2026-11-23 10:50:57 IST] start 17/20 block=long2 baseline l4_click_sprint #5
+[2026-11-23 10:53:53 IST] done 17/20 block=long2 baseline l4_click_sprint #5 -> PASS cost=0.3520 turns=24 | valid=1 | last pause: none
+[2026-11-23 10:53:53 IST] start 18/20 block=long2 ojas3 l4_click_sprint #5
+[2026-11-23 10:56:28 IST] done 18/20 block=long2 ojas3 l4_click_sprint #5 -> PASS cost=0.4096 turns=29 | valid=1 | last pause: none
+[2026-11-23 10:56:28 IST] start 19/20 block=long2 baseline l5_express_ci_plus #5
+[2026-11-23 10:59:45 IST] done 19/20 block=long2 baseline l5_express_ci_plus #5 -> PASS cost=0.1236 turns=14 | valid=1 | last pause: none
+[2026-11-23 10:59:46 IST] start 20/20 block=long2 ojas3 l5_express_ci_plus #5
+[2026-11-23 11:00:50 IST] done 20/20 block=long2 ojas3 l5_express_ci_plus #5 -> PASS cost=0.1123 turns=13 | valid=1 | last pause: none
+[2026-11-23 11:00:50 IST] runner finished: 20/20 complete

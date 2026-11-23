@@ -1,0 +1,7 @@
+FAIL answer: I could not identify the failing test. `npm test` exited with code 1, but the failure details were cut out of the output I received.
+
+- **What I can see:** The tool output was truncated in the middle (`... [18822 characters truncated] ...`). The visible head covers the early Route/Router/app suites, and the visible tail ends partway through the `express.urlencoded()` suite at "should parse array index not". Mocha's `N passing / M failing` summary and the failure block were not in either part, so I have no test name, expected value, or actual value.
+- **Why I didn't rerun:** You asked for one run with no truncation or piping. Rerunning would break that, and I'd need to pipe or redirect the output to see the full failure block, so I stopped at the one run.
+- **A lead, not a finding:** `git status` at session start showed `test/res.send.js` as modified (uncommitted). A failure in the `res.send` tests would fit that, but I haven't checked it.
+
+To get the failure details, I can run `npm test` once more with the output redirected to a file outside the repo, then read the failing block. Or, if you can paste the "failing" section of the output, I can report the expected and actual values from that. I did not modify any files.

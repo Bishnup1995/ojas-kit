@@ -1,0 +1,38 @@
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      25
+Output tokens:     25
+Tokens saved:      0 (0.0%)
+Total exec time:   4ms (avg 4ms)
+Efficiency meter: ░░░░░░░░░░░░░░░░░░░░░░░░ 0.0%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk git log '--format...      1      0    0.0%     4ms  
+───────────────────────────────────────────────────────────────────────
+
+RTK Token Savings (Global Scope)
+════════════════════════════════════════════════════════════
+
+Total commands:    1
+Input tokens:      25
+Output tokens:     25
+Tokens saved:      0 (0.0%)
+Total exec time:   4ms (avg 4ms)
+Efficiency meter: ░░░░░░░░░░░░░░░░░░░░░░░░ 0.0%
+
+By Command
+───────────────────────────────────────────────────────────────────────
+  #  Command                   Count  Saved  Total%    Time  Impact    
+───────────────────────────────────────────────────────────────────────
+ 1.  rtk git log '--format...      1      0    0.0%     4ms  
+───────────────────────────────────────────────────────────────────────
+
+Recent Commands
+──────────────────────────────────────────────────────────
+11-22 14:11 • rtk git log '--format=... -0% (0)
+

@@ -1,0 +1,8 @@
+FAIL answer: I can't report the failing test yet. `npm test` exited with code 1, but the tool output was cut off, so I never saw the failure.
+
+- About 18,800 characters in the middle were dropped.
+- The output also ends partway through the `express.urlencoded()` tests, so the mocha failure summary (the "N failing" block with expected and actual values) never reached me.
+
+Every test I could see passed. The failure is in the part I couldn't see, so I don't want to guess at a test name or values.
+
+You asked for one plain `npm test` run with no piping, so I haven't run it again. Can I re-run it with the full output redirected to a file outside the repo, for example `npm test > /tmp/express-test.log 2>&1`? That would let me read the failure block without modifying any files. Or if you'd rather I run it differently, tell me how.

@@ -1,0 +1,15 @@
+No ojas runs recorded yet. Install the hook with `ojas init`, or run commands as `ojas run -- <cmd>`.
+Claude Code usage, last 1 days (1 transcripts with activity)
+
+  input, uncached                 6  (0.0% of input)
+  cache writes                4,834  (8.1%)
+  cache reads                54,700  (91.9%)
+  output                        418
+
+Bash results: 2 calls, ≈2,347 tokens of output entered context
+  through ojas: 0 calls, ≈0 tokens
+  not through ojas: 2 calls, ≈2,347 tokens
+
+Largest command output not going through ojas:
+     ≈tokens  calls  command                    note
+       2,347      2  grep                       filter exists: install the hook (ojas init)

@@ -1,0 +1,10 @@
+FAIL answer: I can't tell you which test fails, because the failure details never appeared in the output. `npm test` exited with code 1, so at least one test fails, but the failure message wasn't shown.
+
+I ran it twice. The first run was plain `npm test`. The second was `rtk bypass npm test`, to try to get the full output. Both times the tool output was cut off in the middle and at the end. The visible part ran through the `express.urlencoded()` tests, and every test in it passed. That part ends before mocha's failure summary, which is where the failing test's name and its expected and actual values would be.
+
+To get the failure message I'd have to change how the command runs, which goes against your "plain, no piping, no truncation" instruction. These are the options:
+- **Save the output to a file outside the repo.** I'd run `npm test > /tmp/test.log 2>&1` and read the end of the log. No repo files change.
+- **Run only the suites after `express.urlencoded()`.** This is a filtered run.
+- **Use a different reporter.** For example `--reporter dot`, which prints far less output, so the failure summary should fit.
+
+I haven't modified any files. Tell me which option you want and I'll run it.
