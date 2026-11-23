@@ -8,6 +8,17 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 keywords = ["llm", "tokens", "claude", "ai-agents", "cli"]
 categories = ["command-line-utilities", "development-tools"]
+repository = "https://github.com/Bishnup1995/ojas-kit"
+documentation = "https://github.com/Bishnup1995/ojas-kit#readme"
+# Only what is needed to build the binary goes into the crate.
+include = [
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/README.md",
+    "/LICENSE-MIT",
+    "/LICENSE-APACHE",
+    "/src/**",
+]
 
 [[bin]]
 name = "ojas"
@@ -28,16 +39,3 @@ lto = true
 codegen-units = 1
 strip = true
 panic = "abort"
-
-include = [
-    "Cargo.toml",
-    "Cargo.lock",
-    "README.md",
-    "LICENSE*",
-    "src/**",
-    "build.rs",
-]
-
-documentation = "https://docs.rs/ojas"
-homepage = "https://github.com/Bishnup1995/ojas-kit"
-repository = "https://github.com/Bishnup1995/ojas-kit"
