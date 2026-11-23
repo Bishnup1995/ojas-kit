@@ -184,6 +184,8 @@ These counts are byte-based estimates on single samples, not a benchmark of end-
 > 📊 **[Full benchmark report](https://claude.ai/artifact/42CU4Ke8QmYoX6W8GBQm4Z)**: every table, intervals and caveats on one page.
 >
 > 📖 **[How we built ojas](https://claude.ai/artifact/A2yW3uNsD5fcEVzCXBqL9H)**: the problem, each step we took, and what the benchmarks taught us.
+>
+> 🔁 **[Benchmark harness](https://github.com/Bishnup1995/ojas-kit/tree/benchmark)**: tasks, graders, pre-registrations, runners and per-run results, so you can check or rerun every number.
 
 **720 runs, all valid.** ojas is the only tool tested that beat no tool by a clear margin anywhere: on big-output tasks it was **12% cheaper** and **passed every run**, against 28 of 40 for no tool. Everywhere else it cost the same as no tool (no overhead) and lost no runs. The one weak spot, large files where the agent needs every function body, is fixed in v0.3.
 
