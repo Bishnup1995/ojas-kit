@@ -1,0 +1,10 @@
+stress ojas3 s3_click_core_full_read 1 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 2 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 3 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 4 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 5 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 6 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 7 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 8 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 9 ojasbench/ojasnote:3
+stress ojas3 s3_click_core_full_read 10 ojasbench/ojasnote:3

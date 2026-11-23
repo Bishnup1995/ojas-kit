@@ -1,0 +1,8 @@
+FAIL answer: I can't identify the failing test from this run. The suite exited with code 1, but the tool output was cut off in the middle, and the visible tail stops partway through the `express.urlencoded()` tests. That tail has no mocha `N passing / N failing` summary and no failure block, so I can't see which test failed or its expected and actual values.
+
+I didn't rerun the suite or redirect its output, since you asked for a single plain run with no piping. Some options:
+
+1. Rerun with the output saved to a file (for example `npm test > /tmp/express-test.log 2>&1`), then read the failure block. This changes how the output is captured, so I need your go-ahead.
+2. Read the failure block yourself from your terminal and paste it here.
+
+Also, `git status` at the start showed `test/res.send.js` as modified before I ran anything. That file is a possible place to look if the failure is in the send/response tests. I haven't read it or changed anything.

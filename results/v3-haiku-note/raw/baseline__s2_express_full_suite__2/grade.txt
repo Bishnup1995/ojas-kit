@@ -1,0 +1,7 @@
+FAIL answer: I could not identify the failing test. `npm test` exited with code 1, but the output I received doesn't include the failure message, expected value, or actual value.
+
+- **What I saw:** The harness truncated the middle of the output (about 18,800 characters). The output also ends partway through the `express.urlencoded()` section, at `should parse array index not`, with no `passing` / `failing` summary.
+- **Likely failure:** The cut-off test is probably the one that fails, but I haven't confirmed that. I did not check whether it's the cause.
+- **Why I didn't rerun:** You asked for one run, so I didn't run it again.
+
+To get the failure details, I can rerun `npm test` with its output written to a file and then read the failure section of that file. That would be a second run, and it would need your approval. I haven't modified any files. The only change in the working tree is the existing `test/res.send.js` modification from the start of the session.

@@ -24,3 +24,9 @@ When a background task the agent started ends after the task, Claude Code emits 
 - **What:** the follow-up 3 Haiku study (`results/v3-haiku`, 120 runs) run again with the same schedule, model, tasks and baseline image. The only change is the ojas arm's image: `ojasbench/ojasnote:2`, built from ojas-kit commit af94fe5 (v0.4-dev). That commit rewords the session note so it no longer advertises `OJAS_RAW=1`, and says Claude Code cuts raw Bash output over about 30k characters. The arm keeps the name `ojas3` so run_one_v2.sh treats it the same. Results go in `results/v3-haiku-note/`.
 - **Why:** in v3-haiku, Haiku prefixed commands with `OJAS_RAW=1` in 18 of 60 ojas runs (4 of the 5 failed s2 runs), and ojas did not help (stress 1.07x, normal 1.17x). This measures whether the reworded note removes the bypass and restores the Sonnet result.
 - **Status:** exploratory, not pre-registered. Analysed with the same FOLLOWUP3_PREREG.md study-B rules and reported next to v3-haiku, never pooled with it. Baseline is re-run, so the comparison is within this run set.
+
+## 2026-11-23: Haiku check of `ojas read --full` in the session note
+
+- **What:** 10 Haiku runs of s3_click_core_full_read with the ojas arm only, image `ojasbench/ojasnote:3` (ojas-kit 14fec07: the note now names `ojas read <file> --full` as the way to see a whole large file in one read). Results in `results/v3-haiku-full/`.
+- **Why:** in v3-haiku-note, s3 run #5 failed: `cat` of the 4,018-line file returned an outline, the task forbids other reads, and the note no longer offered a raw escape.
+- **Status:** exploratory check of one task; no baseline arm (baseline s3 was 5/5 in both v3-haiku and v3-haiku-note).

@@ -1,0 +1,10 @@
+FAIL answer: I couldn't answer the question from this read. The single `cat src/click/core.py` returned an outline of the 4,018-line file, not the function bodies. `Parameter.type_cast_value` shows only as a signature at line 2716, with its body elided, so I can't see which error messages it raises or under what conditions.
+
+I didn't use grep, head, tail, line ranges, or any other read, because you asked for a single `cat`. I also haven't modified any files.
+
+To finish, I need one of these:
+
+1. **Permission to fetch just that body** with `ojas read src/click/core.py --symbol type_cast_value`. This is a targeted read of one function, not a range or a grep, but it departs from the method you specified.
+2. **The full text in another way.** If you run `cat src/click/core.py` yourself and paste the output, or tell me the wrapper should return full bodies, I'll answer from that.
+
+Once I have the body, I'll list each error message that `type_cast_value` can raise, along with the condition that triggers it.

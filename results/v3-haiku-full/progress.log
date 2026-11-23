@@ -1,0 +1,22 @@
+[2026-11-23 21:31:48 IST] runner start pid=13446 total=10 raw=../results/v3-haiku-full/raw
+[2026-11-23 21:31:49 IST] start 1/10 block=stress ojas3 s3_click_core_full_read #1
+[2026-11-23 21:32:38 IST] done 1/10 block=stress ojas3 s3_click_core_full_read #1 -> PASS cost=0.0804 turns=5 | valid=1 | last pause: none
+[2026-11-23 21:32:50 IST] start 2/10 block=stress ojas3 s3_click_core_full_read #2
+[2026-11-23 21:33:36 IST] done 2/10 block=stress ojas3 s3_click_core_full_read #2 -> Tell me which one you want, or if you'd rather I stop here. cost=0.0030 turns=2 | valid=1 | last pause: none
+[2026-11-23 21:33:49 IST] start 3/10 block=stress ojas3 s3_click_core_full_read #3
+[2026-11-23 21:34:08 IST] done 3/10 block=stress ojas3 s3_click_core_full_read #3 -> PASS cost=0.0042 turns=3 | valid=1 | last pause: none
+[2026-11-23 21:34:09 IST] start 4/10 block=stress ojas3 s3_click_core_full_read #4
+[2026-11-23 21:34:42 IST] done 4/10 block=stress ojas3 s3_click_core_full_read #4 -> PASS cost=0.0797 turns=5 | valid=1 | last pause: none
+[2026-11-23 21:34:42 IST] start 5/10 block=stress ojas3 s3_click_core_full_read #5
+[2026-11-23 21:35:02 IST] done 5/10 block=stress ojas3 s3_click_core_full_read #5 -> PASS cost=0.0048 turns=4 | valid=1 | last pause: none
+[2026-11-23 21:35:02 IST] start 6/10 block=stress ojas3 s3_click_core_full_read #6
+[2026-11-23 21:35:22 IST] done 6/10 block=stress ojas3 s3_click_core_full_read #6 -> PASS cost=0.0048 turns=4 | valid=1 | last pause: none
+[2026-11-23 21:35:22 IST] start 7/10 block=stress ojas3 s3_click_core_full_read #7
+[2026-11-23 21:35:41 IST] done 7/10 block=stress ojas3 s3_click_core_full_read #7 -> PASS cost=0.0046 turns=4 | valid=1 | last pause: none
+[2026-11-23 21:35:41 IST] start 8/10 block=stress ojas3 s3_click_core_full_read #8
+[2026-11-23 21:36:02 IST] done 8/10 block=stress ojas3 s3_click_core_full_read #8 -> PASS cost=0.0049 turns=4 | valid=1 | last pause: none
+[2026-11-23 21:36:02 IST] start 9/10 block=stress ojas3 s3_click_core_full_read #9
+[2026-11-23 21:36:21 IST] done 9/10 block=stress ojas3 s3_click_core_full_read #9 -> PASS cost=0.0047 turns=4 | valid=1 | last pause: none
+[2026-11-23 21:36:21 IST] start 10/10 block=stress ojas3 s3_click_core_full_read #10
+[2026-11-23 21:36:43 IST] done 10/10 block=stress ojas3 s3_click_core_full_read #10 -> PASS cost=0.0053 turns=5 | valid=1 | last pause: none
+[2026-11-23 21:36:43 IST] runner finished: 10/10 complete

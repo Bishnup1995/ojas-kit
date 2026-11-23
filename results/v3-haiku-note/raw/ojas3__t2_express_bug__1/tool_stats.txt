@@ -1,0 +1,9 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 1   compressed 1   raw ≈75,020 tok   sent ≈3,761 tok   saved ≈71,259 tok (95%)
+
+filter         runs compressed      raw tok     sent tok  saved
+test              1          1       75,020        3,761    95%
+
+top commands by tokens saved
+  mocha                            1 runs  saved ≈71,259 tok (95%)

@@ -16,7 +16,7 @@ ojas is written by the person who ran these benchmarks. The pre-registrations we
 | `v2/docker/`, `docker/` | Images for each setup, with pinned versions |
 | `v2/analyze_v2.py`, `v2/rerun_share.py` | Analysis: task-balanced cost ratios, stratified bootstrap (5,000 resamples, seed 1), Fisher tests |
 | `results/v2/` | Benchmark v2 (720 runs): `summary.md`, `summary_merged.md`, and one folder per run |
-| `results/v2-extra/`, `results/v2-long2/`, `results/v3-long3/`, `results/v3-haiku/` | Follow-ups: the v0.3 read fix, longer tasks, the on-call day, Haiku |
+| `results/v2-extra/`, `results/v2-long2/`, `results/v3-long3/`, `results/v3-haiku/`, `results/v3-haiku-note/`, `results/v3-haiku-full/` | Follow-ups: the v0.3 read fix, longer tasks, the on-call day, Haiku, and the Haiku reruns of the v0.3.2 session-note fix |
 | `PROTOCOL.md`, `layer1/`, `layer2/`, `results/layer*` | Benchmark v1 (earlier, smaller; kept for the record) |
 
 Each run folder keeps `run.json` (Claude Code's result event: turns, tokens, cost), `grade.txt`, `verify.txt`, `meta.txt` and the setup's tool stats. Full transcripts and raw stream logs are left out: they are hundreds of MB.

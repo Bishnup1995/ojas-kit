@@ -1,0 +1,11 @@
+ojas savings (all time; estimate: 1 token ≈ 4 bytes)
+
+runs 2   compressed 2   raw ≈78,151 tok   sent ≈9,540 tok   saved ≈68,612 tok (88%)
+
+filter         runs compressed      raw tok     sent tok  saved
+outline           1          1       39,076        4,768    88%
+read              1          1       39,076        4,772    88%
+
+top commands by tokens saved
+  read                             1 runs  saved ≈34,308 tok (88%)
+  Read tool                        1 runs  saved ≈34,304 tok (88%)

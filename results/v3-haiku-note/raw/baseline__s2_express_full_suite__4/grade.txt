@@ -1,0 +1,9 @@
+FAIL answer: The suite exited with code 1, but I can't name the failing test or its expected and actual values from this run.
+
+The harness truncated the output in the middle ("... [18813 characters truncated] ..."). The visible parts are the start, which is all passing, and the tail, which ends in `express.urlencoded()` tests that also pass. The mocha failure summary and error messages would come after the last passing test, and the tail doesn't show them. I ran it once, as you asked, so I haven't rerun it.
+
+To get the failure details, I'd need either:
+- the full output, which you can capture by running `npm test` in your own terminal and sharing the failing section, or
+- a rerun that writes the output to a file. That breaks the "no piping" constraint, so I'd need your go-ahead.
+
+I didn't modify any files. `test/res.send.js` was already modified in the working tree before this run, per the initial git status.

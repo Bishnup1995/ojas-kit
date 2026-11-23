@@ -1,0 +1,242 @@
+[2026-11-23 17:45:45 IST] runner start pid=9299 total=120 raw=../results/v3-haiku-note/raw
+[2026-11-23 17:45:46 IST] start 1/120 block=stress baseline s1_click_full_suite #1
+[2026-11-23 17:46:15 IST] done 1/120 block=stress baseline s1_click_full_suite #1 -> PASS cost=0.0030 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:46:15 IST] start 2/120 block=stress ojas3 s1_click_full_suite #1
+[2026-11-23 17:46:42 IST] done 2/120 block=stress ojas3 s1_click_full_suite #1 -> PASS cost=0.0027 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:46:42 IST] start 3/120 block=stress baseline s2_express_full_suite #1
+[2026-11-23 17:46:59 IST] done 3/120 block=stress baseline s2_express_full_suite #1 -> To get the failing test and its expected/actual values, I ca cost=0.0031 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:47:00 IST] start 4/120 block=stress ojas3 s2_express_full_suite #1
+[2026-11-23 17:47:12 IST] done 4/120 block=stress ojas3 s2_express_full_suite #1 -> PASS cost=0.0019 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:47:12 IST] start 5/120 block=stress baseline s3_click_core_full_read #1
+[2026-11-23 17:47:32 IST] done 5/120 block=stress baseline s3_click_core_full_read #1 -> PASS cost=0.0156 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:47:32 IST] start 6/120 block=stress ojas3 s3_click_core_full_read #1
+[2026-11-23 17:47:50 IST] done 6/120 block=stress ojas3 s3_click_core_full_read #1 -> PASS cost=0.0049 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:47:50 IST] start 7/120 block=stress baseline s4_log_cat_all #1
+[2026-11-23 17:48:00 IST] done 7/120 block=stress baseline s4_log_cat_all #1 -> PASS cost=0.0025 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:48:01 IST] start 8/120 block=stress ojas3 s4_log_cat_all #1
+[2026-11-23 17:48:10 IST] done 8/120 block=stress ojas3 s4_log_cat_all #1 -> PASS cost=0.0038 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:48:10 IST] start 9/120 block=main baseline t1_click_bug #1
+[2026-11-23 17:48:41 IST] done 9/120 block=main baseline t1_click_bug #1 -> PASS cost=0.0034 turns=6 | valid=1 | last pause: none
+[2026-11-23 17:48:42 IST] start 10/120 block=main ojas3 t1_click_bug #1
+[2026-11-23 17:49:22 IST] done 10/120 block=main ojas3 t1_click_bug #1 -> PASS cost=0.0046 turns=8 | valid=1 | last pause: none
+[2026-11-23 17:49:22 IST] start 11/120 block=main baseline t2_express_bug #1
+[2026-11-23 17:49:51 IST] done 11/120 block=main baseline t2_express_bug #1 -> PASS cost=0.0035 turns=7 | valid=1 | last pause: none
+[2026-11-23 17:49:51 IST] start 12/120 block=main ojas3 t2_express_bug #1
+[2026-11-23 17:52:19 IST] done 12/120 block=main ojas3 t2_express_bug #1 -> PASS cost=0.0043 turns=8 | valid=1 | last pause: none
+[2026-11-23 17:52:20 IST] start 13/120 block=main baseline t3_walkdir_bug #1
+[2026-11-23 17:52:51 IST] done 13/120 block=main baseline t3_walkdir_bug #1 -> PASS cost=0.0077 turns=12 | valid=1 | last pause: none
+[2026-11-23 17:52:52 IST] start 14/120 block=main ojas3 t3_walkdir_bug #1
+[2026-11-23 17:53:21 IST] done 14/120 block=main ojas3 t3_walkdir_bug #1 -> PASS cost=0.0064 turns=10 | valid=1 | last pause: none
+[2026-11-23 17:53:21 IST] start 15/120 block=main baseline t4_click_rename #1
+[2026-11-23 17:54:13 IST] done 15/120 block=main baseline t4_click_rename #1 -> PASS cost=0.0027 turns=5 | valid=1 | last pause: none
+[2026-11-23 17:54:14 IST] start 16/120 block=main ojas3 t4_click_rename #1
+[2026-11-23 17:55:10 IST] done 16/120 block=main ojas3 t4_click_rename #1 -> PASS cost=0.0042 turns=11 | valid=1 | last pause: none
+[2026-11-23 17:55:11 IST] start 17/120 block=main baseline t5_click_qa #1
+[2026-11-23 17:55:21 IST] done 17/120 block=main baseline t5_click_qa #1 -> PASS cost=0.0024 turns=5 | valid=1 | last pause: none
+[2026-11-23 17:55:22 IST] start 18/120 block=main ojas3 t5_click_qa #1
+[2026-11-23 17:55:40 IST] done 18/120 block=main ojas3 t5_click_qa #1 -> PASS cost=0.0024 turns=5 | valid=1 | last pause: none
+[2026-11-23 17:55:41 IST] start 19/120 block=main baseline t6_log_rootcause #1
+[2026-11-23 17:55:58 IST] done 19/120 block=main baseline t6_log_rootcause #1 -> PASS cost=0.0041 turns=5 | valid=1 | last pause: none
+[2026-11-23 17:55:59 IST] start 20/120 block=main ojas3 t6_log_rootcause #1
+[2026-11-23 17:56:16 IST] done 20/120 block=main ojas3 t6_log_rootcause #1 -> PASS cost=0.0034 turns=5 | valid=1 | last pause: none
+[2026-11-23 17:56:16 IST] start 21/120 block=main baseline t7_git_history #1
+[2026-11-23 17:56:24 IST] done 21/120 block=main baseline t7_git_history #1 -> PASS cost=0.0014 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:56:24 IST] start 22/120 block=main ojas3 t7_git_history #1
+[2026-11-23 17:56:32 IST] done 22/120 block=main ojas3 t7_git_history #1 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:56:32 IST] start 23/120 block=main baseline t8_control_edit #1
+[2026-11-23 17:56:44 IST] done 23/120 block=main baseline t8_control_edit #1 -> PASS cost=0.0021 turns=4 | valid=1 | last pause: none
+[2026-11-23 17:56:44 IST] start 24/120 block=main ojas3 t8_control_edit #1
+[2026-11-23 17:56:54 IST] done 24/120 block=main ojas3 t8_control_edit #1 -> PASS cost=0.0017 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:56:55 IST] start 25/120 block=stress ojas3 s1_click_full_suite #2
+[2026-11-23 17:57:23 IST] done 25/120 block=stress ojas3 s1_click_full_suite #2 -> PASS cost=0.0020 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:57:24 IST] start 26/120 block=stress baseline s1_click_full_suite #2
+[2026-11-23 17:57:49 IST] done 26/120 block=stress baseline s1_click_full_suite #2 -> PASS cost=0.0017 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:57:49 IST] start 27/120 block=stress ojas3 s2_express_full_suite #2
+[2026-11-23 17:58:02 IST] done 27/120 block=stress ojas3 s2_express_full_suite #2 -> PASS cost=0.0011 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:58:02 IST] start 28/120 block=stress baseline s2_express_full_suite #2
+[2026-11-23 17:58:17 IST] done 28/120 block=stress baseline s2_express_full_suite #2 -> To get the failure details, I can rerun `npm test` with its  cost=0.0017 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:58:17 IST] start 29/120 block=stress ojas3 s3_click_core_full_read #2
+[2026-11-23 17:58:32 IST] done 29/120 block=stress ojas3 s3_click_core_full_read #2 -> PASS cost=0.0039 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:58:33 IST] start 30/120 block=stress baseline s3_click_core_full_read #2
+[2026-11-23 17:58:51 IST] done 30/120 block=stress baseline s3_click_core_full_read #2 -> PASS cost=0.0148 turns=3 | valid=1 | last pause: none
+[2026-11-23 17:58:51 IST] start 31/120 block=stress ojas3 s4_log_cat_all #2
+[2026-11-23 17:59:01 IST] done 31/120 block=stress ojas3 s4_log_cat_all #2 -> PASS cost=0.0028 turns=2 | valid=1 | last pause: none
+[2026-11-23 17:59:01 IST] start 32/120 block=stress baseline s4_log_cat_all #2
+[2026-11-23 17:59:15 IST] done 32/120 block=stress baseline s4_log_cat_all #2 -> PASS cost=0.0030 turns=4 | valid=1 | last pause: none
+[2026-11-23 17:59:15 IST] start 33/120 block=main ojas3 t1_click_bug #2
+[2026-11-23 17:59:50 IST] done 33/120 block=main ojas3 t1_click_bug #2 -> PASS cost=0.0042 turns=7 | valid=1 | last pause: none
+[2026-11-23 17:59:51 IST] start 34/120 block=main baseline t1_click_bug #2
+[2026-11-23 18:00:31 IST] done 34/120 block=main baseline t1_click_bug #2 -> PASS cost=0.0036 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:00:31 IST] start 35/120 block=main ojas3 t2_express_bug #2
+[2026-11-23 18:01:08 IST] done 35/120 block=main ojas3 t2_express_bug #2 -> PASS cost=0.0047 turns=9 | valid=1 | last pause: none
+[2026-11-23 18:01:09 IST] start 36/120 block=main baseline t2_express_bug #2
+[2026-11-23 18:01:55 IST] done 36/120 block=main baseline t2_express_bug #2 -> PASS cost=0.0039 turns=8 | valid=1 | last pause: none
+[2026-11-23 18:01:55 IST] start 37/120 block=main ojas3 t3_walkdir_bug #2
+[2026-11-23 18:02:21 IST] done 37/120 block=main ojas3 t3_walkdir_bug #2 -> PASS cost=0.0064 turns=10 | valid=1 | last pause: none
+[2026-11-23 18:02:21 IST] start 38/120 block=main baseline t3_walkdir_bug #2
+[2026-11-23 18:02:47 IST] done 38/120 block=main baseline t3_walkdir_bug #2 -> PASS cost=0.0060 turns=9 | valid=1 | last pause: none
+[2026-11-23 18:02:48 IST] start 39/120 block=main ojas3 t4_click_rename #2
+[2026-11-23 18:03:30 IST] done 39/120 block=main ojas3 t4_click_rename #2 -> PASS cost=0.0029 turns=8 | valid=1 | last pause: none
+[2026-11-23 18:03:30 IST] start 40/120 block=main baseline t4_click_rename #2
+[2026-11-23 18:04:04 IST] done 40/120 block=main baseline t4_click_rename #2 -> PASS cost=0.0020 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:04:04 IST] start 41/120 block=main ojas3 t5_click_qa #2
+[2026-11-23 18:04:16 IST] done 41/120 block=main ojas3 t5_click_qa #2 -> PASS cost=0.0018 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:04:16 IST] start 42/120 block=main baseline t5_click_qa #2
+[2026-11-23 18:04:28 IST] done 42/120 block=main baseline t5_click_qa #2 -> PASS cost=0.0018 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:04:28 IST] start 43/120 block=main ojas3 t6_log_rootcause #2
+[2026-11-23 18:04:41 IST] done 43/120 block=main ojas3 t6_log_rootcause #2 -> PASS cost=0.0032 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:04:42 IST] start 44/120 block=main baseline t6_log_rootcause #2
+[2026-11-23 18:04:53 IST] done 44/120 block=main baseline t6_log_rootcause #2 -> PASS cost=0.0027 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:04:54 IST] start 45/120 block=main ojas3 t7_git_history #2
+[2026-11-23 18:05:00 IST] done 45/120 block=main ojas3 t7_git_history #2 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:05:01 IST] start 46/120 block=main baseline t7_git_history #2
+[2026-11-23 18:05:07 IST] done 46/120 block=main baseline t7_git_history #2 -> PASS cost=0.0014 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:05:08 IST] start 47/120 block=main ojas3 t8_control_edit #2
+[2026-11-23 18:05:18 IST] done 47/120 block=main ojas3 t8_control_edit #2 -> PASS cost=0.0010 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:05:18 IST] start 48/120 block=main baseline t8_control_edit #2
+[2026-11-23 18:05:26 IST] done 48/120 block=main baseline t8_control_edit #2 -> PASS cost=0.0009 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:05:26 IST] start 49/120 block=stress baseline s1_click_full_suite #3
+[2026-11-23 18:05:57 IST] done 49/120 block=stress baseline s1_click_full_suite #3 -> PASS cost=0.0023 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:05:57 IST] start 50/120 block=stress ojas3 s1_click_full_suite #3
+[2026-11-23 18:06:22 IST] done 50/120 block=stress ojas3 s1_click_full_suite #3 -> PASS cost=0.0018 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:06:22 IST] start 51/120 block=stress baseline s2_express_full_suite #3
+[2026-11-23 18:06:37 IST] done 51/120 block=stress baseline s2_express_full_suite #3 -> Also, `git status` at the start showed `test/res.send.js` as cost=0.0017 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:06:37 IST] start 52/120 block=stress ojas3 s2_express_full_suite #3
+[2026-11-23 18:06:51 IST] done 52/120 block=stress ojas3 s2_express_full_suite #3 -> PASS cost=0.0011 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:06:51 IST] start 53/120 block=stress baseline s3_click_core_full_read #3
+[2026-11-23 18:07:09 IST] done 53/120 block=stress baseline s3_click_core_full_read #3 -> PASS cost=0.0147 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:07:10 IST] start 54/120 block=stress ojas3 s3_click_core_full_read #3
+[2026-11-23 18:07:27 IST] done 54/120 block=stress ojas3 s3_click_core_full_read #3 -> PASS cost=0.0041 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:07:28 IST] start 55/120 block=stress baseline s4_log_cat_all #3
+[2026-11-23 18:07:43 IST] done 55/120 block=stress baseline s4_log_cat_all #3 -> PASS cost=0.0034 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:07:43 IST] start 56/120 block=stress ojas3 s4_log_cat_all #3
+[2026-11-23 18:07:52 IST] done 56/120 block=stress ojas3 s4_log_cat_all #3 -> PASS cost=0.0026 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:07:53 IST] start 57/120 block=main baseline t1_click_bug #3
+[2026-11-23 18:08:25 IST] done 57/120 block=main baseline t1_click_bug #3 -> PASS cost=0.0034 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:08:25 IST] start 58/120 block=main ojas3 t1_click_bug #3
+[2026-11-23 18:08:57 IST] done 58/120 block=main ojas3 t1_click_bug #3 -> PASS cost=0.0038 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:08:58 IST] start 59/120 block=main baseline t2_express_bug #3
+[2026-11-23 18:09:21 IST] done 59/120 block=main baseline t2_express_bug #3 -> PASS cost=0.0031 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:09:22 IST] start 60/120 block=main ojas3 t2_express_bug #3
+[2026-11-23 18:09:50 IST] done 60/120 block=main ojas3 t2_express_bug #3 -> PASS cost=0.0037 turns=7 | valid=1 | last pause: none
+[2026-11-23 18:09:50 IST] start 61/120 block=main baseline t3_walkdir_bug #3
+[2026-11-23 18:10:15 IST] done 61/120 block=main baseline t3_walkdir_bug #3 -> PASS cost=0.0064 turns=9 | valid=1 | last pause: none
+[2026-11-23 18:10:15 IST] start 62/120 block=main ojas3 t3_walkdir_bug #3
+[2026-11-23 18:10:43 IST] done 62/120 block=main ojas3 t3_walkdir_bug #3 -> PASS cost=0.0080 turns=11 | valid=1 | last pause: none
+[2026-11-23 18:10:44 IST] start 63/120 block=main baseline t4_click_rename #3
+[2026-11-23 18:11:24 IST] done 63/120 block=main baseline t4_click_rename #3 -> PASS cost=0.0022 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:11:24 IST] start 64/120 block=main ojas3 t4_click_rename #3
+[2026-11-23 18:11:59 IST] done 64/120 block=main ojas3 t4_click_rename #3 -> PASS cost=0.0023 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:11:59 IST] start 65/120 block=main baseline t5_click_qa #3
+[2026-11-23 18:12:11 IST] done 65/120 block=main baseline t5_click_qa #3 -> PASS cost=0.0018 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:12:11 IST] start 66/120 block=main ojas3 t5_click_qa #3
+[2026-11-23 18:12:23 IST] done 66/120 block=main ojas3 t5_click_qa #3 -> PASS cost=0.0018 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:12:23 IST] start 67/120 block=main baseline t6_log_rootcause #3
+[2026-11-23 18:12:38 IST] done 67/120 block=main baseline t6_log_rootcause #3 -> PASS cost=0.0028 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:12:38 IST] start 68/120 block=main ojas3 t6_log_rootcause #3
+[2026-11-23 18:12:52 IST] done 68/120 block=main ojas3 t6_log_rootcause #3 -> PASS cost=0.0032 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:12:53 IST] start 69/120 block=main baseline t7_git_history #3
+[2026-11-23 18:12:59 IST] done 69/120 block=main baseline t7_git_history #3 -> PASS cost=0.0014 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:12:59 IST] start 70/120 block=main ojas3 t7_git_history #3
+[2026-11-23 18:13:06 IST] done 70/120 block=main ojas3 t7_git_history #3 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:13:07 IST] start 71/120 block=main baseline t8_control_edit #3
+[2026-11-23 18:13:17 IST] done 71/120 block=main baseline t8_control_edit #3 -> PASS cost=0.0011 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:13:17 IST] start 72/120 block=main ojas3 t8_control_edit #3
+[2026-11-23 18:13:25 IST] done 72/120 block=main ojas3 t8_control_edit #3 -> PASS cost=0.0012 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:13:26 IST] start 73/120 block=stress ojas3 s1_click_full_suite #4
+[2026-11-23 18:13:51 IST] done 73/120 block=stress ojas3 s1_click_full_suite #4 -> PASS cost=0.0025 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:13:52 IST] start 74/120 block=stress baseline s1_click_full_suite #4
+[2026-11-23 18:14:17 IST] done 74/120 block=stress baseline s1_click_full_suite #4 -> PASS cost=0.0017 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:14:18 IST] start 75/120 block=stress ojas3 s2_express_full_suite #4
+[2026-11-23 18:14:30 IST] done 75/120 block=stress ojas3 s2_express_full_suite #4 -> PASS cost=0.0010 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:14:30 IST] start 76/120 block=stress baseline s2_express_full_suite #4
+[2026-11-23 18:14:42 IST] done 76/120 block=stress baseline s2_express_full_suite #4 -> I didn't modify any files. `test/res.send.js` was already mo cost=0.0014 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:14:43 IST] start 77/120 block=stress ojas3 s3_click_core_full_read #4
+[2026-11-23 18:15:01 IST] done 77/120 block=stress ojas3 s3_click_core_full_read #4 -> PASS cost=0.0042 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:15:02 IST] start 78/120 block=stress baseline s3_click_core_full_read #4
+[2026-11-23 18:15:18 IST] done 78/120 block=stress baseline s3_click_core_full_read #4 -> PASS cost=0.0146 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:15:18 IST] start 79/120 block=stress ojas3 s4_log_cat_all #4
+[2026-11-23 18:15:29 IST] done 79/120 block=stress ojas3 s4_log_cat_all #4 -> PASS cost=0.0014 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:15:29 IST] start 80/120 block=stress baseline s4_log_cat_all #4
+[2026-11-23 18:15:42 IST] done 80/120 block=stress baseline s4_log_cat_all #4 -> PASS cost=0.0029 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:15:42 IST] start 81/120 block=main ojas3 t1_click_bug #4
+[2026-11-23 18:16:16 IST] done 81/120 block=main ojas3 t1_click_bug #4 -> PASS cost=0.0038 turns=7 | valid=1 | last pause: none
+[2026-11-23 18:16:17 IST] start 82/120 block=main baseline t1_click_bug #4
+[2026-11-23 18:16:54 IST] done 82/120 block=main baseline t1_click_bug #4 -> PASS cost=0.0046 turns=9 | valid=1 | last pause: none
+[2026-11-23 18:16:55 IST] start 83/120 block=main ojas3 t2_express_bug #4
+[2026-11-23 18:17:46 IST] done 83/120 block=main ojas3 t2_express_bug #4 -> PASS cost=0.0055 turns=10 | valid=1 | last pause: none
+[2026-11-23 18:17:46 IST] start 84/120 block=main baseline t2_express_bug #4
+[2026-11-23 18:18:23 IST] done 84/120 block=main baseline t2_express_bug #4 -> PASS cost=0.0034 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:18:23 IST] start 85/120 block=main ojas3 t3_walkdir_bug #4
+[2026-11-23 18:18:53 IST] done 85/120 block=main ojas3 t3_walkdir_bug #4 -> PASS cost=0.0077 turns=11 | valid=1 | last pause: none
+[2026-11-23 18:18:54 IST] start 86/120 block=main baseline t3_walkdir_bug #4
+[2026-11-23 18:19:14 IST] done 86/120 block=main baseline t3_walkdir_bug #4 -> PASS cost=0.0056 turns=8 | valid=1 | last pause: none
+[2026-11-23 18:19:14 IST] start 87/120 block=main ojas3 t4_click_rename #4
+[2026-11-23 18:19:59 IST] done 87/120 block=main ojas3 t4_click_rename #4 -> PASS cost=0.0024 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:20:00 IST] start 88/120 block=main baseline t4_click_rename #4
+[2026-11-23 18:20:32 IST] done 88/120 block=main baseline t4_click_rename #4 -> PASS cost=0.0020 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:20:33 IST] start 89/120 block=main ojas3 t5_click_qa #4
+[2026-11-23 18:20:45 IST] done 89/120 block=main ojas3 t5_click_qa #4 -> PASS cost=0.0021 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:20:46 IST] start 90/120 block=main baseline t5_click_qa #4
+[2026-11-23 18:20:56 IST] done 90/120 block=main baseline t5_click_qa #4 -> PASS cost=0.0017 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:20:56 IST] start 91/120 block=main ojas3 t6_log_rootcause #4
+[2026-11-23 18:21:05 IST] done 91/120 block=main ojas3 t6_log_rootcause #4 -> PASS cost=0.0028 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:21:06 IST] start 92/120 block=main baseline t6_log_rootcause #4
+[2026-11-23 18:21:18 IST] done 92/120 block=main baseline t6_log_rootcause #4 -> PASS cost=0.0035 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:21:19 IST] start 93/120 block=main ojas3 t7_git_history #4
+[2026-11-23 18:21:25 IST] done 93/120 block=main ojas3 t7_git_history #4 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:21:25 IST] start 94/120 block=main baseline t7_git_history #4
+[2026-11-23 18:21:33 IST] done 94/120 block=main baseline t7_git_history #4 -> PASS cost=0.0016 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:21:33 IST] start 95/120 block=main ojas3 t8_control_edit #4
+[2026-11-23 18:21:41 IST] done 95/120 block=main ojas3 t8_control_edit #4 -> PASS cost=0.0009 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:21:42 IST] start 96/120 block=main baseline t8_control_edit #4
+[2026-11-23 18:21:50 IST] done 96/120 block=main baseline t8_control_edit #4 -> PASS cost=0.0011 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:21:50 IST] start 97/120 block=stress baseline s1_click_full_suite #5
+[2026-11-23 18:22:14 IST] done 97/120 block=stress baseline s1_click_full_suite #5 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:22:14 IST] start 98/120 block=stress ojas3 s1_click_full_suite #5
+[2026-11-23 18:22:40 IST] done 98/120 block=stress ojas3 s1_click_full_suite #5 -> PASS cost=0.0024 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:22:41 IST] start 99/120 block=stress baseline s2_express_full_suite #5
+[2026-11-23 18:22:54 IST] done 99/120 block=stress baseline s2_express_full_suite #5 -> To get the failure details, I can run the suite again with i cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:22:54 IST] start 100/120 block=stress ojas3 s2_express_full_suite #5
+[2026-11-23 18:23:06 IST] done 100/120 block=stress ojas3 s2_express_full_suite #5 -> PASS cost=0.0011 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:23:06 IST] start 101/120 block=stress baseline s3_click_core_full_read #5
+[2026-11-23 18:23:26 IST] done 101/120 block=stress baseline s3_click_core_full_read #5 -> PASS cost=0.0150 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:23:27 IST] start 102/120 block=stress ojas3 s3_click_core_full_read #5
+[2026-11-23 18:23:37 IST] done 102/120 block=stress ojas3 s3_click_core_full_read #5 -> Once I have the body, I'll list each error message that `typ cost=0.0028 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:23:37 IST] start 103/120 block=stress baseline s4_log_cat_all #5
+[2026-11-23 18:23:55 IST] done 103/120 block=stress baseline s4_log_cat_all #5 -> PASS cost=0.0038 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:23:55 IST] start 104/120 block=stress ojas3 s4_log_cat_all #5
+[2026-11-23 18:24:05 IST] done 104/120 block=stress ojas3 s4_log_cat_all #5 -> PASS cost=0.0030 turns=3 | valid=1 | last pause: none
+[2026-11-23 18:24:05 IST] start 105/120 block=main baseline t1_click_bug #5
+[2026-11-23 18:24:37 IST] done 105/120 block=main baseline t1_click_bug #5 -> PASS cost=0.0034 turns=6 | valid=1 | last pause: none
+[2026-11-23 18:24:38 IST] start 106/120 block=main ojas3 t1_click_bug #5
+[2026-11-23 18:25:13 IST] done 106/120 block=main ojas3 t1_click_bug #5 -> PASS cost=0.0038 turns=7 | valid=1 | last pause: none
+[2026-11-23 18:25:13 IST] start 107/120 block=main baseline t2_express_bug #5
+[2026-11-23 18:27:43 IST] done 107/120 block=main baseline t2_express_bug #5 -> PASS cost=0.0045 turns=9 | valid=1 | last pause: none
+[2026-11-23 18:27:44 IST] start 108/120 block=main ojas3 t2_express_bug #5
+[2026-11-23 18:28:15 IST] done 108/120 block=main ojas3 t2_express_bug #5 -> PASS cost=0.0044 turns=8 | valid=1 | last pause: none
+[2026-11-23 18:28:15 IST] start 109/120 block=main baseline t3_walkdir_bug #5
+[2026-11-23 18:28:40 IST] done 109/120 block=main baseline t3_walkdir_bug #5 -> PASS cost=0.0065 turns=13 | valid=1 | last pause: none
+[2026-11-23 18:28:41 IST] start 110/120 block=main ojas3 t3_walkdir_bug #5
+[2026-11-23 18:29:17 IST] done 110/120 block=main ojas3 t3_walkdir_bug #5 -> PASS cost=0.0096 turns=13 | valid=1 | last pause: none
+[2026-11-23 18:29:17 IST] start 111/120 block=main baseline t4_click_rename #5
+[2026-11-23 18:30:07 IST] done 111/120 block=main baseline t4_click_rename #5 -> PASS cost=0.0019 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:30:07 IST] start 112/120 block=main ojas3 t4_click_rename #5
+[2026-11-23 18:30:54 IST] done 112/120 block=main ojas3 t4_click_rename #5 -> PASS cost=0.0023 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:30:54 IST] start 113/120 block=main baseline t5_click_qa #5
+[2026-11-23 18:31:06 IST] done 113/120 block=main baseline t5_click_qa #5 -> PASS cost=0.0016 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:31:06 IST] start 114/120 block=main ojas3 t5_click_qa #5
+[2026-11-23 18:31:18 IST] done 114/120 block=main ojas3 t5_click_qa #5 -> PASS cost=0.0017 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:31:18 IST] start 115/120 block=main baseline t6_log_rootcause #5
+[2026-11-23 18:31:33 IST] done 115/120 block=main baseline t6_log_rootcause #5 -> PASS cost=0.0028 turns=5 | valid=1 | last pause: none
+[2026-11-23 18:31:34 IST] start 116/120 block=main ojas3 t6_log_rootcause #5
+[2026-11-23 18:31:48 IST] done 116/120 block=main ojas3 t6_log_rootcause #5 -> PASS cost=0.0026 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:31:48 IST] start 117/120 block=main baseline t7_git_history #5
+[2026-11-23 18:31:56 IST] done 117/120 block=main baseline t7_git_history #5 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:31:57 IST] start 118/120 block=main ojas3 t7_git_history #5
+[2026-11-23 18:32:04 IST] done 118/120 block=main ojas3 t7_git_history #5 -> PASS cost=0.0015 turns=2 | valid=1 | last pause: none
+[2026-11-23 18:32:05 IST] start 119/120 block=main baseline t8_control_edit #5
+[2026-11-23 18:32:16 IST] done 119/120 block=main baseline t8_control_edit #5 -> PASS cost=0.0011 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:32:16 IST] start 120/120 block=main ojas3 t8_control_edit #5
+[2026-11-23 18:32:26 IST] done 120/120 block=main ojas3 t8_control_edit #5 -> PASS cost=0.0011 turns=4 | valid=1 | last pause: none
+[2026-11-23 18:32:26 IST] runner finished: 120/120 complete
