@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" width="960" height="250" role="img" aria-label="Tokens the agent reads, without and with ojas: git show of a large commit 350k to 10.9k; grep over a Python package 93.7k to 2.8k; an 8,856-line file read 108.8k to 6.3k as an outline; tail of a 20,000-line log 365k to 106.">
   <style>
     text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-    .bg{fill:#f6f8fb}.ink{fill:#17202b}.mut{fill:#5d6b7a}.raw{fill:#c7d0da}.oj{fill:#d9480f}.grid{stroke:#dfe4ea}
-    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.ink{fill:#e6edf3}.mut{fill:#8b949e}.raw{fill:#30363d}.oj{fill:#f2a13b}.grid{stroke:#30363d}}
+    .bg{fill:#f6f4ef}.ink{fill:#141b25}.mut{fill:#5b6676}.raw{fill:#d6d0c3}.oj{fill:#e0561c}.grid{stroke:#e3ded3}
+    @media (prefers-color-scheme: dark){.bg{fill:#141b25}.ink{fill:#f5f0e6}.mut{fill:#8a97a8}.raw{fill:#2a3442}.oj{fill:#ffb23f}.grid{stroke:#2a3442}}
   </style>
   <rect class="bg" width="960" height="250" rx="14"/>
   <text class="ink" x="24" y="34" font-size="16" font-weight="700">Tokens your agent reads, before and after ojas</text>

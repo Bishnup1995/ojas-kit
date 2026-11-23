@@ -23,6 +23,8 @@ cargo install ojas   # or download a binary from Releases
 ojas init            # installs the Claude Code hooks; nothing else in your workflow changes
 ```
 
+<p align="center"><img src="docs/demo.gif" alt="Demo: without ojas, Claude Code drops the middle of express's test output and the agent can't find the failing test; with ojas, 1,991 lines become 131 and the agent reports the failure in one step" width="100%"></p>
+
 `ojas` cuts the tokens that coding agents (Claude Code first, any agent second) spend on **command output**. It is a single 2 MB Rust binary with no runtime, no proxy, no daemon and no telemetry.
 
 <p align="center"><a href="#benchmark-v2"><img src="docs/benchmark-v2.svg" alt="Benchmark v2 highlights: 40/40 big-output tasks passed (no tool 28/40); 6.3x cheaper on a 20k-line log; 10/10 test failures found where no tool found 0/10; same cost as no tool on everyday tasks, 80/80 passed" width="100%"></a></p>
@@ -229,9 +231,9 @@ Outlines cut cache reads by a third (0.69x [0.64, 0.74] in v0.3). Before v0.3, w
 
 The v0.3 column is an extra arm run after the pre-registered 720 (logged as a deviation). It ran a day later and alone, so prompt-cache warmth differed. The pricing task's higher cost comes from that: v0.3 made exactly the same tool calls as before, and the difference is cache writes.
 
-### Long sessions: still not tested
+### Long sessions: no compounding savings found
 
-The three "long" tasks were meant to take 25+ turns but finished in a median of 5, 6 and 16. A pre-registered follow-up with two chained tasks (no tool vs ojas v0.3, 20 runs) got closer, at a median of 12 to 26 turns, but still missed the 25-turn bar. There, ojas cost the same as no tool (1.02x [0.94, 1.10]) and both passed 10/10. Whether savings grow over long sessions is still open.
+A pre-registered "on-call day" task (one session, three repos, five jobs; no tool vs ojas v0.3, 10 runs) finally produced real long sessions: a median of 50 turns without ojas and 54 with it. ojas cost about the same as no tool (1.07x [0.88, 1.30], not a clear difference) and both passed 5/5. So savings don't visibly build up over a long session: ojas helps when a single command's output is big, not by accumulating small cuts. In those sessions, repeated test runs made up about a quarter of all tool output, which is where the next feature (showing only what changed since the previous run) would help.
 
 **Caveats.** Ten repeats per task gives wide intervals. There's no correction across 3 setups × 4 groups, so treat single p-values near 0.05 as weak. One model and one harness version were tested. On a subscription, "cost" measures how fast usage limits are used up, not money spent.
 
@@ -287,7 +289,7 @@ To check how a command would be rewritten: `ojas rewrite "cd web && npm test"`.
 
 - More outline languages (Kotlin, Swift, C/C++, Ruby, PHP).
 - Filters learned from `ojas audit` ("missed savings") data, and more test and build formats.
-- A long-session benchmark whose tasks really need 25+ turns. If repeated test runs turn out to dominate long sessions, show only what changed since the previous run.
+- Rerun diffs: when the agent runs the same test suite again, show only what changed since the previous run (about a quarter of tool output in long sessions is repeated test runs).
 - Outlines that keep short function bodies in full, for tasks that need to trace every body.
 
 ## Credits

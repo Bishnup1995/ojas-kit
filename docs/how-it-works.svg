@@ -4,8 +4,8 @@
   </defs>
   <style>
     text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-    .bg{fill:#f6f8fb}.box{fill:#ffffff;stroke:#d4dbe3}.ours{fill:#fff1e6;stroke:#d9480f}.ink{fill:#17202b}.mut{fill:#5d6b7a}.acc{fill:#c2410c}.line{stroke:#8a98a8}.arw{fill:#8a98a8}.dash{stroke:#d9480f;fill:none}
-    @media (prefers-color-scheme: dark){.bg{fill:#0d1117}.box{fill:#161b22;stroke:#30363d}.ours{fill:#2b1b0e;stroke:#f2a13b}.ink{fill:#e6edf3}.mut{fill:#8b949e}.acc{fill:#f2a13b}.line{stroke:#6e7b8a}.arw{fill:#6e7b8a}.dash{stroke:#f2a13b}}
+    .bg{fill:#f6f4ef}.box{fill:#ffffff;stroke:#dcd6ca}.ours{fill:#fff0e3;stroke:#e0561c}.ink{fill:#141b25}.mut{fill:#5b6676}.acc{fill:#c94a14}.line{stroke:#8a97a8}.arw{fill:#8a97a8}.dash{stroke:#e0561c;fill:none}
+    @media (prefers-color-scheme: dark){.bg{fill:#141b25}.box{fill:#1b2330;stroke:#2a3442}.ours{fill:#2b1b0e;stroke:#ffb23f}.ink{fill:#f5f0e6}.mut{fill:#8a97a8}.acc{fill:#ffb23f}.line{stroke:#667183}.arw{fill:#667183}.dash{stroke:#ffb23f}}
   </style>
   <rect class="bg" width="960" height="230" rx="14"/>
   <g font-size="12.5">
